@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:50:08Z",
+  "updated_at": "2026-04-14T23:51:01Z",
   "today": "2026-04-14",
-  "today_usd": 5.64531,
-  "total_usd": 5.64531,
-  "total_prompt": 894640,
-  "total_completion": 198190,
+  "today_usd": 5.67271,
+  "total_usd": 5.67271,
+  "total_prompt": 900874,
+  "total_completion": 198770,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 894640,
-      "completion_tokens": 198190,
-      "usd": 5.64531
+      "prompt_tokens": 900874,
+      "completion_tokens": 198770,
+      "usd": 5.67271
     }
   },
   "commits": [
+    {
+      "sha": "27e59c4bb689b3e05a6b34d53630bd6edcae9bd6",
+      "time": "2026-04-14T23:50:10Z",
+      "time_fmt": "2026-04-14 23:50 UTC",
+      "msg": "[Matching Engine] Commercial fit now defaults to 0.075 (half weight) when structured data is missing so strong matches stay visible instead of vanishing."
+    },
     {
       "sha": "8b920d099d262fbb88fecea65b8acbe458f5baa8",
       "time": "2026-04-14T23:49:10Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T23:01:06Z",
       "time_fmt": "2026-04-14 23:01 UTC",
       "msg": "[Matching Engine] Proximity scoring now emits user query text (first 40 chars) in debug logs so engineers see spatial intent instantly."
-    },
-    {
-      "sha": "d69b5a9390cf797b2c6307dee8f494c878102877",
-      "time": "2026-04-14T23:00:08Z",
-      "time_fmt": "2026-04-14 23:00 UTC",
-      "msg": "[Matching Engine] Proximity scoring now respects availability \u2014 zero points awarded when exhibitor has no staff coverage on user's selected days."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:10:46Z | heartbeat | daemon tick",
     "2026-04-14T23:11:47Z | heartbeat | daemon tick",
     "2026-04-14T23:12:46Z | heartbeat | daemon tick",
     "2026-04-14T23:13:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:46:47Z | heartbeat | daemon tick",
     "2026-04-14T23:47:47Z | heartbeat | daemon tick",
     "2026-04-14T23:48:48Z | heartbeat | daemon tick",
-    "2026-04-14T23:49:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:49:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:50:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now defaults to 0.075 (half weight) when structured data is missing so strong matches stay visible instead of vanishing.",
+  "last_completed": "[Matching Engine] Proximity scoring now requires both hall coordinates AND user-selected days to award any credit \u2014 missing either zeroes the score.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now defaults to 0.075 (half weight) when structured data is missing so strong matches stay visible instead of vanishing.",
-  "last_impact": "Prevents catastrophic ranking collapse when exhibitors lack complete price_tier/employee_count data \u2014 a robotics startup with perfect goal/solution fit no longer drops to position #47 because commercial fit zeroed out. Users see relevant matches even when data is incomplete, while still rewarding completeness over guessing from text. This directly supports the CORE PRINCIPLE: users must feel they're missing something if they don't act \u2014 silent zero-scoring destroys that by hiding strong matches",
-  "next_target": "Add commercial fit debug logging to show the 0.075 fallback path so engineers see when missing data triggered partial credit during live testing.",
+  "last_detail": "Proximity scoring now requires both hall coordinates AND user-selected days to award any credit \u2014 missing either zeroes the score.",
+  "last_impact": "Prevents false confidence where users walk to stands that may be closed on their selected days, wasting time and destroying trust. Aligns with the CORE PRINCIPLE: every output must make the user feel \"if I don't use this, I'm missing something right now\" \u2014 broken proximity scoring violates that by sending users to unavailable booths.",
+  "next_target": "Log commercial fit computation breakdown inline so engineers see exactly which structured fields were present/missing during live fair testing.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
