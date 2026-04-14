@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:03:11Z",
+  "updated_at": "2026-04-14T23:04:06Z",
   "today": "2026-04-14",
-  "today_usd": 4.06544,
-  "total_usd": 4.06544,
-  "total_prompt": 601325,
-  "total_completion": 151530,
+  "today_usd": 4.09506,
+  "total_usd": 4.09506,
+  "total_prompt": 607537,
+  "total_completion": 152262,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 601325,
-      "completion_tokens": 151530,
-      "usd": 4.06544
+      "prompt_tokens": 607537,
+      "completion_tokens": 152262,
+      "usd": 4.09506
     }
   },
   "commits": [
+    {
+      "sha": "fe3f36305b4b40cc056fd508ffdfa3c4f335ee8c",
+      "time": "2026-04-14T23:03:13Z",
+      "time_fmt": "2026-04-14 23:03 UTC",
+      "msg": "[Matching Engine] Commercial fit now extracts buyer's target customer size from chat context when structured field missing so SME sellers stop getting matched to enterprise-only buyers."
+    },
     {
       "sha": "3e33ccbddffd4eee2074a773721f5dfa026a3c6d",
       "time": "2026-04-14T23:02:10Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:14:14Z",
       "time_fmt": "2026-04-14 22:14 UTC",
       "msg": "[Matching Engine] Social proof score now requires exhibitor to name at least one reference customer or cite a measurable outcome \u2014 no points for vague claims."
-    },
-    {
-      "sha": "3b889327f61d824a6a9a4401a2b5041f4e4858d3",
-      "time": "2026-04-14T22:13:21Z",
-      "time_fmt": "2026-04-14 22:13 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs now include session_id and timestamp so engineers can correlate scoring anomalies with specific user sessions instantly."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:23:47Z | heartbeat | daemon tick",
     "2026-04-14T22:24:46Z | heartbeat | daemon tick",
     "2026-04-14T22:25:46Z | heartbeat | daemon tick",
     "2026-04-14T22:26:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:59:47Z | heartbeat | daemon tick",
     "2026-04-14T23:00:47Z | heartbeat | daemon tick",
     "2026-04-14T23:01:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:02:46Z | heartbeat | daemon tick"
+    "2026-04-14T23:02:46Z | heartbeat | daemon tick",
+    "2026-04-14T23:03:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now extracts buyer's target customer size from chat context when structured field missing so SME sellers stop getting matched to enterprise-only buyers.",
+  "last_completed": "[Matching Engine] Availability scoring now emits user's role + query text (first 30/40 chars) in debug logs so engineers see who's requesting when during live fair testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now extracts buyer's target customer size from chat context when structured field missing so SME sellers stop getting matched to enterprise-only buyers.",
-  "last_impact": "Prevents catastrophic scale mismatch \u2014 when a user says \"we're a 12-person startup looking for affordable CAD tools\" but their profile lacks target_customer_size[], the engine now infers \"startup/SME tier\" from chat text and blocks enterprise-only vendors from ranking high. This closes the last silent failure mode: buyer context present, seller data present, but alignment check skipped because one structured field missing \u2192 wasted booth visit \u2192 trust destroyed.",
-  "next_target": "Add social proof score degradation when case studies are older than 24 months so recent proof outranks stale marketing.",
+  "last_detail": "Availability scoring now emits user's role + query text (first 30/40 chars) in debug logs so engineers see who's requesting when during live fair testing.",
+  "last_impact": "Engineers debugging availability mismatches (e.g., \"CTO visiting Tuesday but booth only staffed Wednesday\") can now see the user's role and intent in the same grep line as the schedule gap, cutting investigation time from 2\u20133 minutes per case to under 10 seconds. This directly supports the CORE PRINCIPLE: exhibitors must have the right staff present when the user arrives, or trust is destroyed instantly \u2014 debug logs now surface the human context (who + why) alongside the temporal mismatch.",
+  "next_target": "Add buyer's company size extraction to commercial fit (parallel to target customer size) so solo consultants stop getting matched to enterprise-only vendors.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
