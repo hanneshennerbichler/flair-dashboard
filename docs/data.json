@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:48:06Z",
+  "updated_at": "2026-04-14T23:49:08Z",
   "today": "2026-04-14",
-  "today_usd": 5.58441,
-  "total_usd": 5.58441,
-  "total_prompt": 882169,
-  "total_completion": 196624,
+  "today_usd": 5.61426,
+  "total_usd": 5.61426,
+  "total_prompt": 888405,
+  "total_completion": 197367,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 882169,
-      "completion_tokens": 196624,
-      "usd": 5.58441
+      "prompt_tokens": 888405,
+      "completion_tokens": 197367,
+      "usd": 5.61426
     }
   },
   "commits": [
+    {
+      "sha": "65ec6251bd18c070a259584508fca8bfe79b1cef",
+      "time": "2026-04-14T23:48:07Z",
+      "time_fmt": "2026-04-14 23:48 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs buyer's employee count so engineers instantly see scale mismatches during live fair testing."
+    },
     {
       "sha": "43881d6161bde56171ba465e4336ec2ef93b4832",
       "time": "2026-04-14T23:47:17Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:59:08Z",
       "time_fmt": "2026-04-14 22:59 UTC",
       "msg": "[Matching Engine] Proximity scoring now awards half-credit (0.05) when user has no selected days but hall data exists \u2014 prevents location from vanishing entirely."
-    },
-    {
-      "sha": "f8cd47880fd1ed256c2c3fa627f7ffb4fd2f854c",
-      "time": "2026-04-14T22:58:18Z",
-      "time_fmt": "2026-04-14 22:58 UTC",
-      "msg": "[Matching Engine] Availability scoring now emits partial-credit breakdown showing exactly which user days have staff coverage vs. which are missing."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:08:47Z | heartbeat | daemon tick",
     "2026-04-14T23:09:46Z | heartbeat | daemon tick",
     "2026-04-14T23:10:46Z | heartbeat | daemon tick",
     "2026-04-14T23:11:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:44:48Z | heartbeat | daemon tick",
     "2026-04-14T23:45:47Z | heartbeat | daemon tick",
     "2026-04-14T23:46:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:47:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:47:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:48:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs buyer's employee count so engineers instantly see scale mismatches during live fair testing.",
+  "last_completed": "[Matching Engine] Actionability scoring now requires exhibitor to offer at least one concrete next-step mechanism to earn any credit (zero for passive presence).",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs buyer's employee count so engineers instantly see scale mismatches during live fair testing.",
-  "last_impact": "When a 12-person startup gets matched to Siemens (300,000 employees), engineers previously had to dig through database tables to understand why commercial fit scored zero. Now stderr shows `buyer_emp=12 exhibitor_emp=300000` inline \u2014 scale mismatch is visible in <1 second during live testing, eliminating 2\u20133 minutes of investigation per false positive. This directly supports the Commercial Fit Debug Logging Rule requirement to emit actual structured field values so engineers can verify scale gat",
-  "next_target": "Add exhibitor's price tier tag to commercial fit debug output so engineers see budget mismatches instantly without querying the database.",
+  "last_detail": "Actionability scoring now requires exhibitor to offer at least one concrete next-step mechanism to earn any credit (zero for passive presence).",
+  "last_impact": "Prevents exhibitors who only show up with a booth from ranking above those offering demos, samples, or meeting slots \u2014 the core promise is \"probability of useful action NOW,\" and generic presence delivers zero immediate value. This enforces the CORE PRINCIPLE: if an exhibitor can't facilitate an action today, they don't belong in the top 3, no matter how relevant their product.",
+  "next_target": "Add debug log showing which concrete action types (demo/sample/meeting/trial) each exhibitor offers so engineers see why passive booths got zeroed out.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
