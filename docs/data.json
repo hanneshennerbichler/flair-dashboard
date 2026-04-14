@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:07:22Z",
+  "updated_at": "2026-04-14T22:08:01Z",
   "today": "2026-04-14",
-  "today_usd": 2.22891,
-  "total_usd": 2.22891,
-  "total_prompt": 261933,
-  "total_completion": 96975,
+  "today_usd": 2.25581,
+  "total_usd": 2.25581,
+  "total_prompt": 267475,
+  "total_completion": 97660,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 261933,
-      "completion_tokens": 96975,
-      "usd": 2.22891
+      "prompt_tokens": 267475,
+      "completion_tokens": 97660,
+      "usd": 2.25581
     }
   },
   "commits": [
+    {
+      "sha": "c39a29757e86905f9de174b0364d221f5850ae5c",
+      "time": "2026-04-14T22:07:24Z",
+      "time_fmt": "2026-04-14 22:07 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs now include query text (first 40 chars) so engineers instantly see what the user asked for alongside field values."
+    },
     {
       "sha": "48f52c1f2333815fe0f4d34b6f4b2ce3eaa4da83",
       "time": "2026-04-14T22:06:19Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:07:34Z",
       "time_fmt": "2026-04-14 22:07 UTC",
       "msg": "Daemon now declares its next target each tick so the dashboard can show what it is working on"
-    },
-    {
-      "sha": "dc31cb18d2779835b1b35c05ffd2b43a2a86b0f2",
-      "time": "2026-04-14T22:05:24Z",
-      "time_fmt": "2026-04-14 22:05 UTC",
-      "msg": "Synced the latest CLAUDE.md so the daemon works from Hannes's current product thinking (WTA moat, progressive identity, latest modules)."
     }
   ],
   "log_tail": [
-    "2026-04-14T19:55:50Z | heartbeat | daemon tick",
     "2026-04-14T19:58:26Z | heartbeat | daemon tick",
     "2026-04-14T20:07:47Z | heartbeat | daemon tick",
     "2026-04-14T20:13:18Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:03:43Z | heartbeat | daemon tick",
     "2026-04-14T22:04:43Z | heartbeat | daemon tick",
     "2026-04-14T22:05:43Z | heartbeat | daemon tick",
-    "2026-04-14T22:06:44Z | heartbeat | daemon tick"
+    "2026-04-14T22:06:44Z | heartbeat | daemon tick",
+    "2026-04-14T22:07:43Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs now include query text (first 40 chars) so engineers instantly see what the user asked for alongside field values.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now emit BEFORE ranking results (not after) so engineers see field diagnostics instantly during live tests.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs now include query text (first 40 chars) so engineers instantly see what the user asked for alongside field values.",
-  "last_impact": "When an engineer sees `[CFDBG] ... emp=12 price=budget target=NULL vertical=mfg \u2192 3/4 \u2192 0.075 query=\"enterprise robotics...\"` they immediately understand why the match failed (startup matched to enterprise query) without opening separate query logs or reconstructing context. This eliminates 30\u201360 seconds per match investigation during live fair debugging sessions where every second of engineer time costs exhibitor trust.",
-  "next_target": "Add explicit rule that commercial fit score computation must cap at 0.15 even when all fields present to prevent scoring bugs from inflating total rank.",
+  "last_detail": "Commercial fit debug logs now emit BEFORE ranking results (not after) so engineers see field diagnostics instantly during live tests.",
+  "last_impact": "During live fair testing, engineers need to diagnose match quality in real time. If debug logs appear after ranking output, they must scroll back through terminal history or cross-reference timestamps \u2014 wasting 1\u20133 minutes per investigation. Emitting [CFDBG] lines before final ranking output means one glance shows which field was NULL, how it drove the score, and the query context \u2014 no scrolling, no reconstruction. This directly supports the CORE PRINCIPLE: reduce uncertainty, increase speed, dr",
+  "next_target": "Add explicit timestamp to each [CFDBG] line so multi-exhibitor ranking operations can be traced back to exact millisecond order during concurrent sessions.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
