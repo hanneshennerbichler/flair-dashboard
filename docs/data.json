@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:10:09Z",
+  "updated_at": "2026-04-14T22:11:42Z",
   "today": "2026-04-14",
-  "today_usd": 2.30979,
-  "total_usd": 2.30979,
-  "total_prompt": 278545,
-  "total_completion": 99045,
+  "today_usd": 2.33809,
+  "total_usd": 2.33809,
+  "total_prompt": 284078,
+  "total_completion": 99825,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 278545,
-      "completion_tokens": 99045,
-      "usd": 2.30979
+      "prompt_tokens": 284078,
+      "completion_tokens": 99825,
+      "usd": 2.33809
     }
   },
   "commits": [
+    {
+      "sha": "3afa3ffcac680276bac665b53a24276102d2024a",
+      "time": "2026-04-14T22:10:10Z",
+      "time_fmt": "2026-04-14 22:10 UTC",
+      "msg": "[Matching Engine] Proximity bonus now applies only when user has selected specific fair days \u2014 prevents irrelevant location boosts for time-agnostic queries."
+    },
     {
       "sha": "cb82b0ead5856c11ece9e66c3e15ab9c28a8b387",
       "time": "2026-04-14T22:09:08Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T20:13:38Z",
       "time_fmt": "2026-04-14 20:13 UTC",
       "msg": "[Chatbot Intelligence] Added exhibitor scoring weights as inline constants so the matching engine can rank results immediately without a separate config layer."
-    },
-    {
-      "sha": "fc270ca1a2ff10eeebf0c8fdfd4aa87e5f2d55cb",
-      "time": "2026-04-14T22:13:08Z",
-      "time_fmt": "2026-04-14 22:13 UTC",
-      "msg": "Daemon output restructured: CATEGORY + DETAIL + IMPACT + NEXT so the dashboard can explain the bigger picture"
     }
   ],
   "log_tail": [
-    "2026-04-14T20:13:18Z | heartbeat | daemon tick",
     "2026-04-14T21:13:42Z | heartbeat | daemon tick",
     "2026-04-14T21:21:29Z | heartbeat | daemon tick",
     "2026-04-14T21:22:48Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:06:44Z | heartbeat | daemon tick",
     "2026-04-14T22:07:43Z | heartbeat | daemon tick",
     "2026-04-14T22:08:44Z | heartbeat | daemon tick",
-    "2026-04-14T22:09:43Z | heartbeat | daemon tick"
+    "2026-04-14T22:09:43Z | heartbeat | daemon tick",
+    "2026-04-14T22:10:44Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity bonus now applies only when user has selected specific fair days \u2014 prevents irrelevant location boosts for time-agnostic queries.",
+  "last_completed": "[Matching Engine] Proximity boost now requires hall data to be present \u2014 prevents scoring errors when stand coordinates are missing.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity bonus now applies only when user has selected specific fair days \u2014 prevents irrelevant location boosts for time-agnostic queries.",
-  "last_impact": "When a user asks \"who makes industrial robots?\" without setting fair dates, they get ranked by pure relevance \u2014 not polluted by hall proximity that's meaningless until they commit to attending. This prevents the scenario where a mediocre local exhibitor outranks a perfect-fit company three halls away just because the user hasn't picked days yet. The moment they set availability, proximity activates and optimizes walking routes.",
-  "next_target": "Add availability weight decay rule \u2014 exhibitors present only 1 of user's 3 selected days get 0.33\u00d7 the availability score vs. full overlap.",
+  "last_detail": "Proximity boost now requires hall data to be present \u2014 prevents scoring errors when stand coordinates are missing.",
+  "last_impact": "When an exhibitor record lacks hall/stand coordinates (incomplete crawl data, new listing, or manual entry without location), the matching engine currently attempts proximity computation anyway, triggering null-reference errors or awarding bogus distance bonuses. This change gates the proximity boost behind a strict precondition: if hall_number or stand_id is NULL, proximity score = 0.05 (neutral baseline, no bonus, no penalty). Reason: awarding a +0.05 proximity bonus to an exhibitor with unkno",
+  "next_target": "Add strict rule that actionability score requires verifiable meeting-slot availability or demo-booking link \u2014 no credit for vague \"visit us\" text.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
