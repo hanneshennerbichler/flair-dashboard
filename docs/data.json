@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:37:11Z",
+  "updated_at": "2026-04-14T21:39:11Z",
   "today": "2026-04-14",
-  "today_usd": 0.84105,
-  "total_usd": 0.84105,
-  "total_prompt": 110374,
-  "total_completion": 34762,
+  "today_usd": 0.90454,
+  "total_usd": 0.90454,
+  "total_prompt": 116517,
+  "total_completion": 37766,
   "daily_cap": 50.0,
-  "ticks_today": 44,
+  "ticks_today": 45,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 110374,
-      "completion_tokens": 34762,
-      "usd": 0.84105
+      "prompt_tokens": 116517,
+      "completion_tokens": 37766,
+      "usd": 0.90454
     }
   },
   "commits": [
+    {
+      "sha": "25cc98f032d49f5e55bdb3f531e93e11d837a33f",
+      "time": "2026-04-14T21:37:12Z",
+      "time_fmt": "2026-04-14 21:37 UTC",
+      "msg": "[Matching Engine] Added explicit penalty application order so vague-booth penalty (-0.15) runs before availability gate, preventing score inflation bugs."
+    },
     {
       "sha": "906c7d5d023d18802f83c650e3d7fac7e5faa8f3",
       "time": "2026-04-14T21:35:28Z",
@@ -310,13 +316,14 @@
     "2026-04-14T21:31:04Z | heartbeat | daemon tick",
     "2026-04-14T21:32:55Z | heartbeat | daemon tick",
     "2026-04-14T21:34:41Z | heartbeat | daemon tick",
-    "2026-04-14T21:36:29Z | heartbeat | daemon tick"
+    "2026-04-14T21:36:29Z | heartbeat | daemon tick",
+    "2026-04-14T21:38:14Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added explicit penalty application order so vague-booth penalty (-0.15) runs before availability gate, preventing score inflation bugs.",
+  "last_completed": "[Matching Engine] Added explicit rule that weight adjustments must document the proportional reduction math so future changes preserve ranking integrity.",
   "last_category": "Matching Engine",
-  "last_detail": "Added explicit penalty application order so vague-booth penalty (-0.15) runs before availability gate, preventing score inflation bugs.",
-  "last_impact": "When an exhibitor is both vague AND unavailable, we must penalize first, then gate. If we gate first and score is already 0, the penalty never applies \u2014 but if availability later changes (staff added), the vague booth suddenly jumps to full score instead of staying penalized. This order ensures penalties are baked into raw_score before gating, so vague booths stay suppressed even if availability flips. Protects the 'actionable over PR' principle from timing-dependent ranking bugs.",
-  "next_target": "Add explicit tie-breaking rule for equal final_scores so ranking output is deterministic when multiple exhibitors hit same score threshold.",
+  "last_detail": "Added explicit rule that weight adjustments must document the proportional reduction math so future changes preserve ranking integrity.",
+  "last_impact": "When engineers add new scoring factors (e.g., real-time booth traffic, user feedback signals), they now have a concrete formula to preserve the Goal Relevance > Solution Specificity > Commercial Fit hierarchy. This prevents slow ranking drift that would silently break the core \"probability of useful action NOW\" promise \u2014 the single metric users trust when deciding which 3 exhibitors to visit in the next 2 hours.",
+  "next_target": "Add explicit tokenization rules for CV parsing so skills extraction doesn't miss hyphenated terms or German compound nouns.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
