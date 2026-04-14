@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:30:01Z",
+  "updated_at": "2026-04-14T21:31:53Z",
   "today": "2026-04-14",
-  "today_usd": 0.60741,
-  "total_usd": 0.60741,
-  "total_prompt": 85776,
-  "total_completion": 24106,
+  "today_usd": 0.67095,
+  "total_usd": 0.67095,
+  "total_prompt": 91975,
+  "total_completion": 27102,
   "daily_cap": 50.0,
-  "ticks_today": 40,
+  "ticks_today": 41,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 85776,
-      "completion_tokens": 24106,
-      "usd": 0.60741
+      "prompt_tokens": 91975,
+      "completion_tokens": 27102,
+      "usd": 0.67095
     }
   },
   "commits": [
+    {
+      "sha": "09d039a116592d88f8a47679726391abdafe6276",
+      "time": "2026-04-14T21:30:02Z",
+      "time_fmt": "2026-04-14 21:30 UTC",
+      "msg": "[Matching Engine] Added explicit rule that availability gate runs after all scoring, so semantically perfect matches still hit zero if timing misaligns."
+    },
     {
       "sha": "9d7b688af5830f81148c8b2924c0cb4e3cedd8ac",
       "time": "2026-04-14T21:28:24Z",
@@ -282,13 +288,14 @@
     "2026-04-14T21:24:23Z | heartbeat | daemon tick",
     "2026-04-14T21:25:59Z | heartbeat | daemon tick",
     "2026-04-14T21:27:35Z | heartbeat | daemon tick",
-    "2026-04-14T21:29:26Z | heartbeat | daemon tick"
+    "2026-04-14T21:29:26Z | heartbeat | daemon tick",
+    "2026-04-14T21:31:04Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added explicit rule that availability gate runs after all scoring, so semantically perfect matches still hit zero if timing misaligns.",
+  "last_completed": "[Matching Engine] Added explicit availability gate sequence diagram so engineers cannot accidentally reorder scoring pipeline and bypass timing filter.",
   "last_category": "Matching Engine",
-  "last_detail": "Added explicit rule that availability gate runs after all scoring, so semantically perfect matches still hit zero if timing misaligns.",
-  "last_impact": "This closes a ranking edge case where a highly relevant exhibitor could theoretically bypass the availability filter if scoring happened in the wrong order. Now the spec is unambiguous: score first, then apply the hard gate, so users never see time-incompatible recommendations no matter how good the semantic match. This directly supports the CORE PRINCIPLE ('if I don't use this, I'm missing something right now') \u2014 a Monday recommendation for a Thursday-only booth is useless, so it must never app",
-  "next_target": "Add explicit statement that LLM formatting layer receives only the top-3 post-ranked results, so it cannot reorder or inject exhibitors.",
+  "last_detail": "Added explicit availability gate sequence diagram so engineers cannot accidentally reorder scoring pipeline and bypass timing filter.",
+  "last_impact": "Prevents catastrophic logic bugs where clever refactors could move the availability check before scoring, allowing time-misaligned exhibitors to leak into top 3 recommendations. This directly protects the core actionability promise \u2014 users set fair days, system respects them, zero exceptions. A single mistimed recommendation destroys trust and virality.",
+  "next_target": "Add concrete scoring example with sample exhibitor data showing how a semantically perfect +0.85 match drops to 0.00 when availability misaligns.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
