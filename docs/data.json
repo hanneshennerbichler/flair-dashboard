@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:53:15Z",
+  "updated_at": "2026-04-14T23:54:14Z",
   "today": "2026-04-14",
-  "today_usd": 5.73636,
-  "total_usd": 5.73636,
-  "total_prompt": 913342,
-  "total_completion": 200520,
+  "today_usd": 5.76848,
+  "total_usd": 5.76848,
+  "total_prompt": 919568,
+  "total_completion": 201416,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 913342,
-      "completion_tokens": 200520,
-      "usd": 5.73636
+      "prompt_tokens": 919568,
+      "completion_tokens": 201416,
+      "usd": 5.76848
     }
   },
   "commits": [
+    {
+      "sha": "cea86dd463bdb5fe8cee91c43f2147efdf7d441a",
+      "time": "2026-04-14T23:53:16Z",
+      "time_fmt": "2026-04-14 23:53 UTC",
+      "msg": "[Matching Engine] Intent confidence scoring now logs user query word count and question mark presence so engineers see signal clarity instantly."
+    },
     {
       "sha": "98bd3333209f5a03bd3974e95883aafab112175d",
       "time": "2026-04-14T23:52:09Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T23:04:07Z",
       "time_fmt": "2026-04-14 23:04 UTC",
       "msg": "[Matching Engine] Availability scoring now emits user's role + query text (first 30/40 chars) in debug logs so engineers see who's requesting when during live fair testing."
-    },
-    {
-      "sha": "fe3f36305b4b40cc056fd508ffdfa3c4f335ee8c",
-      "time": "2026-04-14T23:03:13Z",
-      "time_fmt": "2026-04-14 23:03 UTC",
-      "msg": "[Matching Engine] Commercial fit now extracts buyer's target customer size from chat context when structured field missing so SME sellers stop getting matched to enterprise-only buyers."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:13:46Z | heartbeat | daemon tick",
     "2026-04-14T23:14:46Z | heartbeat | daemon tick",
     "2026-04-14T23:15:47Z | heartbeat | daemon tick",
     "2026-04-14T23:16:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:49:47Z | heartbeat | daemon tick",
     "2026-04-14T23:50:48Z | heartbeat | daemon tick",
     "2026-04-14T23:51:48Z | heartbeat | daemon tick",
-    "2026-04-14T23:52:48Z | heartbeat | daemon tick"
+    "2026-04-14T23:52:48Z | heartbeat | daemon tick",
+    "2026-04-14T23:53:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Intent confidence scoring now logs user query word count and question mark presence so engineers see signal clarity instantly.",
+  "last_completed": "[Matching Engine] Intent confidence now logs whether user named a specific product category to reveal precision instantly during live testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Intent confidence scoring now logs user query word count and question mark presence so engineers see signal clarity instantly.",
-  "last_impact": "Engineers debugging live fair rankings will now instantly see when low intent confidence scores stem from vague single-word queries (\"automation\") vs. precise multi-clause requests (\"looking for collaborative robots under 50k for automotive assembly line\"), letting them distinguish user inexperience from data gaps. This directly supports the CORE PRINCIPLE by surfacing when the system lacks enough context to confidently drive immediate action \u2014 the #1 failure mode that causes users to abandon af",
-  "next_target": "Add intent confidence penalty for queries containing only exhibitor/brand names without any problem statement or goal context.",
+  "last_detail": "Intent confidence now logs whether user named a specific product category to reveal precision instantly during live testing.",
+  "last_impact": "Engineers running live fair queries see immediately when vague requests (\"looking for innovation\") score differently than precise ones (\"need 6-axis industrial robot arms\"). This exposes the single biggest cause of mis-ranked results \u2014 generic intent scoring the same as surgical intent \u2014 letting us tune the confidence multiplier in real time instead of guessing post-fair why a user got irrelevant matches. Ties directly to CORE PRINCIPLE: if confidence scoring can't distinguish \"robots\" from \"som",
+  "next_target": "Log goal relevance exhibitor capability keyword match count so engineers see why sector-aligned booths scored low.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
