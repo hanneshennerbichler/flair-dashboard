@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:21:05Z",
+  "updated_at": "2026-04-14T23:22:05Z",
   "today": "2026-04-14",
-  "today_usd": 4.68203,
-  "total_usd": 4.68203,
-  "total_prompt": 713485,
-  "total_completion": 170204,
+  "today_usd": 4.70989,
+  "total_usd": 4.70989,
+  "total_prompt": 719731,
+  "total_completion": 170812,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 713485,
-      "completion_tokens": 170204,
-      "usd": 4.68203
+      "prompt_tokens": 719731,
+      "completion_tokens": 170812,
+      "usd": 4.70989
     }
   },
   "commits": [
+    {
+      "sha": "cb6bd3732f713f5b9db926d127c5252873196958",
+      "time": "2026-04-14T23:21:07Z",
+      "time_fmt": "2026-04-14 23:21 UTC",
+      "msg": "[Matching Engine] Social proof now awards half-credit (0.015) when exhibitor has named customers but no measurable outcomes so partial proof beats zero."
+    },
     {
       "sha": "06fb11e9818d5766e24e4d7ae006400028c534e4",
       "time": "2026-04-14T23:20:34Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:32:12Z",
       "time_fmt": "2026-04-14 22:32 UTC",
       "msg": "[Matching Engine] Availability scoring now logs schedule overlap verification to stderr so engineers see when staff presence aligns with user days."
-    },
-    {
-      "sha": "1b20518981709eff746d0929077c1e2b8492311a",
-      "time": "2026-04-14T22:31:13Z",
-      "time_fmt": "2026-04-14 22:31 UTC",
-      "msg": "[Matching Engine] Social proof debug logging now emits verification decisions to stderr so engineers see why case studies pass or fail scoring rules."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:41:46Z | heartbeat | daemon tick",
     "2026-04-14T22:42:46Z | heartbeat | daemon tick",
     "2026-04-14T22:43:46Z | heartbeat | daemon tick",
     "2026-04-14T22:44:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:17:47Z | heartbeat | daemon tick",
     "2026-04-14T23:18:47Z | heartbeat | daemon tick",
     "2026-04-14T23:19:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:20:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:20:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:21:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Social proof now awards half-credit (0.015) when exhibitor has named customers but no measurable outcomes so partial proof beats zero.",
+  "last_completed": "[Matching Engine] Availability debug logs now show which of user's selected days overlap with exhibitor staff schedule so engineers see coverage gaps.",
   "last_category": "Matching Engine",
-  "last_detail": "Social proof now awards half-credit (0.015) when exhibitor has named customers but no measurable outcomes so partial proof beats zero.",
-  "last_impact": "Prevents strong matches from vanishing when exhibitors submit verified reference customers (named companies + industries) but haven't yet documented percentage improvements or cost reductions \u2014 user still sees social validation signal without inflated confidence from unverifiable claims. Aligns with Commercial Fit + Availability partial-credit pattern: incomplete data degrades score instead of zeroing it, keeping otherwise excellent matches visible while incentivizing full documentation.",
-  "next_target": "Add social proof debug logging to stderr with [SPDBG] prefix showing which proof type triggered credit so engineers see verification gaps live.",
+  "last_detail": "Availability debug logs now show which of user's selected days overlap with exhibitor staff schedule so engineers see coverage gaps.",
+  "last_impact": "During live fair testing, engineers immediately see \"user wants Mon+Tue, exhibitor only staffed Wed+Thu\" without parsing raw schedule arrays \u2014 catching temporal mismatches that cause users to walk to closed booths. This directly prevents the trust-destroying moment described in SPEC.md: \"user arrives at booth to find it closed or unstaffed.\"",
+  "next_target": "Add social proof debug logs showing partial-credit computation (0.015 vs 0.03) so engineers see why exhibitors with named customers but no outcomes rank between zero-proof and full-proof entries.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
