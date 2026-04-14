@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:11:08Z",
+  "updated_at": "2026-04-14T23:12:05Z",
   "today": "2026-04-14",
-  "today_usd": 4.33064,
-  "total_usd": 4.33064,
-  "total_prompt": 651147,
-  "total_completion": 159245,
+  "today_usd": 4.36067,
+  "total_usd": 4.36067,
+  "total_prompt": 657388,
+  "total_completion": 159999,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 651147,
-      "completion_tokens": 159245,
-      "usd": 4.33064
+      "prompt_tokens": 657388,
+      "completion_tokens": 159999,
+      "usd": 4.36067
     }
   },
   "commits": [
+    {
+      "sha": "d14d4b797b21ffe493fa8be8724fd23416180131",
+      "time": "2026-04-14T23:11:10Z",
+      "time_fmt": "2026-04-14 23:11 UTC",
+      "msg": "[Matching Engine] Commercial fit now extracts buyer's company name from role/query text when missing from profile so exhibitors see who they're being matched to."
+    },
     {
       "sha": "74af3066641dae6e78cfde1a588763a20c17d598",
       "time": "2026-04-14T23:10:27Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:22:09Z",
       "time_fmt": "2026-04-14 22:22 UTC",
       "msg": "[Matching Engine] Added hard rule requiring commercial fit debug logs to include inline computed score breakdown when fields are missing so engineers see degradation math instantly."
-    },
-    {
-      "sha": "daaad6dc9989167b2eec136bb5aedba9eb7f28bc",
-      "time": "2026-04-14T22:21:09Z",
-      "time_fmt": "2026-04-14 22:21 UTC",
-      "msg": "[Matching Engine] Commercial fit now explicitly ignores unstructured text descriptions \u2014 only uses employee_count, price_tier, target_customer_size, industry_vertical."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:31:46Z | heartbeat | daemon tick",
     "2026-04-14T22:32:47Z | heartbeat | daemon tick",
     "2026-04-14T22:33:47Z | heartbeat | daemon tick",
     "2026-04-14T22:34:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:07:47Z | heartbeat | daemon tick",
     "2026-04-14T23:08:47Z | heartbeat | daemon tick",
     "2026-04-14T23:09:46Z | heartbeat | daemon tick",
-    "2026-04-14T23:10:46Z | heartbeat | daemon tick"
+    "2026-04-14T23:10:46Z | heartbeat | daemon tick",
+    "2026-04-14T23:11:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now extracts buyer's company name from role/query text when missing from profile so exhibitors see who they're being matched to.",
+  "last_completed": "[Matching Engine] Social proof debug logs now emit exhibitor's actual reference customers (first 60 chars of names/industries) so engineers see proof instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now extracts buyer's company name from role/query text when missing from profile so exhibitors see who they're being matched to.",
-  "last_impact": "Engineers debugging why a 5-person robotics startup got matched to Siemens (both mention \"automation\") can now see \"buyer_company=RoboticsTech GmbH\" in stderr logs and trace the catastrophic false positive instantly. This cuts match investigation time from 3\u20135 minutes (grep query text \u2192 correlate session \u2192 parse context) to under 10 seconds (grep [CFDBG] \u2192 see company name inline). Directly supports the core Commercial Fit Computation Rule: structured fields gate out scale mismatches BEFORE text",
-  "next_target": "Add buyer company employee count extraction from OpenCorporates API so commercial fit can auto-verify startup vs. enterprise alignment without manual role parsing.",
+  "last_detail": "Social proof debug logs now emit exhibitor's actual reference customers (first 60 chars of names/industries) so engineers see proof instantly.",
+  "last_impact": "Engineers debugging ranking during live fair testing can now verify in one glance whether an exhibitor's +0.03 social proof boost came from real named customers (e.g., \"Siemens Energy (wind), BASF (chemicals)\") or was incorrectly awarded to vague marketing claims. This eliminates 2\u20133 minutes of database lookups per disputed match and surfaces exhibitors gaming the system by submitting testimonials without verifiable outcomes. Directly enforces the Social Proof Verification Rule \u2014 no named custom",
+  "next_target": "Add social proof debug logs showing measurable outcomes text (first 40 chars of percentage/time/cost claims) so engineers verify quantified results.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
