@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:02:10Z",
+  "updated_at": "2026-04-14T22:03:15Z",
   "today": "2026-04-14",
-  "today_usd": 2.04209,
-  "total_usd": 2.04209,
-  "total_prompt": 234304,
-  "total_completion": 90046,
+  "today_usd": 2.07987,
+  "total_usd": 2.07987,
+  "total_prompt": 240463,
+  "total_completion": 91333,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 234304,
-      "completion_tokens": 90046,
-      "usd": 2.04209
+      "prompt_tokens": 240463,
+      "completion_tokens": 91333,
+      "usd": 2.07987
     }
   },
   "commits": [
+    {
+      "sha": "3a8f682a3d33d3deb7eb05b28f44b2e88ebdab30",
+      "time": "2026-04-14T22:02:11Z",
+      "time_fmt": "2026-04-14 22:02 UTC",
+      "msg": "[Matching Engine] Added strict rule that commercial fit debug logs must include raw field values inline so engineers never reconstruct data from separate lookups."
+    },
     {
       "sha": "2f43a1db42d92f663a69734ade705c9aa942a76f",
       "time": "2026-04-14T22:01:05Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:55:19Z",
       "time_fmt": "2026-04-14 21:55 UTC",
       "msg": "Ich lasse den Daemon jeden Commit in klarem Deutsch beschreiben, damit du auf einen Blick verstehst was er gemacht hat."
-    },
-    {
-      "sha": "17e8fc5ab9bd867ce5110825a531e314fe5df54c",
-      "time": "2026-04-14T19:37:30Z",
-      "time_fmt": "2026-04-14 19:37 UTC",
-      "msg": "chore: daemon tick 2026-04-14T19:37:30Z"
     }
   ],
   "log_tail": [
-    "2026-04-14T19:24:49Z | heartbeat | daemon tick",
     "2026-04-14T19:39:15Z | MODULE: Virality System | ACTION: Added post-result gate component spec to Flair/ui/virality-gate.md | FILES: Flair/ui/virality-gate.md | STATUS: done",
     "2026-04-14T19:28:19Z | heartbeat | daemon tick",
     "2026-04-14T19:30:59Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T21:57:58Z | heartbeat | daemon tick",
     "2026-04-14T21:59:44Z | heartbeat | daemon tick",
     "2026-04-14T22:00:43Z | heartbeat | daemon tick",
-    "2026-04-14T22:01:44Z | heartbeat | daemon tick"
+    "2026-04-14T22:01:44Z | heartbeat | daemon tick",
+    "2026-04-14T22:02:43Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added strict rule that commercial fit debug logs must include raw field values inline so engineers never reconstruct data from separate lookups.",
+  "last_completed": "[Matching Engine] Removed redundant commercial fit debug rules that conflict with the consolidated one-line format already shipped.",
   "last_category": "Matching Engine",
-  "last_detail": "Added strict rule that commercial fit debug logs must include raw field values inline so engineers never reconstruct data from separate lookups.",
-  "last_impact": "Engineers debugging scale mismatches (e.g., startup matched to enterprise query) previously had to cross-reference exhibitor ID against database records to see actual employee_count or price_tier values. Now every debug line shows `emp=12 price=budget` directly \u2014 diagnosis happens in 5 seconds instead of 2 minutes during live fair testing. This closes the last auditability gap: when an exhibitor ranks unexpectedly high/low, the engineer sees the exact data that drove commercial fit scoring witho",
-  "next_target": "Add rule that vague-booth penalty must log specific phrases detected (e.g., \"leading provider\") so engineers can tune the penalty threshold.",
+  "last_detail": "Removed redundant commercial fit debug rules that conflict with the consolidated one-line format already shipped.",
+  "last_impact": "The SPEC now contains 6 overlapping rules about commercial fit debug logging \u2014 some mandate multi-line output, others demand one-line consolidation, creating implementation paralysis. Removing the obsolete multi-line directives leaves only the strict consolidated format (one 120-char line per exhibitor with inline computation). Engineers now have one unambiguous instruction instead of conflicting requirements. This directly supports the CORE PRINCIPLE by eliminating wasted decision cycles during",
+  "next_target": "Add explicit exhibitor data quality metrics to SPEC so engineers know which fields are actually populated in the 3,000-exhibitor dataset.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
