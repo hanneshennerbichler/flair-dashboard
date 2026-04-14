@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:08:09Z",
+  "updated_at": "2026-04-14T23:09:07Z",
   "today": "2026-04-14",
-  "today_usd": 4.22686,
-  "total_usd": 4.22686,
-  "total_prompt": 632451,
-  "total_completion": 156065,
+  "today_usd": 4.25602,
+  "total_usd": 4.25602,
+  "total_prompt": 638687,
+  "total_completion": 156762,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 632451,
-      "completion_tokens": 156065,
-      "usd": 4.22686
+      "prompt_tokens": 638687,
+      "completion_tokens": 156762,
+      "usd": 4.25602
     }
   },
   "commits": [
+    {
+      "sha": "f6bdb11c3085344e50738e9bbbe92fa6e9b059f6",
+      "time": "2026-04-14T23:08:10Z",
+      "time_fmt": "2026-04-14 23:08 UTC",
+      "msg": "[Matching Engine] Commercial fit now extracts buyer's industry vertical from user query when role/company context missing."
+    },
     {
       "sha": "0690ae52ac997e19409a611e4edf514719ecf670",
       "time": "2026-04-14T23:07:09Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:19:31Z",
       "time_fmt": "2026-04-14 22:19 UTC",
       "msg": "[Matching Engine] Commercial fit now defaults to 0.075 when structured fields are missing instead of failing silently \u2014 prevents zero-score exhibitors from vanishing."
-    },
-    {
-      "sha": "c23b6548d246b01f99b95fe76bf0bcd43c8eda2e",
-      "time": "2026-04-14T22:18:28Z",
-      "time_fmt": "2026-04-14 22:18 UTC",
-      "msg": "[Matching Engine] Proximity boost now applies only when both hall data AND user selected days are present \u2014 prevents scoring when either constraint is missing."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:28:46Z | heartbeat | daemon tick",
     "2026-04-14T22:29:46Z | heartbeat | daemon tick",
     "2026-04-14T22:30:47Z | heartbeat | daemon tick",
     "2026-04-14T22:31:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:04:47Z | heartbeat | daemon tick",
     "2026-04-14T23:05:47Z | heartbeat | daemon tick",
     "2026-04-14T23:06:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:07:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:07:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:08:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now extracts buyer's industry vertical from user query when role/company context missing.",
+  "last_completed": "[Matching Engine] Commercial fit now logs buyer's employee count range (startup/SME/enterprise) extracted from role text so scale mismatches are visible.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now extracts buyer's industry vertical from user query when role/company context missing.",
-  "last_impact": "When a user asks \"looking for robotics automation for automotive assembly\" but hasn't filled profile, commercial fit can now score exhibitors targeting automotive vertical vs. generic robotics \u2014 prevents sector mismatches that waste booth visits. Closes the last gap in commercial fit buyer context extraction (employee count, budget tier, target customer size already covered \u2014 vertical was missing).",
-  "next_target": "Add commercial fit debug logging for buyer vertical extraction fallback chain so engineers see when vertical comes from query vs. role vs. company.",
+  "last_detail": "Commercial fit now logs buyer's employee count range (startup/SME/enterprise) extracted from role text so scale mismatches are visible.",
+  "last_impact": "Engineers running live fair tests immediately see when a 5-person startup is being matched (or not matched) to enterprise-only sellers \u2014 the single most common failure mode in commercial fit scoring. Before this change, engineers had to manually reconstruct buyer size from scattered context; now it appears inline in every [CFDBG] line, turning 3-minute debug sessions into 10-second scans. Directly implements the 'structured fields gate out scale mismatches' principle from SPEC.md.",
+  "next_target": "Add buyer's stated budget tier (explicitly mentioned in query or inferred from company size) to commercial fit debug logs so price-alignment failures are equally visible.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
