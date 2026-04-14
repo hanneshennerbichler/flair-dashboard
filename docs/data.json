@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:37:20Z",
+  "updated_at": "2026-04-14T22:38:04Z",
   "today": "2026-04-14",
-  "today_usd": 3.2413,
-  "total_usd": 3.2413,
-  "total_prompt": 440006,
-  "total_completion": 128852,
+  "today_usd": 3.26992,
+  "total_usd": 3.26992,
+  "total_prompt": 446150,
+  "total_completion": 129531,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 440006,
-      "completion_tokens": 128852,
-      "usd": 3.2413
+      "prompt_tokens": 446150,
+      "completion_tokens": 129531,
+      "usd": 3.26992
     }
   },
   "commits": [
+    {
+      "sha": "d3f21da71f1d45eb0f7383e240f8283c5bd0fb08",
+      "time": "2026-04-14T22:37:21Z",
+      "time_fmt": "2026-04-14 22:37 UTC",
+      "msg": "[Matching Engine] Proximity scoring now verifies user's selected fair days are non-empty before awarding same-hall bonus to prevent false confidence."
+    },
     {
       "sha": "86bd3325f352e635e7902e04377f495f5e591853",
       "time": "2026-04-14T22:36:09Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:46:06Z",
       "time_fmt": "2026-04-14 21:46 UTC",
       "msg": "[Matching Engine] Added explicit rule that commercial fit score defaults to 0.075 when structured data is missing, preventing false confidence from text guessing."
-    },
-    {
-      "sha": "a70a846b476ad458713904b45adb5a3716f8332e",
-      "time": "2026-04-14T21:44:59Z",
-      "time_fmt": "2026-04-14 21:44 UTC",
-      "msg": "[Docs & Spec] Added explicit rule that scoring weight changes require commit-message verification of sum=1.00 to prevent silent ranking corruption."
     }
   ],
   "log_tail": [
-    "2026-04-14T21:56:51Z | heartbeat | daemon tick",
     "2026-04-14T21:57:58Z | heartbeat | daemon tick",
     "2026-04-14T21:59:44Z | heartbeat | daemon tick",
     "2026-04-14T22:00:43Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:33:47Z | heartbeat | daemon tick",
     "2026-04-14T22:34:46Z | heartbeat | daemon tick",
     "2026-04-14T22:35:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:36:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:36:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:37:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now verifies user's selected fair days are non-empty before awarding same-hall bonus to prevent false confidence.",
+  "last_completed": "[Matching Engine] Social proof score now logs inline case-study text snippet (first 25 chars) so engineers see what triggered verification pass/fail instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now verifies user's selected fair days are non-empty before awarding same-hall bonus to prevent false confidence.",
-  "last_impact": "Previously the proximity bonus could fire even when the user hasn't specified which days they're attending \u2014 meaning they might walk to a \"nearby\" booth that's closed on their actual visit days. This kills trust instantly (wasted physical movement). Now the same-hall +0.05 bonus requires BOTH hall match AND user.selected_days[] to be populated, ensuring location boosts only apply when temporal alignment is verified. This directly serves the CORE PRINCIPLE: users trust movement suggestions only w",
-  "next_target": "Add debug logging for same-hall bonus eligibility checks so engineers see when bonus is denied due to missing user days versus hall mismatch.",
+  "last_detail": "Social proof score now logs inline case-study text snippet (first 25 chars) so engineers see what triggered verification pass/fail instantly.",
+  "last_impact": "Engineers debugging social proof scoring during live fair testing currently see \"case_study=PASS\" or \"case_study=FAIL\" in stderr but must switch to the database or application logs to see the actual case study text that triggered the decision. This wastes 30\u201360 seconds per exhibitor investigation when tracking down false positives (generic marketing copy scored as verified proof) or false negatives (legitimate case studies rejected due to formatting). Inline text snippets eliminate context switc",
+  "next_target": "Add actionability score debug logging to stderr showing which exhibitors offer meeting slots, demos, or samples vs. vague 'visit us' CTAs.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
