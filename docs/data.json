@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:45:08Z",
+  "updated_at": "2026-04-14T23:46:12Z",
   "today": "2026-04-14",
-  "today_usd": 5.48121,
-  "total_usd": 5.48121,
-  "total_prompt": 863429,
-  "total_completion": 193492,
+  "today_usd": 5.51566,
+  "total_usd": 5.51566,
+  "total_prompt": 869679,
+  "total_completion": 194539,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 863429,
-      "completion_tokens": 193492,
-      "usd": 5.48121
+      "prompt_tokens": 869679,
+      "completion_tokens": 194539,
+      "usd": 5.51566
     }
   },
   "commits": [
+    {
+      "sha": "d695cda9b38b9f777b44a24e0ac0df9c42aade40",
+      "time": "2026-04-14T23:45:10Z",
+      "time_fmt": "2026-04-14 23:45 UTC",
+      "msg": "[Matching Engine] Goal relevance now logs exhibitor's industry vertical tag so engineers instantly see sector mismatches during live fair testing."
+    },
     {
       "sha": "ed9af75d30726f2ab2a400a1a9f46c8810716cf5",
       "time": "2026-04-14T23:44:12Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:56:08Z",
       "time_fmt": "2026-04-14 22:56 UTC",
       "msg": "[Matching Engine] Social proof debug logs now emit reference customer count and outcome type breakdown so engineers see verification quality instantly."
-    },
-    {
-      "sha": "5be558435e822f18ab96473f85a11439efe9d05d",
-      "time": "2026-04-14T22:55:12Z",
-      "time_fmt": "2026-04-14 22:55 UTC",
-      "msg": "[Matching Engine] Proximity scoring now emits debug logs showing user's current location (hall + stand if known) so engineers see starting point instantly."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:05:47Z | heartbeat | daemon tick",
     "2026-04-14T23:06:47Z | heartbeat | daemon tick",
     "2026-04-14T23:07:47Z | heartbeat | daemon tick",
     "2026-04-14T23:08:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:41:46Z | heartbeat | daemon tick",
     "2026-04-14T23:42:46Z | heartbeat | daemon tick",
     "2026-04-14T23:43:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:44:48Z | heartbeat | daemon tick"
+    "2026-04-14T23:44:48Z | heartbeat | daemon tick",
+    "2026-04-14T23:45:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Goal relevance now logs exhibitor's industry vertical tag so engineers instantly see sector mismatches during live fair testing.",
+  "last_completed": "[Matching Engine] Proximity scoring now logs user's selected day count so engineers instantly see when temporal filter is missing during live fair testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Goal relevance now logs exhibitor's industry vertical tag so engineers instantly see sector mismatches during live fair testing.",
-  "last_impact": "Engineers debugging poor matches can now immediately see when an exhibitor's tagged vertical (e.g., 'services' or 'research') fundamentally conflicts with a user's need (e.g., 'manufacturing equipment'), eliminating 2\u20133 minutes of guesswork per investigation. This directly supports the CORE PRINCIPLE by surfacing the single clearest signal of \"this booth cannot solve your problem\" \u2014 industry vertical mismatch \u2014 so engineers can tune goal relevance weights to prevent wasted booth visits.",
-  "next_target": "Add social proof debug logging to show which reference customers or case studies earned credit for each ranked exhibitor.",
+  "last_detail": "Proximity scoring now logs user's selected day count so engineers instantly see when temporal filter is missing during live fair testing.",
+  "last_impact": "Engineers debugging proximity zero-scores during live fair testing currently have to reconstruct whether the user specified days by checking session logs separately \u2014 wasting 30\u201360 seconds per investigation when matches mysteriously vanish. By emitting the selected day count inline (e.g., `days=0` vs. `days=3`) in the proximity debug line, engineers see the temporal context failure immediately in the same grep output. This directly supports the hard rule that proximity = 0.00 when user days are",
+  "next_target": "Add proximity debug logging that shows hall coordinate presence flag so engineers see data completeness instantly when location scoring fails.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
