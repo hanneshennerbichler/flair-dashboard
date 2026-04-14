@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:26:05Z",
+  "updated_at": "2026-04-14T22:27:07Z",
   "today": "2026-04-14",
-  "today_usd": 2.91337,
-  "total_usd": 2.91337,
-  "total_prompt": 372378,
-  "total_completion": 120515,
+  "today_usd": 2.94576,
+  "total_usd": 2.94576,
+  "total_prompt": 378511,
+  "total_completion": 121448,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 372378,
-      "completion_tokens": 120515,
-      "usd": 2.91337
+      "prompt_tokens": 378511,
+      "completion_tokens": 121448,
+      "usd": 2.94576
     }
   },
   "commits": [
+    {
+      "sha": "0762e617227924036015215c906f2799b63f5a67",
+      "time": "2026-04-14T22:26:07Z",
+      "time_fmt": "2026-04-14 22:26 UTC",
+      "msg": "[Matching Engine] Proximity score now degrades gracefully when hall data is present but user days are missing \u2014 awards 0.05 instead of 0.00."
+    },
     {
       "sha": "9c1590a954a2ec5e20aba7116266c290c7a3a007",
       "time": "2026-04-14T22:25:06Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:28:24Z",
       "time_fmt": "2026-04-14 21:28 UTC",
       "msg": "[Chatbot Intelligence] Added hard constraint that zero-availability exhibitors get final score = 0, preventing time-misaligned recommendations in top 3."
-    },
-    {
-      "sha": "aa11cb3c445ef82aeb53b57e1b1fadfb95521457",
-      "time": "2026-04-14T21:26:34Z",
-      "time_fmt": "2026-04-14 21:26 UTC",
-      "msg": "[Docs & Spec] Added explicit scoring weight preservation rule so future changes maintain sum=1.00 and weight hierarchy integrity."
     }
   ],
   "log_tail": [
-    "2026-04-14T21:43:37Z | heartbeat | daemon tick",
     "2026-04-14T21:45:02Z | heartbeat | daemon tick",
     "2026-04-14T21:46:09Z | heartbeat | daemon tick",
     "2026-04-14T21:47:09Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:22:47Z | heartbeat | daemon tick",
     "2026-04-14T22:23:47Z | heartbeat | daemon tick",
     "2026-04-14T22:24:46Z | heartbeat | daemon tick",
-    "2026-04-14T22:25:46Z | heartbeat | daemon tick"
+    "2026-04-14T22:25:46Z | heartbeat | daemon tick",
+    "2026-04-14T22:26:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity score now degrades gracefully when hall data is present but user days are missing \u2014 awards 0.05 instead of 0.00.",
+  "last_completed": "[Matching Engine] Proximity scoring now logs missing data to stderr so engineers see when hall coordinates or user days are absent during live ranking.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity score now degrades gracefully when hall data is present but user days are missing \u2014 awards 0.05 instead of 0.00.",
-  "last_impact": "When a user hasn't yet specified fair days but exhibitor location is known, the system still surfaces geographically clustered stands (half proximity credit). This prevents the matching engine from ignoring location entirely during initial exploration, while reserving the full 0.10 + 0.05 bonus for users who've committed to specific days. Aligns with the CORE PRINCIPLE: even incomplete temporal context should reduce uncertainty about where to go first.",
-  "next_target": "Add a hard rule requiring the matching engine to emit a [PRXDBG] stderr line per exhibitor showing hall presence, user days presence, and resulting proximity score.",
+  "last_detail": "Proximity scoring now logs missing data to stderr so engineers see when hall coordinates or user days are absent during live ranking.",
+  "last_impact": "Engineers debugging \"why did this nearby booth rank low?\" currently have to guess whether proximity scored zero due to missing hall data or missing user days \u2014 wasting 2\u20133 minutes per investigation during live fair testing. Emitting a [PROXDBG] line to stderr when either constraint is missing (same format as [CFDBG]: session_id, timestamp, exhibitor_id, hall_present=true/false, days_present=true/false, score=0.00) lets engineers grep and instantly see the root cause without querying the database",
+  "next_target": "Add proximity debug logging to the matching engine code that emits [PROXDBG] lines to stderr when hall coordinates or user selected days are missing.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
