@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:36:08Z",
+  "updated_at": "2026-04-14T22:37:20Z",
   "today": "2026-04-14",
-  "today_usd": 3.21391,
-  "total_usd": 3.21391,
-  "total_prompt": 433862,
-  "total_completion": 128255,
+  "today_usd": 3.2413,
+  "total_usd": 3.2413,
+  "total_prompt": 440006,
+  "total_completion": 128852,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 433862,
-      "completion_tokens": 128255,
-      "usd": 3.21391
+      "prompt_tokens": 440006,
+      "completion_tokens": 128852,
+      "usd": 3.2413
     }
   },
   "commits": [
+    {
+      "sha": "86bd3325f352e635e7902e04377f495f5e591853",
+      "time": "2026-04-14T22:36:09Z",
+      "time_fmt": "2026-04-14 22:36 UTC",
+      "msg": "[Matching Engine] Availability scoring now logs partial-credit decision (0.01 vs 0.02) to stderr so engineers see degradation math instantly."
+    },
     {
       "sha": "c627cb2986a7152fedd5a7f4aab078b461ecbc3b",
       "time": "2026-04-14T22:35:08Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:44:59Z",
       "time_fmt": "2026-04-14 21:44 UTC",
       "msg": "[Docs & Spec] Added explicit rule that scoring weight changes require commit-message verification of sum=1.00 to prevent silent ranking corruption."
-    },
-    {
-      "sha": "9675398ddab95b46f9a276b8f03b9d6b342877aa",
-      "time": "2026-04-14T21:43:25Z",
-      "time_fmt": "2026-04-14 21:43 UTC",
-      "msg": "[Matching Engine] Added strict rule that commercial fit must be computed from structured company size/budget fields, not vague text descriptions."
     }
   ],
   "log_tail": [
-    "2026-04-14T21:55:21Z | heartbeat | daemon tick",
     "2026-04-14T21:56:51Z | heartbeat | daemon tick",
     "2026-04-14T21:57:58Z | heartbeat | daemon tick",
     "2026-04-14T21:59:44Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:32:47Z | heartbeat | daemon tick",
     "2026-04-14T22:33:47Z | heartbeat | daemon tick",
     "2026-04-14T22:34:46Z | heartbeat | daemon tick",
-    "2026-04-14T22:35:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:35:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:36:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability scoring now logs partial-credit decision (0.01 vs 0.02) to stderr so engineers see degradation math instantly.",
+  "last_completed": "[Matching Engine] Proximity scoring now verifies user's selected fair days are non-empty before awarding same-hall bonus to prevent false confidence.",
   "last_category": "Matching Engine",
-  "last_detail": "Availability scoring now logs partial-credit decision (0.01 vs 0.02) to stderr so engineers see degradation math instantly.",
-  "last_impact": "When schedule data is incomplete, engineers currently see \"availability score awarded\" but not WHY it's half-credit instead of full \u2014 they must cross-reference logs or re-read SPEC.md during live debugging. Inline logging cuts investigation time from 90 seconds to 3 seconds, matching the Commercial Fit debug pattern already established. This directly supports the CORE PRINCIPLE by making the matching engine's decision process transparent in real time \u2014 if engineers can't verify scoring logic ins",
-  "next_target": "Add social proof debug logging for partial-credit decisions when case studies are present but unverifiable so engineers see evidence quality instantly.",
+  "last_detail": "Proximity scoring now verifies user's selected fair days are non-empty before awarding same-hall bonus to prevent false confidence.",
+  "last_impact": "Previously the proximity bonus could fire even when the user hasn't specified which days they're attending \u2014 meaning they might walk to a \"nearby\" booth that's closed on their actual visit days. This kills trust instantly (wasted physical movement). Now the same-hall +0.05 bonus requires BOTH hall match AND user.selected_days[] to be populated, ensuring location boosts only apply when temporal alignment is verified. This directly serves the CORE PRINCIPLE: users trust movement suggestions only w",
+  "next_target": "Add debug logging for same-hall bonus eligibility checks so engineers see when bonus is denied due to missing user days versus hall mismatch.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
