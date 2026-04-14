@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:36:15Z",
+  "updated_at": "2026-04-14T23:37:19Z",
   "today": "2026-04-14",
-  "today_usd": 5.16657,
-  "total_usd": 5.16657,
-  "total_prompt": 807199,
-  "total_completion": 183763,
+  "today_usd": 5.20334,
+  "total_usd": 5.20334,
+  "total_prompt": 813450,
+  "total_completion": 184964,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 807199,
-      "completion_tokens": 183763,
-      "usd": 5.16657
+      "prompt_tokens": 813450,
+      "completion_tokens": 184964,
+      "usd": 5.20334
     }
   },
   "commits": [
+    {
+      "sha": "c8db0e15cdd418c53e5402f9ac4fb1b56bb4fa0d",
+      "time": "2026-04-14T23:36:17Z",
+      "time_fmt": "2026-04-14 23:36 UTC",
+      "msg": "[Matching Engine] Solution specificity scoring now awards zero when exhibitor presents only generic marketing claims without naming concrete products or features."
+    },
     {
       "sha": "5c072d680abff95b10f669990d0899d65c5fca81",
       "time": "2026-04-14T23:35:16Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:47:09Z",
       "time_fmt": "2026-04-14 22:47 UTC",
       "msg": "[Matching Engine] Commercial fit debug logs now include user's company size (employee count from profile/CV) so engineers see buyer-seller scale alignment instantly."
-    },
-    {
-      "sha": "776a82f20b205aeb1232d8bef5b319cc57c577be",
-      "time": "2026-04-14T22:46:05Z",
-      "time_fmt": "2026-04-14 22:46 UTC",
-      "msg": "[Matching Engine] Commercial fit now penalizes missing structured data (-0.05) instead of neutral 0.075 to force exhibitors to complete profiles."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:56:47Z | heartbeat | daemon tick",
     "2026-04-14T22:57:46Z | heartbeat | daemon tick",
     "2026-04-14T22:58:46Z | heartbeat | daemon tick",
     "2026-04-14T22:59:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:32:46Z | heartbeat | daemon tick",
     "2026-04-14T23:33:47Z | heartbeat | daemon tick",
     "2026-04-14T23:34:46Z | heartbeat | daemon tick",
-    "2026-04-14T23:35:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:35:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:36:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Solution specificity scoring now awards zero when exhibitor presents only generic marketing claims without naming concrete products or features.",
+  "last_completed": "[Matching Engine] Intent confidence debug logs now show user's query word count and technical term density so engineers see specificity signals instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Solution specificity scoring now awards zero when exhibitor presents only generic marketing claims without naming concrete products or features.",
-  "last_impact": "This directly enforces the SPEC.md mandate to \"penalize vague/PR booths\" and aligns with the core principle \u2014 users must feel \"if I don't use this, I'm missing something right now.\" Vague exhibitors wasting top-3 slots destroy that feeling instantly. By zeroing out corporate PR (\"leading provider of innovative solutions\"), we ensure the 0.20 solution specificity weight only rewards exhibitors who name actual products, technical specs, or service deliverables. This prevents the catastrophic failu",
-  "next_target": "Add solution specificity debug logging to stderr showing which exhibitor claims earned credit versus which got zeroed as generic PR.",
+  "last_detail": "Intent confidence debug logs now show user's query word count and technical term density so engineers see specificity signals instantly.",
+  "last_impact": "When a user says \"robotics\" versus \"I need a collaborative six-axis robot arm with sub-0.05mm repeatability for electronics assembly,\" intent confidence scoring changes dramatically (0.02 vs 0.05). Currently engineers see only the final score \u2014 they can't tell if a low score came from vague language, missing context, or question overload. Adding word count (proxy for detail level) and technical term density (proxy for domain knowledge) to the existing [ICDBG] stderr logs lets engineers verify th",
+  "next_target": "Add solution specificity debug logs showing count of concrete product names versus marketing buzzwords so engineers see vagueness detection quality.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
