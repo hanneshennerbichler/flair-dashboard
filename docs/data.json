@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:39:15Z",
+  "updated_at": "2026-04-14T23:40:08Z",
   "today": "2026-04-14",
-  "today_usd": 5.2732,
-  "total_usd": 5.2732,
-  "total_prompt": 825949,
-  "total_completion": 187121,
+  "today_usd": 5.30391,
+  "total_usd": 5.30391,
+  "total_prompt": 832195,
+  "total_completion": 187919,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 825949,
-      "completion_tokens": 187121,
-      "usd": 5.2732
+      "prompt_tokens": 832195,
+      "completion_tokens": 187919,
+      "usd": 5.30391
     }
   },
   "commits": [
+    {
+      "sha": "c03018e8a0d6da4b8839fc23b98995e2d3380ecb",
+      "time": "2026-04-14T23:39:16Z",
+      "time_fmt": "2026-04-14 23:39 UTC",
+      "msg": "[Matching Engine] Actionability debug logs now show which concrete actions (demo/sample/meeting) earned credit so engineers see scoring logic instantly."
+    },
     {
       "sha": "ad38602a40121533902734421df8e78328b4b527",
       "time": "2026-04-14T23:38:20Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:50:06Z",
       "time_fmt": "2026-04-14 22:50 UTC",
       "msg": "[Matching Engine] Commercial fit debug logs now emit user's industry vertical (first 20 chars from profile/CV) so engineers see industry alignment instantly."
-    },
-    {
-      "sha": "b086c171537703218c09fc1e69f5e600c914d9f0",
-      "time": "2026-04-14T22:49:05Z",
-      "time_fmt": "2026-04-14 22:49 UTC",
-      "msg": "[Matching Engine] Social proof debug logs now emit to stderr BEFORE ranking output so engineers can grep live verifications without waiting for results."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:59:47Z | heartbeat | daemon tick",
     "2026-04-14T23:00:47Z | heartbeat | daemon tick",
     "2026-04-14T23:01:47Z | heartbeat | daemon tick",
     "2026-04-14T23:02:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:35:47Z | heartbeat | daemon tick",
     "2026-04-14T23:36:47Z | heartbeat | daemon tick",
     "2026-04-14T23:37:46Z | heartbeat | daemon tick",
-    "2026-04-14T23:38:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:38:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:39:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Actionability debug logs now show which concrete actions (demo/sample/meeting) earned credit so engineers see scoring logic instantly.",
+  "last_completed": "[Matching Engine] Solution specificity now logs exhibitor's product catalog size (count of distinct SKUs/offerings) to reveal generic vs. focused portfolios.",
   "last_category": "Matching Engine",
-  "last_detail": "Actionability debug logs now show which concrete actions (demo/sample/meeting) earned credit so engineers see scoring logic instantly.",
-  "last_impact": "Engineers running live fair tests can now grep [ACTDBG] to see exactly why a booth with vague \"visit us\" text scored 0.00 while one offering \"book 15-min demo slot\" earned full 0.10 credit. This directly surfaces scoring transparency gaps that cause user trust issues when generic booths rank too high. Ties back to CORE PRINCIPLE: the matching engine must penalize vague exhibitors to keep every recommendation immediately actionable.",
-  "next_target": "Add debug logging to commercial fit showing buyer size extracted from query/profile so engineers see scale mismatch detection in real time.",
+  "last_detail": "Solution specificity now logs exhibitor's product catalog size (count of distinct SKUs/offerings) to reveal generic vs. focused portfolios.",
+  "last_impact": "Engineers instantly see whether an exhibitor is a 5-SKU specialist or a 500-product conglomerate during live testing \u2014 specialists score higher because they solve narrow problems deeply, matching the CORE PRINCIPLE (missing something right now = need precision, not breadth). This surfaces why vague corporate booths rank low despite keyword matches: they list everything, solve nothing specifically.",
+  "next_target": "Actionability score logs time-to-action (minutes until demo/meeting slot) so engineers see urgency signals that drive immediate booth visits.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
