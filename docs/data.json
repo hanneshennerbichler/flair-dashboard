@@ -1,0 +1,11 @@
+{
+  "updated_at": "2026-04-14T19:00:00Z",
+  "today_usd": 0,
+  "total_usd": 0,
+  "total_prompt": 0,
+  "total_completion": 0,
+  "daily_cap": 50,
+  "ticks_today": 0,
+  "commits": [],
+  "log_tail": ["initial placeholder — daemon will populate on next tick"]
+}

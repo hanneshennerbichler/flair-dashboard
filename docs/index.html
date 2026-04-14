@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Flair Daemon · Live</title>
+<style>
+  :root{--bg:#0b0b0b;--fg:#f5f5f5;--muted:#8a8a8a;--accent:#ff4500;--card:#141414;--border:#222;--ok:#00d084;--warn:#ffb300;--bad:#ff3b30}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Inter","Helvetica Neue",Arial,sans-serif;font-weight:300;min-height:100vh}
+  header{padding:32px 40px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px}
+  h1{font-size:24px;font-weight:500;letter-spacing:-0.01em}
+  .status{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 var(--ok);animation:pulse 2s infinite}
+  .dot.stale{background:var(--warn);animation:none}
+  .dot.dead{background:var(--bad);animation:none}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,208,132,0.5)}70%{box-shadow:0 0 0 8px rgba(0,208,132,0)}100%{box-shadow:0 0 0 0 rgba(0,208,132,0)}}
+  main{padding:40px;max-width:1400px;margin:0 auto}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:40px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px}
+  .card-label{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px}
+  .card-value{font-size:42px;font-weight:300;letter-spacing:-0.02em}
+  .card-sub{color:var(--muted);font-size:13px;margin-top:6px}
+  .bar{height:6px;background:#1f1f1f;border-radius:3px;margin-top:12px;overflow:hidden}
+  .bar-fill{height:100%;background:var(--accent);transition:width 0.4s ease}
+  section{margin-bottom:40px}
+  h2{font-size:14px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:16px;font-weight:500}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top}
+  th{color:var(--muted);font-weight:400;font-size:12px;text-transform:uppercase;letter-spacing:0.06em}
+  tr:hover td{background:#111}
+  td.time{color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums;font-size:13px}
+  td.sha{font-family:"SF Mono",Menlo,monospace;color:var(--accent);font-size:12px}
+  td.msg{color:var(--fg)}
+  .log{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;font-family:"SF Mono",Menlo,monospace;font-size:12px;color:var(--muted);max-height:340px;overflow:auto;white-space:pre;line-height:1.5}
+  footer{text-align:center;color:var(--muted);font-size:12px;padding:40px 0 60px}
+  footer a{color:var(--muted)}
+  .err{color:var(--bad);padding:20px;background:var(--card);border:1px solid var(--bad);border-radius:12px;margin-bottom:20px}
+  @media(max-width:600px){main{padding:20px}header{padding:20px}.card-value{font-size:32px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Flair Daemon</h1>
+  <div class="status">
+    <span id="dot" class="dot"></span>
+    <span id="status-text">Loading…</span>
+  </div>
+</header>
+<main>
+  <div id="err"></div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-label">Today's spend</div>
+      <div class="card-value" id="today-usd">—</div>
+      <div class="bar"><div class="bar-fill" id="today-bar" style="width:0%"></div></div>
+      <div class="card-sub" id="today-sub">of $50 daily cap</div>
+    </div>
+    <div class="card">
+      <div class="card-label">All-time spend</div>
+      <div class="card-value" id="total-usd">—</div>
+      <div class="card-sub" id="total-sub">Sonnet 4.5 · OpenRouter</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Ticks today</div>
+      <div class="card-value" id="ticks-today">—</div>
+      <div class="card-sub" id="ticks-sub">every 10 min · 144/day</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Last tick</div>
+      <div class="card-value" id="last-tick">—</div>
+      <div class="card-sub" id="last-tick-sub">—</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Recent Work</h2>
+    <div class="card" style="padding:0;overflow:hidden">
+      <table>
+        <thead><tr><th>Time (UTC)</th><th>SHA</th><th>What the daemon did</th></tr></thead>
+        <tbody id="commits"><tr><td colspan="3" style="padding:40px;color:var(--muted);text-align:center">Loading commits…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Heartbeat Log</h2>
+    <pre class="log" id="log">Loading…</pre>
+  </section>
+</main>
+<footer>
+  flayrai.com · <span id="updated">—</span> · <a href="https://github.com/hanneshennerbichler/flair/actions" target="_blank" rel="noopener">View runs</a>
+</footer>
+<script>
+const DATA_URL = './data.json?t=' + Date.now();
+
+function fmt(n, d=4){ return '$' + Number(n).toFixed(d); }
+function relTime(iso){
+  const t = new Date(iso); if (isNaN(t)) return '—';
+  const s = (Date.now() - t.getTime())/1000;
+  if (s < 60) return Math.floor(s) + 's ago';
+  if (s < 3600) return Math.floor(s/60) + 'm ago';
+  if (s < 86400) return Math.floor(s/3600) + 'h ago';
+  return Math.floor(s/86400) + 'd ago';
+}
+
+async function load() {
+  try {
+    const res = await fetch('./data.json?t=' + Date.now(), {cache:'no-store'});
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const d = await res.json();
+
+    document.getElementById('err').innerHTML = '';
+
+    const todayUsd = d.today_usd || 0;
+    document.getElementById('today-usd').textContent = fmt(todayUsd, 4);
+    document.getElementById('today-bar').style.width = Math.min(100, (todayUsd/50)*100) + '%';
+    document.getElementById('today-sub').textContent = 'of $' + (d.daily_cap||50).toFixed(2) + ' daily cap';
+
+    document.getElementById('total-usd').textContent = fmt(d.total_usd || 0, 4);
+    document.getElementById('total-sub').textContent = (d.total_prompt||0).toLocaleString() + ' in · ' + (d.total_completion||0).toLocaleString() + ' out';
+
+    document.getElementById('ticks-today').textContent = d.ticks_today || 0;
+
+    const last = d.commits && d.commits[0];
+    if (last) {
+      document.getElementById('last-tick').textContent = relTime(last.time);
+      document.getElementById('last-tick-sub').textContent = (last.sha||'').slice(0,7) + ' · ' + (last.msg||'').slice(0,60);
+    }
+
+    const tbody = document.getElementById('commits');
+    tbody.innerHTML = '';
+    (d.commits||[]).slice(0,50).forEach(c => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = '<td class="time">' + c.time_fmt + '</td><td class="sha">' + (c.sha||'').slice(0,7) + '</td><td class="msg"></td>';
+      tr.children[2].textContent = c.msg || '';
+      tbody.appendChild(tr);
+    });
+    if (!(d.commits||[]).length) tbody.innerHTML = '<tr><td colspan="3" style="padding:40px;color:var(--muted);text-align:center">No commits yet</td></tr>';
+
+    document.getElementById('log').textContent = (d.log_tail || []).join('\n') || '(no log entries yet)';
+
+    const age = d.updated_at ? (Date.now() - new Date(d.updated_at).getTime())/1000 : null;
+    const dot = document.getElementById('dot');
+    const st = document.getElementById('status-text');
+    if (age === null) { dot.className = 'dot dead'; st.textContent = 'No data'; }
+    else if (age < 900) { dot.className = 'dot'; st.textContent = 'Live · updated ' + relTime(d.updated_at); }
+    else if (age < 3600) { dot.className = 'dot stale'; st.textContent = 'Stale · ' + relTime(d.updated_at); }
+    else { dot.className = 'dot dead'; st.textContent = 'Dead · ' + relTime(d.updated_at); }
+
+    document.getElementById('updated').textContent = 'updated ' + relTime(d.updated_at);
+  } catch (e) {
+    document.getElementById('err').innerHTML = '<div class="err">Failed to load data.json: ' + e.message + '</div>';
+    document.getElementById('dot').className = 'dot dead';
+    document.getElementById('status-text').textContent = 'Error';
+  }
+}
+
+load();
+setInterval(load, 15000);
+</script>
+</body>
+</html>
