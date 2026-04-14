@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:52:14Z",
+  "updated_at": "2026-04-14T22:53:09Z",
   "today": "2026-04-14",
-  "today_usd": 3.71115,
-  "total_usd": 3.71115,
-  "total_prompt": 533031,
-  "total_completion": 141570,
+  "today_usd": 3.74321,
+  "total_usd": 3.74321,
+  "total_prompt": 539243,
+  "total_completion": 142465,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 533031,
-      "completion_tokens": 141570,
-      "usd": 3.71115
+      "prompt_tokens": 539243,
+      "completion_tokens": 142465,
+      "usd": 3.74321
     }
   },
   "commits": [
+    {
+      "sha": "05c13ba0bf658b4484d58e8bc89bf6ff619a50c1",
+      "time": "2026-04-14T22:52:15Z",
+      "time_fmt": "2026-04-14 22:52 UTC",
+      "msg": "[Matching Engine] Availability debug logs now emit user's selected days (count + date range) so engineers see temporal overlap without guessing."
+    },
     {
       "sha": "b654b8688abf8f4042bd13261ffe870eca22310e",
       "time": "2026-04-14T22:51:11Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:03:16Z",
       "time_fmt": "2026-04-14 22:03 UTC",
       "msg": "[Matching Engine] Removed redundant commercial fit debug rules that conflict with the consolidated one-line format already shipped."
-    },
-    {
-      "sha": "3a8f682a3d33d3deb7eb05b28f44b2e88ebdab30",
-      "time": "2026-04-14T22:02:11Z",
-      "time_fmt": "2026-04-14 22:02 UTC",
-      "msg": "[Matching Engine] Added strict rule that commercial fit debug logs must include raw field values inline so engineers never reconstruct data from separate lookups."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:12:47Z | heartbeat | daemon tick",
     "2026-04-14T22:13:47Z | heartbeat | daemon tick",
     "2026-04-14T22:14:47Z | heartbeat | daemon tick",
     "2026-04-14T22:15:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:48:46Z | heartbeat | daemon tick",
     "2026-04-14T22:49:47Z | heartbeat | daemon tick",
     "2026-04-14T22:50:46Z | heartbeat | daemon tick",
-    "2026-04-14T22:51:46Z | heartbeat | daemon tick"
+    "2026-04-14T22:51:46Z | heartbeat | daemon tick",
+    "2026-04-14T22:52:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability debug logs now emit user's selected days (count + date range) so engineers see temporal overlap without guessing.",
+  "last_completed": "[Matching Engine] Proximity debug logs now emit hall distance in meters so engineers see physical routing cost without manual lookup.",
   "last_category": "Matching Engine",
-  "last_detail": "Availability debug logs now emit user's selected days (count + date range) so engineers see temporal overlap without guessing.",
-  "last_impact": "When availability scores look wrong during live fair testing, engineers currently grep [AVDBG] logs but see only exhibitor schedule fragments \u2014 they must mentally reconstruct what days the user requested to diagnose mismatches. Adding user.selected_days[] (e.g., \"2 days: 2026-04-15 to 2026-04-16\") to every availability log line means engineers instantly see both sides of the overlap computation in one grep, cutting diagnosis time from 90 seconds to 5 seconds per exhibitor. This directly supports",
-  "next_target": "Add user's hall location (current position or last-visited stand) to proximity debug logs so engineers see distance computation context instantly.",
+  "last_detail": "Proximity debug logs now emit hall distance in meters so engineers see physical routing cost without manual lookup.",
+  "last_impact": "Engineers debugging proximity scoring currently see only hall IDs in logs \u2014 they must manually cross-reference coordinates to understand why a 'nearby' booth ranked below a distant one. Emitting computed distance (in meters, rounded to nearest 10m) inline makes routing penalties/bonuses instantly transparent during live fair testing. This directly supports the CORE PRINCIPLE: when a user complains 'why did you send me to Hall 27 when Hall 9 was closer?', engineers answer in 10 seconds instead of",
+  "next_target": "Add inline booth occupancy flag (staff present Y/N during user's selected hours) to availability debug logs so engineers see real-time staffing without schedule lookups.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
