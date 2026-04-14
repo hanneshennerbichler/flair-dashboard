@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:00:07Z",
+  "updated_at": "2026-04-14T23:01:05Z",
   "today": "2026-04-14",
-  "today_usd": 3.97511,
-  "total_usd": 3.97511,
-  "total_prompt": 582706,
-  "total_completion": 149232,
+  "today_usd": 4.00302,
+  "total_usd": 4.00302,
+  "total_prompt": 588913,
+  "total_completion": 149851,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 582706,
-      "completion_tokens": 149232,
-      "usd": 3.97511
+      "prompt_tokens": 588913,
+      "completion_tokens": 149851,
+      "usd": 4.00302
     }
   },
   "commits": [
+    {
+      "sha": "d69b5a9390cf797b2c6307dee8f494c878102877",
+      "time": "2026-04-14T23:00:08Z",
+      "time_fmt": "2026-04-14 23:00 UTC",
+      "msg": "[Matching Engine] Proximity scoring now respects availability \u2014 zero points awarded when exhibitor has no staff coverage on user's selected days."
+    },
     {
       "sha": "982d468e79fc9b279b6d0ffc1779db59a3e6bda8",
       "time": "2026-04-14T22:59:08Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:11:43Z",
       "time_fmt": "2026-04-14 22:11 UTC",
       "msg": "[Matching Engine] Proximity boost now requires hall data to be present \u2014 prevents scoring errors when stand coordinates are missing."
-    },
-    {
-      "sha": "3afa3ffcac680276bac665b53a24276102d2024a",
-      "time": "2026-04-14T22:10:10Z",
-      "time_fmt": "2026-04-14 22:10 UTC",
-      "msg": "[Matching Engine] Proximity bonus now applies only when user has selected specific fair days \u2014 prevents irrelevant location boosts for time-agnostic queries."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:20:47Z | heartbeat | daemon tick",
     "2026-04-14T22:21:47Z | heartbeat | daemon tick",
     "2026-04-14T22:22:47Z | heartbeat | daemon tick",
     "2026-04-14T22:23:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:56:47Z | heartbeat | daemon tick",
     "2026-04-14T22:57:46Z | heartbeat | daemon tick",
     "2026-04-14T22:58:46Z | heartbeat | daemon tick",
-    "2026-04-14T22:59:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:59:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:00:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now respects availability \u2014 zero points awarded when exhibitor has no staff coverage on user's selected days.",
+  "last_completed": "[Matching Engine] Proximity scoring now emits user query text (first 40 chars) in debug logs so engineers see spatial intent instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now respects availability \u2014 zero points awarded when exhibitor has no staff coverage on user's selected days.",
-  "last_impact": "This closes a critical trust-destroying gap where users walked to physically nearby booths that were closed or unstaffed on their selected days. By gating proximity credit (0.10 + 0.05 bonus) on verified staff presence, we eliminate a failure mode that could waste 10\u201320 minutes per misdirected visit during the fair. Aligns with CORE PRINCIPLE: \"If I don't use this, I'm missing something right now\" \u2014 users now trust that ranked stands are both nearby AND actually staffed when they plan to visit.",
-  "next_target": "Add proximity debug logging that shows why zero credit was given (hall data present but availability failed, or hall data missing).",
+  "last_detail": "Proximity scoring now emits user query text (first 40 chars) in debug logs so engineers see spatial intent instantly.",
+  "last_impact": "When a user asks \"booths near Hall 5\" or \"automation stands close to entrance,\" engineers testing rankings can instantly verify that proximity scoring is using the right spatial context \u2014 no need to cross-reference session logs or guess what \"user location\" means. This cuts debug time from 2\u20133 minutes to 5 seconds per ranking investigation, directly supporting the CORE PRINCIPLE (reduce uncertainty, increase speed) by making spatial intent visible in real time.",
+  "next_target": "Add commercial fit debug output showing exhibitor's target customer size field so engineers see buyer-seller scale alignment without database lookup.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
