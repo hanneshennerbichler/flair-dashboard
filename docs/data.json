@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:19:18Z",
+  "updated_at": "2026-04-14T23:20:32Z",
   "today": "2026-04-14",
-  "today_usd": 4.6031,
-  "total_usd": 4.6031,
-  "total_prompt": 701031,
-  "total_completion": 167433,
+  "today_usd": 4.65327,
+  "total_usd": 4.65327,
+  "total_prompt": 707243,
+  "total_completion": 169535,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 701031,
-      "completion_tokens": 167433,
-      "usd": 4.6031
+      "prompt_tokens": 707243,
+      "completion_tokens": 169535,
+      "usd": 4.65327
     }
   },
   "commits": [
+    {
+      "sha": "b87ccb1d3f4789d006a9c4781b52c68884e94159",
+      "time": "2026-04-14T23:19:19Z",
+      "time_fmt": "2026-04-14 23:19 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs now emit to stderr with [CFDBG] prefix so engineers can grep live rankings without filtering application noise."
+    },
     {
       "sha": "1b1304e7adac264e9d410fdfb9b099cfccc7ff81",
       "time": "2026-04-14T23:18:24Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:30:07Z",
       "time_fmt": "2026-04-14 22:30 UTC",
       "msg": "[Matching Engine] Proximity scoring now logs hall/day verification checks to stderr so engineers see why location boosts succeed or fail per exhibitor."
-    },
-    {
-      "sha": "f3f4dbb03fa560cd7a99ca18eb0e87f6b566eabe",
-      "time": "2026-04-14T22:29:03Z",
-      "time_fmt": "2026-04-14 22:29 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs now emit BEFORE ranking results so engineers see computation while waiting for match output, not after."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:39:47Z | heartbeat | daemon tick",
     "2026-04-14T22:40:47Z | heartbeat | daemon tick",
     "2026-04-14T22:41:46Z | heartbeat | daemon tick",
     "2026-04-14T22:42:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:15:47Z | heartbeat | daemon tick",
     "2026-04-14T23:16:47Z | heartbeat | daemon tick",
     "2026-04-14T23:17:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:18:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:18:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:19:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs now emit to stderr with [CFDBG] prefix so engineers can grep live rankings without filtering application noise.",
+  "last_completed": "[Matching Engine] Commercial fit now falls back to 0.075 (half weight) when structured fields missing instead of zero so strong matches don't vanish from rankings.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs now emit to stderr with [CFDBG] prefix so engineers can grep live rankings without filtering application noise.",
-  "last_impact": "Engineers debugging commercial fit scores during live fair testing currently waste 1\u20133 minutes per match investigation scrolling through mixed application logs or parsing unstructured output. Dedicated stderr stream with searchable prefix (`grep '\\[CFDBG\\]'`) isolates every commercial fit computation in real time, letting engineers verify structured field presence, degradation math, and buyer context instantly without horizontal scrolling or log noise. This directly supports the Commercial Fit C",
-  "next_target": "Add line-length enforcement (120 char max) to commercial fit debug output so engineers never horizontal-scroll during live fair investigations.",
+  "last_detail": "Commercial fit now falls back to 0.075 (half weight) when structured fields missing instead of zero so strong matches don't vanish from rankings.",
+  "last_impact": "Prevents catastrophic ranking failures when exhibitor data is incomplete \u2014 a robotics startup with perfect goal/solution fit but missing price_tier no longer drops to position #47 because commercial fit zeroed out. Users see relevant matches even when data quality varies across exhibitors, maintaining trust in recommendations while still penalizing scale mismatches when data IS present.",
+  "next_target": "Add availability debug logging to show which exhibitors lost ranking position due to staff schedule gaps on user's selected days.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
