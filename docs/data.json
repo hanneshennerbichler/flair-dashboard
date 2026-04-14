@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:31:06Z",
+  "updated_at": "2026-04-14T23:32:06Z",
   "today": "2026-04-14",
-  "today_usd": 4.99231,
-  "total_usd": 4.99231,
-  "total_prompt": 775939,
-  "total_completion": 178398,
+  "today_usd": 5.02383,
+  "total_usd": 5.02383,
+  "total_prompt": 782189,
+  "total_completion": 179249,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 775939,
-      "completion_tokens": 178398,
-      "usd": 4.99231
+      "prompt_tokens": 782189,
+      "completion_tokens": 179249,
+      "usd": 5.02383
     }
   },
   "commits": [
+    {
+      "sha": "42f347d17acbb95d3b12fd29564801d283f681c7",
+      "time": "2026-04-14T23:31:07Z",
+      "time_fmt": "2026-04-14 23:31 UTC",
+      "msg": "[Matching Engine] Actionability score now requires exhibitor to list at least one concrete action (demo slot, sample pickup, meeting link) to earn any credit."
+    },
     {
       "sha": "0b8ac41ef6b76450a072f95945100159e1ca19dd",
       "time": "2026-04-14T23:30:01Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:42:05Z",
       "time_fmt": "2026-04-14 22:42 UTC",
       "msg": "[Matching Engine] Commercial fit debug logs now include user query text (first 40 chars) so engineers see what triggered the ranking without context-switching."
-    },
-    {
-      "sha": "478f470f0019be353479a52685b694d1ee305a61",
-      "time": "2026-04-14T22:41:05Z",
-      "time_fmt": "2026-04-14 22:41 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs now include inline employee count + price tier + target segment so engineers see scale/budget alignment instantly."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:51:46Z | heartbeat | daemon tick",
     "2026-04-14T22:52:46Z | heartbeat | daemon tick",
     "2026-04-14T22:53:47Z | heartbeat | daemon tick",
     "2026-04-14T22:54:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:27:47Z | heartbeat | daemon tick",
     "2026-04-14T23:28:46Z | heartbeat | daemon tick",
     "2026-04-14T23:29:46Z | heartbeat | daemon tick",
-    "2026-04-14T23:30:46Z | heartbeat | daemon tick"
+    "2026-04-14T23:30:46Z | heartbeat | daemon tick",
+    "2026-04-14T23:31:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Actionability score now requires exhibitor to list at least one concrete action (demo slot, sample pickup, meeting link) to earn any credit.",
+  "last_completed": "[Matching Engine] Proximity now awards zero when user hasn't selected fair days so location boost requires temporal context to prevent false confidence.",
   "last_category": "Matching Engine",
-  "last_detail": "Actionability score now requires exhibitor to list at least one concrete action (demo slot, sample pickup, meeting link) to earn any credit.",
-  "last_impact": "Prevents vague \"visit our booth\" exhibitors from ranking alongside those offering bookable demos or scheduled product trials \u2014 users get actionable next steps instead of wasted hall walks. Directly implements SPEC.md's \"Actionability (0.10): can the user do something here today?\" by making the score conditional on verifiable action availability, not just booth presence.",
-  "next_target": "Add actionability debug logging to stderr showing which concrete actions (demo/sample/meeting) each exhibitor listed so engineers see ranking justification.",
+  "last_detail": "Proximity now awards zero when user hasn't selected fair days so location boost requires temporal context to prevent false confidence.",
+  "last_impact": "Stops users from walking to stands that might be closed on their actual visit days \u2014 proximity without availability window = wasted booth visit = trust destroyed instantly. Aligns with SPEC.md Proximity Scoring Rule: no user days = no proximity credit. Forces temporal alignment before awarding location advantage.",
+  "next_target": "Add proximity debug logging showing user's selected days count and exhibitor hall data presence so engineers see why location score zeroed out.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
