@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:50:47Z",
+  "updated_at": "2026-04-14T21:51:48Z",
   "today": "2026-04-14",
-  "today_usd": 1.49279,
-  "total_usd": 1.49279,
-  "total_prompt": 172632,
-  "total_completion": 65760,
+  "today_usd": 1.54887,
+  "total_usd": 1.54887,
+  "total_prompt": 178686,
+  "total_completion": 68288,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 172632,
-      "completion_tokens": 65760,
-      "usd": 1.49279
+      "prompt_tokens": 178686,
+      "completion_tokens": 68288,
+      "usd": 1.54887
     }
   },
   "commits": [
+    {
+      "sha": "bfb0f87a96973cbc0ce5b80c31e355e15162a8f1",
+      "time": "2026-04-14T21:50:48Z",
+      "time_fmt": "2026-04-14 21:50 UTC",
+      "msg": "[Matching Engine] Added explicit rule that commercial fit debug logs must include timestamp + session_id so multi-user test scenarios remain auditable."
+    },
     {
       "sha": "5c79623f07ffef8597fcd14d95f4e7d7d5f7137d",
       "time": "2026-04-14T21:49:10Z",
@@ -308,12 +314,6 @@
       "time": "2026-04-14T20:58:03Z",
       "time_fmt": "2026-04-14 20:58 UTC",
       "msg": "fix: workflow if-condition can't see step env"
-    },
-    {
-      "sha": "684c5b67a8e7a409ec208970d3b90b40f645458b",
-      "time": "2026-04-14T20:16:26Z",
-      "time_fmt": "2026-04-14 20:16 UTC",
-      "msg": "feat: daemon with Haiku 4.5 + prompt caching + budget cap"
     }
   ],
   "log_tail": [
@@ -350,13 +350,14 @@
     "2026-04-14T21:46:09Z | heartbeat | daemon tick",
     "2026-04-14T21:47:09Z | heartbeat | daemon tick",
     "2026-04-14T21:48:09Z | heartbeat | daemon tick",
-    "2026-04-14T21:49:36Z | heartbeat | daemon tick"
+    "2026-04-14T21:49:36Z | heartbeat | daemon tick",
+    "2026-04-14T21:50:52Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added explicit rule that commercial fit debug logs must include timestamp + session_id so multi-user test scenarios remain auditable.",
+  "last_completed": "[Matching Engine] Added explicit rule that commercial fit debug logs must flush to stderr (not stdout) so ranking output stays clean in production pipelines.",
   "last_category": "Matching Engine",
-  "last_detail": "Added explicit rule that commercial fit debug logs must include timestamp + session_id so multi-user test scenarios remain auditable.",
-  "last_impact": "When multiple engineers run concurrent test queries during sprint reviews or load testing, logs without session context create a debugging nightmare \u2014 you cannot tell which \"exhibitor X scored 0.075\" line belongs to which query/user/engineer. Adding session_id + timestamp to every commercial fit debug log line makes multi-threaded test scenarios instantly traceable. This directly supports the CORE PRINCIPLE by making the matching engine debuggable at scale \u2014 if engineers waste 10 minutes per bug",
-  "next_target": "Add explicit rule that proximity boost debug logs must also include session_id + timestamp for consistency with commercial fit audit trail.",
+  "last_detail": "Added explicit rule that commercial fit debug logs must flush to stderr (not stdout) so ranking output stays clean in production pipelines.",
+  "last_impact": "When engineers pipe ranking results to downstream tools (e.g., `node rank.js | jq '.top3'`), debug logs currently pollute stdout and break JSON parsing. Forcing stderr separation means production scripts can consume ranking output reliably while still capturing debug context via `2>debug.log`. This unblocks automated testing pipelines that verify ranking correctness across 100+ exhibitor permutations \u2014 currently impossible because logs break the parser after line 3.",
+  "next_target": "Add explicit rule that when all 4 commercial fit fields are null, exhibitor gets flagged in a separate data-quality-alerts.json file for manual review.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
