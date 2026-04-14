@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:53:58Z",
+  "updated_at": "2026-04-14T21:55:06Z",
   "today": "2026-04-14",
-  "today_usd": 1.66833,
-  "total_usd": 1.66833,
-  "total_prompt": 190810,
-  "total_completion": 73827,
+  "today_usd": 1.72903,
+  "total_usd": 1.72903,
+  "total_prompt": 196902,
+  "total_completion": 76655,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 190810,
-      "completion_tokens": 73827,
-      "usd": 1.66833
+      "prompt_tokens": 196902,
+      "completion_tokens": 76655,
+      "usd": 1.72903
     }
   },
   "commits": [
+    {
+      "sha": "195b286053634ffb36b160a7e652b7e91f584fb2",
+      "time": "2026-04-14T21:53:59Z",
+      "time_fmt": "2026-04-14 21:53 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs now include actual field values (not just present/missing flags) so engineers see the data that produced the score."
+    },
     {
       "sha": "f5dc42f87c38bb8ecf4a308f904d3bd8c7f19c1d",
       "time": "2026-04-14T21:52:51Z",
@@ -308,12 +314,6 @@
       "time": "2026-04-14T19:24:52Z",
       "time_fmt": "2026-04-14 19:24 UTC",
       "msg": "chore: daemon tick 2026-04-14T19:24:52Z"
-    },
-    {
-      "sha": "c7e0123da62b5c963c9f42dabc661697bcff48ae",
-      "time": "2026-04-14T21:24:32Z",
-      "time_fmt": "2026-04-14 21:24 UTC",
-      "msg": "feat: swap Anthropic direct \u2192 OpenRouter (Haiku 4.5, $1.50/day cap)"
     }
   ],
   "log_tail": [
@@ -353,13 +353,14 @@
     "2026-04-14T21:49:36Z | heartbeat | daemon tick",
     "2026-04-14T21:50:52Z | heartbeat | daemon tick",
     "2026-04-14T21:51:52Z | heartbeat | daemon tick",
-    "2026-04-14T21:52:54Z | heartbeat | daemon tick"
+    "2026-04-14T21:52:54Z | heartbeat | daemon tick",
+    "2026-04-14T21:54:02Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs now include actual field values (not just present/missing flags) so engineers see the data that produced the score.",
+  "last_completed": "[Matching Engine] Added strict rule that commercial fit debug logs must include computation breakdown showing how partial data affects the 0.075 default score.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs now include actual field values (not just present/missing flags) so engineers see the data that produced the score.",
-  "last_impact": "When a user reports a bad match (e.g., \"I asked for enterprise robotics but got matched to a 12-person startup\"), engineers previously saw `present=[employee_count]` but had to separately query the DB to find employee_count=12. Now the log shows `employee_count=12 price_tier=budget` inline \u2014 diagnosis takes 10 seconds instead of 3 minutes, and the engineer instantly sees the data quality gap (startup tagged as \"budget\" but matched to enterprise query). This closes the final audit gap: we went fr",
-  "next_target": "Add explicit rule that when commercial fit defaults to 0.075 due to missing data, the log must state which field was most critical to the query so data team prioritizes backfill.",
+  "last_detail": "Added strict rule that commercial fit debug logs must include computation breakdown showing how partial data affects the 0.075 default score.",
+  "last_impact": "When an exhibitor has 2 of 4 required fields (e.g., employee_count + industry_vertical present, price_tier + target_customer_size missing), engineers previously saw \"score=0.075\" but had no visibility into whether that was \"all fields missing\" or \"partial data available.\" This ambiguity made data quality triage impossible \u2014 you couldn't tell if an exhibitor needed 4 fields enriched or just 2. Now the log shows exactly which present fields contributed and which missing fields degraded the score,",
+  "next_target": "Add explicit rule that when partial structured data is present (e.g., 2 of 4 fields), commercial fit uses proportional scoring (0.075 + 0.0375 per present field) instead of flat 0.075, rewarding parti",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
