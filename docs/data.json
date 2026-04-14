@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:43:42Z",
+  "updated_at": "2026-04-14T23:44:11Z",
   "today": "2026-04-14",
-  "today_usd": 5.41758,
-  "total_usd": 5.41758,
-  "total_prompt": 850931,
-  "total_completion": 191750,
+  "today_usd": 5.44916,
+  "total_usd": 5.44916,
+  "total_prompt": 857177,
+  "total_completion": 192606,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 850931,
-      "completion_tokens": 191750,
-      "usd": 5.41758
+      "prompt_tokens": 857177,
+      "completion_tokens": 192606,
+      "usd": 5.44916
     }
   },
   "commits": [
+    {
+      "sha": "5c63aae8cc85c3204b318e333d6ec15206b036b7",
+      "time": "2026-04-14T23:43:44Z",
+      "time_fmt": "2026-04-14 23:43 UTC",
+      "msg": "[Matching Engine] Availability scoring now awards 0.01 (half credit) when staff schedule is partial so incomplete data doesn't zero out strong matches."
+    },
     {
       "sha": "e0cdf6893e840339d3c0c3f70e1c8a7f668e5987",
       "time": "2026-04-14T23:42:11Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:54:08Z",
       "time_fmt": "2026-04-14 22:54 UTC",
       "msg": "[Matching Engine] Availability debug logs now emit staff role distribution (e.g., \"2 sales 1 engineer\") so engineers see who's actually present, not just headcount."
-    },
-    {
-      "sha": "a78510dc3bf65a7bc5d8205bc40b4c568b7355b3",
-      "time": "2026-04-14T22:53:11Z",
-      "time_fmt": "2026-04-14 22:53 UTC",
-      "msg": "[Matching Engine] Proximity debug logs now emit hall distance in meters so engineers see physical routing cost without manual lookup."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:03:46Z | heartbeat | daemon tick",
     "2026-04-14T23:04:47Z | heartbeat | daemon tick",
     "2026-04-14T23:05:47Z | heartbeat | daemon tick",
     "2026-04-14T23:06:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:39:47Z | heartbeat | daemon tick",
     "2026-04-14T23:40:47Z | heartbeat | daemon tick",
     "2026-04-14T23:41:46Z | heartbeat | daemon tick",
-    "2026-04-14T23:42:46Z | heartbeat | daemon tick"
+    "2026-04-14T23:42:46Z | heartbeat | daemon tick",
+    "2026-04-14T23:43:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability scoring now awards 0.01 (half credit) when staff schedule is partial so incomplete data doesn't zero out strong matches.",
+  "last_completed": "[Matching Engine] Goal relevance scoring now requires exhibitor to name at least one concrete product/service capability to earn any credit (zero for pure PR).",
   "last_category": "Matching Engine",
-  "last_detail": "Availability scoring now awards 0.01 (half credit) when staff schedule is partial so incomplete data doesn't zero out strong matches.",
-  "last_impact": "Before this change, exhibitors with partial staff schedule data (e.g., only Mon/Tue when user selected Mon\u2013Wed) received 0.00 availability score, causing otherwise perfect matches (high goal relevance + solution fit) to plummet in rankings. This created a binary cliff: either full schedule \u2192 0.02 or any gaps \u2192 rank death. Now partial coverage gets 0.01, preventing strong matches from vanishing while still rewarding complete data. This directly serves the CORE PRINCIPLE: users no longer miss exhi",
-  "next_target": "Add availability debug logging showing which user days matched exhibitor schedule days so engineers see overlap calculation instantly.",
+  "last_detail": "Goal relevance scoring now requires exhibitor to name at least one concrete product/service capability to earn any credit (zero for pure PR).",
+  "last_impact": "Prevents vague corporate exhibitors (\"we enable digital transformation\") from outranking focused suppliers with actual solutions. Users stop wasting booth visits on stands that offer no actionable product\u2014directly raising cost-per-qualified-contact by filtering out noise before the user walks. This enforces SPEC.md's \"Solution Specificity\" principle at the goal-match layer, compounding with the existing 50-product breadth penalty.",
+  "next_target": "Add goal relevance debug logging showing exhibitor's named capabilities (first 80 chars) so engineers see what earned credit during live testing.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
