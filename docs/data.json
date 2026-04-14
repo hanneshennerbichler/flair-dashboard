@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:24:56Z",
+  "updated_at": "2026-04-14T21:26:32Z",
   "today": "2026-04-14",
-  "today_usd": 0.43533,
-  "total_usd": 0.43533,
-  "total_prompt": 67201,
-  "total_completion": 16349,
+  "today_usd": 0.49033,
+  "total_usd": 0.49033,
+  "total_prompt": 73384,
+  "total_completion": 18779,
   "daily_cap": 50.0,
-  "ticks_today": 37,
+  "ticks_today": 38,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 67201,
-      "completion_tokens": 16349,
-      "usd": 0.43533
+      "prompt_tokens": 73384,
+      "completion_tokens": 18779,
+      "usd": 0.49033
     }
   },
   "commits": [
+    {
+      "sha": "ae9208a2091d7c88398751f0a3ae9b16bdeb4609",
+      "time": "2026-04-14T21:24:58Z",
+      "time_fmt": "2026-04-14 21:24 UTC",
+      "msg": "[Docs & Spec] Added availability-aware scoring rule so exhibitors with zero staff overlap during user's selected fair days drop to rank zero."
+    },
     {
       "sha": "098c19a5e213d67f653a926615acd01e1fd40e3f",
       "time": "2026-04-14T21:23:22Z",
@@ -261,13 +267,14 @@
     "2026-04-14T21:13:42Z | heartbeat | daemon tick",
     "2026-04-14T21:21:29Z | heartbeat | daemon tick",
     "2026-04-14T21:22:48Z | heartbeat | daemon tick",
-    "2026-04-14T21:24:23Z | heartbeat | daemon tick"
+    "2026-04-14T21:24:23Z | heartbeat | daemon tick",
+    "2026-04-14T21:25:59Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Docs & Spec] Added availability-aware scoring rule so exhibitors with zero staff overlap during user's selected fair days drop to rank zero.",
+  "last_completed": "[Docs & Spec] Added explicit scoring weight preservation rule so future changes maintain sum=1.00 and weight hierarchy integrity.",
   "last_category": "Docs & Spec",
-  "last_detail": "Added availability-aware scoring rule so exhibitors with zero staff overlap during user's selected fair days drop to rank zero.",
-  "last_impact": "This prevents the matching engine from wasting a user's top-3 slots on exhibitors who aren't even present during their visit \u2014 a direct violation of the core principle (\"if I don't use this, I'm missing something right now\"). Users who set their messe days now get only actionable, time-aligned recommendations, increasing qualified contact rate and reducing wasted booth visits. This ties scoring directly to the user journey's availability filter (SPEC.md \u00a7User Flow) and ensures the algorithm resp",
-  "next_target": "Document the retrieval pipeline architecture (DB \u2192 vector search \u2192 candidate set \u2192 ranking) so the matching engine can be implemented without ambiguity.",
+  "last_detail": "Added explicit scoring weight preservation rule so future changes maintain sum=1.00 and weight hierarchy integrity.",
+  "last_impact": "Prevents accidental drift in the matching engine's scoring formula during iterative improvements. Matches the core principle by ensuring every recommendation stays grounded in the validated weights \u2014 if weights drift, relevance breaks, and users miss the right exhibitors. This is a structural safeguard for the single most critical algorithm in Flair.",
+  "next_target": "Document the LLM formatting layer's exact prompt template so the output format stays consistent across all recommendation types.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
