@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:39:08Z",
+  "updated_at": "2026-04-14T22:40:35Z",
   "today": "2026-04-14",
-  "today_usd": 3.30044,
-  "total_usd": 3.30044,
-  "total_prompt": 452298,
-  "total_completion": 130336,
+  "today_usd": 3.35108,
+  "total_usd": 3.35108,
+  "total_prompt": 458438,
+  "total_completion": 132484,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 452298,
-      "completion_tokens": 130336,
-      "usd": 3.30044
+      "prompt_tokens": 458438,
+      "completion_tokens": 132484,
+      "usd": 3.35108
     }
   },
   "commits": [
+    {
+      "sha": "369fdcf166702e57994f955674cdfd80b198eea7",
+      "time": "2026-04-14T22:39:09Z",
+      "time_fmt": "2026-04-14 22:39 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs inline computation breakdown when partial data triggers degraded scoring so engineers see the math instantly."
+    },
     {
       "sha": "82608bcbbf623bd9b86e28505ff49d1895a32ceb",
       "time": "2026-04-14T22:38:05Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:48:00Z",
       "time_fmt": "2026-04-14 21:48 UTC",
       "msg": "[Matching Engine] Added explicit rule that commercial fit debug logs must include user query context so engineers can trace bad matches to missing data."
-    },
-    {
-      "sha": "e8fc653e2bd6aae2cd8b9f08dbc113aa10c18487",
-      "time": "2026-04-14T21:47:03Z",
-      "time_fmt": "2026-04-14 21:47 UTC",
-      "msg": "[Matching Engine] Added strict rule that commercial fit computation must log which structured fields were present vs. missing for each exhibitor in ranking debug output."
     }
   ],
   "log_tail": [
-    "2026-04-14T21:59:44Z | heartbeat | daemon tick",
     "2026-04-14T22:00:43Z | heartbeat | daemon tick",
     "2026-04-14T22:01:44Z | heartbeat | daemon tick",
     "2026-04-14T22:02:43Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:35:47Z | heartbeat | daemon tick",
     "2026-04-14T22:36:47Z | heartbeat | daemon tick",
     "2026-04-14T22:37:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:38:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:38:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:39:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs inline computation breakdown when partial data triggers degraded scoring so engineers see the math instantly.",
+  "last_completed": "[Matching Engine] Availability scoring now awards 0.00 (not 0.01) when staff schedule is completely missing so exhibitors cannot passively benefit from incomplete data.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs inline computation breakdown when partial data triggers degraded scoring so engineers see the math instantly.",
-  "last_impact": "When an exhibitor is missing 1 or 2 of the 4 required structured fields (employee_count, price_tier, target_customer_size, industry_vertical), the matching engine now shows exactly how the base score (0.15) degraded to the partial score (0.075 or similar) in the same debug line. Engineers previously had to mentally reconstruct why a score dropped \u2014 now they see \"base=0.15 degraded=0.075 (2/4 fields)\" in real time. This eliminates the most common debugging dead-end during live fair testing: \"Why",
-  "next_target": "Add inline role/query context to social proof debug logs so engineers see what the user was looking for when verification passed or failed.",
+  "last_detail": "Availability scoring now awards 0.00 (not 0.01) when staff schedule is completely missing so exhibitors cannot passively benefit from incomplete data.",
+  "last_impact": "Half-credit (0.01) was intended to prevent strong matches from vanishing when schedule data is incomplete, but it inadvertently rewards exhibitors who never submit schedules at all \u2014 they get free availability points without proving staff presence. This violates the core principle: users waste booth visits on unstaffed stands, trust destroyed instantly. Zero score for missing data forces exhibitors to submit schedules to rank competitively, aligning their incentives with user outcomes. The match",
+  "next_target": "Add availability debug logging rule to SPEC.md requiring stderr emission of schedule-overlap verification decisions with line-length cap.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
