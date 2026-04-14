@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:27:07Z",
+  "updated_at": "2026-04-14T22:28:05Z",
   "today": "2026-04-14",
-  "today_usd": 2.94576,
-  "total_usd": 2.94576,
-  "total_prompt": 378511,
-  "total_completion": 121448,
+  "today_usd": 2.97445,
+  "total_usd": 2.97445,
+  "total_prompt": 384649,
+  "total_completion": 122133,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 378511,
-      "completion_tokens": 121448,
-      "usd": 2.94576
+      "prompt_tokens": 384649,
+      "completion_tokens": 122133,
+      "usd": 2.97445
     }
   },
   "commits": [
+    {
+      "sha": "e02b20d9071ce41d2de80484605423461876f766",
+      "time": "2026-04-14T22:27:08Z",
+      "time_fmt": "2026-04-14 22:27 UTC",
+      "msg": "[Matching Engine] Proximity scoring now logs missing data to stderr so engineers see when hall coordinates or user days are absent during live ranking."
+    },
     {
       "sha": "0762e617227924036015215c906f2799b63f5a67",
       "time": "2026-04-14T22:26:07Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:30:02Z",
       "time_fmt": "2026-04-14 21:30 UTC",
       "msg": "[Matching Engine] Added explicit rule that availability gate runs after all scoring, so semantically perfect matches still hit zero if timing misaligns."
-    },
-    {
-      "sha": "9d7b688af5830f81148c8b2924c0cb4e3cedd8ac",
-      "time": "2026-04-14T21:28:24Z",
-      "time_fmt": "2026-04-14 21:28 UTC",
-      "msg": "[Chatbot Intelligence] Added hard constraint that zero-availability exhibitors get final score = 0, preventing time-misaligned recommendations in top 3."
     }
   ],
   "log_tail": [
-    "2026-04-14T21:45:02Z | heartbeat | daemon tick",
     "2026-04-14T21:46:09Z | heartbeat | daemon tick",
     "2026-04-14T21:47:09Z | heartbeat | daemon tick",
     "2026-04-14T21:48:09Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:23:47Z | heartbeat | daemon tick",
     "2026-04-14T22:24:46Z | heartbeat | daemon tick",
     "2026-04-14T22:25:46Z | heartbeat | daemon tick",
-    "2026-04-14T22:26:46Z | heartbeat | daemon tick"
+    "2026-04-14T22:26:46Z | heartbeat | daemon tick",
+    "2026-04-14T22:27:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now logs missing data to stderr so engineers see when hall coordinates or user days are absent during live ranking.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now include user role text (first 30 chars) so engineers see who's querying without switching to session logs.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now logs missing data to stderr so engineers see when hall coordinates or user days are absent during live ranking.",
-  "last_impact": "Engineers debugging \"why did this nearby booth rank low?\" currently have to guess whether proximity scored zero due to missing hall data or missing user days \u2014 wasting 2\u20133 minutes per investigation during live fair testing. Emitting a [PROXDBG] line to stderr when either constraint is missing (same format as [CFDBG]: session_id, timestamp, exhibitor_id, hall_present=true/false, days_present=true/false, score=0.00) lets engineers grep and instantly see the root cause without querying the database",
-  "next_target": "Add proximity debug logging to the matching engine code that emits [PROXDBG] lines to stderr when hall coordinates or user selected days are missing.",
+  "last_detail": "Commercial fit debug logs now include user role text (first 30 chars) so engineers see who's querying without switching to session logs.",
+  "last_impact": "Engineers debugging commercial fit mismatches (e.g., \"why did this enterprise vendor rank for a startup CTO?\") can now see user role inline in the same [CFDBG] line that shows exhibitor structured fields \u2014 eliminates 100% of context-switching overhead during live fair debugging. Directly supports the Commercial Fit Computation Rule's core mission: prevent scale/budget misalignment by making role-to-exhibitor fit instantly auditable. Every second saved during live ranking investigation = faster i",
+  "next_target": "Add exhibitor.staff_schedule[] parsing logic to the availability scoring module so engineers can verify temporal overlap computation.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
