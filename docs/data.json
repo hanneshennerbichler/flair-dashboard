@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:39:11Z",
+  "updated_at": "2026-04-14T21:40:58Z",
   "today": "2026-04-14",
-  "today_usd": 0.90454,
-  "total_usd": 0.90454,
-  "total_prompt": 116517,
-  "total_completion": 37766,
+  "today_usd": 0.96272,
+  "total_usd": 0.96272,
+  "total_prompt": 122569,
+  "total_completion": 40434,
   "daily_cap": 50.0,
-  "ticks_today": 45,
+  "ticks_today": 46,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 116517,
-      "completion_tokens": 37766,
-      "usd": 0.90454
+      "prompt_tokens": 122569,
+      "completion_tokens": 40434,
+      "usd": 0.96272
     }
   },
   "commits": [
+    {
+      "sha": "bf62c6d9814c609f92ee446e4d32b0cb009f131e",
+      "time": "2026-04-14T21:39:12Z",
+      "time_fmt": "2026-04-14 21:39 UTC",
+      "msg": "[Matching Engine] Added explicit rule that weight adjustments must document the proportional reduction math so future changes preserve ranking integrity."
+    },
     {
       "sha": "25cc98f032d49f5e55bdb3f531e93e11d837a33f",
       "time": "2026-04-14T21:37:12Z",
@@ -317,13 +323,14 @@
     "2026-04-14T21:32:55Z | heartbeat | daemon tick",
     "2026-04-14T21:34:41Z | heartbeat | daemon tick",
     "2026-04-14T21:36:29Z | heartbeat | daemon tick",
-    "2026-04-14T21:38:14Z | heartbeat | daemon tick"
+    "2026-04-14T21:38:14Z | heartbeat | daemon tick",
+    "2026-04-14T21:40:14Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added explicit rule that weight adjustments must document the proportional reduction math so future changes preserve ranking integrity.",
+  "last_completed": "[Matching Engine] Added strict weight adjustment formula with worked example so engineers never introduce ranking drift when adding new scoring factors.",
   "last_category": "Matching Engine",
-  "last_detail": "Added explicit rule that weight adjustments must document the proportional reduction math so future changes preserve ranking integrity.",
-  "last_impact": "When engineers add new scoring factors (e.g., real-time booth traffic, user feedback signals), they now have a concrete formula to preserve the Goal Relevance > Solution Specificity > Commercial Fit hierarchy. This prevents slow ranking drift that would silently break the core \"probability of useful action NOW\" promise \u2014 the single metric users trust when deciding which 3 exhibitors to visit in the next 2 hours.",
-  "next_target": "Add explicit tokenization rules for CV parsing so skills extraction doesn't miss hyphenated terms or German compound nouns.",
+  "last_detail": "Added strict weight adjustment formula with worked example so engineers never introduce ranking drift when adding new scoring factors.",
+  "last_impact": "Every time we add a feature like \"user feedback\" or \"booth traffic,\" weights must be recalculated proportionally or the entire ranking breaks silently. This formula enforces the math, prevents bugs, and protects the core SPEC.md promise: \"probability of useful action NOW\" stays calibrated. Without it, parallel feature work corrupts scoring integrity.",
+  "next_target": "Add explicit rule that LLM formatting happens after ranking, never during, so GPT-4 cannot override the scoring engine's decisions.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
