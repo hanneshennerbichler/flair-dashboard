@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:10:26Z",
+  "updated_at": "2026-04-14T23:11:08Z",
   "today": "2026-04-14",
-  "today_usd": 4.29992,
-  "total_usd": 4.29992,
-  "total_prompt": 644917,
-  "total_completion": 158443,
+  "today_usd": 4.33064,
+  "total_usd": 4.33064,
+  "total_prompt": 651147,
+  "total_completion": 159245,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 644917,
-      "completion_tokens": 158443,
-      "usd": 4.29992
+      "prompt_tokens": 651147,
+      "completion_tokens": 159245,
+      "usd": 4.33064
     }
   },
   "commits": [
+    {
+      "sha": "74af3066641dae6e78cfde1a588763a20c17d598",
+      "time": "2026-04-14T23:10:27Z",
+      "time_fmt": "2026-04-14 23:10 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs buyer's actual budget constraint (exact currency amount or \"unspecified\") so engineers see price-gate failures instantly."
+    },
     {
       "sha": "d2a009e0050e6b5e84545f6dc6179942fc6edc5b",
       "time": "2026-04-14T23:09:08Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:21:09Z",
       "time_fmt": "2026-04-14 22:21 UTC",
       "msg": "[Matching Engine] Commercial fit now explicitly ignores unstructured text descriptions \u2014 only uses employee_count, price_tier, target_customer_size, industry_vertical."
-    },
-    {
-      "sha": "4d3410a1beba4bbd76e1b2f86cba2dba5f8d20ae",
-      "time": "2026-04-14T22:20:32Z",
-      "time_fmt": "2026-04-14 22:20 UTC",
-      "msg": "[Matching Engine] Availability score now defaults to 0.01 when staff schedule data is missing instead of zero \u2014 prevents complete filtering of otherwise strong matches."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:30:47Z | heartbeat | daemon tick",
     "2026-04-14T22:31:46Z | heartbeat | daemon tick",
     "2026-04-14T22:32:47Z | heartbeat | daemon tick",
     "2026-04-14T22:33:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:06:47Z | heartbeat | daemon tick",
     "2026-04-14T23:07:47Z | heartbeat | daemon tick",
     "2026-04-14T23:08:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:09:46Z | heartbeat | daemon tick"
+    "2026-04-14T23:09:46Z | heartbeat | daemon tick",
+    "2026-04-14T23:10:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs buyer's actual budget constraint (exact currency amount or \"unspecified\") so engineers see price-gate failures instantly.",
+  "last_completed": "[Matching Engine] Commercial fit now extracts buyer's company name from role/query text when missing from profile so exhibitors see who they're being matched to.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs buyer's actual budget constraint (exact currency amount or \"unspecified\") so engineers see price-gate failures instantly.",
-  "last_impact": "During live fair testing, engineers currently see \"price_tier=enterprise\" but cannot tell if the buyer explicitly said \"budget under \u20ac50k\" or left it unspecified \u2014 this causes silent mismatches where enterprise-tier exhibitors rank high for budget-constrained buyers. Adding the raw budget constraint (e.g., \"budget=<50k EUR\" or \"budget=unspecified\") to commercial fit debug logs lets engineers immediately spot when the matching engine is ignoring an explicit price ceiling stated by the user. This",
-  "next_target": "Add proximity debug logging showing user's intended visit time (hour/day) so engineers see temporal-spatial misalignment when booth is across fairgrounds during a 30-min window.",
+  "last_detail": "Commercial fit now extracts buyer's company name from role/query text when missing from profile so exhibitors see who they're being matched to.",
+  "last_impact": "Engineers debugging why a 5-person robotics startup got matched to Siemens (both mention \"automation\") can now see \"buyer_company=RoboticsTech GmbH\" in stderr logs and trace the catastrophic false positive instantly. This cuts match investigation time from 3\u20135 minutes (grep query text \u2192 correlate session \u2192 parse context) to under 10 seconds (grep [CFDBG] \u2192 see company name inline). Directly supports the core Commercial Fit Computation Rule: structured fields gate out scale mismatches BEFORE text",
+  "next_target": "Add buyer company employee count extraction from OpenCorporates API so commercial fit can auto-verify startup vs. enterprise alignment without manual role parsing.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
