@@ -1,20 +1,32 @@
 {
-  "updated_at": "2026-04-14T19:56:22Z",
+  "updated_at": "2026-04-14T19:59:00Z",
   "today": "2026-04-14",
-  "today_usd": 0.15985,
-  "total_usd": 0.15985,
-  "total_prompt": 25430,
-  "total_completion": 6338,
+  "today_usd": 0.20685,
+  "total_usd": 0.20685,
+  "total_prompt": 31016,
+  "total_completion": 8354,
   "daily_cap": 50.0,
-  "ticks_today": 16,
+  "ticks_today": 18,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 25430,
-      "completion_tokens": 6338,
-      "usd": 0.15985
+      "prompt_tokens": 31016,
+      "completion_tokens": 8354,
+      "usd": 0.20685
     }
   },
   "commits": [
+    {
+      "sha": "4314e4dd69886354e6c19154057c956b6459a5a3",
+      "time": "2026-04-14T21:58:16Z",
+      "time_fmt": "2026-04-14 21:58 UTC",
+      "msg": "Switched the daemon's commit messages from German to plain English so the dashboard reads naturally for everyone."
+    },
+    {
+      "sha": "f0f6edf24bde28fa2ce45d42f5cb19a9277ac8f7",
+      "time": "2026-04-14T19:56:23Z",
+      "time_fmt": "2026-04-14 19:56 UTC",
+      "msg": "Ich habe die Scoring-Formel direkt in SPEC.md eingef\u00fcgt, damit jeder Entwickler sofort sieht wie Flair Aussteller bewertet."
+    },
     {
       "sha": "3dd9bad85aba0b4fdca85d54f0358aa5c789e1f7",
       "time": "2026-04-14T21:55:19Z",
@@ -128,7 +140,8 @@
     "2026-04-14T19:28:19Z | heartbeat | daemon tick",
     "2026-04-14T19:30:59Z | heartbeat | daemon tick",
     "2026-04-14T19:37:11Z | heartbeat | daemon tick",
-    "2026-04-14T19:55:50Z | heartbeat | daemon tick"
+    "2026-04-14T19:55:50Z | heartbeat | daemon tick",
+    "2026-04-14T19:58:26Z | heartbeat | daemon tick"
   ],
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "*/10 * * * *"
