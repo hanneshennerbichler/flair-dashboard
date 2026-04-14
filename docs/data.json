@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:20:30Z",
+  "updated_at": "2026-04-14T22:21:08Z",
   "today": "2026-04-14",
-  "today_usd": 2.72815,
-  "total_usd": 2.72815,
-  "total_prompt": 335715,
-  "total_completion": 115501,
+  "today_usd": 2.75778,
+  "total_usd": 2.75778,
+  "total_prompt": 341796,
+  "total_completion": 116260,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 335715,
-      "completion_tokens": 115501,
-      "usd": 2.72815
+      "prompt_tokens": 341796,
+      "completion_tokens": 116260,
+      "usd": 2.75778
     }
   },
   "commits": [
+    {
+      "sha": "4d3410a1beba4bbd76e1b2f86cba2dba5f8d20ae",
+      "time": "2026-04-14T22:20:32Z",
+      "time_fmt": "2026-04-14 22:20 UTC",
+      "msg": "[Matching Engine] Availability score now defaults to 0.01 when staff schedule data is missing instead of zero \u2014 prevents complete filtering of otherwise strong matches."
+    },
     {
       "sha": "c3341361976324c8b663c8d0dec81703b99910ba",
       "time": "2026-04-14T22:19:31Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T23:13:32Z",
       "time_fmt": "2026-04-14 23:13 UTC",
       "msg": "[fix] daemon.yml: NameError \u2014 summary \u2192 (detail or category)"
-    },
-    {
-      "sha": "b3e96bae0dd06b69d736b6894d5125eab72b9133",
-      "time": "2026-04-14T22:55:31Z",
-      "time_fmt": "2026-04-14 22:55 UTC",
-      "msg": "[hannes] cron: every minute, no breaks"
     }
   ],
   "log_tail": [
-    "2026-04-14T21:34:41Z | heartbeat | daemon tick",
     "2026-04-14T21:36:29Z | heartbeat | daemon tick",
     "2026-04-14T21:38:14Z | heartbeat | daemon tick",
     "2026-04-14T21:40:14Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:16:47Z | heartbeat | daemon tick",
     "2026-04-14T22:17:46Z | heartbeat | daemon tick",
     "2026-04-14T22:18:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:19:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:19:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:20:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability score now defaults to 0.01 when staff schedule data is missing instead of zero \u2014 prevents complete filtering of otherwise strong matches.",
+  "last_completed": "[Matching Engine] Commercial fit now explicitly ignores unstructured text descriptions \u2014 only uses employee_count, price_tier, target_customer_size, industry_vertical.",
   "last_category": "Matching Engine",
-  "last_detail": "Availability score now defaults to 0.01 when staff schedule data is missing instead of zero \u2014 prevents complete filtering of otherwise strong matches.",
-  "last_impact": "When exhibitors lack schedule data, they still get half-credit availability scoring (0.01 instead of 0.02) so they remain visible in rankings if other factors are strong. This prevents the catastrophic vanishing-match bug where a perfect goal/solution/commercial fit exhibitor drops to zero rank solely because schedule upload is incomplete. Mirrors the commercial fit partial-score logic (0.075 when missing) and keeps the matching engine robust to incomplete data while preserving the integrity of",
-  "next_target": "Add availability debug logging to stderr with [AVDBG] prefix so engineers can instantly see which exhibitors are getting partial vs. full availability credit during live ranking sessions.",
+  "last_detail": "Commercial fit now explicitly ignores unstructured text descriptions \u2014 only uses employee_count, price_tier, target_customer_size, industry_vertical.",
+  "last_impact": "Prevents catastrophic false positives where 5-person robotics startups match Siemens because both mention \"automation\" in marketing copy. Structured fields gate out scale mismatches before any text analysis runs, so users never waste booth visits on size-misaligned exhibitors. This directly protects the trust layer \u2014 one wrong recommendation destroys credibility instantly.",
+  "next_target": "Add rule requiring actionability score to verify meeting slots or demo availability exist before awarding full 0.10 points.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
