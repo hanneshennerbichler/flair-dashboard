@@ -1,20 +1,86 @@
 {
-  "updated_at": "2026-04-14T20:13:37Z",
+  "updated_at": "2026-04-14T21:13:58Z",
   "today": "2026-04-14",
-  "today_usd": 0.27096,
-  "total_usd": 0.27096,
-  "total_prompt": 42709,
-  "total_completion": 10289,
+  "today_usd": 0.29755,
+  "total_usd": 0.29755,
+  "total_prompt": 48798,
+  "total_completion": 10844,
   "daily_cap": 50.0,
-  "ticks_today": 23,
+  "ticks_today": 34,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 42709,
-      "completion_tokens": 10289,
-      "usd": 0.27096
+      "prompt_tokens": 48798,
+      "completion_tokens": 10844,
+      "usd": 0.29755
     }
   },
   "commits": [
+    {
+      "sha": "a9649f8e7fc3c580b8bb1deadd9a05dc7dd464a5",
+      "time": "2026-04-14T23:13:32Z",
+      "time_fmt": "2026-04-14 23:13 UTC",
+      "msg": "[fix] daemon.yml: NameError \u2014 summary \u2192 (detail or category)"
+    },
+    {
+      "sha": "b3e96bae0dd06b69d736b6894d5125eab72b9133",
+      "time": "2026-04-14T22:55:31Z",
+      "time_fmt": "2026-04-14 22:55 UTC",
+      "msg": "[hannes] cron: every minute, no breaks"
+    },
+    {
+      "sha": "12d50937011e1441f19d0e21b34077bff850a0fa",
+      "time": "2026-04-14T22:54:07Z",
+      "time_fmt": "2026-04-14 22:54 UTC",
+      "msg": "[bot] priority note from Hannes @ 2026-04-14T20:54:07Z"
+    },
+    {
+      "sha": "164e470d48af61b17c9cd7ff4333471b9562d03f",
+      "time": "2026-04-14T22:53:44Z",
+      "time_fmt": "2026-04-14 22:53 UTC",
+      "msg": "[bot] priority note from Hannes @ 2026-04-14T20:53:43Z"
+    },
+    {
+      "sha": "385a3a1afe34ee5e38b6d76084b97c1688732803",
+      "time": "2026-04-14T22:51:43Z",
+      "time_fmt": "2026-04-14 22:51 UTC",
+      "msg": "[bot] priority note from Hannes @ 2026-04-14T20:51:43Z"
+    },
+    {
+      "sha": "fafdf3e5eefa33e0482903598d9a551491d041fd",
+      "time": "2026-04-14T22:51:09Z",
+      "time_fmt": "2026-04-14 22:51 UTC",
+      "msg": "[bot] priority note from Hannes @ 2026-04-14T20:51:09Z"
+    },
+    {
+      "sha": "53940500916091b4551a0e90d3da5ba42bab692f",
+      "time": "2026-04-14T22:50:34Z",
+      "time_fmt": "2026-04-14 22:50 UTC",
+      "msg": "[bot] priority note from Hannes @ 2026-04-14T20:50:34Z"
+    },
+    {
+      "sha": "8b4ad05bdad69048900b6cacf8c6eb17abc114bb",
+      "time": "2026-04-14T22:49:14Z",
+      "time_fmt": "2026-04-14 22:49 UTC",
+      "msg": "[bot] priority note from Hannes @ 2026-04-14T20:49:13Z"
+    },
+    {
+      "sha": "9e408a3cdf587b46f8fc2069721a6df3de718978",
+      "time": "2026-04-14T22:39:13Z",
+      "time_fmt": "2026-04-14 22:39 UTC",
+      "msg": "[bot] priority note from Hannes @ 2026-04-14T20:39:13Z"
+    },
+    {
+      "sha": "64e97a471fde05fbe398e5ad07fe7bd699d32fb8",
+      "time": "2026-04-14T22:39:05Z",
+      "time_fmt": "2026-04-14 22:39 UTC",
+      "msg": "[bot] priority note from Hannes @ 2026-04-14T20:39:05Z"
+    },
+    {
+      "sha": "8d951d2a76842166f8f48b4fc882255b0533f30e",
+      "time": "2026-04-14T20:13:38Z",
+      "time_fmt": "2026-04-14 20:13 UTC",
+      "msg": "[Chatbot Intelligence] Added exhibitor scoring weights as inline constants so the matching engine can rank results immediately without a separate config layer."
+    },
     {
       "sha": "fc270ca1a2ff10eeebf0c8fdfd4aa87e5f2d55cb",
       "time": "2026-04-14T22:13:08Z",
@@ -173,13 +239,14 @@
     "2026-04-14T19:55:50Z | heartbeat | daemon tick",
     "2026-04-14T19:58:26Z | heartbeat | daemon tick",
     "2026-04-14T20:07:47Z | heartbeat | daemon tick",
-    "2026-04-14T20:13:18Z | heartbeat | daemon tick"
+    "2026-04-14T20:13:18Z | heartbeat | daemon tick",
+    "2026-04-14T21:13:42Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Chatbot Intelligence] Added exhibitor scoring weights as inline constants so the matching engine can rank results immediately without a separate config layer.",
-  "last_category": "Chatbot Intelligence",
-  "last_detail": "Added exhibitor scoring weights as inline constants so the matching engine can rank results immediately without a separate config layer.",
-  "last_impact": "This moves the matching algorithm from \"spec only\" to \"ready to implement\" \u2014 developers can now build the ranking function that determines which 3 exhibitors appear in every recommendation. Without scoring, every recommendation is arbitrary; with it, users see the most actionable booths first, driving the core metric (cost per qualified contact). This directly fulfills the CORE PRINCIPLE: users must feel they're missing something if they don't follow these top 3.",
-  "next_target": "Enforce the standard output format in the chat response template so every recommendation ends with the virality gate and Hall + Stand location.",
+  "last_completed": "[Matching Engine] Added penalty factor for vague corporate booths so results favor actionable exhibitors over PR-heavy stands.",
+  "last_category": "Matching Engine",
+  "last_detail": "Added penalty factor for vague corporate booths so results favor actionable exhibitors over PR-heavy stands.",
+  "last_impact": "Users get concrete next steps instead of marketing fluff \u2014 directly addresses the core principle ('if I don't use this, I'm missing something right now') by filtering out time-wasting booths. This makes every shortlist more actionable and increases qualified contact rate, lowering cost per contact (the core metric). Ties to matching engine goal: rank by probability of useful action NOW.",
+  "next_target": "Document the exact ranking formula with real numerical thresholds so engineers can implement scoring without interpretation gaps.",
   "model": "anthropic/claude-sonnet-4.5",
-  "cron": "*/10 * * * *"
+  "cron": "* * * * *"
 }
