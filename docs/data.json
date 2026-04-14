@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:11:42Z",
+  "updated_at": "2026-04-14T22:12:22Z",
   "today": "2026-04-14",
-  "today_usd": 2.33809,
-  "total_usd": 2.33809,
-  "total_prompt": 284078,
-  "total_completion": 99825,
+  "today_usd": 2.37896,
+  "total_usd": 2.37896,
+  "total_prompt": 289606,
+  "total_completion": 101444,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 284078,
-      "completion_tokens": 99825,
-      "usd": 2.33809
+      "prompt_tokens": 289606,
+      "completion_tokens": 101444,
+      "usd": 2.37896
     }
   },
   "commits": [
+    {
+      "sha": "e41fa57bbeb1aeed7d120fc424b7162ccdf7a7ea",
+      "time": "2026-04-14T22:11:43Z",
+      "time_fmt": "2026-04-14 22:11 UTC",
+      "msg": "[Matching Engine] Proximity boost now requires hall data to be present \u2014 prevents scoring errors when stand coordinates are missing."
+    },
     {
       "sha": "3afa3ffcac680276bac665b53a24276102d2024a",
       "time": "2026-04-14T22:10:10Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:39:05Z",
       "time_fmt": "2026-04-14 22:39 UTC",
       "msg": "[bot] priority note from Hannes @ 2026-04-14T20:39:05Z"
-    },
-    {
-      "sha": "8d951d2a76842166f8f48b4fc882255b0533f30e",
-      "time": "2026-04-14T20:13:38Z",
-      "time_fmt": "2026-04-14 20:13 UTC",
-      "msg": "[Chatbot Intelligence] Added exhibitor scoring weights as inline constants so the matching engine can rank results immediately without a separate config layer."
     }
   ],
   "log_tail": [
-    "2026-04-14T21:13:42Z | heartbeat | daemon tick",
     "2026-04-14T21:21:29Z | heartbeat | daemon tick",
     "2026-04-14T21:22:48Z | heartbeat | daemon tick",
     "2026-04-14T21:24:23Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:07:43Z | heartbeat | daemon tick",
     "2026-04-14T22:08:44Z | heartbeat | daemon tick",
     "2026-04-14T22:09:43Z | heartbeat | daemon tick",
-    "2026-04-14T22:10:44Z | heartbeat | daemon tick"
+    "2026-04-14T22:10:44Z | heartbeat | daemon tick",
+    "2026-04-14T22:11:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity boost now requires hall data to be present \u2014 prevents scoring errors when stand coordinates are missing.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now include user role (first 30 chars) so engineers instantly see buyer persona alongside exhibitor scale data.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity boost now requires hall data to be present \u2014 prevents scoring errors when stand coordinates are missing.",
-  "last_impact": "When an exhibitor record lacks hall/stand coordinates (incomplete crawl data, new listing, or manual entry without location), the matching engine currently attempts proximity computation anyway, triggering null-reference errors or awarding bogus distance bonuses. This change gates the proximity boost behind a strict precondition: if hall_number or stand_id is NULL, proximity score = 0.05 (neutral baseline, no bonus, no penalty). Reason: awarding a +0.05 proximity bonus to an exhibitor with unkno",
-  "next_target": "Add strict rule that actionability score requires verifiable meeting-slot availability or demo-booking link \u2014 no credit for vague \"visit us\" text.",
+  "last_detail": "Commercial fit debug logs now include user role (first 30 chars) so engineers instantly see buyer persona alongside exhibitor scale data.",
+  "last_impact": "When a startup gets ranked for an enterprise query (or vice versa), engineers currently see the query text but not the user's declared role/company size/budget context. Adding role to the debug line means one glance reveals both sides of the mismatch \u2014 e.g., \"[CFDBG] role='CTO at 8-person robotics startup' query='enterprise automation platform' id=X emp=5000 \u2192 mismatch obvious\" \u2014 eliminating the need to cross-reference session metadata or scroll back through chat history. This cuts diagnosis tim",
+  "next_target": "Add availability score breakdown to debug logs showing which fair days the exhibitor staffs vs. user's selected days so missing-staff penalties are transparent.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
