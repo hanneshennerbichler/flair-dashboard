@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:13:15Z",
+  "updated_at": "2026-04-14T23:14:04Z",
   "today": "2026-04-14",
-  "today_usd": 4.39842,
-  "total_usd": 4.39842,
-  "total_prompt": 663632,
-  "total_completion": 161267,
+  "today_usd": 4.4276,
+  "total_usd": 4.4276,
+  "total_prompt": 669874,
+  "total_completion": 161964,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 663632,
-      "completion_tokens": 161267,
-      "usd": 4.39842
+      "prompt_tokens": 669874,
+      "completion_tokens": 161964,
+      "usd": 4.4276
     }
   },
   "commits": [
+    {
+      "sha": "a295df5fe5ec4b232d7b5077b6522c25789ea5f9",
+      "time": "2026-04-14T23:13:17Z",
+      "time_fmt": "2026-04-14 23:13 UTC",
+      "msg": "[Matching Engine] Proximity debug logs now show exhibitor's hall coordinates so engineers see spatial data quality instantly during live testing."
+    },
     {
       "sha": "f20e652e86d6938b3a23b299729d01a20b9f7bd2",
       "time": "2026-04-14T23:12:07Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:24:16Z",
       "time_fmt": "2026-04-14 22:24 UTC",
       "msg": "[Matching Engine] Commercial fit debug logs now include user query text (first 40 chars) so engineers see intent alongside exhibitor data without context switching."
-    },
-    {
-      "sha": "4b77733d312b2f7537883c8dbec157483dcf74e0",
-      "time": "2026-04-14T22:23:10Z",
-      "time_fmt": "2026-04-14 22:23 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs now include actual field values inline so engineers see missing data without querying the database."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:33:47Z | heartbeat | daemon tick",
     "2026-04-14T22:34:46Z | heartbeat | daemon tick",
     "2026-04-14T22:35:47Z | heartbeat | daemon tick",
     "2026-04-14T22:36:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:09:46Z | heartbeat | daemon tick",
     "2026-04-14T23:10:46Z | heartbeat | daemon tick",
     "2026-04-14T23:11:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:12:46Z | heartbeat | daemon tick"
+    "2026-04-14T23:12:46Z | heartbeat | daemon tick",
+    "2026-04-14T23:13:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity debug logs now show exhibitor's hall coordinates so engineers see spatial data quality instantly during live testing.",
+  "last_completed": "[Matching Engine] Proximity scoring now awards half-credit (0.05) when hall data missing but user days present so temporal availability doesn't get ignored.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity debug logs now show exhibitor's hall coordinates so engineers see spatial data quality instantly during live testing.",
-  "last_impact": "Engineers waste 1\u20133 minutes per failed proximity match trying to determine if the exhibitor has valid hall data or if the user's selected days are the blocker. This change surfaces hall coordinates in the same debug line that already shows user query and availability status, so the root cause (missing geo data vs. missing temporal window vs. both) is visible in one grep. Directly supports the CORE PRINCIPLE: proximity score must reflect real-world walkability, and engineers need instant visibili",
-  "next_target": "Add exhibitor name (first 30 chars) to all five scoring debug logs so engineers can correlate scores to actual companies without joining database tables.",
+  "last_detail": "Proximity scoring now awards half-credit (0.05) when hall data missing but user days present so temporal availability doesn't get ignored.",
+  "last_impact": "When an exhibitor has confirmed staff on the user's selected days but hall coordinates are incomplete in the database, proximity currently scores 0.00 and penalizes an otherwise strong match. Awarding half-credit (0.05, same as the 2-hall proximity bonus) keeps availability-aligned exhibitors competitive while still incentivizing complete location data. This prevents silent ranking collapse when spatial data is patchy during early fair setup or when exhibitors submit schedules before finalized s",
+  "next_target": "Proximity debug logs should show user's selected days array so engineers see temporal filtering in action during live testing.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
