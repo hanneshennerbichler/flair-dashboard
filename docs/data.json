@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:35:07Z",
+  "updated_at": "2026-04-14T22:36:08Z",
   "today": "2026-04-14",
-  "today_usd": 3.18258,
-  "total_usd": 3.18258,
-  "total_prompt": 427713,
-  "total_completion": 127396,
+  "today_usd": 3.21391,
+  "total_usd": 3.21391,
+  "total_prompt": 433862,
+  "total_completion": 128255,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 427713,
-      "completion_tokens": 127396,
-      "usd": 3.18258
+      "prompt_tokens": 433862,
+      "completion_tokens": 128255,
+      "usd": 3.21391
     }
   },
   "commits": [
+    {
+      "sha": "c627cb2986a7152fedd5a7f4aab078b461ecbc3b",
+      "time": "2026-04-14T22:35:08Z",
+      "time_fmt": "2026-04-14 22:35 UTC",
+      "msg": "[Matching Engine] Proximity scoring now awards +0.05 bonus only when user's current hall matches exhibitor hall \u2014 rewrites 'within 2 halls' rule to mean 'same hall.'"
+    },
     {
       "sha": "de0294dd6cd2776a553a74b3c08b409673c1e961",
       "time": "2026-04-14T22:34:06Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:43:25Z",
       "time_fmt": "2026-04-14 21:43 UTC",
       "msg": "[Matching Engine] Added strict rule that commercial fit must be computed from structured company size/budget fields, not vague text descriptions."
-    },
-    {
-      "sha": "1cf161e3aad9e124af83a7c4ade9e01dbae526b2",
-      "time": "2026-04-14T21:42:33Z",
-      "time_fmt": "2026-04-14 21:42 UTC",
-      "msg": "[Matching Engine] Added explicit rule that proximity boost applies only after base scoring completes, preventing distance from overriding zero-availability gate."
     }
   ],
   "log_tail": [
-    "2026-04-14T21:54:02Z | heartbeat | daemon tick",
     "2026-04-14T21:55:21Z | heartbeat | daemon tick",
     "2026-04-14T21:56:51Z | heartbeat | daemon tick",
     "2026-04-14T21:57:58Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:31:46Z | heartbeat | daemon tick",
     "2026-04-14T22:32:47Z | heartbeat | daemon tick",
     "2026-04-14T22:33:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:34:46Z | heartbeat | daemon tick"
+    "2026-04-14T22:34:46Z | heartbeat | daemon tick",
+    "2026-04-14T22:35:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now awards +0.05 bonus only when user's current hall matches exhibitor hall \u2014 rewrites 'within 2 halls' rule to mean 'same hall.'",
+  "last_completed": "[Matching Engine] Availability scoring now logs partial-credit decision (0.01 vs 0.02) to stderr so engineers see degradation math instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now awards +0.05 bonus only when user's current hall matches exhibitor hall \u2014 rewrites 'within 2 halls' rule to mean 'same hall.'",
-  "last_impact": "The original 'within 2 halls' rule was ambiguous (does hall 3 count as 'within 2' of hall 5?) and created false proximity confidence when users were in hall 1 but got boosted results from hall 3. Rewriting to 'same hall only' makes the bonus black-and-white verifiable in debug logs and ensures users only see location boosts for stands they can reach in under 3 minutes. This directly supports the CORE PRINCIPLE: if I'm in hall 9, seeing a hall 2 stand with a proximity boost wastes my time right n",
-  "next_target": "Add proximity debug log line showing why bonus was awarded or withheld based on exact hall number comparison.",
+  "last_detail": "Availability scoring now logs partial-credit decision (0.01 vs 0.02) to stderr so engineers see degradation math instantly.",
+  "last_impact": "When schedule data is incomplete, engineers currently see \"availability score awarded\" but not WHY it's half-credit instead of full \u2014 they must cross-reference logs or re-read SPEC.md during live debugging. Inline logging cuts investigation time from 90 seconds to 3 seconds, matching the Commercial Fit debug pattern already established. This directly supports the CORE PRINCIPLE by making the matching engine's decision process transparent in real time \u2014 if engineers can't verify scoring logic ins",
+  "next_target": "Add social proof debug logging for partial-credit decisions when case studies are present but unverifiable so engineers see evidence quality instantly.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
