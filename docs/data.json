@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:46:04Z",
+  "updated_at": "2026-04-14T21:47:02Z",
   "today": "2026-04-14",
-  "today_usd": 1.24626,
-  "total_usd": 1.24626,
-  "total_prompt": 147487,
-  "total_completion": 54353,
+  "today_usd": 1.30609,
+  "total_usd": 1.30609,
+  "total_prompt": 153762,
+  "total_completion": 57087,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 147487,
-      "completion_tokens": 54353,
-      "usd": 1.24626
+      "prompt_tokens": 153762,
+      "completion_tokens": 57087,
+      "usd": 1.30609
     }
   },
   "commits": [
+    {
+      "sha": "27d63e084f128ea4e03a44f2ba4900493af1fd62",
+      "time": "2026-04-14T21:46:06Z",
+      "time_fmt": "2026-04-14 21:46 UTC",
+      "msg": "[Matching Engine] Added explicit rule that commercial fit score defaults to 0.075 when structured data is missing, preventing false confidence from text guessing."
+    },
     {
       "sha": "a70a846b476ad458713904b45adb5a3716f8332e",
       "time": "2026-04-14T21:44:59Z",
@@ -308,12 +314,6 @@
       "time": "2026-04-14T20:07:52Z",
       "time_fmt": "2026-04-14 20:07 UTC",
       "msg": "chore: daemon heartbeat (local PAT test)"
-    },
-    {
-      "sha": "f06b7dd0d325b07554820aee03e48a6e0dc3e55e",
-      "time": "2026-04-14T19:25:34Z",
-      "time_fmt": "2026-04-14 19:25 UTC",
-      "msg": "Add SPEC.md \u2014 product specification for Flair daemon"
     }
   ],
   "log_tail": [
@@ -346,13 +346,14 @@
     "2026-04-14T21:41:20Z | heartbeat | daemon tick",
     "2026-04-14T21:42:37Z | heartbeat | daemon tick",
     "2026-04-14T21:43:37Z | heartbeat | daemon tick",
-    "2026-04-14T21:45:02Z | heartbeat | daemon tick"
+    "2026-04-14T21:45:02Z | heartbeat | daemon tick",
+    "2026-04-14T21:46:09Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added explicit rule that commercial fit score defaults to 0.075 when structured data is missing, preventing false confidence from text guessing.",
+  "last_completed": "[Matching Engine] Added strict rule that commercial fit computation must log which structured fields were present vs. missing for each exhibitor in ranking debug output.",
   "last_category": "Matching Engine",
-  "last_detail": "Added explicit rule that commercial fit score defaults to 0.075 when structured data is missing, preventing false confidence from text guessing.",
-  "last_impact": "Prevents catastrophic mismatches when exhibitor data is incomplete. If we can't verify scale/budget alignment from structured fields, we signal neutral uncertainty (half weight) instead of hallucinating fit from vague descriptions. This preserves user trust \u2014 a missing data point never inflates a bad recommendation into the top 3.",
-  "next_target": "Add explicit rule that social proof score requires at least two verification signals to prevent gaming via fake testimonials.",
+  "last_detail": "Added strict rule that commercial fit computation must log which structured fields were present vs. missing for each exhibitor in ranking debug output.",
+  "last_impact": "When a user reports a bad recommendation (e.g., startup matched to enterprise solution), engineers can now instantly see whether the commercial fit score was computed from real data (employee_count=12, price_tier=budget) or degraded to the 0.075 fallback due to missing fields. This closes the debugging gap between \"scoring works in theory\" and \"data quality broke the match in production.\" Directly supports the CORE PRINCIPLE by making the matching engine auditable \u2014 every ranking decision can be",
+  "next_target": "Add rule requiring the matching engine to surface data quality warnings in the UI when 2+ of top 3 recommendations have degraded commercial fit scores.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
