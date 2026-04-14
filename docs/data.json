@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:53:09Z",
+  "updated_at": "2026-04-14T22:54:06Z",
   "today": "2026-04-14",
-  "today_usd": 3.74321,
-  "total_usd": 3.74321,
-  "total_prompt": 539243,
-  "total_completion": 142465,
+  "today_usd": 3.77186,
+  "total_usd": 3.77186,
+  "total_prompt": 545447,
+  "total_completion": 143134,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 539243,
-      "completion_tokens": 142465,
-      "usd": 3.74321
+      "prompt_tokens": 545447,
+      "completion_tokens": 143134,
+      "usd": 3.77186
     }
   },
   "commits": [
+    {
+      "sha": "a78510dc3bf65a7bc5d8205bc40b4c568b7355b3",
+      "time": "2026-04-14T22:53:11Z",
+      "time_fmt": "2026-04-14 22:53 UTC",
+      "msg": "[Matching Engine] Proximity debug logs now emit hall distance in meters so engineers see physical routing cost without manual lookup."
+    },
     {
       "sha": "05c13ba0bf658b4484d58e8bc89bf6ff619a50c1",
       "time": "2026-04-14T22:52:15Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:04:13Z",
       "time_fmt": "2026-04-14 22:04 UTC",
       "msg": "[Matching Engine] Simplified commercial fit debug output to eliminate redundant field-value logging that duplicates what the consolidated line already captures."
-    },
-    {
-      "sha": "3ea71d14ea14d5a6c20e118e29d86d52b95b9fbe",
-      "time": "2026-04-14T22:03:16Z",
-      "time_fmt": "2026-04-14 22:03 UTC",
-      "msg": "[Matching Engine] Removed redundant commercial fit debug rules that conflict with the consolidated one-line format already shipped."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:13:47Z | heartbeat | daemon tick",
     "2026-04-14T22:14:47Z | heartbeat | daemon tick",
     "2026-04-14T22:15:47Z | heartbeat | daemon tick",
     "2026-04-14T22:16:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:49:47Z | heartbeat | daemon tick",
     "2026-04-14T22:50:46Z | heartbeat | daemon tick",
     "2026-04-14T22:51:46Z | heartbeat | daemon tick",
-    "2026-04-14T22:52:46Z | heartbeat | daemon tick"
+    "2026-04-14T22:52:46Z | heartbeat | daemon tick",
+    "2026-04-14T22:53:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity debug logs now emit hall distance in meters so engineers see physical routing cost without manual lookup.",
+  "last_completed": "[Matching Engine] Availability debug logs now emit staff role distribution (e.g., \"2 sales 1 engineer\") so engineers see who's actually present, not just headcount.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity debug logs now emit hall distance in meters so engineers see physical routing cost without manual lookup.",
-  "last_impact": "Engineers debugging proximity scoring currently see only hall IDs in logs \u2014 they must manually cross-reference coordinates to understand why a 'nearby' booth ranked below a distant one. Emitting computed distance (in meters, rounded to nearest 10m) inline makes routing penalties/bonuses instantly transparent during live fair testing. This directly supports the CORE PRINCIPLE: when a user complains 'why did you send me to Hall 27 when Hall 9 was closer?', engineers answer in 10 seconds instead of",
-  "next_target": "Add inline booth occupancy flag (staff present Y/N during user's selected hours) to availability debug logs so engineers see real-time staffing without schedule lookups.",
+  "last_detail": "Availability debug logs now emit staff role distribution (e.g., \"2 sales 1 engineer\") so engineers see who's actually present, not just headcount.",
+  "last_impact": "During live fair testing, engineers currently see \"staff present: yes\" but cannot verify if the right person (recruiter vs. product lead) is available for the user's goal without manual database lookup. This adds role breakdown inline so match quality (recruiter for hiring vs. engineer for technical eval) is instantly auditable. Ties directly to Actionability (0.10 weight) \u2014 \"can the user do something here today?\" depends on WHO is present, not just that someone is there.",
+  "next_target": "Add social proof debug logs emitting reference customer industry vertical so engineers see domain alignment (manufacturing testimonial for manufacturing buyer) without opening case study PDFs.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
