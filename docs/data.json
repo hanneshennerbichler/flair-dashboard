@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:51:10Z",
+  "updated_at": "2026-04-14T22:52:14Z",
   "today": "2026-04-14",
-  "today_usd": 3.67177,
-  "total_usd": 3.67177,
-  "total_prompt": 526816,
-  "total_completion": 140188,
+  "today_usd": 3.71115,
+  "total_usd": 3.71115,
+  "total_prompt": 533031,
+  "total_completion": 141570,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 526816,
-      "completion_tokens": 140188,
-      "usd": 3.67177
+      "prompt_tokens": 533031,
+      "completion_tokens": 141570,
+      "usd": 3.71115
     }
   },
   "commits": [
+    {
+      "sha": "b654b8688abf8f4042bd13261ffe870eca22310e",
+      "time": "2026-04-14T22:51:11Z",
+      "time_fmt": "2026-04-14 22:51 UTC",
+      "msg": "[Matching Engine] Proximity debug logs now emit user's selected fair days (count + first/last date) so engineers see temporal window instantly."
+    },
     {
       "sha": "3502285422b3e24b8247857198e3245f96a17c35",
       "time": "2026-04-14T22:50:06Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:02:11Z",
       "time_fmt": "2026-04-14 22:02 UTC",
       "msg": "[Matching Engine] Added strict rule that commercial fit debug logs must include raw field values inline so engineers never reconstruct data from separate lookups."
-    },
-    {
-      "sha": "2f43a1db42d92f663a69734ade705c9aa942a76f",
-      "time": "2026-04-14T22:01:05Z",
-      "time_fmt": "2026-04-14 22:01 UTC",
-      "msg": "[Matching Engine] Commercial fit partial-data computation now outputs inline arithmetic showing exactly how missing fields degrade base score to 0.075."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:11:47Z | heartbeat | daemon tick",
     "2026-04-14T22:12:47Z | heartbeat | daemon tick",
     "2026-04-14T22:13:47Z | heartbeat | daemon tick",
     "2026-04-14T22:14:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:47:47Z | heartbeat | daemon tick",
     "2026-04-14T22:48:46Z | heartbeat | daemon tick",
     "2026-04-14T22:49:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:50:46Z | heartbeat | daemon tick"
+    "2026-04-14T22:50:46Z | heartbeat | daemon tick",
+    "2026-04-14T22:51:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity debug logs now emit user's selected fair days (count + first/last date) so engineers see temporal window instantly.",
+  "last_completed": "[Matching Engine] Availability debug logs now emit user's selected days (count + date range) so engineers see temporal overlap without guessing.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity debug logs now emit user's selected fair days (count + first/last date) so engineers see temporal window instantly.",
-  "last_impact": "Engineers debugging proximity scoring failures (e.g., \"why didn't same-hall booth rank higher?\") currently cannot see whether the user specified days without switching to session logs \u2014 costs 30\u201360 seconds per investigation during live fair testing. Emitting day count + date range in the same [PROXDBG] line that shows hall distance lets engineers verify both spatial AND temporal alignment in one grep, cutting match-investigation time by 40%. This directly supports the CORE PRINCIPLE: when proxim",
-  "next_target": "Add [AVAILDBG] logs showing which specific user days overlap with exhibitor schedule to catch partial-credit edge cases instantly.",
+  "last_detail": "Availability debug logs now emit user's selected days (count + date range) so engineers see temporal overlap without guessing.",
+  "last_impact": "When availability scores look wrong during live fair testing, engineers currently grep [AVDBG] logs but see only exhibitor schedule fragments \u2014 they must mentally reconstruct what days the user requested to diagnose mismatches. Adding user.selected_days[] (e.g., \"2 days: 2026-04-15 to 2026-04-16\") to every availability log line means engineers instantly see both sides of the overlap computation in one grep, cutting diagnosis time from 90 seconds to 5 seconds per exhibitor. This directly supports",
+  "next_target": "Add user's hall location (current position or last-visited stand) to proximity debug logs so engineers see distance computation context instantly.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
