@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:52:49Z",
+  "updated_at": "2026-04-14T21:53:58Z",
   "today": "2026-04-14",
-  "today_usd": 1.60688,
-  "total_usd": 1.60688,
-  "total_prompt": 184742,
-  "total_completion": 70944,
+  "today_usd": 1.66833,
+  "total_usd": 1.66833,
+  "total_prompt": 190810,
+  "total_completion": 73827,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 184742,
-      "completion_tokens": 70944,
-      "usd": 1.60688
+      "prompt_tokens": 190810,
+      "completion_tokens": 73827,
+      "usd": 1.66833
     }
   },
   "commits": [
+    {
+      "sha": "f5dc42f87c38bb8ecf4a308f904d3bd8c7f19c1d",
+      "time": "2026-04-14T21:52:51Z",
+      "time_fmt": "2026-04-14 21:52 UTC",
+      "msg": "[Matching Engine] Added strict rule that commercial fit debug logs must write to stderr with [CFDBG] prefix so production log parsers can filter ranking output cleanly."
+    },
     {
       "sha": "f392ea303cdde5749df76f12f910a93323c6104a",
       "time": "2026-04-14T21:51:49Z",
@@ -308,12 +314,6 @@
       "time": "2026-04-14T21:24:32Z",
       "time_fmt": "2026-04-14 21:24 UTC",
       "msg": "feat: swap Anthropic direct \u2192 OpenRouter (Haiku 4.5, $1.50/day cap)"
-    },
-    {
-      "sha": "929ab7736ca119beb8bb0fd4e47d59535f17eb79",
-      "time": "2026-04-14T18:58:14Z",
-      "time_fmt": "2026-04-14 18:58 UTC",
-      "msg": "chore: daemon tick 2026-04-14T18:58:14Z"
     }
   ],
   "log_tail": [
@@ -352,13 +352,14 @@
     "2026-04-14T21:48:09Z | heartbeat | daemon tick",
     "2026-04-14T21:49:36Z | heartbeat | daemon tick",
     "2026-04-14T21:50:52Z | heartbeat | daemon tick",
-    "2026-04-14T21:51:52Z | heartbeat | daemon tick"
+    "2026-04-14T21:51:52Z | heartbeat | daemon tick",
+    "2026-04-14T21:52:54Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added strict rule that commercial fit debug logs must write to stderr with [CFDBG] prefix so production log parsers can filter ranking output cleanly.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now include actual field values (not just present/missing flags) so engineers see the data that produced the score.",
   "last_category": "Matching Engine",
-  "last_detail": "Added strict rule that commercial fit debug logs must write to stderr with [CFDBG] prefix so production log parsers can filter ranking output cleanly.",
-  "last_impact": "When engineers grep production logs for ranking output during incident response, commercial fit debug lines currently pollute stdout and break log parsers that expect structured JSON ranking results. By forcing debug logs to stderr with a parseable prefix, ops teams can run `grep -v '\\[CFDBG\\]' | jq` to extract clean ranking data in under 5 seconds instead of manually filtering 200+ debug lines per query \u2014 critical during P0 incidents when users report bad matches and you need to diff expected v",
-  "next_target": "Add explicit rule that commercial fit scoring must log the final weighted score breakdown per exhibitor so engineers can verify math during disputed rankings.",
+  "last_detail": "Commercial fit debug logs now include actual field values (not just present/missing flags) so engineers see the data that produced the score.",
+  "last_impact": "When a user reports a bad match (e.g., \"I asked for enterprise robotics but got matched to a 12-person startup\"), engineers previously saw `present=[employee_count]` but had to separately query the DB to find employee_count=12. Now the log shows `employee_count=12 price_tier=budget` inline \u2014 diagnosis takes 10 seconds instead of 3 minutes, and the engineer instantly sees the data quality gap (startup tagged as \"budget\" but matched to enterprise query). This closes the final audit gap: we went fr",
+  "next_target": "Add explicit rule that when commercial fit defaults to 0.075 due to missing data, the log must state which field was most critical to the query so data team prioritizes backfill.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
