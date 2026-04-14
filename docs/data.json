@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:38:04Z",
+  "updated_at": "2026-04-14T22:39:08Z",
   "today": "2026-04-14",
-  "today_usd": 3.26992,
-  "total_usd": 3.26992,
-  "total_prompt": 446150,
-  "total_completion": 129531,
+  "today_usd": 3.30044,
+  "total_usd": 3.30044,
+  "total_prompt": 452298,
+  "total_completion": 130336,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 446150,
-      "completion_tokens": 129531,
-      "usd": 3.26992
+      "prompt_tokens": 452298,
+      "completion_tokens": 130336,
+      "usd": 3.30044
     }
   },
   "commits": [
+    {
+      "sha": "82608bcbbf623bd9b86e28505ff49d1895a32ceb",
+      "time": "2026-04-14T22:38:05Z",
+      "time_fmt": "2026-04-14 22:38 UTC",
+      "msg": "[Matching Engine] Social proof score now logs inline case-study text snippet (first 25 chars) so engineers see what triggered verification pass/fail instantly."
+    },
     {
       "sha": "d3f21da71f1d45eb0f7383e240f8283c5bd0fb08",
       "time": "2026-04-14T22:37:21Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:47:03Z",
       "time_fmt": "2026-04-14 21:47 UTC",
       "msg": "[Matching Engine] Added strict rule that commercial fit computation must log which structured fields were present vs. missing for each exhibitor in ranking debug output."
-    },
-    {
-      "sha": "27d63e084f128ea4e03a44f2ba4900493af1fd62",
-      "time": "2026-04-14T21:46:06Z",
-      "time_fmt": "2026-04-14 21:46 UTC",
-      "msg": "[Matching Engine] Added explicit rule that commercial fit score defaults to 0.075 when structured data is missing, preventing false confidence from text guessing."
     }
   ],
   "log_tail": [
-    "2026-04-14T21:57:58Z | heartbeat | daemon tick",
     "2026-04-14T21:59:44Z | heartbeat | daemon tick",
     "2026-04-14T22:00:43Z | heartbeat | daemon tick",
     "2026-04-14T22:01:44Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:34:46Z | heartbeat | daemon tick",
     "2026-04-14T22:35:47Z | heartbeat | daemon tick",
     "2026-04-14T22:36:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:37:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:37:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:38:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Social proof score now logs inline case-study text snippet (first 25 chars) so engineers see what triggered verification pass/fail instantly.",
+  "last_completed": "[Matching Engine] Commercial fit now logs inline computation breakdown when partial data triggers degraded scoring so engineers see the math instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Social proof score now logs inline case-study text snippet (first 25 chars) so engineers see what triggered verification pass/fail instantly.",
-  "last_impact": "Engineers debugging social proof scoring during live fair testing currently see \"case_study=PASS\" or \"case_study=FAIL\" in stderr but must switch to the database or application logs to see the actual case study text that triggered the decision. This wastes 30\u201360 seconds per exhibitor investigation when tracking down false positives (generic marketing copy scored as verified proof) or false negatives (legitimate case studies rejected due to formatting). Inline text snippets eliminate context switc",
-  "next_target": "Add actionability score debug logging to stderr showing which exhibitors offer meeting slots, demos, or samples vs. vague 'visit us' CTAs.",
+  "last_detail": "Commercial fit now logs inline computation breakdown when partial data triggers degraded scoring so engineers see the math instantly.",
+  "last_impact": "When an exhibitor is missing 1 or 2 of the 4 required structured fields (employee_count, price_tier, target_customer_size, industry_vertical), the matching engine now shows exactly how the base score (0.15) degraded to the partial score (0.075 or similar) in the same debug line. Engineers previously had to mentally reconstruct why a score dropped \u2014 now they see \"base=0.15 degraded=0.075 (2/4 fields)\" in real time. This eliminates the most common debugging dead-end during live fair testing: \"Why",
+  "next_target": "Add inline role/query context to social proof debug logs so engineers see what the user was looking for when verification passed or failed.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
