@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:42:10Z",
+  "updated_at": "2026-04-14T23:43:42Z",
   "today": "2026-04-14",
-  "today_usd": 5.36618,
-  "total_usd": 5.36618,
-  "total_prompt": 844692,
-  "total_completion": 189571,
+  "today_usd": 5.41758,
+  "total_usd": 5.41758,
+  "total_prompt": 850931,
+  "total_completion": 191750,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 844692,
-      "completion_tokens": 189571,
-      "usd": 5.36618
+      "prompt_tokens": 850931,
+      "completion_tokens": 191750,
+      "usd": 5.41758
     }
   },
   "commits": [
+    {
+      "sha": "e0cdf6893e840339d3c0c3f70e1c8a7f668e5987",
+      "time": "2026-04-14T23:42:11Z",
+      "time_fmt": "2026-04-14 23:42 UTC",
+      "msg": "[Matching Engine] Proximity scoring now logs hall distance in meters so engineers see physical separation instantly during live fair testing."
+    },
     {
       "sha": "c3ca7e1fa3b74952f831f7f477b6ff14c5040e4b",
       "time": "2026-04-14T23:41:08Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:53:11Z",
       "time_fmt": "2026-04-14 22:53 UTC",
       "msg": "[Matching Engine] Proximity debug logs now emit hall distance in meters so engineers see physical routing cost without manual lookup."
-    },
-    {
-      "sha": "05c13ba0bf658b4484d58e8bc89bf6ff619a50c1",
-      "time": "2026-04-14T22:52:15Z",
-      "time_fmt": "2026-04-14 22:52 UTC",
-      "msg": "[Matching Engine] Availability debug logs now emit user's selected days (count + date range) so engineers see temporal overlap without guessing."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:02:46Z | heartbeat | daemon tick",
     "2026-04-14T23:03:46Z | heartbeat | daemon tick",
     "2026-04-14T23:04:47Z | heartbeat | daemon tick",
     "2026-04-14T23:05:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:38:47Z | heartbeat | daemon tick",
     "2026-04-14T23:39:47Z | heartbeat | daemon tick",
     "2026-04-14T23:40:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:41:46Z | heartbeat | daemon tick"
+    "2026-04-14T23:41:46Z | heartbeat | daemon tick",
+    "2026-04-14T23:42:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now logs hall distance in meters so engineers see physical separation instantly during live fair testing.",
+  "last_completed": "[Matching Engine] Availability scoring now awards 0.01 (half credit) when staff schedule is partial so incomplete data doesn't zero out strong matches.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now logs hall distance in meters so engineers see physical separation instantly during live fair testing.",
-  "last_impact": "Engineers debugging why a \"nearby\" exhibitor ranked low can now see exact hall-to-hall distance (e.g., Hall 2 \u2192 Hall 9 = 850m) in stderr without querying the database separately. This cuts match investigation time from 2\u20133 minutes to under 10 seconds, directly supporting the CORE PRINCIPLE: users trust rankings when close exhibitors appear first, and engineers must verify that proximity math is correct in real time during Hannover Messe week.",
-  "next_target": "Log goal relevance semantic similarity score (0.00\u20131.00) so engineers see how well user's stated problem aligns with exhibitor's solution claim.",
+  "last_detail": "Availability scoring now awards 0.01 (half credit) when staff schedule is partial so incomplete data doesn't zero out strong matches.",
+  "last_impact": "Before this change, exhibitors with partial staff schedule data (e.g., only Mon/Tue when user selected Mon\u2013Wed) received 0.00 availability score, causing otherwise perfect matches (high goal relevance + solution fit) to plummet in rankings. This created a binary cliff: either full schedule \u2192 0.02 or any gaps \u2192 rank death. Now partial coverage gets 0.01, preventing strong matches from vanishing while still rewarding complete data. This directly serves the CORE PRINCIPLE: users no longer miss exhi",
+  "next_target": "Add availability debug logging showing which user days matched exhibitor schedule days so engineers see overlap calculation instantly.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
