@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:22:07Z",
+  "updated_at": "2026-04-14T22:23:09Z",
   "today": "2026-04-14",
-  "today_usd": 2.78694,
-  "total_usd": 2.78694,
-  "total_prompt": 347900,
-  "total_completion": 116983,
+  "today_usd": 2.81789,
+  "total_usd": 2.81789,
+  "total_prompt": 354015,
+  "total_completion": 117823,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 347900,
-      "completion_tokens": 116983,
-      "usd": 2.78694
+      "prompt_tokens": 354015,
+      "completion_tokens": 117823,
+      "usd": 2.81789
     }
   },
   "commits": [
+    {
+      "sha": "10b3f7b5768767a868f84d37a7183d3918390317",
+      "time": "2026-04-14T22:22:09Z",
+      "time_fmt": "2026-04-14 22:22 UTC",
+      "msg": "[Matching Engine] Added hard rule requiring commercial fit debug logs to include inline computed score breakdown when fields are missing so engineers see degradation math instantly."
+    },
     {
       "sha": "daaad6dc9989167b2eec136bb5aedba9eb7f28bc",
       "time": "2026-04-14T22:21:09Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:21:47Z",
       "time_fmt": "2026-04-14 21:21 UTC",
       "msg": "[Matching Engine] Added proximity boost formula so stands within 2 halls get +0.05 score, making nearby actionable exhibitors rank higher than distant ones."
-    },
-    {
-      "sha": "5faa480082b475e3da42c91573ad30ab3eec94ce",
-      "time": "2026-04-14T21:14:00Z",
-      "time_fmt": "2026-04-14 21:14 UTC",
-      "msg": "[Matching Engine] Added penalty factor for vague corporate booths so results favor actionable exhibitors over PR-heavy stands."
     }
   ],
   "log_tail": [
-    "2026-04-14T21:38:14Z | heartbeat | daemon tick",
     "2026-04-14T21:40:14Z | heartbeat | daemon tick",
     "2026-04-14T21:41:20Z | heartbeat | daemon tick",
     "2026-04-14T21:42:37Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:18:47Z | heartbeat | daemon tick",
     "2026-04-14T22:19:47Z | heartbeat | daemon tick",
     "2026-04-14T22:20:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:21:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:21:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:22:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added hard rule requiring commercial fit debug logs to include inline computed score breakdown when fields are missing so engineers see degradation math instantly.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now include actual field values inline so engineers see missing data without querying the database.",
   "last_category": "Matching Engine",
-  "last_detail": "Added hard rule requiring commercial fit debug logs to include inline computed score breakdown when fields are missing so engineers see degradation math instantly.",
-  "last_impact": "When an exhibitor is missing price_tier or target_customer_size, engineers currently see 'degraded=0.075' but not HOW we got there (base 0.15 \u00d7 fields_present/4). This wastes 30\u201360 seconds per anomaly investigation during live fair testing. Inline breakdown (e.g., '0.15\u00d7(3/4)=0.1125\u2192degraded=0.075') makes the computation transparent in the same line engineers already grep. Directly supports the CORE PRINCIPLE: engineers using debug logs during live sessions must never waste time reverse-engineer",
-  "next_target": "Add hard rule requiring commercial fit debug logs to truncate query/role text predictably when line would exceed 120 chars so grep output never wraps or scrolls horizontally.",
+  "last_detail": "Commercial fit debug logs now include actual field values inline so engineers see missing data without querying the database.",
+  "last_impact": "When a commercial fit score looks wrong during live fair testing, engineers currently have to pause, open a database client, query the exhibitor record, and manually check which structured fields are NULL \u2014 wasting 60\u201390 seconds per investigation. Inline field values ([CFDBG] \u2026 emp=12 price=budget target=NULL vertical=mfg) let engineers diagnose missing-data degradation instantly in the grep output, cutting diagnosis time from minutes to seconds and making the 120-char line-length rule actually",
+  "next_target": "Add inline computation breakdown to commercial fit debug logs so engineers see the degradation math (base=0.1125 degraded=0.075) without reverse-engineering the formula.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
