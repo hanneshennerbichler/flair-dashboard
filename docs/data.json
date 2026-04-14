@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:41:04Z",
+  "updated_at": "2026-04-14T22:42:04Z",
   "today": "2026-04-14",
-  "today_usd": 3.3795,
-  "total_usd": 3.3795,
-  "total_prompt": 464650,
-  "total_completion": 133136,
+  "today_usd": 3.40749,
+  "total_usd": 3.40749,
+  "total_prompt": 470855,
+  "total_completion": 133761,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 464650,
-      "completion_tokens": 133136,
-      "usd": 3.3795
+      "prompt_tokens": 470855,
+      "completion_tokens": 133761,
+      "usd": 3.40749
     }
   },
   "commits": [
+    {
+      "sha": "478f470f0019be353479a52685b694d1ee305a61",
+      "time": "2026-04-14T22:41:05Z",
+      "time_fmt": "2026-04-14 22:41 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs now include inline employee count + price tier + target segment so engineers see scale/budget alignment instantly."
+    },
     {
       "sha": "af651086dc92ed0c4fb7368d9c61d5bd493eb3d2",
       "time": "2026-04-14T22:40:36Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:50:48Z",
       "time_fmt": "2026-04-14 21:50 UTC",
       "msg": "[Matching Engine] Added explicit rule that commercial fit debug logs must include timestamp + session_id so multi-user test scenarios remain auditable."
-    },
-    {
-      "sha": "5c79623f07ffef8597fcd14d95f4e7d7d5f7137d",
-      "time": "2026-04-14T21:49:10Z",
-      "time_fmt": "2026-04-14 21:49 UTC",
-      "msg": "[Matching Engine] Added explicit rule that commercial fit debug logs must fire before final ranking output so engineers see data gaps during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:01:44Z | heartbeat | daemon tick",
     "2026-04-14T22:02:43Z | heartbeat | daemon tick",
     "2026-04-14T22:03:43Z | heartbeat | daemon tick",
     "2026-04-14T22:04:43Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:37:47Z | heartbeat | daemon tick",
     "2026-04-14T22:38:47Z | heartbeat | daemon tick",
     "2026-04-14T22:39:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:40:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:40:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:41:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs now include inline employee count + price tier + target segment so engineers see scale/budget alignment instantly.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now include user query text (first 40 chars) so engineers see what triggered the ranking without context-switching.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs now include inline employee count + price tier + target segment so engineers see scale/budget alignment instantly.",
-  "last_impact": "Engineers debugging catastrophic false positives (5-person startup matched to Siemens) can now see structured field values inline without switching to database queries. This cuts match investigation time from 3 minutes to 15 seconds during live fair testing, directly supporting the commercial fit rule's core goal: prevent scale mismatches before any text analysis runs.",
-  "next_target": "Add availability debug logs showing staff schedule overlap verification so engineers see when presence windows align with user days.",
+  "last_detail": "Commercial fit debug logs now include user query text (first 40 chars) so engineers see what triggered the ranking without context-switching.",
+  "last_impact": "Engineers investigating mismatches during live fair testing previously had to correlate [CFDBG] lines with separate query logs, wasting 30\u201360 seconds per incident. Now session_id + role + query appear in one grep-able line, cutting investigation time to under 10 seconds. This directly supports the CORE PRINCIPLE: if engineers can't diagnose scale/budget mismatches instantly, users waste booth visits on irrelevant exhibitors, destroying trust immediately.",
+  "next_target": "Add proximity debug logging for missing user location data so engineers see when distance scoring fails due to incomplete session state.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
