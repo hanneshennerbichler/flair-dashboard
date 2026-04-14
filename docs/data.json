@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:57:11Z",
+  "updated_at": "2026-04-14T23:58:13Z",
   "today": "2026-04-14",
-  "today_usd": 5.87675,
-  "total_usd": 5.87675,
-  "total_prompt": 938216,
-  "total_completion": 204905,
+  "today_usd": 5.90992,
+  "total_usd": 5.90992,
+  "total_prompt": 944434,
+  "total_completion": 205873,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 938216,
-      "completion_tokens": 204905,
-      "usd": 5.87675
+      "prompt_tokens": 944434,
+      "completion_tokens": 205873,
+      "usd": 5.90992
     }
   },
   "commits": [
+    {
+      "sha": "26b430687319fe1c412b659ccb6abf48a5e4a4f3",
+      "time": "2026-04-14T23:57:13Z",
+      "time_fmt": "2026-04-14 23:57 UTC",
+      "msg": "[Matching Engine] Goal relevance now logs user's stated problem (first 40 chars) so engineers instantly see what need drove the match during live testing."
+    },
     {
       "sha": "eb6b1ff51d1d788142255b32a223d42351db37ed",
       "time": "2026-04-14T23:56:15Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T23:08:10Z",
       "time_fmt": "2026-04-14 23:08 UTC",
       "msg": "[Matching Engine] Commercial fit now extracts buyer's industry vertical from user query when role/company context missing."
-    },
-    {
-      "sha": "0690ae52ac997e19409a611e4edf514719ecf670",
-      "time": "2026-04-14T23:07:09Z",
-      "time_fmt": "2026-04-14 23:07 UTC",
-      "msg": "[Matching Engine] Commercial fit now logs buyer's employee count (from role/company/query) so engineers see scale mismatches instantly during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:17:47Z | heartbeat | daemon tick",
     "2026-04-14T23:18:47Z | heartbeat | daemon tick",
     "2026-04-14T23:19:47Z | heartbeat | daemon tick",
     "2026-04-14T23:20:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:53:48Z | heartbeat | daemon tick",
     "2026-04-14T23:54:47Z | heartbeat | daemon tick",
     "2026-04-14T23:55:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:56:48Z | heartbeat | daemon tick"
+    "2026-04-14T23:56:48Z | heartbeat | daemon tick",
+    "2026-04-14T23:57:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Goal relevance now logs user's stated problem (first 40 chars) so engineers instantly see what need drove the match during live testing.",
+  "last_completed": "[Matching Engine] Proximity scoring now logs user's hall location (if known) so engineers instantly see distance mismatches during live fair testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Goal relevance now logs user's stated problem (first 40 chars) so engineers instantly see what need drove the match during live testing.",
-  "last_impact": "Engineers debugging a bad match during Hannover Messe can now see the exact user problem text that triggered goal relevance scoring \u2014 instantly revealing whether the LLM correctly parsed \"need robotics for assembly line\" vs. misinterpreting vague input. This closes the last diagnostic gap in goal relevance (we already log exhibitor vertical + product capability presence) \u2014 now the full match triangle (user need / exhibitor sector / product fit) is visible in one grep.",
-  "next_target": "Add goal relevance debug logging that shows LLM's semantic similarity score between user problem and exhibitor solution text.",
+  "last_detail": "Proximity scoring now logs user's hall location (if known) so engineers instantly see distance mismatches during live fair testing.",
+  "last_impact": "During live Hannover Messe testing, engineers need to verify that proximity scoring accurately reflects where the user actually stands. Without logging the user's current hall (when available from device location or explicit input), it's impossible to debug why a distant exhibitor ranked high or why a nearby one ranked low. This change makes distance computation transparent in real time, catching coordinate errors before users walk to wrong stands and lose trust. Ties directly to the CORE PRINCI",
+  "next_target": "Add debug logging for solution specificity to show which product categories matched the user's stated need during ranking.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
