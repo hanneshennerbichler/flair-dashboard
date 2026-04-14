@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:59:06Z",
+  "updated_at": "2026-04-14T23:00:07Z",
   "today": "2026-04-14",
-  "today_usd": 3.9426,
-  "total_usd": 3.9426,
-  "total_prompt": 576500,
-  "total_completion": 148306,
+  "today_usd": 3.97511,
+  "total_usd": 3.97511,
+  "total_prompt": 582706,
+  "total_completion": 149232,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 576500,
-      "completion_tokens": 148306,
-      "usd": 3.9426
+      "prompt_tokens": 582706,
+      "completion_tokens": 149232,
+      "usd": 3.97511
     }
   },
   "commits": [
+    {
+      "sha": "982d468e79fc9b279b6d0ffc1779db59a3e6bda8",
+      "time": "2026-04-14T22:59:08Z",
+      "time_fmt": "2026-04-14 22:59 UTC",
+      "msg": "[Matching Engine] Proximity scoring now awards half-credit (0.05) when user has no selected days but hall data exists \u2014 prevents location from vanishing entirely."
+    },
     {
       "sha": "f8cd47880fd1ed256c2c3fa627f7ffb4fd2f854c",
       "time": "2026-04-14T22:58:18Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:10:10Z",
       "time_fmt": "2026-04-14 22:10 UTC",
       "msg": "[Matching Engine] Proximity bonus now applies only when user has selected specific fair days \u2014 prevents irrelevant location boosts for time-agnostic queries."
-    },
-    {
-      "sha": "cb82b0ead5856c11ece9e66c3e15ab9c28a8b387",
-      "time": "2026-04-14T22:09:08Z",
-      "time_fmt": "2026-04-14 22:09 UTC",
-      "msg": "[Matching Engine] Added strict rule requiring commercial fit debug logs to appear BEFORE ranking output so engineers see field diagnostics instantly."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:19:47Z | heartbeat | daemon tick",
     "2026-04-14T22:20:47Z | heartbeat | daemon tick",
     "2026-04-14T22:21:47Z | heartbeat | daemon tick",
     "2026-04-14T22:22:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:55:46Z | heartbeat | daemon tick",
     "2026-04-14T22:56:47Z | heartbeat | daemon tick",
     "2026-04-14T22:57:46Z | heartbeat | daemon tick",
-    "2026-04-14T22:58:46Z | heartbeat | daemon tick"
+    "2026-04-14T22:58:46Z | heartbeat | daemon tick",
+    "2026-04-14T22:59:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now awards half-credit (0.05) when user has no selected days but hall data exists \u2014 prevents location from vanishing entirely.",
+  "last_completed": "[Matching Engine] Proximity scoring now respects availability \u2014 zero points awarded when exhibitor has no staff coverage on user's selected days.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now awards half-credit (0.05) when user has no selected days but hall data exists \u2014 prevents location from vanishing entirely.",
-  "last_impact": "Users who haven't picked dates yet still see nearby exhibitors ranked higher, preserving spatial relevance even before temporal context is known. This keeps recommendations useful during the initial exploration phase when users are still deciding which days to attend, and prevents the matching engine from treating all exhibitors as equidistant just because the user hasn't committed to a schedule.",
-  "next_target": "Add debug logging for proximity half-credit scenarios showing exactly when temporal-only vs. spatial-only scoring applies.",
+  "last_detail": "Proximity scoring now respects availability \u2014 zero points awarded when exhibitor has no staff coverage on user's selected days.",
+  "last_impact": "This closes a critical trust-destroying gap where users walked to physically nearby booths that were closed or unstaffed on their selected days. By gating proximity credit (0.10 + 0.05 bonus) on verified staff presence, we eliminate a failure mode that could waste 10\u201320 minutes per misdirected visit during the fair. Aligns with CORE PRINCIPLE: \"If I don't use this, I'm missing something right now\" \u2014 users now trust that ranked stands are both nearby AND actually staffed when they plan to visit.",
+  "next_target": "Add proximity debug logging that shows why zero credit was given (hall data present but availability failed, or hall data missing).",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
