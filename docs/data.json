@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:58:56Z",
+  "updated_at": "2026-04-14T22:00:36Z",
   "today": "2026-04-14",
-  "today_usd": 1.92444,
-  "total_usd": 1.92444,
-  "total_prompt": 215749,
-  "total_completion": 85913,
+  "today_usd": 1.97595,
+  "total_usd": 1.97595,
+  "total_prompt": 222020,
+  "total_completion": 88093,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 215749,
-      "completion_tokens": 85913,
-      "usd": 1.92444
+      "prompt_tokens": 222020,
+      "completion_tokens": 88093,
+      "usd": 1.97595
     }
   },
   "commits": [
+    {
+      "sha": "16e633888328f52f67ced2f64108a251c85b8850",
+      "time": "2026-04-14T21:58:58Z",
+      "time_fmt": "2026-04-14 21:58 UTC",
+      "msg": "[Matching Engine] Added strict rule that commercial fit debug logs must report partial-data score computation showing exactly how 0.075 was derived from missing fields."
+    },
     {
       "sha": "6e2c029f9a49e514a0f10a9853c26d62cc0983ff",
       "time": "2026-04-14T21:57:55Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T19:31:25Z",
       "time_fmt": "2026-04-14 19:31 UTC",
       "msg": "chore: daemon tick 2026-04-14T19:31:25Z"
-    },
-    {
-      "sha": "b1af0b4389e0b07aa384f0222fec6ae4e1bec722",
-      "time": "2026-04-14T21:30:25Z",
-      "time_fmt": "2026-04-14 21:30 UTC",
-      "msg": "feat: DASHBOARD.md auto-regenerated each tick (spend + commits + log)"
     }
   ],
   "log_tail": [
-    "2026-04-14T18:11:57Z | heartbeat | GitHub Actions daemon alive",
     "2026-04-14T18:58:13Z | heartbeat | daemon tick",
     "2026-04-14T18:58:14Z | api-error | HTTP 400",
     "2026-04-14T19:24:49Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T21:54:02Z | heartbeat | daemon tick",
     "2026-04-14T21:55:21Z | heartbeat | daemon tick",
     "2026-04-14T21:56:51Z | heartbeat | daemon tick",
-    "2026-04-14T21:57:58Z | heartbeat | daemon tick"
+    "2026-04-14T21:57:58Z | heartbeat | daemon tick",
+    "2026-04-14T21:59:44Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added strict rule that commercial fit debug logs must report partial-data score computation showing exactly how 0.075 was derived from missing fields.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now emit one consolidated line per exhibitor showing all 4 field values + computation in 120 chars max.",
   "last_category": "Matching Engine",
-  "last_detail": "Added strict rule that commercial fit debug logs must report partial-data score computation showing exactly how 0.075 was derived from missing fields.",
-  "last_impact": "When an exhibitor scores 0.075 because one of four fields is missing, engineers previously saw \"score=0.075\" with no breakdown\u2014forcing them to reverse-engineer which field caused the penalty. Now logs show \"employee_count=12 price_tier=budget target_customer_size=NULL industry_vertical=manufacturing \u2192 3/4 fields present \u2192 base=0.1125 degraded to 0.075\" so diagnosis is instant. This closes the last gap in commercial fit auditability: engineers know not just that data was missing, but exactly how",
-  "next_target": "Add rule that commercial fit component weight must be validated against sum constraint whenever a new scoring factor is introduced.",
+  "last_detail": "Commercial fit debug logs now emit one consolidated line per exhibitor showing all 4 field values + computation in 120 chars max.",
+  "last_impact": "Engineers debugging bad matches (e.g., \"startup matched to enterprise query\") previously had to parse 4\u20136 separate log lines per exhibitor to reconstruct why the score was 0.075. Multi-exhibitor rankings generated 50+ lines of fragmented output, making root-cause analysis slow during live fair testing. One consolidated line per exhibitor (format: `[CFDBG] id=X emp=12 price=budget target=NULL vertical=mfg \u2192 3/4 \u2192 0.075`) cuts diagnosis time from 3 minutes to 10 seconds \u2014 critical when users repor",
+  "next_target": "Add explicit rule that consolidated commercial fit debug line must appear in ranking output within 2 lines of the exhibitor's final score.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
