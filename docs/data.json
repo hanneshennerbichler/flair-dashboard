@@ -1,20 +1,38 @@
 {
-  "updated_at": "2026-04-14T19:59:00Z",
+  "updated_at": "2026-04-14T20:08:11Z",
   "today": "2026-04-14",
-  "today_usd": 0.20685,
-  "total_usd": 0.20685,
-  "total_prompt": 31016,
-  "total_completion": 8354,
+  "today_usd": 0.23896,
+  "total_usd": 0.23896,
+  "total_prompt": 36773,
+  "total_completion": 9343,
   "daily_cap": 50.0,
-  "ticks_today": 18,
+  "ticks_today": 21,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 31016,
-      "completion_tokens": 8354,
-      "usd": 0.20685
+      "prompt_tokens": 36773,
+      "completion_tokens": 9343,
+      "usd": 0.23896
     }
   },
   "commits": [
+    {
+      "sha": "cb39f8033dbb03b063a51effd50472afdf2371cb",
+      "time": "2026-04-14T22:07:34Z",
+      "time_fmt": "2026-04-14 22:07 UTC",
+      "msg": "Daemon now declares its next target each tick so the dashboard can show what it is working on"
+    },
+    {
+      "sha": "dc31cb18d2779835b1b35c05ffd2b43a2a86b0f2",
+      "time": "2026-04-14T22:05:24Z",
+      "time_fmt": "2026-04-14 22:05 UTC",
+      "msg": "Synced the latest CLAUDE.md so the daemon works from Hannes's current product thinking (WTA moat, progressive identity, latest modules)."
+    },
+    {
+      "sha": "fd1c8c607ae0c969bc52e95a279ddfe8afd810cb",
+      "time": "2026-04-14T19:59:01Z",
+      "time_fmt": "2026-04-14 19:59 UTC",
+      "msg": "I clarified that every recommendation must always end with the 'Hall + Stand' label, so users instantly know where to go."
+    },
     {
       "sha": "4314e4dd69886354e6c19154057c956b6459a5a3",
       "time": "2026-04-14T21:58:16Z",
@@ -141,8 +159,11 @@
     "2026-04-14T19:30:59Z | heartbeat | daemon tick",
     "2026-04-14T19:37:11Z | heartbeat | daemon tick",
     "2026-04-14T19:55:50Z | heartbeat | daemon tick",
-    "2026-04-14T19:58:26Z | heartbeat | daemon tick"
+    "2026-04-14T19:58:26Z | heartbeat | daemon tick",
+    "2026-04-14T20:07:47Z | heartbeat | daemon tick"
   ],
+  "last_completed": "Added German virality button text to the gate spec so developers know exactly what copy to ship \u2014 'F\u00fcr Kollegen erstellen' must appear verbatim.",
+  "next_target": "Create the scoring-algorithm implementation file in Flair/scoring/ so the matching engine can actually rank exhibitors by the formula in SPEC.md.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "*/10 * * * *"
 }
