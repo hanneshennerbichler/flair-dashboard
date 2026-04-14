@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:55:15Z",
+  "updated_at": "2026-04-14T23:56:14Z",
   "today": "2026-04-14",
-  "today_usd": 5.80524,
-  "total_usd": 5.80524,
-  "total_prompt": 925788,
-  "total_completion": 202623,
+  "today_usd": 5.84314,
+  "total_usd": 5.84314,
+  "total_prompt": 932006,
+  "total_completion": 203906,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 925788,
-      "completion_tokens": 202623,
-      "usd": 5.80524
+      "prompt_tokens": 932006,
+      "completion_tokens": 203906,
+      "usd": 5.84314
     }
   },
   "commits": [
+    {
+      "sha": "7a802e0a3aec97ed6f0607ca291177648854b64e",
+      "time": "2026-04-14T23:55:16Z",
+      "time_fmt": "2026-04-14 23:55 UTC",
+      "msg": "[Matching Engine] Actionability scoring now logs which concrete next-step mechanisms exhibitor offers so engineers see demo/meeting/sample availability instantly."
+    },
     {
       "sha": "8afd78c361eaafbce240bbd221c138a016ab9e8c",
       "time": "2026-04-14T23:54:15Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T23:06:13Z",
       "time_fmt": "2026-04-14 23:06 UTC",
       "msg": "[Matching Engine] Commercial fit debug logs now show buyer's industry vertical (extracted from role/company/query) so engineers see sector alignment instantly."
-    },
-    {
-      "sha": "30c2e5e7f30f7b9f927c52463d304d2bc734ce9d",
-      "time": "2026-04-14T23:05:22Z",
-      "time_fmt": "2026-04-14 23:05 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs now emit buyer's budget tier (explicitly stated or inferred from role/company size) so engineers see price-alignment instantly."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:15:47Z | heartbeat | daemon tick",
     "2026-04-14T23:16:47Z | heartbeat | daemon tick",
     "2026-04-14T23:17:47Z | heartbeat | daemon tick",
     "2026-04-14T23:18:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:51:48Z | heartbeat | daemon tick",
     "2026-04-14T23:52:48Z | heartbeat | daemon tick",
     "2026-04-14T23:53:48Z | heartbeat | daemon tick",
-    "2026-04-14T23:54:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:54:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:55:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Actionability scoring now logs which concrete next-step mechanisms exhibitor offers so engineers see demo/meeting/sample availability instantly.",
+  "last_completed": "[Matching Engine] Solution specificity now logs exhibitor's product count so engineers instantly see catalog breadth during live fair testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Actionability scoring now logs which concrete next-step mechanisms exhibitor offers so engineers see demo/meeting/sample availability instantly.",
-  "last_impact": "Engineers debugging live rankings can now instantly see whether an exhibitor earned actionability credit via demo booking, meeting slot, sample request, or hands-on trial \u2014 instead of guessing why one booth scored 0.10 and another 0.00. This directly supports the CORE PRINCIPLE by revealing which exhibitors enable immediate action (the entire point of Flair) versus passive browsing, so mismatches surface in <5 seconds during fair testing instead of requiring database queries.",
-  "next_target": "Add intent confidence logging for user's industry vertical mention so engineers see domain-specific need clarity instantly during live testing.",
+  "last_detail": "Solution specificity now logs exhibitor's product count so engineers instantly see catalog breadth during live fair testing.",
+  "last_impact": "Engineers running live fair tests can now instantly diagnose why a broad-catalog exhibitor (e.g., 87 products) scored lower than a focused specialist (12 products) \u2014 the debug line shows product count next to the specificity score, eliminating guesswork about catalog breadth penalties. This directly supports the CORE PRINCIPLE by making the scoring transparent: users get sharper matches because the engine rewards depth over breadth, and engineers can verify this logic in real time without re-run",
+  "next_target": "Add goal relevance debug logging to show whether exhibitor named concrete capabilities versus generic marketing text.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
