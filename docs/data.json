@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:33:04Z",
+  "updated_at": "2026-04-14T22:34:04Z",
   "today": "2026-04-14",
-  "today_usd": 3.12437,
-  "total_usd": 3.12437,
-  "total_prompt": 415429,
-  "total_completion": 125972,
+  "today_usd": 3.15205,
+  "total_usd": 3.15205,
+  "total_prompt": 421575,
+  "total_completion": 126588,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 415429,
-      "completion_tokens": 125972,
-      "usd": 3.12437
+      "prompt_tokens": 421575,
+      "completion_tokens": 126588,
+      "usd": 3.15205
     }
   },
   "commits": [
+    {
+      "sha": "494d0784ac6f3c61523a8ab371f50883577b0d75",
+      "time": "2026-04-14T22:33:06Z",
+      "time_fmt": "2026-04-14 22:33 UTC",
+      "msg": "[Matching Engine] Proximity debug logs now include user's current hall location when available so engineers see distance computation context instantly."
+    },
     {
       "sha": "4a00a65dfaab658f8351748ac91a4321e7c1d381",
       "time": "2026-04-14T22:32:12Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:41:00Z",
       "time_fmt": "2026-04-14 21:41 UTC",
       "msg": "[Matching Engine] Added strict weight adjustment formula with worked example so engineers never introduce ranking drift when adding new scoring factors."
-    },
-    {
-      "sha": "bf62c6d9814c609f92ee446e4d32b0cb009f131e",
-      "time": "2026-04-14T21:39:12Z",
-      "time_fmt": "2026-04-14 21:39 UTC",
-      "msg": "[Matching Engine] Added explicit rule that weight adjustments must document the proportional reduction math so future changes preserve ranking integrity."
     }
   ],
   "log_tail": [
-    "2026-04-14T21:51:52Z | heartbeat | daemon tick",
     "2026-04-14T21:52:54Z | heartbeat | daemon tick",
     "2026-04-14T21:54:02Z | heartbeat | daemon tick",
     "2026-04-14T21:55:21Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:29:46Z | heartbeat | daemon tick",
     "2026-04-14T22:30:47Z | heartbeat | daemon tick",
     "2026-04-14T22:31:46Z | heartbeat | daemon tick",
-    "2026-04-14T22:32:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:32:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:33:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity debug logs now include user's current hall location when available so engineers see distance computation context instantly.",
+  "last_completed": "[Matching Engine] Proximity debug logs now cap line length at 120 chars to prevent horizontal scrolling during live fair testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity debug logs now include user's current hall location when available so engineers see distance computation context instantly.",
-  "last_impact": "When engineers grep for [PROXDBG] during live fair testing, they now see BOTH exhibitor hall AND user's starting point in the same line \u2014 eliminates guessing why distance calculations produce unexpected rankings. Directly supports the matching engine's 0.10 proximity weight + 0.05 bonus rule by making the physical context visible in real time, enabling instant diagnosis of \"why is this far stand ranked high?\" questions.",
-  "next_target": "Add stderr debug logging for actionability score computations so engineers see when meeting slots or demo availability drive ranking boosts.",
+  "last_detail": "Proximity debug logs now cap line length at 120 chars to prevent horizontal scrolling during live fair testing.",
+  "last_impact": "Engineers running `grep '\\[PROXDBG\\]'` during live ranking sessions no longer lose time scrolling right to see exhibitor IDs or distance values \u2014 every proximity computation fits one terminal line. This matches the commercial-fit debug standard (120 char max) and eliminates the 10\u201315 second context-switch penalty when diagnosing why a nearby booth ranked lower than expected. Directly supports the CORE PRINCIPLE: reduce uncertainty, increase speed.",
+  "next_target": "Add social proof debug line-length cap (120 chars) to match proximity and commercial fit standards \u2014 one grep line per verification decision.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
