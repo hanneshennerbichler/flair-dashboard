@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:13:58Z",
+  "updated_at": "2026-04-14T21:21:45Z",
   "today": "2026-04-14",
-  "today_usd": 0.29755,
-  "total_usd": 0.29755,
-  "total_prompt": 48798,
-  "total_completion": 10844,
+  "today_usd": 0.32383,
+  "total_usd": 0.32383,
+  "total_prompt": 54888,
+  "total_completion": 11378,
   "daily_cap": 50.0,
-  "ticks_today": 34,
+  "ticks_today": 35,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 48798,
-      "completion_tokens": 10844,
-      "usd": 0.29755
+      "prompt_tokens": 54888,
+      "completion_tokens": 11378,
+      "usd": 0.32383
     }
   },
   "commits": [
+    {
+      "sha": "5faa480082b475e3da42c91573ad30ab3eec94ce",
+      "time": "2026-04-14T21:14:00Z",
+      "time_fmt": "2026-04-14 21:14 UTC",
+      "msg": "[Matching Engine] Added penalty factor for vague corporate booths so results favor actionable exhibitors over PR-heavy stands."
+    },
     {
       "sha": "a9649f8e7fc3c580b8bb1deadd9a05dc7dd464a5",
       "time": "2026-04-14T23:13:32Z",
@@ -240,13 +246,15 @@
     "2026-04-14T19:58:26Z | heartbeat | daemon tick",
     "2026-04-14T20:07:47Z | heartbeat | daemon tick",
     "2026-04-14T20:13:18Z | heartbeat | daemon tick",
-    "2026-04-14T21:13:42Z | heartbeat | daemon tick"
+    "2026-04-14T21:13:42Z | heartbeat | daemon tick",
+    "2026-04-14T21:21:29Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added penalty factor for vague corporate booths so results favor actionable exhibitors over PR-heavy stands.",
+  "last_completed": "[Matching Engine] Added proximity boost formula so stands within 2 halls get +0.05 score, making nearby actionable exhibitors rank higher than distant ones.",
   "last_category": "Matching Engine",
-  "last_detail": "Added penalty factor for vague corporate booths so results favor actionable exhibitors over PR-heavy stands.",
-  "last_impact": "Users get concrete next steps instead of marketing fluff \u2014 directly addresses the core principle ('if I don't use this, I'm missing something right now') by filtering out time-wasting booths. This makes every shortlist more actionable and increases qualified contact rate, lowering cost per contact (the core metric). Ties to matching engine goal: rank by probability of useful action NOW.",
-  "next_target": "Document the exact ranking formula with real numerical thresholds so engineers can implement scoring without interpretation gaps.",
+  "last_detail": "Added proximity boost formula so stands within 2 halls get +0.05 score, making nearby actionable exhibitors rank higher than distant ones.",
+  "last_impact": "Users walking Hall 5 now see Hall 4\u20136 exhibitors ranked above Hall 12, even if slightly less relevant \u2014 because action probability collapses with distance at a trade fair. This directly ties to the core principle: if the user has to walk 15 minutes, they won't act now, and the recommendation fails.",
+  "next_target": "Define the data schema for exhibitor records so the matching engine knows which fields exist and can score them consistently.",
   "model": "anthropic/claude-sonnet-4.5",
-  "cron": "* * * * *"
+  "cron": "fly-loop-60s",
+  "runtime": "fly.io"
 }
