@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:45:03Z",
+  "updated_at": "2026-04-14T22:46:04Z",
   "today": "2026-04-14",
-  "today_usd": 3.49296,
-  "total_usd": 3.49296,
-  "total_prompt": 489487,
-  "total_completion": 135733,
+  "today_usd": 3.52216,
+  "total_usd": 3.52216,
+  "total_prompt": 495700,
+  "total_completion": 136437,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 489487,
-      "completion_tokens": 135733,
-      "usd": 3.49296
+      "prompt_tokens": 495700,
+      "completion_tokens": 136437,
+      "usd": 3.52216
     }
   },
   "commits": [
+    {
+      "sha": "551a2a27bca21c36a66de9b8fb20a0b1e38c1bdd",
+      "time": "2026-04-14T22:45:04Z",
+      "time_fmt": "2026-04-14 22:45 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs now emit to stderr BEFORE ranking output so engineers can grep live computations without waiting for results."
+    },
     {
       "sha": "119e1150770c74fe2397873609c6ae8a730992aa",
       "time": "2026-04-14T22:44:06Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:55:07Z",
       "time_fmt": "2026-04-14 21:55 UTC",
       "msg": "[Matching Engine] Added strict rule that commercial fit debug logs must include computation breakdown showing how partial data affects the 0.075 default score."
-    },
-    {
-      "sha": "195b286053634ffb36b160a7e652b7e91f584fb2",
-      "time": "2026-04-14T21:53:59Z",
-      "time_fmt": "2026-04-14 21:53 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs now include actual field values (not just present/missing flags) so engineers see the data that produced the score."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:05:43Z | heartbeat | daemon tick",
     "2026-04-14T22:06:44Z | heartbeat | daemon tick",
     "2026-04-14T22:07:43Z | heartbeat | daemon tick",
     "2026-04-14T22:08:44Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:41:46Z | heartbeat | daemon tick",
     "2026-04-14T22:42:46Z | heartbeat | daemon tick",
     "2026-04-14T22:43:46Z | heartbeat | daemon tick",
-    "2026-04-14T22:44:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:44:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:45:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs now emit to stderr BEFORE ranking output so engineers can grep live computations without waiting for results.",
+  "last_completed": "[Matching Engine] Commercial fit now penalizes missing structured data (-0.05) instead of neutral 0.075 to force exhibitors to complete profiles.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs now emit to stderr BEFORE ranking output so engineers can grep live computations without waiting for results.",
-  "last_impact": "During live fair testing, engineers run `grep '\\[CFDBG\\]'` in a separate terminal to watch commercial fit scoring in real time as users query the system. Previously, debug output appeared *after* ranking results were written, meaning logs arrived too late to diagnose why a specific match scored unexpectedly. Emitting before final output lets engineers correlate scores with user queries instantly \u2014 no buffering delay, no post-hoc reconstruction. This directly supports the 'Commercial Fit Debug Lo",
-  "next_target": "Add session_id to commercial fit debug logs so engineers can filter stderr by user session during multi-user live testing.",
+  "last_detail": "Commercial fit now penalizes missing structured data (-0.05) instead of neutral 0.075 to force exhibitors to complete profiles.",
+  "last_impact": "The neutral 0.075 score created a perverse incentive \u2014 exhibitors with incomplete data ranked identically to those with marginal fit. This change makes incomplete profiles sink below weak-but-complete matches, forcing exhibitors to submit employee_count/price_tier/target_customer_size or lose visibility. Users immediately see better scale-aligned matches because poorly-documented exhibitors no longer dilute rankings.",
+  "next_target": "Add commercial fit penalty logging to stderr so engineers see when missing data triggers the -0.05 deduction during live testing.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
