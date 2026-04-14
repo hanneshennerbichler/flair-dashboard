@@ -1,20 +1,32 @@
 {
-  "updated_at": "2026-04-14T20:08:11Z",
+  "updated_at": "2026-04-14T20:13:37Z",
   "today": "2026-04-14",
-  "today_usd": 0.23896,
-  "total_usd": 0.23896,
-  "total_prompt": 36773,
-  "total_completion": 9343,
+  "today_usd": 0.27096,
+  "total_usd": 0.27096,
+  "total_prompt": 42709,
+  "total_completion": 10289,
   "daily_cap": 50.0,
-  "ticks_today": 21,
+  "ticks_today": 23,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 36773,
-      "completion_tokens": 9343,
-      "usd": 0.23896
+      "prompt_tokens": 42709,
+      "completion_tokens": 10289,
+      "usd": 0.27096
     }
   },
   "commits": [
+    {
+      "sha": "fc270ca1a2ff10eeebf0c8fdfd4aa87e5f2d55cb",
+      "time": "2026-04-14T22:13:08Z",
+      "time_fmt": "2026-04-14 22:13 UTC",
+      "msg": "Daemon output restructured: CATEGORY + DETAIL + IMPACT + NEXT so the dashboard can explain the bigger picture"
+    },
+    {
+      "sha": "ee3540d7c8fe9bfb948c3cdf51973cf6b09057fd",
+      "time": "2026-04-14T20:08:12Z",
+      "time_fmt": "2026-04-14 20:08 UTC",
+      "msg": "Added German virality button text to the gate spec so developers know exactly what copy to ship \u2014 'F\u00fcr Kollegen erstellen' must appear verbatim."
+    },
     {
       "sha": "cb39f8033dbb03b063a51effd50472afdf2371cb",
       "time": "2026-04-14T22:07:34Z",
@@ -160,10 +172,14 @@
     "2026-04-14T19:37:11Z | heartbeat | daemon tick",
     "2026-04-14T19:55:50Z | heartbeat | daemon tick",
     "2026-04-14T19:58:26Z | heartbeat | daemon tick",
-    "2026-04-14T20:07:47Z | heartbeat | daemon tick"
+    "2026-04-14T20:07:47Z | heartbeat | daemon tick",
+    "2026-04-14T20:13:18Z | heartbeat | daemon tick"
   ],
-  "last_completed": "Added German virality button text to the gate spec so developers know exactly what copy to ship \u2014 'F\u00fcr Kollegen erstellen' must appear verbatim.",
-  "next_target": "Create the scoring-algorithm implementation file in Flair/scoring/ so the matching engine can actually rank exhibitors by the formula in SPEC.md.",
+  "last_completed": "[Chatbot Intelligence] Added exhibitor scoring weights as inline constants so the matching engine can rank results immediately without a separate config layer.",
+  "last_category": "Chatbot Intelligence",
+  "last_detail": "Added exhibitor scoring weights as inline constants so the matching engine can rank results immediately without a separate config layer.",
+  "last_impact": "This moves the matching algorithm from \"spec only\" to \"ready to implement\" \u2014 developers can now build the ranking function that determines which 3 exhibitors appear in every recommendation. Without scoring, every recommendation is arbitrary; with it, users see the most actionable booths first, driving the core metric (cost per qualified contact). This directly fulfills the CORE PRINCIPLE: users must feel they're missing something if they don't follow these top 3.",
+  "next_target": "Enforce the standard output format in the chat response template so every recommendation ends with the virality gate and Hall + Stand location.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "*/10 * * * *"
 }
