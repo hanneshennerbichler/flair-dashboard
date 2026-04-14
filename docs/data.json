@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:02:09Z",
+  "updated_at": "2026-04-14T23:03:11Z",
   "today": "2026-04-14",
-  "today_usd": 4.0335,
-  "total_usd": 4.0335,
-  "total_prompt": 595117,
-  "total_completion": 150642,
+  "today_usd": 4.06544,
+  "total_usd": 4.06544,
+  "total_prompt": 601325,
+  "total_completion": 151530,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 595117,
-      "completion_tokens": 150642,
-      "usd": 4.0335
+      "prompt_tokens": 601325,
+      "completion_tokens": 151530,
+      "usd": 4.06544
     }
   },
   "commits": [
+    {
+      "sha": "3e33ccbddffd4eee2074a773721f5dfa026a3c6d",
+      "time": "2026-04-14T23:02:10Z",
+      "time_fmt": "2026-04-14 23:02 UTC",
+      "msg": "[Matching Engine] Commercial fit now awards half-credit (0.075) when buyer context missing so strong matches don't vanish silently due to incomplete user profiles."
+    },
     {
       "sha": "e31e1366c2d213f8974beaa66518b64bb30c39d0",
       "time": "2026-04-14T23:01:06Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:13:21Z",
       "time_fmt": "2026-04-14 22:13 UTC",
       "msg": "[Matching Engine] Commercial fit debug logs now include session_id and timestamp so engineers can correlate scoring anomalies with specific user sessions instantly."
-    },
-    {
-      "sha": "be0d425774a575f8c0bb33d884479895654d2536",
-      "time": "2026-04-14T22:12:24Z",
-      "time_fmt": "2026-04-14 22:12 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs now include user role (first 30 chars) so engineers instantly see buyer persona alongside exhibitor scale data."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:22:47Z | heartbeat | daemon tick",
     "2026-04-14T22:23:47Z | heartbeat | daemon tick",
     "2026-04-14T22:24:46Z | heartbeat | daemon tick",
     "2026-04-14T22:25:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:58:46Z | heartbeat | daemon tick",
     "2026-04-14T22:59:47Z | heartbeat | daemon tick",
     "2026-04-14T23:00:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:01:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:01:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:02:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now awards half-credit (0.075) when buyer context missing so strong matches don't vanish silently due to incomplete user profiles.",
+  "last_completed": "[Matching Engine] Commercial fit now extracts buyer's target customer size from chat context when structured field missing so SME sellers stop getting matched to enterprise-only buyers.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now awards half-credit (0.075) when buyer context missing so strong matches don't vanish silently due to incomplete user profiles.",
-  "last_impact": "When a user skips CV upload or hasn't shared company size/industry in chat, exhibitors previously got zero commercial fit score even if they were perfect technical matches \u2014 causing them to rank below weaker competitors with complete buyer data. Now missing buyer context triggers neutral scoring (0.075 = half weight) instead of zero, so ranking reflects product relevance + availability + proximity while signaling incomplete personalization. This prevents the catastrophic UX failure where a CTO a",
-  "next_target": "Add commercial fit debug log emission showing buyer context completeness (fields present vs. missing) so engineers see when neutral scoring triggered.",
+  "last_detail": "Commercial fit now extracts buyer's target customer size from chat context when structured field missing so SME sellers stop getting matched to enterprise-only buyers.",
+  "last_impact": "Prevents catastrophic scale mismatch \u2014 when a user says \"we're a 12-person startup looking for affordable CAD tools\" but their profile lacks target_customer_size[], the engine now infers \"startup/SME tier\" from chat text and blocks enterprise-only vendors from ranking high. This closes the last silent failure mode: buyer context present, seller data present, but alignment check skipped because one structured field missing \u2192 wasted booth visit \u2192 trust destroyed.",
+  "next_target": "Add social proof score degradation when case studies are older than 24 months so recent proof outranks stale marketing.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
