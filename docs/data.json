@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:31:53Z",
+  "updated_at": "2026-04-14T21:33:38Z",
   "today": "2026-04-14",
-  "today_usd": 0.67095,
-  "total_usd": 0.67095,
-  "total_prompt": 91975,
-  "total_completion": 27102,
+  "today_usd": 0.72757,
+  "total_usd": 0.72757,
+  "total_prompt": 98102,
+  "total_completion": 29651,
   "daily_cap": 50.0,
-  "ticks_today": 41,
+  "ticks_today": 42,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 91975,
-      "completion_tokens": 27102,
-      "usd": 0.67095
+      "prompt_tokens": 98102,
+      "completion_tokens": 29651,
+      "usd": 0.72757
     }
   },
   "commits": [
+    {
+      "sha": "8d8cb6cc121aeffadd32e1112bfa727c7e987957",
+      "time": "2026-04-14T21:31:54Z",
+      "time_fmt": "2026-04-14 21:31 UTC",
+      "msg": "[Matching Engine] Added explicit availability gate sequence diagram so engineers cannot accidentally reorder scoring pipeline and bypass timing filter."
+    },
     {
       "sha": "09d039a116592d88f8a47679726391abdafe6276",
       "time": "2026-04-14T21:30:02Z",
@@ -289,13 +295,14 @@
     "2026-04-14T21:25:59Z | heartbeat | daemon tick",
     "2026-04-14T21:27:35Z | heartbeat | daemon tick",
     "2026-04-14T21:29:26Z | heartbeat | daemon tick",
-    "2026-04-14T21:31:04Z | heartbeat | daemon tick"
+    "2026-04-14T21:31:04Z | heartbeat | daemon tick",
+    "2026-04-14T21:32:55Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added explicit availability gate sequence diagram so engineers cannot accidentally reorder scoring pipeline and bypass timing filter.",
-  "last_category": "Matching Engine",
-  "last_detail": "Added explicit availability gate sequence diagram so engineers cannot accidentally reorder scoring pipeline and bypass timing filter.",
-  "last_impact": "Prevents catastrophic logic bugs where clever refactors could move the availability check before scoring, allowing time-misaligned exhibitors to leak into top 3 recommendations. This directly protects the core actionability promise \u2014 users set fair days, system respects them, zero exceptions. A single mistimed recommendation destroys trust and virality.",
-  "next_target": "Add concrete scoring example with sample exhibitor data showing how a semantically perfect +0.85 match drops to 0.00 when availability misaligns.",
+  "last_completed": "[Docs & Spec] Clarified LinkedIn OAuth identity seeding so engineers know email extraction happens during profile fetch, not as separate step.",
+  "last_category": "Docs & Spec",
+  "last_detail": "Clarified LinkedIn OAuth identity seeding so engineers know email extraction happens during profile fetch, not as separate step.",
+  "last_impact": "The spec now explicitly states that LinkedIn login creates the account by extracting email during OAuth flow \u2014 removing ambiguity that could cause engineers to build a two-step \"link LinkedIn then ask for email\" flow. This preserves the core principle: identity capture is incidental, never a gate. Users who authenticate via LinkedIn get instant personalization without friction, and the cross-fair identity moat compounds from day one.",
+  "next_target": "Add explicit data schema for session \u2192 account migration so engineers know which fields (CV, history, bookings) persist when anonymous session upgrades to identified user.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
