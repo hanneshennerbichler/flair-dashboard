@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:54:14Z",
+  "updated_at": "2026-04-14T23:55:15Z",
   "today": "2026-04-14",
-  "today_usd": 5.76848,
-  "total_usd": 5.76848,
-  "total_prompt": 919568,
-  "total_completion": 201416,
+  "today_usd": 5.80524,
+  "total_usd": 5.80524,
+  "total_prompt": 925788,
+  "total_completion": 202623,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 919568,
-      "completion_tokens": 201416,
-      "usd": 5.76848
+      "prompt_tokens": 925788,
+      "completion_tokens": 202623,
+      "usd": 5.80524
     }
   },
   "commits": [
+    {
+      "sha": "8afd78c361eaafbce240bbd221c138a016ab9e8c",
+      "time": "2026-04-14T23:54:15Z",
+      "time_fmt": "2026-04-14 23:54 UTC",
+      "msg": "[Matching Engine] Intent confidence now logs whether user named a specific product category to reveal precision instantly during live testing."
+    },
     {
       "sha": "cea86dd463bdb5fe8cee91c43f2147efdf7d441a",
       "time": "2026-04-14T23:53:16Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T23:05:22Z",
       "time_fmt": "2026-04-14 23:05 UTC",
       "msg": "[Matching Engine] Commercial fit debug logs now emit buyer's budget tier (explicitly stated or inferred from role/company size) so engineers see price-alignment instantly."
-    },
-    {
-      "sha": "4cacef2f8c7401eb59a3c271e730078f0c0522c9",
-      "time": "2026-04-14T23:04:07Z",
-      "time_fmt": "2026-04-14 23:04 UTC",
-      "msg": "[Matching Engine] Availability scoring now emits user's role + query text (first 30/40 chars) in debug logs so engineers see who's requesting when during live fair testing."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:14:46Z | heartbeat | daemon tick",
     "2026-04-14T23:15:47Z | heartbeat | daemon tick",
     "2026-04-14T23:16:47Z | heartbeat | daemon tick",
     "2026-04-14T23:17:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:50:48Z | heartbeat | daemon tick",
     "2026-04-14T23:51:48Z | heartbeat | daemon tick",
     "2026-04-14T23:52:48Z | heartbeat | daemon tick",
-    "2026-04-14T23:53:48Z | heartbeat | daemon tick"
+    "2026-04-14T23:53:48Z | heartbeat | daemon tick",
+    "2026-04-14T23:54:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Intent confidence now logs whether user named a specific product category to reveal precision instantly during live testing.",
+  "last_completed": "[Matching Engine] Actionability scoring now logs which concrete next-step mechanisms exhibitor offers so engineers see demo/meeting/sample availability instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Intent confidence now logs whether user named a specific product category to reveal precision instantly during live testing.",
-  "last_impact": "Engineers running live fair queries see immediately when vague requests (\"looking for innovation\") score differently than precise ones (\"need 6-axis industrial robot arms\"). This exposes the single biggest cause of mis-ranked results \u2014 generic intent scoring the same as surgical intent \u2014 letting us tune the confidence multiplier in real time instead of guessing post-fair why a user got irrelevant matches. Ties directly to CORE PRINCIPLE: if confidence scoring can't distinguish \"robots\" from \"som",
-  "next_target": "Log goal relevance exhibitor capability keyword match count so engineers see why sector-aligned booths scored low.",
+  "last_detail": "Actionability scoring now logs which concrete next-step mechanisms exhibitor offers so engineers see demo/meeting/sample availability instantly.",
+  "last_impact": "Engineers debugging live rankings can now instantly see whether an exhibitor earned actionability credit via demo booking, meeting slot, sample request, or hands-on trial \u2014 instead of guessing why one booth scored 0.10 and another 0.00. This directly supports the CORE PRINCIPLE by revealing which exhibitors enable immediate action (the entire point of Flair) versus passive browsing, so mismatches surface in <5 seconds during fair testing instead of requiring database queries.",
+  "next_target": "Add intent confidence logging for user's industry vertical mention so engineers see domain-specific need clarity instantly during live testing.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
