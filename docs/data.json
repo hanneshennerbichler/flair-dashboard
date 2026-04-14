@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:33:38Z",
+  "updated_at": "2026-04-14T21:35:26Z",
   "today": "2026-04-14",
-  "today_usd": 0.72757,
-  "total_usd": 0.72757,
-  "total_prompt": 98102,
-  "total_completion": 29651,
+  "today_usd": 0.78665,
+  "total_usd": 0.78665,
+  "total_prompt": 104235,
+  "total_completion": 32363,
   "daily_cap": 50.0,
-  "ticks_today": 42,
+  "ticks_today": 43,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 98102,
-      "completion_tokens": 29651,
-      "usd": 0.72757
+      "prompt_tokens": 104235,
+      "completion_tokens": 32363,
+      "usd": 0.78665
     }
   },
   "commits": [
+    {
+      "sha": "2ef54ebce7c9e1cee05ec14071bfee020ffe06d0",
+      "time": "2026-04-14T21:33:39Z",
+      "time_fmt": "2026-04-14 21:33 UTC",
+      "msg": "[Docs & Spec] Clarified LinkedIn OAuth identity seeding so engineers know email extraction happens during profile fetch, not as separate step."
+    },
     {
       "sha": "8d8cb6cc121aeffadd32e1112bfa727c7e987957",
       "time": "2026-04-14T21:31:54Z",
@@ -296,13 +302,14 @@
     "2026-04-14T21:27:35Z | heartbeat | daemon tick",
     "2026-04-14T21:29:26Z | heartbeat | daemon tick",
     "2026-04-14T21:31:04Z | heartbeat | daemon tick",
-    "2026-04-14T21:32:55Z | heartbeat | daemon tick"
+    "2026-04-14T21:32:55Z | heartbeat | daemon tick",
+    "2026-04-14T21:34:41Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Docs & Spec] Clarified LinkedIn OAuth identity seeding so engineers know email extraction happens during profile fetch, not as separate step.",
+  "last_completed": "[Docs & Spec] Added explicit rule that post-fair recap emails must include session restore link with pre-filled context, not blank login.",
   "last_category": "Docs & Spec",
-  "last_detail": "Clarified LinkedIn OAuth identity seeding so engineers know email extraction happens during profile fetch, not as separate step.",
-  "last_impact": "The spec now explicitly states that LinkedIn login creates the account by extracting email during OAuth flow \u2014 removing ambiguity that could cause engineers to build a two-step \"link LinkedIn then ask for email\" flow. This preserves the core principle: identity capture is incidental, never a gate. Users who authenticate via LinkedIn get instant personalization without friction, and the cross-fair identity moat compounds from day one.",
-  "next_target": "Add explicit data schema for session \u2192 account migration so engineers know which fields (CV, history, bookings) persist when anonymous session upgrades to identified user.",
+  "last_detail": "Added explicit rule that post-fair recap emails must include session restore link with pre-filled context, not blank login.",
+  "last_impact": "This closes a critical UX gap in the progressive identity system. Users who receive recap emails expect to continue where they left off \u2014 meetings, visited stands, personalization context intact. A blank session on click breaks the \"no login\" promise and kills cross-fair retention (the WTA moat). This spec addition ensures engineers implement session restoration via secure token links, making every recap email a zero-friction re-entry point that compounds engagement across Hannover \u2192 IAA \u2192 Medic",
+  "next_target": "Add explicit data schema requirement for session state serialization so engineers know what fields must persist in recap email tokens.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
