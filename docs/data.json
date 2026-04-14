@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:34:19Z",
+  "updated_at": "2026-04-14T23:35:14Z",
   "today": "2026-04-14",
-  "today_usd": 5.09371,
-  "total_usd": 5.09371,
-  "total_prompt": 794688,
-  "total_completion": 181408,
+  "today_usd": 5.13205,
+  "total_usd": 5.13205,
+  "total_prompt": 800943,
+  "total_completion": 182713,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 794688,
-      "completion_tokens": 181408,
-      "usd": 5.09371
+      "prompt_tokens": 800943,
+      "completion_tokens": 182713,
+      "usd": 5.13205
     }
   },
   "commits": [
+    {
+      "sha": "1430612cf22a7afa079cbcc6278e4822e8d8cee1",
+      "time": "2026-04-14T23:34:20Z",
+      "time_fmt": "2026-04-14 23:34 UTC",
+      "msg": "[Matching Engine] Goal relevance debug logs now emit to stderr showing user's stated problem (first 60 chars) and exhibitor's solution claim for match transparency."
+    },
     {
       "sha": "1f9a9ce1342751ded3f57b5f976e8e274b115350",
       "time": "2026-04-14T23:33:08Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:45:04Z",
       "time_fmt": "2026-04-14 22:45 UTC",
       "msg": "[Matching Engine] Commercial fit debug logs now emit to stderr BEFORE ranking output so engineers can grep live computations without waiting for results."
-    },
-    {
-      "sha": "119e1150770c74fe2397873609c6ae8a730992aa",
-      "time": "2026-04-14T22:44:06Z",
-      "time_fmt": "2026-04-14 22:44 UTC",
-      "msg": "[Matching Engine] Commercial fit now defaults to 0.075 (neutral) when structured data missing instead of 0.00 to prevent strong matches vanishing."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:54:47Z | heartbeat | daemon tick",
     "2026-04-14T22:55:46Z | heartbeat | daemon tick",
     "2026-04-14T22:56:47Z | heartbeat | daemon tick",
     "2026-04-14T22:57:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:30:46Z | heartbeat | daemon tick",
     "2026-04-14T23:31:47Z | heartbeat | daemon tick",
     "2026-04-14T23:32:46Z | heartbeat | daemon tick",
-    "2026-04-14T23:33:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:33:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:34:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Goal relevance debug logs now emit to stderr showing user's stated problem (first 60 chars) and exhibitor's solution claim for match transparency.",
+  "last_completed": "[Matching Engine] Intent confidence scoring now logs user's query clarity markers (question marks, specifics, vague terms) so engineers see why matches got downweighted.",
   "last_category": "Matching Engine",
-  "last_detail": "Goal relevance debug logs now emit to stderr showing user's stated problem (first 60 chars) and exhibitor's solution claim for match transparency.",
-  "last_impact": "Engineers running live fair tests can now see exactly why an exhibitor scored high or low on goal relevance (0.35 weight \u2014 largest single factor) by comparing the user's stated need against what the exhibitor claims to solve. This eliminates the black-box problem where a robotics buyer gets matched to a logistics company and no one knows why. Ties directly to CORE PRINCIPLE: users trust recommendations only when the match logic is defensible \u2014 opaque scoring destroys confidence instantly.",
-  "next_target": "Add solution specificity debug logs showing whether exhibitor description contains concrete product names vs vague corporate mission statements.",
+  "last_detail": "Intent confidence scoring now logs user's query clarity markers (question marks, specifics, vague terms) so engineers see why matches got downweighted.",
+  "last_impact": "Engineers debugging low-confidence matches can now instantly see what triggered the penalty \u2014 e.g., \"automation?\" (vague question) vs. \"robotic welding cells for automotive\" (high specificity). This closes the last scoring-component visibility gap: all seven components now emit structured debug logs. Ties directly to CORE PRINCIPLE by surfacing the *reason* behind ranking decisions, letting engineers diagnose match quality in real time during live fair testing without guessing why certain exhibi",
+  "next_target": "Ship intent confidence debug logging implementation to stderr so confidence penalties become transparent during live ranking operations.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
