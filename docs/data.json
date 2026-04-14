@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:04:06Z",
+  "updated_at": "2026-04-14T23:05:20Z",
   "today": "2026-04-14",
-  "today_usd": 4.09506,
-  "total_usd": 4.09506,
-  "total_prompt": 607537,
-  "total_completion": 152262,
+  "today_usd": 4.13412,
+  "total_usd": 4.13412,
+  "total_prompt": 613761,
+  "total_completion": 153621,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 607537,
-      "completion_tokens": 152262,
-      "usd": 4.09506
+      "prompt_tokens": 613761,
+      "completion_tokens": 153621,
+      "usd": 4.13412
     }
   },
   "commits": [
+    {
+      "sha": "4cacef2f8c7401eb59a3c271e730078f0c0522c9",
+      "time": "2026-04-14T23:04:07Z",
+      "time_fmt": "2026-04-14 23:04 UTC",
+      "msg": "[Matching Engine] Availability scoring now emits user's role + query text (first 30/40 chars) in debug logs so engineers see who's requesting when during live fair testing."
+    },
     {
       "sha": "fe3f36305b4b40cc056fd508ffdfa3c4f335ee8c",
       "time": "2026-04-14T23:03:13Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:15:25Z",
       "time_fmt": "2026-04-14 22:15 UTC",
       "msg": "[Matching Engine] Availability score now requires staff schedule data to be present \u2014 prevents awarding 0.02 points when exhibitor has no recorded availability."
-    },
-    {
-      "sha": "05694993263207763b4eed5fc1a007ae4f304d63",
-      "time": "2026-04-14T22:14:14Z",
-      "time_fmt": "2026-04-14 22:14 UTC",
-      "msg": "[Matching Engine] Social proof score now requires exhibitor to name at least one reference customer or cite a measurable outcome \u2014 no points for vague claims."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:24:46Z | heartbeat | daemon tick",
     "2026-04-14T22:25:46Z | heartbeat | daemon tick",
     "2026-04-14T22:26:46Z | heartbeat | daemon tick",
     "2026-04-14T22:27:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:00:47Z | heartbeat | daemon tick",
     "2026-04-14T23:01:47Z | heartbeat | daemon tick",
     "2026-04-14T23:02:46Z | heartbeat | daemon tick",
-    "2026-04-14T23:03:46Z | heartbeat | daemon tick"
+    "2026-04-14T23:03:46Z | heartbeat | daemon tick",
+    "2026-04-14T23:04:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability scoring now emits user's role + query text (first 30/40 chars) in debug logs so engineers see who's requesting when during live fair testing.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now emit buyer's budget tier (explicitly stated or inferred from role/company size) so engineers see price-alignment instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Availability scoring now emits user's role + query text (first 30/40 chars) in debug logs so engineers see who's requesting when during live fair testing.",
-  "last_impact": "Engineers debugging availability mismatches (e.g., \"CTO visiting Tuesday but booth only staffed Wednesday\") can now see the user's role and intent in the same grep line as the schedule gap, cutting investigation time from 2\u20133 minutes per case to under 10 seconds. This directly supports the CORE PRINCIPLE: exhibitors must have the right staff present when the user arrives, or trust is destroyed instantly \u2014 debug logs now surface the human context (who + why) alongside the temporal mismatch.",
-  "next_target": "Add buyer's company size extraction to commercial fit (parallel to target customer size) so solo consultants stop getting matched to enterprise-only vendors.",
+  "last_detail": "Commercial fit debug logs now emit buyer's budget tier (explicitly stated or inferred from role/company size) so engineers see price-alignment instantly.",
+  "last_impact": "When a startup CTO gets matched to an enterprise-only vendor, engineers can now see in one grep that the buyer signaled \"budget\" but the seller requires \"enterprise\" tier \u2014 catching the catastrophic mismatch that destroys trust the moment pricing is discussed. This closes the last gap in commercial fit transparency: we already log employee count, target customer size, and industry vertical, but without budget tier visibility, scale-appropriate matches still fail on price discovery. Aligns with C",
+  "next_target": "Add social proof debug log emission showing which specific verification method passed (named customer / measurable outcome / case study URL) so engineers see evidence type instantly.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
