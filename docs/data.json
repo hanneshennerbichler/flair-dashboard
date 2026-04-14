@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:51:01Z",
+  "updated_at": "2026-04-14T23:52:08Z",
   "today": "2026-04-14",
-  "today_usd": 5.67271,
-  "total_usd": 5.67271,
-  "total_prompt": 900874,
-  "total_completion": 198770,
+  "today_usd": 5.70128,
+  "total_usd": 5.70128,
+  "total_prompt": 907109,
+  "total_completion": 199428,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 900874,
-      "completion_tokens": 198770,
-      "usd": 5.67271
+      "prompt_tokens": 907109,
+      "completion_tokens": 199428,
+      "usd": 5.70128
     }
   },
   "commits": [
+    {
+      "sha": "f705c00ad78e294996a0919b0e5a626504493483",
+      "time": "2026-04-14T23:51:03Z",
+      "time_fmt": "2026-04-14 23:51 UTC",
+      "msg": "[Matching Engine] Proximity scoring now requires both hall coordinates AND user-selected days to award any credit \u2014 missing either zeroes the score."
+    },
     {
       "sha": "27e59c4bb689b3e05a6b34d53630bd6edcae9bd6",
       "time": "2026-04-14T23:50:10Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T23:02:10Z",
       "time_fmt": "2026-04-14 23:02 UTC",
       "msg": "[Matching Engine] Commercial fit now awards half-credit (0.075) when buyer context missing so strong matches don't vanish silently due to incomplete user profiles."
-    },
-    {
-      "sha": "e31e1366c2d213f8974beaa66518b64bb30c39d0",
-      "time": "2026-04-14T23:01:06Z",
-      "time_fmt": "2026-04-14 23:01 UTC",
-      "msg": "[Matching Engine] Proximity scoring now emits user query text (first 40 chars) in debug logs so engineers see spatial intent instantly."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:11:47Z | heartbeat | daemon tick",
     "2026-04-14T23:12:46Z | heartbeat | daemon tick",
     "2026-04-14T23:13:46Z | heartbeat | daemon tick",
     "2026-04-14T23:14:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:47:47Z | heartbeat | daemon tick",
     "2026-04-14T23:48:48Z | heartbeat | daemon tick",
     "2026-04-14T23:49:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:50:48Z | heartbeat | daemon tick"
+    "2026-04-14T23:50:48Z | heartbeat | daemon tick",
+    "2026-04-14T23:51:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now requires both hall coordinates AND user-selected days to award any credit \u2014 missing either zeroes the score.",
+  "last_completed": "[Matching Engine] Availability scoring now logs staff role types present on user's selected days so engineers see expertise alignment instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now requires both hall coordinates AND user-selected days to award any credit \u2014 missing either zeroes the score.",
-  "last_impact": "Prevents false confidence where users walk to stands that may be closed on their selected days, wasting time and destroying trust. Aligns with the CORE PRINCIPLE: every output must make the user feel \"if I don't use this, I'm missing something right now\" \u2014 broken proximity scoring violates that by sending users to unavailable booths.",
-  "next_target": "Log commercial fit computation breakdown inline so engineers see exactly which structured fields were present/missing during live fair testing.",
+  "last_detail": "Availability scoring now logs staff role types present on user's selected days so engineers see expertise alignment instantly.",
+  "last_impact": "Engineers debugging match quality at live fairs need to see whether exhibitors actually have relevant staff (product manager vs. recruiter) scheduled during user's days \u2014 not just that someone is present. This closes the last gap in availability transparency: we now show not just IF staff are there, but WHO (by role). Directly supports the CORE PRINCIPLE by surfacing mismatch between user need (technical demo) and available staff (sales only) before user wastes a booth visit.",
+  "next_target": "Add Intent Confidence debug logging showing user query clause count and industry term matches so engineers see semantic parse quality live.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
