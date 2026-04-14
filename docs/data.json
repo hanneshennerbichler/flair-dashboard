@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:38:18Z",
+  "updated_at": "2026-04-14T23:39:15Z",
   "today": "2026-04-14",
-  "today_usd": 5.24318,
-  "total_usd": 5.24318,
-  "total_prompt": 819699,
-  "total_completion": 186370,
+  "today_usd": 5.2732,
+  "total_usd": 5.2732,
+  "total_prompt": 825949,
+  "total_completion": 187121,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 819699,
-      "completion_tokens": 186370,
-      "usd": 5.24318
+      "prompt_tokens": 825949,
+      "completion_tokens": 187121,
+      "usd": 5.2732
     }
   },
   "commits": [
+    {
+      "sha": "ad38602a40121533902734421df8e78328b4b527",
+      "time": "2026-04-14T23:38:20Z",
+      "time_fmt": "2026-04-14 23:38 UTC",
+      "msg": "[Matching Engine] Goal relevance now logs exhibitor's top 3 solution keywords so engineers see semantic match quality instantly during live fair testing."
+    },
     {
       "sha": "a3479416ccee894a5e4aa8cdb5b29858e8b7331f",
       "time": "2026-04-14T23:37:21Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:49:05Z",
       "time_fmt": "2026-04-14 22:49 UTC",
       "msg": "[Matching Engine] Social proof debug logs now emit to stderr BEFORE ranking output so engineers can grep live verifications without waiting for results."
-    },
-    {
-      "sha": "b422802db2295ca0bd3b53010112f0f5315fff69",
-      "time": "2026-04-14T22:48:09Z",
-      "time_fmt": "2026-04-14 22:48 UTC",
-      "msg": "[Matching Engine] Commercial fit now deduces buyer's employee count from CV/profile text when structured field missing so scale alignment never silently breaks."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:58:46Z | heartbeat | daemon tick",
     "2026-04-14T22:59:47Z | heartbeat | daemon tick",
     "2026-04-14T23:00:47Z | heartbeat | daemon tick",
     "2026-04-14T23:01:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:34:46Z | heartbeat | daemon tick",
     "2026-04-14T23:35:47Z | heartbeat | daemon tick",
     "2026-04-14T23:36:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:37:46Z | heartbeat | daemon tick"
+    "2026-04-14T23:37:46Z | heartbeat | daemon tick",
+    "2026-04-14T23:38:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Goal relevance now logs exhibitor's top 3 solution keywords so engineers see semantic match quality instantly during live fair testing.",
+  "last_completed": "[Matching Engine] Actionability debug logs now show which concrete actions (demo/sample/meeting) earned credit so engineers see scoring logic instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Goal relevance now logs exhibitor's top 3 solution keywords so engineers see semantic match quality instantly during live fair testing.",
-  "last_impact": "When a robotics buyer gets matched to a generic \"automation solutions\" exhibitor, engineers now see exactly which keywords triggered the match (e.g., \"industrial\", \"efficiency\", \"digital\") vs. the user's stated problem (\"collaborative robot arm\"). This exposes vague marketing text gaming the ranking and lets us tune semantic filters before users waste booth visits. Directly supports CORE PRINCIPLE: every match must feel like \"if I don't visit this, I'm missing something right now\" \u2014 and you can'",
-  "next_target": "Add solution specificity debug logs showing concrete product/feature count so engineers see when exhibitors earn zero for vague claims.",
+  "last_detail": "Actionability debug logs now show which concrete actions (demo/sample/meeting) earned credit so engineers see scoring logic instantly.",
+  "last_impact": "Engineers running live fair tests can now grep [ACTDBG] to see exactly why a booth with vague \"visit us\" text scored 0.00 while one offering \"book 15-min demo slot\" earned full 0.10 credit. This directly surfaces scoring transparency gaps that cause user trust issues when generic booths rank too high. Ties back to CORE PRINCIPLE: the matching engine must penalize vague exhibitors to keep every recommendation immediately actionable.",
+  "next_target": "Add debug logging to commercial fit showing buyer size extracted from query/profile so engineers see scale mismatch detection in real time.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
