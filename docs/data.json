@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:42:59Z",
+  "updated_at": "2026-04-14T22:44:04Z",
   "today": "2026-04-14",
-  "today_usd": 3.4359,
-  "total_usd": 3.4359,
-  "total_prompt": 477065,
-  "total_completion": 134413,
+  "today_usd": 3.46532,
+  "total_usd": 3.46532,
+  "total_prompt": 483272,
+  "total_completion": 135133,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 477065,
-      "completion_tokens": 134413,
-      "usd": 3.4359
+      "prompt_tokens": 483272,
+      "completion_tokens": 135133,
+      "usd": 3.46532
     }
   },
   "commits": [
+    {
+      "sha": "b526a65581c19a61770d7109dfc7733578fcbb7e",
+      "time": "2026-04-14T22:43:00Z",
+      "time_fmt": "2026-04-14 22:43 UTC",
+      "msg": "[Matching Engine] Proximity scoring now requires both hall coordinates AND user-selected days to be present before awarding any location boost."
+    },
     {
       "sha": "4d1db783ac2b96a7eed229d1baa81274186242a7",
       "time": "2026-04-14T22:42:05Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:52:51Z",
       "time_fmt": "2026-04-14 21:52 UTC",
       "msg": "[Matching Engine] Added strict rule that commercial fit debug logs must write to stderr with [CFDBG] prefix so production log parsers can filter ranking output cleanly."
-    },
-    {
-      "sha": "f392ea303cdde5749df76f12f910a93323c6104a",
-      "time": "2026-04-14T21:51:49Z",
-      "time_fmt": "2026-04-14 21:51 UTC",
-      "msg": "[Matching Engine] Added explicit rule that commercial fit debug logs must flush to stderr (not stdout) so ranking output stays clean in production pipelines."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:03:43Z | heartbeat | daemon tick",
     "2026-04-14T22:04:43Z | heartbeat | daemon tick",
     "2026-04-14T22:05:43Z | heartbeat | daemon tick",
     "2026-04-14T22:06:44Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:39:47Z | heartbeat | daemon tick",
     "2026-04-14T22:40:47Z | heartbeat | daemon tick",
     "2026-04-14T22:41:46Z | heartbeat | daemon tick",
-    "2026-04-14T22:42:46Z | heartbeat | daemon tick"
+    "2026-04-14T22:42:46Z | heartbeat | daemon tick",
+    "2026-04-14T22:43:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now requires both hall coordinates AND user-selected days to be present before awarding any location boost.",
+  "last_completed": "[Matching Engine] Commercial fit now defaults to 0.075 (neutral) when structured data missing instead of 0.00 to prevent strong matches vanishing.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now requires both hall coordinates AND user-selected days to be present before awarding any location boost.",
-  "last_impact": "Prevents false confidence scenarios where users walk to a stand that might be closed on their selected days, destroying trust instantly. Enforces the hard rule that location boost without temporal alignment = wasted booth visit. This directly supports the core principle: every output must reduce uncertainty and drive immediate action \u2014 awarding proximity points when availability is unknown violates that contract.",
-  "next_target": "Add stderr debug logging for proximity score verification so engineers see when hall data or user days are missing during live fair testing.",
+  "last_detail": "Commercial fit now defaults to 0.075 (neutral) when structured data missing instead of 0.00 to prevent strong matches vanishing.",
+  "last_impact": "Before this change, an exhibitor with perfect goal relevance + solution specificity + actionability could still rank below mediocre competitors if commercial fit data was incomplete (0.00 = zero contribution). This caused invisible ranking failures \u2014 users never saw obviously strong matches because of silent data gaps. Now partial-data exhibitors get neutral weighting (0.075 = half of 0.15), keeping them in the shortlist while still penalizing total absence. This prevents the matching engine fro",
+  "next_target": "Add one-line inline comment in commercial fit computation explaining why 0.075 (not 0.00) is the missing-data fallback so future engineers don't accidentally 'fix' it.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
