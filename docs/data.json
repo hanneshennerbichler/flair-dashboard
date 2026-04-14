@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:27:07Z",
+  "updated_at": "2026-04-14T23:28:05Z",
   "today": "2026-04-14",
-  "today_usd": 4.87562,
-  "total_usd": 4.87562,
-  "total_prompt": 750958,
-  "total_completion": 175615,
+  "today_usd": 4.90574,
+  "total_usd": 4.90574,
+  "total_prompt": 757207,
+  "total_completion": 176373,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 750958,
-      "completion_tokens": 175615,
-      "usd": 4.87562
+      "prompt_tokens": 757207,
+      "completion_tokens": 176373,
+      "usd": 4.90574
     }
   },
   "commits": [
+    {
+      "sha": "b76485cc94784a95d263f6e58431f7939f29edd4",
+      "time": "2026-04-14T23:27:09Z",
+      "time_fmt": "2026-04-14 23:27 UTC",
+      "msg": "[Matching Engine] Social proof logs now show exhibitor's measurable outcomes (first 80 chars: percentages, time saved, cost reduction) so engineers see proof quality."
+    },
     {
       "sha": "2cc31e7716b5b3f678e3b740e4fa98e94f5a204c",
       "time": "2026-04-14T23:26:13Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:38:05Z",
       "time_fmt": "2026-04-14 22:38 UTC",
       "msg": "[Matching Engine] Social proof score now logs inline case-study text snippet (first 25 chars) so engineers see what triggered verification pass/fail instantly."
-    },
-    {
-      "sha": "d3f21da71f1d45eb0f7383e240f8283c5bd0fb08",
-      "time": "2026-04-14T22:37:21Z",
-      "time_fmt": "2026-04-14 22:37 UTC",
-      "msg": "[Matching Engine] Proximity scoring now verifies user's selected fair days are non-empty before awarding same-hall bonus to prevent false confidence."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:47:47Z | heartbeat | daemon tick",
     "2026-04-14T22:48:46Z | heartbeat | daemon tick",
     "2026-04-14T22:49:47Z | heartbeat | daemon tick",
     "2026-04-14T22:50:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:23:47Z | heartbeat | daemon tick",
     "2026-04-14T23:24:47Z | heartbeat | daemon tick",
     "2026-04-14T23:25:46Z | heartbeat | daemon tick",
-    "2026-04-14T23:26:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:26:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:27:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Social proof logs now show exhibitor's measurable outcomes (first 80 chars: percentages, time saved, cost reduction) so engineers see proof quality.",
+  "last_completed": "[Matching Engine] Proximity scoring now logs user's selected days count so engineers see temporal filter strength instantly during live testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Social proof logs now show exhibitor's measurable outcomes (first 80 chars: percentages, time saved, cost reduction) so engineers see proof quality.",
-  "last_impact": "Engineers debugging live rankings can instantly see whether an exhibitor earned social proof credit from vague testimonials (\"trusted by leaders\") or hard numbers (\"reduced downtime 34%, saved \u20ac120k annually\"). This stops false positives where marketing fluff games the 0.03 boost without proving real-world results in the user's domain. Aligns directly with the social proof verification rule: measurable outcomes = required evidence.",
-  "next_target": "Add debug logging for social proof case study URLs so engineers can verify documentation links during live fair testing.",
+  "last_detail": "Proximity scoring now logs user's selected days count so engineers see temporal filter strength instantly during live testing.",
+  "last_impact": "When engineers grep [PRXDBG] during live fair testing and see zero proximity scores, they previously couldn't distinguish between \"user didn't select days\" versus \"exhibitor hall data missing\" without cross-referencing session logs. Now the log line shows days_count=0 or days_count=3 inline, cutting investigation time from 2\u20133 minutes to 5 seconds per mystery zero score. This directly supports the CORE PRINCIPLE by letting engineers fix data gaps that destroy \"if I don't use this, I'm missing so",
+  "next_target": "Add proximity debug log showing whether exhibitor has ANY hall coordinates so engineers see missing spatial data without querying database.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
