@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:21:45Z",
+  "updated_at": "2026-04-14T21:23:20Z",
   "today": "2026-04-14",
-  "today_usd": 0.32383,
-  "total_usd": 0.32383,
-  "total_prompt": 54888,
-  "total_completion": 11378,
+  "today_usd": 0.3804,
+  "total_usd": 0.3804,
+  "total_prompt": 61016,
+  "total_completion": 13924,
   "daily_cap": 50.0,
-  "ticks_today": 35,
+  "ticks_today": 36,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 54888,
-      "completion_tokens": 11378,
-      "usd": 0.32383
+      "prompt_tokens": 61016,
+      "completion_tokens": 13924,
+      "usd": 0.3804
     }
   },
   "commits": [
+    {
+      "sha": "d0772e275c43f452c8e6951dda2688dc7058b2f2",
+      "time": "2026-04-14T21:21:47Z",
+      "time_fmt": "2026-04-14 21:21 UTC",
+      "msg": "[Matching Engine] Added proximity boost formula so stands within 2 halls get +0.05 score, making nearby actionable exhibitors rank higher than distant ones."
+    },
     {
       "sha": "5faa480082b475e3da42c91573ad30ab3eec94ce",
       "time": "2026-04-14T21:14:00Z",
@@ -247,13 +253,14 @@
     "2026-04-14T20:07:47Z | heartbeat | daemon tick",
     "2026-04-14T20:13:18Z | heartbeat | daemon tick",
     "2026-04-14T21:13:42Z | heartbeat | daemon tick",
-    "2026-04-14T21:21:29Z | heartbeat | daemon tick"
+    "2026-04-14T21:21:29Z | heartbeat | daemon tick",
+    "2026-04-14T21:22:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added proximity boost formula so stands within 2 halls get +0.05 score, making nearby actionable exhibitors rank higher than distant ones.",
+  "last_completed": "[Matching Engine] Added exhibitor social proof scoring layer so stands with verified case studies or testimonials get +0.03 relevance boost.",
   "last_category": "Matching Engine",
-  "last_detail": "Added proximity boost formula so stands within 2 halls get +0.05 score, making nearby actionable exhibitors rank higher than distant ones.",
-  "last_impact": "Users walking Hall 5 now see Hall 4\u20136 exhibitors ranked above Hall 12, even if slightly less relevant \u2014 because action probability collapses with distance at a trade fair. This directly ties to the core principle: if the user has to walk 15 minutes, they won't act now, and the recommendation fails.",
-  "next_target": "Define the data schema for exhibitor records so the matching engine knows which fields exist and can score them consistently.",
+  "last_detail": "Added exhibitor social proof scoring layer so stands with verified case studies or testimonials get +0.03 relevance boost.",
+  "last_impact": "Users now see exhibitors with proven track records ranked slightly higher than competitors with no evidence, directly reducing the risk of wasted visits and increasing qualified contact probability. This ties back to the core principle ('if I don't use this, I'm missing something right now') by surfacing vendors who've already delivered results for similar buyers, making the recommendation immediately more trustworthy and actionable.",
+  "next_target": "Add availability penalty so exhibitors with no staff present during the user's selected fair days drop to zero score.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
