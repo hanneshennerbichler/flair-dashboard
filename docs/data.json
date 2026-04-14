@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:47:59Z",
+  "updated_at": "2026-04-14T21:49:09Z",
   "today": "2026-04-14",
-  "today_usd": 1.36317,
-  "total_usd": 1.36317,
-  "total_prompt": 160065,
-  "total_completion": 59632,
+  "today_usd": 1.42421,
+  "total_usd": 1.42421,
+  "total_prompt": 166367,
+  "total_completion": 62441,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 160065,
-      "completion_tokens": 59632,
-      "usd": 1.36317
+      "prompt_tokens": 166367,
+      "completion_tokens": 62441,
+      "usd": 1.42421
     }
   },
   "commits": [
+    {
+      "sha": "a6f56eee9f429a680646cd5bfdddffc2dcde9464",
+      "time": "2026-04-14T21:48:00Z",
+      "time_fmt": "2026-04-14 21:48 UTC",
+      "msg": "[Matching Engine] Added explicit rule that commercial fit debug logs must include user query context so engineers can trace bad matches to missing data."
+    },
     {
       "sha": "e8fc653e2bd6aae2cd8b9f08dbc113aa10c18487",
       "time": "2026-04-14T21:47:03Z",
@@ -308,12 +314,6 @@
       "time": "2026-04-14T18:11:57Z",
       "time_fmt": "2026-04-14 18:11 UTC",
       "msg": "chore: daemon tick 2026-04-14T18:11:57Z"
-    },
-    {
-      "sha": "f859154557ec9f9a36856da580223bb776807e8d",
-      "time": "2026-04-14T20:11:31Z",
-      "time_fmt": "2026-04-14 20:11 UTC",
-      "msg": "feat: GitHub Actions daemon (15-min cron, heartbeat + Claude improvements)"
     }
   ],
   "log_tail": [
@@ -348,13 +348,14 @@
     "2026-04-14T21:43:37Z | heartbeat | daemon tick",
     "2026-04-14T21:45:02Z | heartbeat | daemon tick",
     "2026-04-14T21:46:09Z | heartbeat | daemon tick",
-    "2026-04-14T21:47:09Z | heartbeat | daemon tick"
+    "2026-04-14T21:47:09Z | heartbeat | daemon tick",
+    "2026-04-14T21:48:09Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added explicit rule that commercial fit debug logs must include user query context so engineers can trace bad matches to missing data.",
+  "last_completed": "[Matching Engine] Added explicit rule that commercial fit debug logs must fire before final ranking output so engineers see data gaps during live testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Added explicit rule that commercial fit debug logs must include user query context so engineers can trace bad matches to missing data.",
-  "last_impact": "When a user reports \"I asked for robotics automation but got matched to a tiny consultant,\" engineers can now see in one log line whether the mismatch came from missing employee_count data or bad semantic scoring. Without user context in the debug output, you have to cross-reference chat logs + ranking logs + DB dumps manually \u2014 wasting 20+ minutes per bug report. This ties back to the CORE PRINCIPLE: every tool must make the user feel they're missing something if they don't use it \u2014 but if the",
-  "next_target": "Add explicit rule that social proof scoring must verify case studies are in the same industry vertical as the user, not just keyword-match \"automation.\"",
+  "last_detail": "Added explicit rule that commercial fit debug logs must fire before final ranking output so engineers see data gaps during live testing.",
+  "last_impact": "When an engineer tests a query like \"robotics automation for SME\" and gets a bad match, they currently have to cross-reference separate debug logs after the fact \u2014 wasting 5\u201310 minutes per test cycle. With this rule, the commercial fit audit trail appears inline in the same console output as the final top-3 ranking, so they instantly see \"exhibitor X scored 0.075 because employee_count=null\" right above \"Top 3 Results.\" This cuts debugging time from minutes to seconds and makes data quality gaps",
+  "next_target": "Add explicit rule that commercial fit logs must include timestamp so engineers can correlate scoring behavior with DB state at query time.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
