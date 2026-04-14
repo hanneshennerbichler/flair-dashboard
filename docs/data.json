@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:35:26Z",
+  "updated_at": "2026-04-14T21:37:11Z",
   "today": "2026-04-14",
-  "today_usd": 0.78665,
-  "total_usd": 0.78665,
-  "total_prompt": 104235,
-  "total_completion": 32363,
+  "today_usd": 0.84105,
+  "total_usd": 0.84105,
+  "total_prompt": 110374,
+  "total_completion": 34762,
   "daily_cap": 50.0,
-  "ticks_today": 43,
+  "ticks_today": 44,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 104235,
-      "completion_tokens": 32363,
-      "usd": 0.78665
+      "prompt_tokens": 110374,
+      "completion_tokens": 34762,
+      "usd": 0.84105
     }
   },
   "commits": [
+    {
+      "sha": "906c7d5d023d18802f83c650e3d7fac7e5faa8f3",
+      "time": "2026-04-14T21:35:28Z",
+      "time_fmt": "2026-04-14 21:35 UTC",
+      "msg": "[Docs & Spec] Added explicit rule that post-fair recap emails must include session restore link with pre-filled context, not blank login."
+    },
     {
       "sha": "2ef54ebce7c9e1cee05ec14071bfee020ffe06d0",
       "time": "2026-04-14T21:33:39Z",
@@ -303,13 +309,14 @@
     "2026-04-14T21:29:26Z | heartbeat | daemon tick",
     "2026-04-14T21:31:04Z | heartbeat | daemon tick",
     "2026-04-14T21:32:55Z | heartbeat | daemon tick",
-    "2026-04-14T21:34:41Z | heartbeat | daemon tick"
+    "2026-04-14T21:34:41Z | heartbeat | daemon tick",
+    "2026-04-14T21:36:29Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Docs & Spec] Added explicit rule that post-fair recap emails must include session restore link with pre-filled context, not blank login.",
-  "last_category": "Docs & Spec",
-  "last_detail": "Added explicit rule that post-fair recap emails must include session restore link with pre-filled context, not blank login.",
-  "last_impact": "This closes a critical UX gap in the progressive identity system. Users who receive recap emails expect to continue where they left off \u2014 meetings, visited stands, personalization context intact. A blank session on click breaks the \"no login\" promise and kills cross-fair retention (the WTA moat). This spec addition ensures engineers implement session restoration via secure token links, making every recap email a zero-friction re-entry point that compounds engagement across Hannover \u2192 IAA \u2192 Medic",
-  "next_target": "Add explicit data schema requirement for session state serialization so engineers know what fields must persist in recap email tokens.",
+  "last_completed": "[Matching Engine] Added explicit penalty application order so vague-booth penalty (-0.15) runs before availability gate, preventing score inflation bugs.",
+  "last_category": "Matching Engine",
+  "last_detail": "Added explicit penalty application order so vague-booth penalty (-0.15) runs before availability gate, preventing score inflation bugs.",
+  "last_impact": "When an exhibitor is both vague AND unavailable, we must penalize first, then gate. If we gate first and score is already 0, the penalty never applies \u2014 but if availability later changes (staff added), the vague booth suddenly jumps to full score instead of staying penalized. This order ensures penalties are baked into raw_score before gating, so vague booths stay suppressed even if availability flips. Protects the 'actionable over PR' principle from timing-dependent ranking bugs.",
+  "next_target": "Add explicit tie-breaking rule for equal final_scores so ranking output is deterministic when multiple exhibitors hit same score threshold.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
