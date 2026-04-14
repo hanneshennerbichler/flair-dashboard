@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:52:08Z",
+  "updated_at": "2026-04-14T23:53:15Z",
   "today": "2026-04-14",
-  "today_usd": 5.70128,
-  "total_usd": 5.70128,
-  "total_prompt": 907109,
-  "total_completion": 199428,
+  "today_usd": 5.73636,
+  "total_usd": 5.73636,
+  "total_prompt": 913342,
+  "total_completion": 200520,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 907109,
-      "completion_tokens": 199428,
-      "usd": 5.70128
+      "prompt_tokens": 913342,
+      "completion_tokens": 200520,
+      "usd": 5.73636
     }
   },
   "commits": [
+    {
+      "sha": "98bd3333209f5a03bd3974e95883aafab112175d",
+      "time": "2026-04-14T23:52:09Z",
+      "time_fmt": "2026-04-14 23:52 UTC",
+      "msg": "[Matching Engine] Availability scoring now logs staff role types present on user's selected days so engineers see expertise alignment instantly."
+    },
     {
       "sha": "f705c00ad78e294996a0919b0e5a626504493483",
       "time": "2026-04-14T23:51:03Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T23:03:13Z",
       "time_fmt": "2026-04-14 23:03 UTC",
       "msg": "[Matching Engine] Commercial fit now extracts buyer's target customer size from chat context when structured field missing so SME sellers stop getting matched to enterprise-only buyers."
-    },
-    {
-      "sha": "3e33ccbddffd4eee2074a773721f5dfa026a3c6d",
-      "time": "2026-04-14T23:02:10Z",
-      "time_fmt": "2026-04-14 23:02 UTC",
-      "msg": "[Matching Engine] Commercial fit now awards half-credit (0.075) when buyer context missing so strong matches don't vanish silently due to incomplete user profiles."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:12:46Z | heartbeat | daemon tick",
     "2026-04-14T23:13:46Z | heartbeat | daemon tick",
     "2026-04-14T23:14:46Z | heartbeat | daemon tick",
     "2026-04-14T23:15:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:48:48Z | heartbeat | daemon tick",
     "2026-04-14T23:49:47Z | heartbeat | daemon tick",
     "2026-04-14T23:50:48Z | heartbeat | daemon tick",
-    "2026-04-14T23:51:48Z | heartbeat | daemon tick"
+    "2026-04-14T23:51:48Z | heartbeat | daemon tick",
+    "2026-04-14T23:52:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability scoring now logs staff role types present on user's selected days so engineers see expertise alignment instantly.",
+  "last_completed": "[Matching Engine] Intent confidence scoring now logs user query word count and question mark presence so engineers see signal clarity instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Availability scoring now logs staff role types present on user's selected days so engineers see expertise alignment instantly.",
-  "last_impact": "Engineers debugging match quality at live fairs need to see whether exhibitors actually have relevant staff (product manager vs. recruiter) scheduled during user's days \u2014 not just that someone is present. This closes the last gap in availability transparency: we now show not just IF staff are there, but WHO (by role). Directly supports the CORE PRINCIPLE by surfacing mismatch between user need (technical demo) and available staff (sales only) before user wastes a booth visit.",
-  "next_target": "Add Intent Confidence debug logging showing user query clause count and industry term matches so engineers see semantic parse quality live.",
+  "last_detail": "Intent confidence scoring now logs user query word count and question mark presence so engineers see signal clarity instantly.",
+  "last_impact": "Engineers debugging live fair rankings will now instantly see when low intent confidence scores stem from vague single-word queries (\"automation\") vs. precise multi-clause requests (\"looking for collaborative robots under 50k for automotive assembly line\"), letting them distinguish user inexperience from data gaps. This directly supports the CORE PRINCIPLE by surfacing when the system lacks enough context to confidently drive immediate action \u2014 the #1 failure mode that causes users to abandon af",
+  "next_target": "Add intent confidence penalty for queries containing only exhibitor/brand names without any problem statement or goal context.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
