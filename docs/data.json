@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:09:06Z",
+  "updated_at": "2026-04-14T22:10:09Z",
   "today": "2026-04-14",
-  "today_usd": 2.28438,
-  "total_usd": 2.28438,
-  "total_prompt": 273015,
-  "total_completion": 98457,
+  "today_usd": 2.30979,
+  "total_usd": 2.30979,
+  "total_prompt": 278545,
+  "total_completion": 99045,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 273015,
-      "completion_tokens": 98457,
-      "usd": 2.28438
+      "prompt_tokens": 278545,
+      "completion_tokens": 99045,
+      "usd": 2.30979
     }
   },
   "commits": [
+    {
+      "sha": "cb82b0ead5856c11ece9e66c3e15ab9c28a8b387",
+      "time": "2026-04-14T22:09:08Z",
+      "time_fmt": "2026-04-14 22:09 UTC",
+      "msg": "[Matching Engine] Added strict rule requiring commercial fit debug logs to appear BEFORE ranking output so engineers see field diagnostics instantly."
+    },
     {
       "sha": "862f431b96a462d5736719c1dbbdc18e0c19995c",
       "time": "2026-04-14T22:08:02Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:13:08Z",
       "time_fmt": "2026-04-14 22:13 UTC",
       "msg": "Daemon output restructured: CATEGORY + DETAIL + IMPACT + NEXT so the dashboard can explain the bigger picture"
-    },
-    {
-      "sha": "ee3540d7c8fe9bfb948c3cdf51973cf6b09057fd",
-      "time": "2026-04-14T20:08:12Z",
-      "time_fmt": "2026-04-14 20:08 UTC",
-      "msg": "Added German virality button text to the gate spec so developers know exactly what copy to ship \u2014 'F\u00fcr Kollegen erstellen' must appear verbatim."
     }
   ],
   "log_tail": [
-    "2026-04-14T20:07:47Z | heartbeat | daemon tick",
     "2026-04-14T20:13:18Z | heartbeat | daemon tick",
     "2026-04-14T21:13:42Z | heartbeat | daemon tick",
     "2026-04-14T21:21:29Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:05:43Z | heartbeat | daemon tick",
     "2026-04-14T22:06:44Z | heartbeat | daemon tick",
     "2026-04-14T22:07:43Z | heartbeat | daemon tick",
-    "2026-04-14T22:08:44Z | heartbeat | daemon tick"
+    "2026-04-14T22:08:44Z | heartbeat | daemon tick",
+    "2026-04-14T22:09:43Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added strict rule requiring commercial fit debug logs to appear BEFORE ranking output so engineers see field diagnostics instantly.",
+  "last_completed": "[Matching Engine] Proximity bonus now applies only when user has selected specific fair days \u2014 prevents irrelevant location boosts for time-agnostic queries.",
   "last_category": "Matching Engine",
-  "last_detail": "Added strict rule requiring commercial fit debug logs to appear BEFORE ranking output so engineers see field diagnostics instantly.",
-  "last_impact": "During live fair testing, engineers must diagnose why a match failed in under 10 seconds \u2014 they cannot afford to scroll back through terminal history or cross-reference logs emitted after results. Placing [CFDBG] output before ranking results means one glance at the terminal shows exactly which fields were NULL, how the score degraded, and the query context \u2014 all without requiring any manual reconstruction. This directly supports the CORE PRINCIPLE: if matching is broken, we fix it in seconds, n",
-  "next_target": "Add explicit rule that commercial fit debug logs must include session_id and timestamp inline so multi-session test runs never mix diagnostics.",
+  "last_detail": "Proximity bonus now applies only when user has selected specific fair days \u2014 prevents irrelevant location boosts for time-agnostic queries.",
+  "last_impact": "When a user asks \"who makes industrial robots?\" without setting fair dates, they get ranked by pure relevance \u2014 not polluted by hall proximity that's meaningless until they commit to attending. This prevents the scenario where a mediocre local exhibitor outranks a perfect-fit company three halls away just because the user hasn't picked days yet. The moment they set availability, proximity activates and optimizes walking routes.",
+  "next_target": "Add availability weight decay rule \u2014 exhibitors present only 1 of user's 3 selected days get 0.33\u00d7 the availability score vs. full overlap.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
