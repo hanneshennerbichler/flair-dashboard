@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:13:20Z",
+  "updated_at": "2026-04-14T22:14:12Z",
   "today": "2026-04-14",
-  "today_usd": 2.41962,
-  "total_usd": 2.41962,
-  "total_prompt": 295183,
-  "total_completion": 103039,
+  "today_usd": 2.45321,
+  "total_usd": 2.45321,
+  "total_prompt": 300770,
+  "total_completion": 104161,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 295183,
-      "completion_tokens": 103039,
-      "usd": 2.41962
+      "prompt_tokens": 300770,
+      "completion_tokens": 104161,
+      "usd": 2.45321
     }
   },
   "commits": [
+    {
+      "sha": "3b889327f61d824a6a9a4401a2b5041f4e4858d3",
+      "time": "2026-04-14T22:13:21Z",
+      "time_fmt": "2026-04-14 22:13 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs now include session_id and timestamp so engineers can correlate scoring anomalies with specific user sessions instantly."
+    },
     {
       "sha": "be0d425774a575f8c0bb33d884479895654d2536",
       "time": "2026-04-14T22:12:24Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:49:14Z",
       "time_fmt": "2026-04-14 22:49 UTC",
       "msg": "[bot] priority note from Hannes @ 2026-04-14T20:49:13Z"
-    },
-    {
-      "sha": "9e408a3cdf587b46f8fc2069721a6df3de718978",
-      "time": "2026-04-14T22:39:13Z",
-      "time_fmt": "2026-04-14 22:39 UTC",
-      "msg": "[bot] priority note from Hannes @ 2026-04-14T20:39:13Z"
     }
   ],
   "log_tail": [
-    "2026-04-14T21:22:48Z | heartbeat | daemon tick",
     "2026-04-14T21:24:23Z | heartbeat | daemon tick",
     "2026-04-14T21:25:59Z | heartbeat | daemon tick",
     "2026-04-14T21:27:35Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:09:43Z | heartbeat | daemon tick",
     "2026-04-14T22:10:44Z | heartbeat | daemon tick",
     "2026-04-14T22:11:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:12:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:12:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:13:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs now include session_id and timestamp so engineers can correlate scoring anomalies with specific user sessions instantly.",
+  "last_completed": "[Matching Engine] Social proof score now requires exhibitor to name at least one reference customer or cite a measurable outcome \u2014 no points for vague claims.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs now include session_id and timestamp so engineers can correlate scoring anomalies with specific user sessions instantly.",
-  "last_impact": "When a live fair user reports \"wrong match,\" engineers can now grep [CFDBG] logs by session_id and see the exact field values + computation that drove the bad recommendation \u2014 no need to cross-reference request logs or reproduce the query. This cuts diagnosis time from 3\u20135 minutes to under 10 seconds, which is critical when Hannes is standing at a booth with a confused user and needs to fix the ranking logic on the spot. Ties directly to the CORE PRINCIPLE: faster diagnosis \u2192 faster fix \u2192 user t",
-  "next_target": "Add explicit rule that social proof score must parse structured case_studies[] field before checking unstructured text \u2014 prevents accidental credit for marketing fluff.",
+  "last_detail": "Social proof score now requires exhibitor to name at least one reference customer or cite a measurable outcome \u2014 no points for vague claims.",
+  "last_impact": "Prevents exhibitors from gaming the ranking with generic marketing copy ('trusted by leading companies'). Users now see boosted exhibitors only when they can prove real-world success in a similar domain \u2014 dramatically increases trust in top-3 recommendations and reduces wasted booth visits. Ties directly to CORE PRINCIPLE: if the social proof can't be verified, it doesn't reduce uncertainty.",
+  "next_target": "Add availability score debug logging showing which exhibitors were penalized for staff absence on user's selected fair days.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
