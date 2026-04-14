@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:06:11Z",
+  "updated_at": "2026-04-14T23:07:07Z",
   "today": "2026-04-14",
-  "today_usd": 4.16746,
-  "total_usd": 4.16746,
-  "total_prompt": 619989,
-  "total_completion": 154598,
+  "today_usd": 4.19645,
+  "total_usd": 4.19645,
+  "total_prompt": 626216,
+  "total_completion": 155285,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 619989,
-      "completion_tokens": 154598,
-      "usd": 4.16746
+      "prompt_tokens": 626216,
+      "completion_tokens": 155285,
+      "usd": 4.19645
     }
   },
   "commits": [
+    {
+      "sha": "527a221d47c483367bd6089d69ddaa7d6db3956a",
+      "time": "2026-04-14T23:06:13Z",
+      "time_fmt": "2026-04-14 23:06 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs now show buyer's industry vertical (extracted from role/company/query) so engineers see sector alignment instantly."
+    },
     {
       "sha": "30c2e5e7f30f7b9f927c52463d304d2bc734ce9d",
       "time": "2026-04-14T23:05:22Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:17:29Z",
       "time_fmt": "2026-04-14 22:17 UTC",
       "msg": "[Matching Engine] Commercial fit debug logs must stay under 120 chars per line so engineers grep [CFDBG] output without horizontal scrolling in terminals."
-    },
-    {
-      "sha": "b42e431ac1451280e298efdc61fd1a3c01b8bb69",
-      "time": "2026-04-14T22:16:24Z",
-      "time_fmt": "2026-04-14 22:16 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs now emit to stderr with [CFDBG] prefix so engineers grep live ranking sessions without scrolling through application logs."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:26:46Z | heartbeat | daemon tick",
     "2026-04-14T22:27:47Z | heartbeat | daemon tick",
     "2026-04-14T22:28:46Z | heartbeat | daemon tick",
     "2026-04-14T22:29:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:02:46Z | heartbeat | daemon tick",
     "2026-04-14T23:03:46Z | heartbeat | daemon tick",
     "2026-04-14T23:04:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:05:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:05:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:06:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs now show buyer's industry vertical (extracted from role/company/query) so engineers see sector alignment instantly.",
+  "last_completed": "[Matching Engine] Commercial fit now logs buyer's employee count (from role/company/query) so engineers see scale mismatches instantly during live testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs now show buyer's industry vertical (extracted from role/company/query) so engineers see sector alignment instantly.",
-  "last_impact": "When an engineer sees `[CFDBG] ... vertical=mfg buyer_vertical=services ...` during live fair testing, they immediately know why a manufacturing exhibitor is ranking low for a services buyer \u2014 no need to reconstruct context from chat logs or guess at semantic matching failures. This cuts match investigation time from 2\u20133 minutes to under 10 seconds, letting engineers spot and fix systematic cross-sector mismatches (e.g., industrial automation ranked for healthcare IT buyers) before users waste b",
-  "next_target": "Add social proof debug log showing specific reference customer names (first 3, truncated) so engineers see which testimonials triggered the boost.",
+  "last_detail": "Commercial fit now logs buyer's employee count (from role/company/query) so engineers see scale mismatches instantly during live testing.",
+  "last_impact": "Engineers grep '[CFDBG]' during Hannover Messe and immediately see why a 5-person startup got matched to Siemens (buyer emp=5 vs seller emp=350000) without opening debugger or database. This catches catastrophic scale mismatches in real time before the user wastes a booth visit. Directly implements the Commercial Fit Computation Rule's requirement that scale alignment be transparent and verifiable from logs alone.",
+  "next_target": "Add buyer's price tier preference to commercial fit debug logs so engineers see budget misalignment without guessing from role text.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
