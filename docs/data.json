@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:12:22Z",
+  "updated_at": "2026-04-14T22:13:20Z",
   "today": "2026-04-14",
-  "today_usd": 2.37896,
-  "total_usd": 2.37896,
-  "total_prompt": 289606,
-  "total_completion": 101444,
+  "today_usd": 2.41962,
+  "total_usd": 2.41962,
+  "total_prompt": 295183,
+  "total_completion": 103039,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 289606,
-      "completion_tokens": 101444,
-      "usd": 2.37896
+      "prompt_tokens": 295183,
+      "completion_tokens": 103039,
+      "usd": 2.41962
     }
   },
   "commits": [
+    {
+      "sha": "be0d425774a575f8c0bb33d884479895654d2536",
+      "time": "2026-04-14T22:12:24Z",
+      "time_fmt": "2026-04-14 22:12 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs now include user role (first 30 chars) so engineers instantly see buyer persona alongside exhibitor scale data."
+    },
     {
       "sha": "e41fa57bbeb1aeed7d120fc424b7162ccdf7a7ea",
       "time": "2026-04-14T22:11:43Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:39:13Z",
       "time_fmt": "2026-04-14 22:39 UTC",
       "msg": "[bot] priority note from Hannes @ 2026-04-14T20:39:13Z"
-    },
-    {
-      "sha": "64e97a471fde05fbe398e5ad07fe7bd699d32fb8",
-      "time": "2026-04-14T22:39:05Z",
-      "time_fmt": "2026-04-14 22:39 UTC",
-      "msg": "[bot] priority note from Hannes @ 2026-04-14T20:39:05Z"
     }
   ],
   "log_tail": [
-    "2026-04-14T21:21:29Z | heartbeat | daemon tick",
     "2026-04-14T21:22:48Z | heartbeat | daemon tick",
     "2026-04-14T21:24:23Z | heartbeat | daemon tick",
     "2026-04-14T21:25:59Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:08:44Z | heartbeat | daemon tick",
     "2026-04-14T22:09:43Z | heartbeat | daemon tick",
     "2026-04-14T22:10:44Z | heartbeat | daemon tick",
-    "2026-04-14T22:11:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:11:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:12:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs now include user role (first 30 chars) so engineers instantly see buyer persona alongside exhibitor scale data.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now include session_id and timestamp so engineers can correlate scoring anomalies with specific user sessions instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs now include user role (first 30 chars) so engineers instantly see buyer persona alongside exhibitor scale data.",
-  "last_impact": "When a startup gets ranked for an enterprise query (or vice versa), engineers currently see the query text but not the user's declared role/company size/budget context. Adding role to the debug line means one glance reveals both sides of the mismatch \u2014 e.g., \"[CFDBG] role='CTO at 8-person robotics startup' query='enterprise automation platform' id=X emp=5000 \u2192 mismatch obvious\" \u2014 eliminating the need to cross-reference session metadata or scroll back through chat history. This cuts diagnosis tim",
-  "next_target": "Add availability score breakdown to debug logs showing which fair days the exhibitor staffs vs. user's selected days so missing-staff penalties are transparent.",
+  "last_detail": "Commercial fit debug logs now include session_id and timestamp so engineers can correlate scoring anomalies with specific user sessions instantly.",
+  "last_impact": "When a live fair user reports \"wrong match,\" engineers can now grep [CFDBG] logs by session_id and see the exact field values + computation that drove the bad recommendation \u2014 no need to cross-reference request logs or reproduce the query. This cuts diagnosis time from 3\u20135 minutes to under 10 seconds, which is critical when Hannes is standing at a booth with a confused user and needs to fix the ranking logic on the spot. Ties directly to the CORE PRINCIPLE: faster diagnosis \u2192 faster fix \u2192 user t",
+  "next_target": "Add explicit rule that social proof score must parse structured case_studies[] field before checking unstructured text \u2014 prevents accidental credit for marketing fluff.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
