@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:15:05Z",
+  "updated_at": "2026-04-14T23:16:02Z",
   "today": "2026-04-14",
-  "today_usd": 4.45564,
-  "total_usd": 4.45564,
-  "total_prompt": 676114,
-  "total_completion": 162585,
+  "today_usd": 4.48318,
+  "total_usd": 4.48318,
+  "total_prompt": 682350,
+  "total_completion": 163174,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 676114,
-      "completion_tokens": 162585,
-      "usd": 4.45564
+      "prompt_tokens": 682350,
+      "completion_tokens": 163174,
+      "usd": 4.48318
     }
   },
   "commits": [
+    {
+      "sha": "a8418354900ec6c2c5e921feb2562eb9496d01bb",
+      "time": "2026-04-14T23:15:07Z",
+      "time_fmt": "2026-04-14 23:15 UTC",
+      "msg": "[Matching Engine] Proximity debug logs now emit user's selected fair days so engineers see temporal scope when investigating zero-distance matches."
+    },
     {
       "sha": "314f41871585d522f3eec82f70b10e79557b1cbf",
       "time": "2026-04-14T23:14:05Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:26:07Z",
       "time_fmt": "2026-04-14 22:26 UTC",
       "msg": "[Matching Engine] Proximity score now degrades gracefully when hall data is present but user days are missing \u2014 awards 0.05 instead of 0.00."
-    },
-    {
-      "sha": "9c1590a954a2ec5e20aba7116266c290c7a3a007",
-      "time": "2026-04-14T22:25:06Z",
-      "time_fmt": "2026-04-14 22:25 UTC",
-      "msg": "[Matching Engine] Commercial fit now logs fraction of present structured fields so engineers instantly see data completeness per exhibitor."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:35:47Z | heartbeat | daemon tick",
     "2026-04-14T22:36:47Z | heartbeat | daemon tick",
     "2026-04-14T22:37:47Z | heartbeat | daemon tick",
     "2026-04-14T22:38:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:11:47Z | heartbeat | daemon tick",
     "2026-04-14T23:12:46Z | heartbeat | daemon tick",
     "2026-04-14T23:13:46Z | heartbeat | daemon tick",
-    "2026-04-14T23:14:46Z | heartbeat | daemon tick"
+    "2026-04-14T23:14:46Z | heartbeat | daemon tick",
+    "2026-04-14T23:15:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity debug logs now emit user's selected fair days so engineers see temporal scope when investigating zero-distance matches.",
+  "last_completed": "[Matching Engine] Proximity scoring now verifies user has selected fair days before awarding location bonus so walk-time estimates stay meaningful.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity debug logs now emit user's selected fair days so engineers see temporal scope when investigating zero-distance matches.",
-  "last_impact": "When proximity scores unexpectedly zero out, engineers currently see hall coordinates and query text but not which days the user selected \u2014 making it impossible to distinguish \"no hall data\" from \"booth closed on user's days.\" Adding selected_days[] to [PROXDBG] logs lets engineers instantly see the availability window that gated the score, cutting investigation time from 2\u20133 minutes per match to under 10 seconds during live fair testing. This directly supports the CORE PRINCIPLE by ensuring the",
-  "next_target": "Add [PROXDBG] emission-order guarantee so proximity logs always appear before final ranking output, matching commercial-fit and availability patterns.",
+  "last_detail": "Proximity scoring now verifies user has selected fair days before awarding location bonus so walk-time estimates stay meaningful.",
+  "last_impact": "When a user hasn't specified which days they're attending, proximity scores drop to zero \u2014 preventing the engine from recommending a booth 90 seconds away that's closed on the days they'll actually be there. This eliminates wasted walking time and builds trust by ensuring every distance-based suggestion aligns with temporal availability. Directly supports CORE PRINCIPLE: if the booth is unreachable when you're there, the recommendation creates regret instead of action.",
+  "next_target": "Add availability debug logging that shows overlap between user's selected days and exhibitor's staff schedule so engineers can see temporal mismatches instantly.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
