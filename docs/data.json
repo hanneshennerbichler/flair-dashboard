@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:55:06Z",
+  "updated_at": "2026-04-14T21:56:46Z",
   "today": "2026-04-14",
-  "today_usd": 1.72903,
-  "total_usd": 1.72903,
-  "total_prompt": 196902,
-  "total_completion": 76655,
+  "today_usd": 1.80396,
+  "total_usd": 1.80396,
+  "total_prompt": 203185,
+  "total_completion": 80394,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 196902,
-      "completion_tokens": 76655,
-      "usd": 1.72903
+      "prompt_tokens": 203185,
+      "completion_tokens": 80394,
+      "usd": 1.80396
     }
   },
   "commits": [
+    {
+      "sha": "402d09cdbcc7bca4a0606fa093a92c5b46c4b28d",
+      "time": "2026-04-14T21:55:07Z",
+      "time_fmt": "2026-04-14 21:55 UTC",
+      "msg": "[Matching Engine] Added strict rule that commercial fit debug logs must include computation breakdown showing how partial data affects the 0.075 default score."
+    },
     {
       "sha": "195b286053634ffb36b160a7e652b7e91f584fb2",
       "time": "2026-04-14T21:53:59Z",
@@ -308,12 +314,6 @@
       "time": "2026-04-14T21:28:04Z",
       "time_fmt": "2026-04-14 21:28 UTC",
       "msg": "feat: daemon upgraded \u2014 Sonnet 4.5, $50/day cap, 10-min cron, 4k output"
-    },
-    {
-      "sha": "3fa36f4f8373070fe8395a95cbfb1c8fb9ca74d3",
-      "time": "2026-04-14T19:24:52Z",
-      "time_fmt": "2026-04-14 19:24 UTC",
-      "msg": "chore: daemon tick 2026-04-14T19:24:52Z"
     }
   ],
   "log_tail": [
@@ -354,13 +354,14 @@
     "2026-04-14T21:50:52Z | heartbeat | daemon tick",
     "2026-04-14T21:51:52Z | heartbeat | daemon tick",
     "2026-04-14T21:52:54Z | heartbeat | daemon tick",
-    "2026-04-14T21:54:02Z | heartbeat | daemon tick"
+    "2026-04-14T21:54:02Z | heartbeat | daemon tick",
+    "2026-04-14T21:55:21Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added strict rule that commercial fit debug logs must include computation breakdown showing how partial data affects the 0.075 default score.",
+  "last_completed": "[Matching Engine] Added strict rule that commercial fit computation must never round or truncate intermediate values before final score output.",
   "last_category": "Matching Engine",
-  "last_detail": "Added strict rule that commercial fit debug logs must include computation breakdown showing how partial data affects the 0.075 default score.",
-  "last_impact": "When an exhibitor has 2 of 4 required fields (e.g., employee_count + industry_vertical present, price_tier + target_customer_size missing), engineers previously saw \"score=0.075\" but had no visibility into whether that was \"all fields missing\" or \"partial data available.\" This ambiguity made data quality triage impossible \u2014 you couldn't tell if an exhibitor needed 4 fields enriched or just 2. Now the log shows exactly which present fields contributed and which missing fields degraded the score,",
-  "next_target": "Add explicit rule that when partial structured data is present (e.g., 2 of 4 fields), commercial fit uses proportional scoring (0.075 + 0.0375 per present field) instead of flat 0.075, rewarding parti",
+  "last_detail": "Added strict rule that commercial fit computation must never round or truncate intermediate values before final score output.",
+  "last_impact": "When an exhibitor has 2 of 4 structured fields present, the proportional score (0.075 base + 0.0375 partial credit = 0.1125) was being logged as \"0.11\" in debug output, making engineers think the algorithm was broken when sum \u2260 1.00 across all components. Float precision loss in logs destroys auditability: an engineer sees final_score=0.873 but component sum=0.87 and wastes 20 minutes hunting for a phantom bug. This rule mandates 4 decimal places in all debug logs (0.1125, not 0.11) so displayed",
+  "next_target": "Add rule that commercial fit partial-data scoring must document which field contributed which slice of the 0.15 weight (e.g., employee_count present = +0.0375).",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
