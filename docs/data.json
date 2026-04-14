@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:47:07Z",
+  "updated_at": "2026-04-14T22:48:08Z",
   "today": "2026-04-14",
-  "today_usd": 3.55192,
-  "total_usd": 3.55192,
-  "total_prompt": 501919,
-  "total_completion": 137177,
+  "today_usd": 3.58185,
+  "total_usd": 3.58185,
+  "total_prompt": 508142,
+  "total_completion": 137928,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 501919,
-      "completion_tokens": 137177,
-      "usd": 3.55192
+      "prompt_tokens": 508142,
+      "completion_tokens": 137928,
+      "usd": 3.58185
     }
   },
   "commits": [
+    {
+      "sha": "ca311886b5f893dcd7c8de802a9c86c60d1d12d7",
+      "time": "2026-04-14T22:47:09Z",
+      "time_fmt": "2026-04-14 22:47 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs now include user's company size (employee count from profile/CV) so engineers see buyer-seller scale alignment instantly."
+    },
     {
       "sha": "776a82f20b205aeb1232d8bef5b319cc57c577be",
       "time": "2026-04-14T22:46:05Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:57:55Z",
       "time_fmt": "2026-04-14 21:57 UTC",
       "msg": "[Matching Engine] Commercial fit debug logs now write to a dedicated .cfdbg file per session so production logs stay clean and engineers can grep one file."
-    },
-    {
-      "sha": "0413f73ce0c3d858deaaf139239742c2d39d8b1f",
-      "time": "2026-04-14T21:56:48Z",
-      "time_fmt": "2026-04-14 21:56 UTC",
-      "msg": "[Matching Engine] Added strict rule that commercial fit computation must never round or truncate intermediate values before final score output."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:07:43Z | heartbeat | daemon tick",
     "2026-04-14T22:08:44Z | heartbeat | daemon tick",
     "2026-04-14T22:09:43Z | heartbeat | daemon tick",
     "2026-04-14T22:10:44Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:43:46Z | heartbeat | daemon tick",
     "2026-04-14T22:44:47Z | heartbeat | daemon tick",
     "2026-04-14T22:45:46Z | heartbeat | daemon tick",
-    "2026-04-14T22:46:46Z | heartbeat | daemon tick"
+    "2026-04-14T22:46:46Z | heartbeat | daemon tick",
+    "2026-04-14T22:47:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs now include user's company size (employee count from profile/CV) so engineers see buyer-seller scale alignment instantly.",
+  "last_completed": "[Matching Engine] Commercial fit now deduces buyer's employee count from CV/profile text when structured field missing so scale alignment never silently breaks.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs now include user's company size (employee count from profile/CV) so engineers see buyer-seller scale alignment instantly.",
-  "last_impact": "When commercial fit scores drop due to scale mismatch (5-person startup matched to enterprise vendor), engineers can now diagnose the root cause in one grep \u2014 no need to cross-reference session logs with user profiles. This directly prevents the catastrophic false positive described in SPEC.md (startup wasting time at Siemens booth) by making scale misalignment visible in real-time during live fair testing.",
-  "next_target": "Add exhibitor's target customer size to commercial fit debug logs so engineers see both sides of scale alignment (buyer size + seller target) in one line.",
+  "last_detail": "Commercial fit now deduces buyer's employee count from CV/profile text when structured field missing so scale alignment never silently breaks.",
+  "last_impact": "When a user uploads CV or fills profile without explicit company-size tagging, the matching engine currently assigns neutral 0.075 commercial fit \u2014 but a 12-person robotics startup still sees Siemens ranked high because the system can't detect the catastrophic scale mismatch. By parsing CV/profile text for org-size signals (\"8-person team,\" \"Series A,\" \"Fortune 500\"), we preserve the core anti-gaming rule (no semantic matching on unstructured exhibitor descriptions) while making buyer context ex",
+  "next_target": "Add social proof debug logs showing parsed reference customer names (not just pass/fail) so engineers see exactly which case studies triggered the 0.03 boost.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
