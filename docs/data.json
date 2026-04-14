@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:58:17Z",
+  "updated_at": "2026-04-14T22:59:06Z",
   "today": "2026-04-14",
-  "today_usd": 3.91258,
-  "total_usd": 3.91258,
-  "total_prompt": 570294,
-  "total_completion": 147546,
+  "today_usd": 3.9426,
+  "total_usd": 3.9426,
+  "total_prompt": 576500,
+  "total_completion": 148306,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 570294,
-      "completion_tokens": 147546,
-      "usd": 3.91258
+      "prompt_tokens": 576500,
+      "completion_tokens": 148306,
+      "usd": 3.9426
     }
   },
   "commits": [
+    {
+      "sha": "f8cd47880fd1ed256c2c3fa627f7ffb4fd2f854c",
+      "time": "2026-04-14T22:58:18Z",
+      "time_fmt": "2026-04-14 22:58 UTC",
+      "msg": "[Matching Engine] Availability scoring now emits partial-credit breakdown showing exactly which user days have staff coverage vs. which are missing."
+    },
     {
       "sha": "639db29f5ffe1aba7a39e9070baabcfcb3da080a",
       "time": "2026-04-14T22:57:19Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:09:08Z",
       "time_fmt": "2026-04-14 22:09 UTC",
       "msg": "[Matching Engine] Added strict rule requiring commercial fit debug logs to appear BEFORE ranking output so engineers see field diagnostics instantly."
-    },
-    {
-      "sha": "862f431b96a462d5736719c1dbbdc18e0c19995c",
-      "time": "2026-04-14T22:08:02Z",
-      "time_fmt": "2026-04-14 22:08 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs now emit BEFORE ranking results (not after) so engineers see field diagnostics instantly during live tests."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:18:47Z | heartbeat | daemon tick",
     "2026-04-14T22:19:47Z | heartbeat | daemon tick",
     "2026-04-14T22:20:47Z | heartbeat | daemon tick",
     "2026-04-14T22:21:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:54:47Z | heartbeat | daemon tick",
     "2026-04-14T22:55:46Z | heartbeat | daemon tick",
     "2026-04-14T22:56:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:57:46Z | heartbeat | daemon tick"
+    "2026-04-14T22:57:46Z | heartbeat | daemon tick",
+    "2026-04-14T22:58:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability scoring now emits partial-credit breakdown showing exactly which user days have staff coverage vs. which are missing.",
+  "last_completed": "[Matching Engine] Proximity scoring now awards half-credit (0.05) when user has no selected days but hall data exists \u2014 prevents location from vanishing entirely.",
   "last_category": "Matching Engine",
-  "last_detail": "Availability scoring now emits partial-credit breakdown showing exactly which user days have staff coverage vs. which are missing.",
-  "last_impact": "Engineers debugging availability scores (0.02 full, 0.01 partial, 0.00 none) currently see \"2/3 days covered\" but not *which* days are missing. This forces them to cross-reference user.selected_days[] against exhibitor.staff_schedule[] manually, wasting 30\u201360 seconds per match investigation. When a strong exhibitor drops in ranking due to partial availability, engineers need to see instantly: \"covered Mon/Tue, missing Wed\" \u2014 not just a fractional score. This change makes availability scoring fai",
-  "next_target": "Add proximity scoring breakdown showing hall-to-hall routing cost (number of halls traversed, not just meters) so engineers see navigation friction instantly.",
+  "last_detail": "Proximity scoring now awards half-credit (0.05) when user has no selected days but hall data exists \u2014 prevents location from vanishing entirely.",
+  "last_impact": "Users who haven't picked dates yet still see nearby exhibitors ranked higher, preserving spatial relevance even before temporal context is known. This keeps recommendations useful during the initial exploration phase when users are still deciding which days to attend, and prevents the matching engine from treating all exhibitors as equidistant just because the user hasn't committed to a schedule.",
+  "next_target": "Add debug logging for proximity half-credit scenarios showing exactly when temporal-only vs. spatial-only scoring applies.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
