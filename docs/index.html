@@ -47,6 +47,10 @@
   .modal .block:last-child{margin-bottom:0}
   .modal p{font-size:17px;line-height:1.5;color:var(--fg);font-weight:300}
   .modal .timestamp{font-size:12px;color:var(--muted);margin-top:6px}
+  .modal .category{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:4px 12px;margin-bottom:12px;font-weight:500}
+  .modal .detail{font-size:20px;font-weight:400;line-height:1.4;margin-bottom:12px;letter-spacing:-0.01em}
+  .modal .impact{font-size:15px;line-height:1.6;color:var(--muted)}
+  .modal .impact-label{font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:6px;margin-top:16px;display:block}
   @media(max-width:600px){main{padding:20px}header{padding:20px}.card-value{font-size:32px}}
 </style>
 </head>
@@ -111,7 +115,10 @@
     <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">×</button>
     <div class="block">
       <h3>Last completed</h3>
-      <p id="modal-last">—</p>
+      <div class="category" id="modal-category" style="display:none">—</div>
+      <div class="detail" id="modal-detail">—</div>
+      <span class="impact-label">Why this matters</span>
+      <div class="impact" id="modal-impact">—</div>
       <div class="timestamp" id="modal-last-time">—</div>
     </div>
     <div class="block">
@@ -169,8 +176,12 @@ async function load() {
 
     document.getElementById('log').textContent = (d.log_tail || []).join('\n') || '(no log entries yet)';
 
-    const lastDone = d.last_completed || (last && last.msg) || '(nothing yet)';
-    document.getElementById('modal-last').textContent = lastDone;
+    const cat = (d.last_category || '').trim();
+    const catEl = document.getElementById('modal-category');
+    if (cat) { catEl.textContent = cat; catEl.style.display = 'inline-block'; }
+    else     { catEl.style.display = 'none'; }
+    document.getElementById('modal-detail').textContent = d.last_detail || d.last_completed || (last && last.msg) || '(nothing yet)';
+    document.getElementById('modal-impact').textContent = d.last_impact || '(the daemon has not yet explained the impact — will appear after the next tick)';
     document.getElementById('modal-last-time').textContent = last ? ('Committed ' + relTime(last.time) + ' · ' + (last.time_fmt||'')) : '';
     document.getElementById('modal-next').textContent = d.next_target || '(the daemon has not yet declared a next target — check back after the next tick)';
 
