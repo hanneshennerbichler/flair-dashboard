@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:09:07Z",
+  "updated_at": "2026-04-14T23:10:26Z",
   "today": "2026-04-14",
-  "today_usd": 4.25602,
-  "total_usd": 4.25602,
-  "total_prompt": 638687,
-  "total_completion": 156762,
+  "today_usd": 4.29992,
+  "total_usd": 4.29992,
+  "total_prompt": 644917,
+  "total_completion": 158443,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 638687,
-      "completion_tokens": 156762,
-      "usd": 4.25602
+      "prompt_tokens": 644917,
+      "completion_tokens": 158443,
+      "usd": 4.29992
     }
   },
   "commits": [
+    {
+      "sha": "d2a009e0050e6b5e84545f6dc6179942fc6edc5b",
+      "time": "2026-04-14T23:09:08Z",
+      "time_fmt": "2026-04-14 23:09 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs buyer's employee count range (startup/SME/enterprise) extracted from role text so scale mismatches are visible."
+    },
     {
       "sha": "f6bdb11c3085344e50738e9bbbe92fa6e9b059f6",
       "time": "2026-04-14T23:08:10Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:20:32Z",
       "time_fmt": "2026-04-14 22:20 UTC",
       "msg": "[Matching Engine] Availability score now defaults to 0.01 when staff schedule data is missing instead of zero \u2014 prevents complete filtering of otherwise strong matches."
-    },
-    {
-      "sha": "c3341361976324c8b663c8d0dec81703b99910ba",
-      "time": "2026-04-14T22:19:31Z",
-      "time_fmt": "2026-04-14 22:19 UTC",
-      "msg": "[Matching Engine] Commercial fit now defaults to 0.075 when structured fields are missing instead of failing silently \u2014 prevents zero-score exhibitors from vanishing."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:29:46Z | heartbeat | daemon tick",
     "2026-04-14T22:30:47Z | heartbeat | daemon tick",
     "2026-04-14T22:31:46Z | heartbeat | daemon tick",
     "2026-04-14T22:32:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:05:47Z | heartbeat | daemon tick",
     "2026-04-14T23:06:47Z | heartbeat | daemon tick",
     "2026-04-14T23:07:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:08:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:08:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:09:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs buyer's employee count range (startup/SME/enterprise) extracted from role text so scale mismatches are visible.",
+  "last_completed": "[Matching Engine] Commercial fit now logs buyer's actual budget constraint (exact currency amount or \"unspecified\") so engineers see price-gate failures instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs buyer's employee count range (startup/SME/enterprise) extracted from role text so scale mismatches are visible.",
-  "last_impact": "Engineers running live fair tests immediately see when a 5-person startup is being matched (or not matched) to enterprise-only sellers \u2014 the single most common failure mode in commercial fit scoring. Before this change, engineers had to manually reconstruct buyer size from scattered context; now it appears inline in every [CFDBG] line, turning 3-minute debug sessions into 10-second scans. Directly implements the 'structured fields gate out scale mismatches' principle from SPEC.md.",
-  "next_target": "Add buyer's stated budget tier (explicitly mentioned in query or inferred from company size) to commercial fit debug logs so price-alignment failures are equally visible.",
+  "last_detail": "Commercial fit now logs buyer's actual budget constraint (exact currency amount or \"unspecified\") so engineers see price-gate failures instantly.",
+  "last_impact": "During live fair testing, engineers currently see \"price_tier=enterprise\" but cannot tell if the buyer explicitly said \"budget under \u20ac50k\" or left it unspecified \u2014 this causes silent mismatches where enterprise-tier exhibitors rank high for budget-constrained buyers. Adding the raw budget constraint (e.g., \"budget=<50k EUR\" or \"budget=unspecified\") to commercial fit debug logs lets engineers immediately spot when the matching engine is ignoring an explicit price ceiling stated by the user. This",
+  "next_target": "Add proximity debug logging showing user's intended visit time (hour/day) so engineers see temporal-spatial misalignment when booth is across fairgrounds during a 30-min window.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
