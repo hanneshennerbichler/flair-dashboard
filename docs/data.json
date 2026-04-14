@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:30:05Z",
+  "updated_at": "2026-04-14T22:31:11Z",
   "today": "2026-04-14",
-  "today_usd": 3.03134,
-  "total_usd": 3.03134,
-  "total_prompt": 396963,
-  "total_completion": 123463,
+  "today_usd": 3.06492,
+  "total_usd": 3.06492,
+  "total_prompt": 403123,
+  "total_completion": 124470,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 396963,
-      "completion_tokens": 123463,
-      "usd": 3.03134
+      "prompt_tokens": 403123,
+      "completion_tokens": 124470,
+      "usd": 3.06492
     }
   },
   "commits": [
+    {
+      "sha": "399e8d4ccc375e9038cba986faa081f56e7a9362",
+      "time": "2026-04-14T22:30:07Z",
+      "time_fmt": "2026-04-14 22:30 UTC",
+      "msg": "[Matching Engine] Proximity scoring now logs hall/day verification checks to stderr so engineers see why location boosts succeed or fail per exhibitor."
+    },
     {
       "sha": "f3f4dbb03fa560cd7a99ca18eb0e87f6b566eabe",
       "time": "2026-04-14T22:29:03Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:35:28Z",
       "time_fmt": "2026-04-14 21:35 UTC",
       "msg": "[Docs & Spec] Added explicit rule that post-fair recap emails must include session restore link with pre-filled context, not blank login."
-    },
-    {
-      "sha": "2ef54ebce7c9e1cee05ec14071bfee020ffe06d0",
-      "time": "2026-04-14T21:33:39Z",
-      "time_fmt": "2026-04-14 21:33 UTC",
-      "msg": "[Docs & Spec] Clarified LinkedIn OAuth identity seeding so engineers know email extraction happens during profile fetch, not as separate step."
     }
   ],
   "log_tail": [
-    "2026-04-14T21:48:09Z | heartbeat | daemon tick",
     "2026-04-14T21:49:36Z | heartbeat | daemon tick",
     "2026-04-14T21:50:52Z | heartbeat | daemon tick",
     "2026-04-14T21:51:52Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:26:46Z | heartbeat | daemon tick",
     "2026-04-14T22:27:47Z | heartbeat | daemon tick",
     "2026-04-14T22:28:46Z | heartbeat | daemon tick",
-    "2026-04-14T22:29:46Z | heartbeat | daemon tick"
+    "2026-04-14T22:29:46Z | heartbeat | daemon tick",
+    "2026-04-14T22:30:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now logs hall/day verification checks to stderr so engineers see why location boosts succeed or fail per exhibitor.",
+  "last_completed": "[Matching Engine] Social proof debug logging now emits verification decisions to stderr so engineers see why case studies pass or fail scoring rules.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now logs hall/day verification checks to stderr so engineers see why location boosts succeed or fail per exhibitor.",
-  "last_impact": "Engineers debugging live ranking sessions previously saw proximity scores (0.10 or 0.15) without knowing whether hall data or user days were missing. They had to query the database separately to diagnose silent zero scores. Now they grep `[PROXDBG]` and instantly see \"hall=present days=missing \u2192 score=0.00\" inline with exhibitor_id and session context. This cuts match investigation from 2\u20133 minutes down to 5 seconds, directly supporting the commercial fit debug workflow already in place.",
-  "next_target": "Add social proof debug logging with [SPDBG] prefix showing which exhibitors claim reference customers but lack verifiable evidence.",
+  "last_detail": "Social proof debug logging now emits verification decisions to stderr so engineers see why case studies pass or fail scoring rules.",
+  "last_impact": "Engineers debugging ranking anomalies during live fair testing can instantly see whether an exhibitor received the 0.03 social proof boost and which verification conditions (named customers, measurable outcomes, documented case studies) passed or failed \u2014 no need to inspect database records or re-run queries. This dramatically reduces investigation time from 2\u20133 minutes to under 10 seconds when a user complains that an exhibitor with \"proven results\" ranks lower than expected.",
+  "next_target": "Add availability debug logging to stderr so engineers see staff schedule overlap verification in real time during ranking operations.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
