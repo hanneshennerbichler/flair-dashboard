@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:23:09Z",
+  "updated_at": "2026-04-14T22:24:14Z",
   "today": "2026-04-14",
-  "today_usd": 2.81789,
-  "total_usd": 2.81789,
-  "total_prompt": 354015,
-  "total_completion": 117823,
+  "today_usd": 2.85375,
+  "total_usd": 2.85375,
+  "total_prompt": 360127,
+  "total_completion": 118991,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 354015,
-      "completion_tokens": 117823,
-      "usd": 2.81789
+      "prompt_tokens": 360127,
+      "completion_tokens": 118991,
+      "usd": 2.85375
     }
   },
   "commits": [
+    {
+      "sha": "4b77733d312b2f7537883c8dbec157483dcf74e0",
+      "time": "2026-04-14T22:23:10Z",
+      "time_fmt": "2026-04-14 22:23 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs now include actual field values inline so engineers see missing data without querying the database."
+    },
     {
       "sha": "10b3f7b5768767a868f84d37a7183d3918390317",
       "time": "2026-04-14T22:22:09Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:23:22Z",
       "time_fmt": "2026-04-14 21:23 UTC",
       "msg": "[Matching Engine] Added exhibitor social proof scoring layer so stands with verified case studies or testimonials get +0.03 relevance boost."
-    },
-    {
-      "sha": "d0772e275c43f452c8e6951dda2688dc7058b2f2",
-      "time": "2026-04-14T21:21:47Z",
-      "time_fmt": "2026-04-14 21:21 UTC",
-      "msg": "[Matching Engine] Added proximity boost formula so stands within 2 halls get +0.05 score, making nearby actionable exhibitors rank higher than distant ones."
     }
   ],
   "log_tail": [
-    "2026-04-14T21:40:14Z | heartbeat | daemon tick",
     "2026-04-14T21:41:20Z | heartbeat | daemon tick",
     "2026-04-14T21:42:37Z | heartbeat | daemon tick",
     "2026-04-14T21:43:37Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:19:47Z | heartbeat | daemon tick",
     "2026-04-14T22:20:47Z | heartbeat | daemon tick",
     "2026-04-14T22:21:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:22:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:22:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:23:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs now include actual field values inline so engineers see missing data without querying the database.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now include user query text (first 40 chars) so engineers see intent alongside exhibitor data without context switching.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs now include actual field values inline so engineers see missing data without querying the database.",
-  "last_impact": "When a commercial fit score looks wrong during live fair testing, engineers currently have to pause, open a database client, query the exhibitor record, and manually check which structured fields are NULL \u2014 wasting 60\u201390 seconds per investigation. Inline field values ([CFDBG] \u2026 emp=12 price=budget target=NULL vertical=mfg) let engineers diagnose missing-data degradation instantly in the grep output, cutting diagnosis time from minutes to seconds and making the 120-char line-length rule actually",
-  "next_target": "Add inline computation breakdown to commercial fit debug logs so engineers see the degradation math (base=0.1125 degraded=0.075) without reverse-engineering the formula.",
+  "last_detail": "Commercial fit debug logs now include user query text (first 40 chars) so engineers see intent alongside exhibitor data without context switching.",
+  "last_impact": "Engineers investigating ranking anomalies currently see exhibitor scale data and user role, but must switch to application logs to find the actual query text that triggered the match. Adding query text inline means one grep command shows the complete picture: what the user asked + who they are + which exhibitor was scored + why the score degraded. This cuts diagnosis time from 2\u20133 minutes (grep session \u2192 find query \u2192 correlate with CFDBG line) to 10 seconds (one line shows everything). Ties dire",
+  "next_target": "Add hard rule requiring commercial fit debug logs to truncate query text before role text when approaching 120-char limit so critical exhibitor data never gets cut.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
