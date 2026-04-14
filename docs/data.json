@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:25:05Z",
+  "updated_at": "2026-04-14T22:26:05Z",
   "today": "2026-04-14",
-  "today_usd": 2.88305,
-  "total_usd": 2.88305,
-  "total_prompt": 366257,
-  "total_completion": 119718,
+  "today_usd": 2.91337,
+  "total_usd": 2.91337,
+  "total_prompt": 372378,
+  "total_completion": 120515,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 366257,
-      "completion_tokens": 119718,
-      "usd": 2.88305
+      "prompt_tokens": 372378,
+      "completion_tokens": 120515,
+      "usd": 2.91337
     }
   },
   "commits": [
+    {
+      "sha": "9c1590a954a2ec5e20aba7116266c290c7a3a007",
+      "time": "2026-04-14T22:25:06Z",
+      "time_fmt": "2026-04-14 22:25 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs fraction of present structured fields so engineers instantly see data completeness per exhibitor."
+    },
     {
       "sha": "97ffa70c91049ec1422841c99d9b68c5a9a1ea76",
       "time": "2026-04-14T22:24:16Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:26:34Z",
       "time_fmt": "2026-04-14 21:26 UTC",
       "msg": "[Docs & Spec] Added explicit scoring weight preservation rule so future changes maintain sum=1.00 and weight hierarchy integrity."
-    },
-    {
-      "sha": "ae9208a2091d7c88398751f0a3ae9b16bdeb4609",
-      "time": "2026-04-14T21:24:58Z",
-      "time_fmt": "2026-04-14 21:24 UTC",
-      "msg": "[Docs & Spec] Added availability-aware scoring rule so exhibitors with zero staff overlap during user's selected fair days drop to rank zero."
     }
   ],
   "log_tail": [
-    "2026-04-14T21:42:37Z | heartbeat | daemon tick",
     "2026-04-14T21:43:37Z | heartbeat | daemon tick",
     "2026-04-14T21:45:02Z | heartbeat | daemon tick",
     "2026-04-14T21:46:09Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:21:47Z | heartbeat | daemon tick",
     "2026-04-14T22:22:47Z | heartbeat | daemon tick",
     "2026-04-14T22:23:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:24:46Z | heartbeat | daemon tick"
+    "2026-04-14T22:24:46Z | heartbeat | daemon tick",
+    "2026-04-14T22:25:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs fraction of present structured fields so engineers instantly see data completeness per exhibitor.",
+  "last_completed": "[Matching Engine] Proximity score now degrades gracefully when hall data is present but user days are missing \u2014 awards 0.05 instead of 0.00.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs fraction of present structured fields so engineers instantly see data completeness per exhibitor.",
-  "last_impact": "Engineers debugging match quality can now see at a glance that an exhibitor has 2/4 fields present (e.g., employee_count + industry_vertical but missing price_tier + target_customer_size), which explains partial scoring without needing to query the database. This directly supports the CORE PRINCIPLE: if engineers can't diagnose ranking issues in real time during fair testing, users get bad matches and trust collapses. The fraction makes data gaps visible immediately in live logs.",
-  "next_target": "Add inline example of well-formed [CFDBG] log line to commercial-fit-debug-inline-values.md so engineers know exact format to grep for.",
+  "last_detail": "Proximity score now degrades gracefully when hall data is present but user days are missing \u2014 awards 0.05 instead of 0.00.",
+  "last_impact": "When a user hasn't yet specified fair days but exhibitor location is known, the system still surfaces geographically clustered stands (half proximity credit). This prevents the matching engine from ignoring location entirely during initial exploration, while reserving the full 0.10 + 0.05 bonus for users who've committed to specific days. Aligns with the CORE PRINCIPLE: even incomplete temporal context should reduce uncertainty about where to go first.",
+  "next_target": "Add a hard rule requiring the matching engine to emit a [PRXDBG] stderr line per exhibitor showing hall presence, user days presence, and resulting proximity score.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
