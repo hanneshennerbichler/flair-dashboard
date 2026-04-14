@@ -1,11 +1,122 @@
 {
-  "updated_at": "2026-04-14T19:00:00Z",
-  "today_usd": 0,
-  "total_usd": 0,
-  "total_prompt": 0,
-  "total_completion": 0,
-  "daily_cap": 50,
-  "ticks_today": 0,
-  "commits": [],
-  "log_tail": ["initial placeholder — daemon will populate on next tick"]
+  "updated_at": "2026-04-14T19:37:30Z",
+  "today": "2026-04-14",
+  "today_usd": 0.1134,
+  "total_usd": 0.1134,
+  "total_prompt": 20018,
+  "total_completion": 4324,
+  "daily_cap": 50.0,
+  "ticks_today": 14,
+  "per_day": {
+    "2026-04-14": {
+      "prompt_tokens": 20018,
+      "completion_tokens": 4324,
+      "usd": 0.1134
+    }
+  },
+  "commits": [
+    {
+      "sha": "acdf06c577c842d6c7a3ce262873ddfffbd82fe8",
+      "time": "2026-04-14T21:36:40Z",
+      "time_fmt": "2026-04-14 21:36 UTC",
+      "msg": "feat: push data.json to flair-dashboard repo each tick"
+    },
+    {
+      "sha": "be3341f23da5f389a8b3b003f0aa9bb7953b0f30",
+      "time": "2026-04-14T19:31:25Z",
+      "time_fmt": "2026-04-14 19:31 UTC",
+      "msg": "chore: daemon tick 2026-04-14T19:31:25Z"
+    },
+    {
+      "sha": "b1af0b4389e0b07aa384f0222fec6ae4e1bec722",
+      "time": "2026-04-14T21:30:25Z",
+      "time_fmt": "2026-04-14 21:30 UTC",
+      "msg": "feat: DASHBOARD.md auto-regenerated each tick (spend + commits + log)"
+    },
+    {
+      "sha": "649773e16794da02c216828489a2526b56ad60f2",
+      "time": "2026-04-14T19:28:41Z",
+      "time_fmt": "2026-04-14 19:28 UTC",
+      "msg": "chore: daemon tick 2026-04-14T19:28:41Z"
+    },
+    {
+      "sha": "45d20f81451eaeb1b4e2cd9852a2a134d782ee21",
+      "time": "2026-04-14T21:28:04Z",
+      "time_fmt": "2026-04-14 21:28 UTC",
+      "msg": "feat: daemon upgraded \u2014 Sonnet 4.5, $50/day cap, 10-min cron, 4k output"
+    },
+    {
+      "sha": "3fa36f4f8373070fe8395a95cbfb1c8fb9ca74d3",
+      "time": "2026-04-14T19:24:52Z",
+      "time_fmt": "2026-04-14 19:24 UTC",
+      "msg": "chore: daemon tick 2026-04-14T19:24:52Z"
+    },
+    {
+      "sha": "c7e0123da62b5c963c9f42dabc661697bcff48ae",
+      "time": "2026-04-14T21:24:32Z",
+      "time_fmt": "2026-04-14 21:24 UTC",
+      "msg": "feat: swap Anthropic direct \u2192 OpenRouter (Haiku 4.5, $1.50/day cap)"
+    },
+    {
+      "sha": "929ab7736ca119beb8bb0fd4e47d59535f17eb79",
+      "time": "2026-04-14T18:58:14Z",
+      "time_fmt": "2026-04-14 18:58 UTC",
+      "msg": "chore: daemon tick 2026-04-14T18:58:14Z"
+    },
+    {
+      "sha": "3ce847025d64fc5f2b86d274f1bd3724beba7070",
+      "time": "2026-04-14T20:58:03Z",
+      "time_fmt": "2026-04-14 20:58 UTC",
+      "msg": "fix: workflow if-condition can't see step env"
+    },
+    {
+      "sha": "684c5b67a8e7a409ec208970d3b90b40f645458b",
+      "time": "2026-04-14T20:16:26Z",
+      "time_fmt": "2026-04-14 20:16 UTC",
+      "msg": "feat: daemon with Haiku 4.5 + prompt caching + budget cap"
+    },
+    {
+      "sha": "1c42931b5a59476257319a118264c78b5be3c2a3",
+      "time": "2026-04-14T18:11:57Z",
+      "time_fmt": "2026-04-14 18:11 UTC",
+      "msg": "chore: daemon tick 2026-04-14T18:11:57Z"
+    },
+    {
+      "sha": "f859154557ec9f9a36856da580223bb776807e8d",
+      "time": "2026-04-14T20:11:31Z",
+      "time_fmt": "2026-04-14 20:11 UTC",
+      "msg": "feat: GitHub Actions daemon (15-min cron, heartbeat + Claude improvements)"
+    },
+    {
+      "sha": "5a35e53bfefd35b9d5af93499ee0edad3b7a266d",
+      "time": "2026-04-14T20:07:52Z",
+      "time_fmt": "2026-04-14 20:07 UTC",
+      "msg": "chore: daemon heartbeat (local PAT test)"
+    },
+    {
+      "sha": "f06b7dd0d325b07554820aee03e48a6e0dc3e55e",
+      "time": "2026-04-14T19:25:34Z",
+      "time_fmt": "2026-04-14 19:25 UTC",
+      "msg": "Add SPEC.md \u2014 product specification for Flair daemon"
+    },
+    {
+      "sha": "413b1a01e76bf0f1a22a7073b796cf2a2a097f06",
+      "time": "2026-04-12T19:03:44Z",
+      "time_fmt": "2026-04-12 19:03 UTC",
+      "msg": "Initial commit: Flair (formerly Messe Chat)"
+    }
+  ],
+  "log_tail": [
+    "2026-04-14T18:07:52Z | heartbeat | local PAT test",
+    "2026-04-14T18:11:57Z | heartbeat | GitHub Actions daemon alive",
+    "2026-04-14T18:58:13Z | heartbeat | daemon tick",
+    "2026-04-14T18:58:14Z | api-error | HTTP 400",
+    "2026-04-14T19:24:49Z | heartbeat | daemon tick",
+    "2026-04-14T19:39:15Z | MODULE: Virality System | ACTION: Added post-result gate component spec to Flair/ui/virality-gate.md | FILES: Flair/ui/virality-gate.md | STATUS: done",
+    "2026-04-14T19:28:19Z | heartbeat | daemon tick",
+    "2026-04-14T19:30:59Z | heartbeat | daemon tick",
+    "2026-04-14T19:37:11Z | heartbeat | daemon tick"
+  ],
+  "model": "anthropic/claude-sonnet-4.5",
+  "cron": "*/10 * * * *"
 }
