@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:55:10Z",
+  "updated_at": "2026-04-14T22:56:06Z",
   "today": "2026-04-14",
-  "today_usd": 3.80258,
-  "total_usd": 3.80258,
-  "total_prompt": 551666,
-  "total_completion": 143938,
+  "today_usd": 3.83284,
+  "total_usd": 3.83284,
+  "total_prompt": 557879,
+  "total_completion": 144713,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 551666,
-      "completion_tokens": 143938,
-      "usd": 3.80258
+      "prompt_tokens": 557879,
+      "completion_tokens": 144713,
+      "usd": 3.83284
     }
   },
   "commits": [
+    {
+      "sha": "5be558435e822f18ab96473f85a11439efe9d05d",
+      "time": "2026-04-14T22:55:12Z",
+      "time_fmt": "2026-04-14 22:55 UTC",
+      "msg": "[Matching Engine] Proximity scoring now emits debug logs showing user's current location (hall + stand if known) so engineers see starting point instantly."
+    },
     {
       "sha": "e590064802eb72524ee22fbc2bc33b6a43a8a89f",
       "time": "2026-04-14T22:54:08Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:06:19Z",
       "time_fmt": "2026-04-14 22:06 UTC",
       "msg": "[Matching Engine] Social proof score now requires verified case studies or reference customers \u2014 no credit for generic testimonial text."
-    },
-    {
-      "sha": "5d55402a59b2cd57a3e311fc7d90ed9b094f86dd",
-      "time": "2026-04-14T22:05:10Z",
-      "time_fmt": "2026-04-14 22:05 UTC",
-      "msg": "[Matching Engine] Removed duplicate commercial fit logging rule that contradicted the consolidated one-line format already in SPEC.md."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:15:47Z | heartbeat | daemon tick",
     "2026-04-14T22:16:47Z | heartbeat | daemon tick",
     "2026-04-14T22:17:46Z | heartbeat | daemon tick",
     "2026-04-14T22:18:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:51:46Z | heartbeat | daemon tick",
     "2026-04-14T22:52:46Z | heartbeat | daemon tick",
     "2026-04-14T22:53:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:54:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:54:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:55:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now emits debug logs showing user's current location (hall + stand if known) so engineers see starting point instantly.",
+  "last_completed": "[Matching Engine] Social proof debug logs now emit reference customer count and outcome type breakdown so engineers see verification quality instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now emits debug logs showing user's current location (hall + stand if known) so engineers see starting point instantly.",
-  "last_impact": "Engineers debugging routing complaints (e.g., \"why did you recommend Hall 12 when I'm in Hall 3?\") currently grep availability/commercial fit logs but have no visibility into the user's physical position \u2014 they must infer it from query text or ask the user directly, wasting 2\u20133 minutes per ticket. This change surfaces the starting coordinates in the same [PROXDBG] line as the destination, making route sanity checks instant. Directly supports the CORE PRINCIPLE: if the matching engine ranks a dis",
-  "next_target": "Add social proof debug logs showing which specific case study document or reference customer triggered the 0.03 boost so engineers can verify claims instantly.",
+  "last_detail": "Social proof debug logs now emit reference customer count and outcome type breakdown so engineers see verification quality instantly.",
+  "last_impact": "Engineers debugging social proof scoring currently see only final 0.03/0.00 verdict but not what evidence was found \u2014 logs showing '2 named customers, 1 quantified outcome, 0 case studies' reveal whether exhibitors are gaming the system with vague testimonials or providing real proof. This turns a binary yes/no into a diagnostic tool that catches false positives (exhibitor claims social proof but structured data shows zero named references) within one grep command during live fair testing.",
+  "next_target": "Add availability debug log breakdown showing staff role distribution so engineers see who's actually present at the booth, not just headcount.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
