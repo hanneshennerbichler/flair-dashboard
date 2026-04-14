@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:33:07Z",
+  "updated_at": "2026-04-14T23:34:19Z",
   "today": "2026-04-14",
-  "today_usd": 5.05496,
-  "total_usd": 5.05496,
-  "total_prompt": 788435,
-  "total_completion": 180075,
+  "today_usd": 5.09371,
+  "total_usd": 5.09371,
+  "total_prompt": 794688,
+  "total_completion": 181408,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 788435,
-      "completion_tokens": 180075,
-      "usd": 5.05496
+      "prompt_tokens": 794688,
+      "completion_tokens": 181408,
+      "usd": 5.09371
     }
   },
   "commits": [
+    {
+      "sha": "1f9a9ce1342751ded3f57b5f976e8e274b115350",
+      "time": "2026-04-14T23:33:08Z",
+      "time_fmt": "2026-04-14 23:33 UTC",
+      "msg": "[Matching Engine] Actionability scoring now logs concrete actions offered (first 60 chars each) so engineers see what earned credit instantly during live testing."
+    },
     {
       "sha": "3306393c7d0385cae11ca14d8ba218ec7cf98a4c",
       "time": "2026-04-14T23:32:08Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:44:06Z",
       "time_fmt": "2026-04-14 22:44 UTC",
       "msg": "[Matching Engine] Commercial fit now defaults to 0.075 (neutral) when structured data missing instead of 0.00 to prevent strong matches vanishing."
-    },
-    {
-      "sha": "b526a65581c19a61770d7109dfc7733578fcbb7e",
-      "time": "2026-04-14T22:43:00Z",
-      "time_fmt": "2026-04-14 22:43 UTC",
-      "msg": "[Matching Engine] Proximity scoring now requires both hall coordinates AND user-selected days to be present before awarding any location boost."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:53:47Z | heartbeat | daemon tick",
     "2026-04-14T22:54:47Z | heartbeat | daemon tick",
     "2026-04-14T22:55:46Z | heartbeat | daemon tick",
     "2026-04-14T22:56:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:29:46Z | heartbeat | daemon tick",
     "2026-04-14T23:30:46Z | heartbeat | daemon tick",
     "2026-04-14T23:31:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:32:46Z | heartbeat | daemon tick"
+    "2026-04-14T23:32:46Z | heartbeat | daemon tick",
+    "2026-04-14T23:33:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Actionability scoring now logs concrete actions offered (first 60 chars each) so engineers see what earned credit instantly during live testing.",
+  "last_completed": "[Matching Engine] Goal relevance debug logs now emit to stderr showing user's stated problem (first 60 chars) and exhibitor's solution claim for match transparency.",
   "last_category": "Matching Engine",
-  "last_detail": "Actionability scoring now logs concrete actions offered (first 60 chars each) so engineers see what earned credit instantly during live testing.",
-  "last_impact": "Engineers debugging ranking anomalies currently see only binary actionability scores (0.10 or 0.00) without knowing which exhibitor actions triggered the credit\u2014they must cross-reference exhibitor records manually, wasting 2\u20133 minutes per match investigation during live fair testing. This change emits the exact text of offered actions (demo slot URL, sample pickup instructions, meeting booking link) in the same grep-friendly stderr format already used for commercial fit and social proof, letting",
-  "next_target": "Add proximity scoring stderr debug logs showing user coordinates, exhibitor hall/stand, computed distance, and bonus eligibility in one grep-friendly line per match.",
+  "last_detail": "Goal relevance debug logs now emit to stderr showing user's stated problem (first 60 chars) and exhibitor's solution claim for match transparency.",
+  "last_impact": "Engineers running live fair tests can now see exactly why an exhibitor scored high or low on goal relevance (0.35 weight \u2014 largest single factor) by comparing the user's stated need against what the exhibitor claims to solve. This eliminates the black-box problem where a robotics buyer gets matched to a logistics company and no one knows why. Ties directly to CORE PRINCIPLE: users trust recommendations only when the match logic is defensible \u2014 opaque scoring destroys confidence instantly.",
+  "next_target": "Add solution specificity debug logs showing whether exhibitor description contains concrete product names vs vague corporate mission statements.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
