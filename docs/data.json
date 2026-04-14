@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:48:08Z",
+  "updated_at": "2026-04-14T22:49:04Z",
   "today": "2026-04-14",
-  "today_usd": 3.58185,
-  "total_usd": 3.58185,
-  "total_prompt": 508142,
-  "total_completion": 137928,
+  "today_usd": 3.61157,
+  "total_usd": 3.61157,
+  "total_prompt": 514369,
+  "total_completion": 138664,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 508142,
-      "completion_tokens": 137928,
-      "usd": 3.58185
+      "prompt_tokens": 514369,
+      "completion_tokens": 138664,
+      "usd": 3.61157
     }
   },
   "commits": [
+    {
+      "sha": "b422802db2295ca0bd3b53010112f0f5315fff69",
+      "time": "2026-04-14T22:48:09Z",
+      "time_fmt": "2026-04-14 22:48 UTC",
+      "msg": "[Matching Engine] Commercial fit now deduces buyer's employee count from CV/profile text when structured field missing so scale alignment never silently breaks."
+    },
     {
       "sha": "ca311886b5f893dcd7c8de802a9c86c60d1d12d7",
       "time": "2026-04-14T22:47:09Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:58:58Z",
       "time_fmt": "2026-04-14 21:58 UTC",
       "msg": "[Matching Engine] Added strict rule that commercial fit debug logs must report partial-data score computation showing exactly how 0.075 was derived from missing fields."
-    },
-    {
-      "sha": "6e2c029f9a49e514a0f10a9853c26d62cc0983ff",
-      "time": "2026-04-14T21:57:55Z",
-      "time_fmt": "2026-04-14 21:57 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs now write to a dedicated .cfdbg file per session so production logs stay clean and engineers can grep one file."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:08:44Z | heartbeat | daemon tick",
     "2026-04-14T22:09:43Z | heartbeat | daemon tick",
     "2026-04-14T22:10:44Z | heartbeat | daemon tick",
     "2026-04-14T22:11:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:44:47Z | heartbeat | daemon tick",
     "2026-04-14T22:45:46Z | heartbeat | daemon tick",
     "2026-04-14T22:46:46Z | heartbeat | daemon tick",
-    "2026-04-14T22:47:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:47:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:48:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now deduces buyer's employee count from CV/profile text when structured field missing so scale alignment never silently breaks.",
+  "last_completed": "[Matching Engine] Social proof debug logs now emit to stderr BEFORE ranking output so engineers can grep live verifications without waiting for results.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now deduces buyer's employee count from CV/profile text when structured field missing so scale alignment never silently breaks.",
-  "last_impact": "When a user uploads CV or fills profile without explicit company-size tagging, the matching engine currently assigns neutral 0.075 commercial fit \u2014 but a 12-person robotics startup still sees Siemens ranked high because the system can't detect the catastrophic scale mismatch. By parsing CV/profile text for org-size signals (\"8-person team,\" \"Series A,\" \"Fortune 500\"), we preserve the core anti-gaming rule (no semantic matching on unstructured exhibitor descriptions) while making buyer context ex",
-  "next_target": "Add social proof debug logs showing parsed reference customer names (not just pass/fail) so engineers see exactly which case studies triggered the 0.03 boost.",
+  "last_detail": "Social proof debug logs now emit to stderr BEFORE ranking output so engineers can grep live verifications without waiting for results.",
+  "last_impact": "Engineers debugging why an exhibitor with strong case studies ranks lower than expected can now see social proof computation (0.03 vs 0.00) in real time during live fair testing \u2014 grep '[SPDBG]' shows verification pass/fail instantly without waiting for ranking results to complete. This mirrors the commercial fit debug pattern and eliminates 1\u20132 minutes of context-switching per match investigation, directly supporting the 'reduce uncertainty, increase speed' principle.",
+  "next_target": "Add social proof inline case-study snippet (first 25 chars) to debug logs so engineers see what triggered verification without opening documents.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
