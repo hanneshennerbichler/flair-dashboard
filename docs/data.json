@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:17:27Z",
+  "updated_at": "2026-04-14T22:18:26Z",
   "today": "2026-04-14",
-  "today_usd": 2.58382,
-  "total_usd": 2.58382,
-  "total_prompt": 317855,
-  "total_completion": 109451,
+  "today_usd": 2.63099,
+  "total_usd": 2.63099,
+  "total_prompt": 323679,
+  "total_completion": 111431,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 317855,
-      "completion_tokens": 109451,
-      "usd": 2.58382
+      "prompt_tokens": 323679,
+      "completion_tokens": 111431,
+      "usd": 2.63099
     }
   },
   "commits": [
+    {
+      "sha": "5f13e0817149dd73e49cf5bd3df0b461d2d438f9",
+      "time": "2026-04-14T22:17:29Z",
+      "time_fmt": "2026-04-14 22:17 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs must stay under 120 chars per line so engineers grep [CFDBG] output without horizontal scrolling in terminals."
+    },
     {
       "sha": "b42e431ac1451280e298efdc61fd1a3c01b8bb69",
       "time": "2026-04-14T22:16:24Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:53:44Z",
       "time_fmt": "2026-04-14 22:53 UTC",
       "msg": "[bot] priority note from Hannes @ 2026-04-14T20:53:43Z"
-    },
-    {
-      "sha": "385a3a1afe34ee5e38b6d76084b97c1688732803",
-      "time": "2026-04-14T22:51:43Z",
-      "time_fmt": "2026-04-14 22:51 UTC",
-      "msg": "[bot] priority note from Hannes @ 2026-04-14T20:51:43Z"
     }
   ],
   "log_tail": [
-    "2026-04-14T21:29:26Z | heartbeat | daemon tick",
     "2026-04-14T21:31:04Z | heartbeat | daemon tick",
     "2026-04-14T21:32:55Z | heartbeat | daemon tick",
     "2026-04-14T21:34:41Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:13:47Z | heartbeat | daemon tick",
     "2026-04-14T22:14:47Z | heartbeat | daemon tick",
     "2026-04-14T22:15:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:16:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:16:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:17:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs must stay under 120 chars per line so engineers grep [CFDBG] output without horizontal scrolling in terminals.",
+  "last_completed": "[Matching Engine] Proximity boost now applies only when both hall data AND user selected days are present \u2014 prevents scoring when either constraint is missing.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs must stay under 120 chars per line so engineers grep [CFDBG] output without horizontal scrolling in terminals.",
-  "last_impact": "Long debug lines force engineers to scroll horizontally or pipe through less during live fair testing, slowing diagnosis of commercial fit mismatches by 10\u201330 seconds per exhibitor. 120-char cap ensures every [CFDBG] line fits standard terminal width (80\u2013120 cols), making real-time grep output instantly readable without reformatting. This directly supports the 'commercial fit is never text-based' enforcement rule by making field verification frictionless during high-pressure live testing.",
-  "next_target": "Add explicit rule that commercial fit debug logs must abbreviate field names (emp/price/target/vertical) to keep under 120 chars while preserving all required data.",
+  "last_detail": "Proximity boost now applies only when both hall data AND user selected days are present \u2014 prevents scoring when either constraint is missing.",
+  "last_impact": "This closes a gap where proximity could be awarded even when availability is unknown, creating false confidence in booth visits. Users waste time traveling to stands that may be closed on their selected days. By requiring BOTH location data and temporal alignment, we ensure the 0.10 proximity score only fires when the exhibitor is actually reachable during the user's fair window \u2014 directly supporting the CORE PRINCIPLE ('if I don't use this, I'm missing something right now') by eliminating phant",
+  "next_target": "Add inline computation breakdown to commercial fit debug logs when partial data is present (e.g., base=0.1125 degraded=0.075).",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
