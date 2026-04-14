@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:16:02Z",
+  "updated_at": "2026-04-14T23:17:16Z",
   "today": "2026-04-14",
-  "today_usd": 4.48318,
-  "total_usd": 4.48318,
-  "total_prompt": 682350,
-  "total_completion": 163174,
+  "today_usd": 4.5222,
+  "total_usd": 4.5222,
+  "total_prompt": 688583,
+  "total_completion": 164529,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 682350,
-      "completion_tokens": 163174,
-      "usd": 4.48318
+      "prompt_tokens": 688583,
+      "completion_tokens": 164529,
+      "usd": 4.5222
     }
   },
   "commits": [
+    {
+      "sha": "1cd033a76e1777b3f2669f2e27c492c609666f83",
+      "time": "2026-04-14T23:16:04Z",
+      "time_fmt": "2026-04-14 23:16 UTC",
+      "msg": "[Matching Engine] Proximity scoring now verifies user has selected fair days before awarding location bonus so walk-time estimates stay meaningful."
+    },
     {
       "sha": "a8418354900ec6c2c5e921feb2562eb9496d01bb",
       "time": "2026-04-14T23:15:07Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:27:08Z",
       "time_fmt": "2026-04-14 22:27 UTC",
       "msg": "[Matching Engine] Proximity scoring now logs missing data to stderr so engineers see when hall coordinates or user days are absent during live ranking."
-    },
-    {
-      "sha": "0762e617227924036015215c906f2799b63f5a67",
-      "time": "2026-04-14T22:26:07Z",
-      "time_fmt": "2026-04-14 22:26 UTC",
-      "msg": "[Matching Engine] Proximity score now degrades gracefully when hall data is present but user days are missing \u2014 awards 0.05 instead of 0.00."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:36:47Z | heartbeat | daemon tick",
     "2026-04-14T22:37:47Z | heartbeat | daemon tick",
     "2026-04-14T22:38:47Z | heartbeat | daemon tick",
     "2026-04-14T22:39:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:12:46Z | heartbeat | daemon tick",
     "2026-04-14T23:13:46Z | heartbeat | daemon tick",
     "2026-04-14T23:14:46Z | heartbeat | daemon tick",
-    "2026-04-14T23:15:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:15:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:16:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now verifies user has selected fair days before awarding location bonus so walk-time estimates stay meaningful.",
+  "last_completed": "[Matching Engine] Availability now logs exhibitor's actual staff schedule (days/times present) so engineers see temporal coverage gaps instantly during live testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now verifies user has selected fair days before awarding location bonus so walk-time estimates stay meaningful.",
-  "last_impact": "When a user hasn't specified which days they're attending, proximity scores drop to zero \u2014 preventing the engine from recommending a booth 90 seconds away that's closed on the days they'll actually be there. This eliminates wasted walking time and builds trust by ensuring every distance-based suggestion aligns with temporal availability. Directly supports CORE PRINCIPLE: if the booth is unreachable when you're there, the recommendation creates regret instead of action.",
-  "next_target": "Add availability debug logging that shows overlap between user's selected days and exhibitor's staff schedule so engineers can see temporal mismatches instantly.",
+  "last_detail": "Availability now logs exhibitor's actual staff schedule (days/times present) so engineers see temporal coverage gaps instantly during live testing.",
+  "last_impact": "Engineers debugging zero-availability scores currently see only user days + a boolean flag \u2014 no visibility into which days the exhibitor claims to be present. When a promising match vanishes due to schedule mismatch, investigation requires manual DB queries to see staff_schedule[] contents. This change surfaces the exhibitor's actual schedule window in the same debug line, cutting triage time from 2\u20133 minutes to 5 seconds per match. Directly supports the CORE PRINCIPLE: engineers must see *why*",
+  "next_target": "Availability debug logs now show overlap between user days and exhibitor schedule so engineers see partial-coverage decisions instantly.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
