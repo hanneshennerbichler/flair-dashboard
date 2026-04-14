@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:46:04Z",
+  "updated_at": "2026-04-14T22:47:07Z",
   "today": "2026-04-14",
-  "today_usd": 3.52216,
-  "total_usd": 3.52216,
-  "total_prompt": 495700,
-  "total_completion": 136437,
+  "today_usd": 3.55192,
+  "total_usd": 3.55192,
+  "total_prompt": 501919,
+  "total_completion": 137177,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 495700,
-      "completion_tokens": 136437,
-      "usd": 3.52216
+      "prompt_tokens": 501919,
+      "completion_tokens": 137177,
+      "usd": 3.55192
     }
   },
   "commits": [
+    {
+      "sha": "776a82f20b205aeb1232d8bef5b319cc57c577be",
+      "time": "2026-04-14T22:46:05Z",
+      "time_fmt": "2026-04-14 22:46 UTC",
+      "msg": "[Matching Engine] Commercial fit now penalizes missing structured data (-0.05) instead of neutral 0.075 to force exhibitors to complete profiles."
+    },
     {
       "sha": "551a2a27bca21c36a66de9b8fb20a0b1e38c1bdd",
       "time": "2026-04-14T22:45:04Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:56:48Z",
       "time_fmt": "2026-04-14 21:56 UTC",
       "msg": "[Matching Engine] Added strict rule that commercial fit computation must never round or truncate intermediate values before final score output."
-    },
-    {
-      "sha": "402d09cdbcc7bca4a0606fa093a92c5b46c4b28d",
-      "time": "2026-04-14T21:55:07Z",
-      "time_fmt": "2026-04-14 21:55 UTC",
-      "msg": "[Matching Engine] Added strict rule that commercial fit debug logs must include computation breakdown showing how partial data affects the 0.075 default score."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:06:44Z | heartbeat | daemon tick",
     "2026-04-14T22:07:43Z | heartbeat | daemon tick",
     "2026-04-14T22:08:44Z | heartbeat | daemon tick",
     "2026-04-14T22:09:43Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:42:46Z | heartbeat | daemon tick",
     "2026-04-14T22:43:46Z | heartbeat | daemon tick",
     "2026-04-14T22:44:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:45:46Z | heartbeat | daemon tick"
+    "2026-04-14T22:45:46Z | heartbeat | daemon tick",
+    "2026-04-14T22:46:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now penalizes missing structured data (-0.05) instead of neutral 0.075 to force exhibitors to complete profiles.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now include user's company size (employee count from profile/CV) so engineers see buyer-seller scale alignment instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now penalizes missing structured data (-0.05) instead of neutral 0.075 to force exhibitors to complete profiles.",
-  "last_impact": "The neutral 0.075 score created a perverse incentive \u2014 exhibitors with incomplete data ranked identically to those with marginal fit. This change makes incomplete profiles sink below weak-but-complete matches, forcing exhibitors to submit employee_count/price_tier/target_customer_size or lose visibility. Users immediately see better scale-aligned matches because poorly-documented exhibitors no longer dilute rankings.",
-  "next_target": "Add commercial fit penalty logging to stderr so engineers see when missing data triggers the -0.05 deduction during live testing.",
+  "last_detail": "Commercial fit debug logs now include user's company size (employee count from profile/CV) so engineers see buyer-seller scale alignment instantly.",
+  "last_impact": "When commercial fit scores drop due to scale mismatch (5-person startup matched to enterprise vendor), engineers can now diagnose the root cause in one grep \u2014 no need to cross-reference session logs with user profiles. This directly prevents the catastrophic false positive described in SPEC.md (startup wasting time at Siemens booth) by making scale misalignment visible in real-time during live fair testing.",
+  "next_target": "Add exhibitor's target customer size to commercial fit debug logs so engineers see both sides of scale alignment (buyer size + seller target) in one line.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
