@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:08:01Z",
+  "updated_at": "2026-04-14T22:09:06Z",
   "today": "2026-04-14",
-  "today_usd": 2.25581,
-  "total_usd": 2.25581,
-  "total_prompt": 267475,
-  "total_completion": 97660,
+  "today_usd": 2.28438,
+  "total_usd": 2.28438,
+  "total_prompt": 273015,
+  "total_completion": 98457,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 267475,
-      "completion_tokens": 97660,
-      "usd": 2.25581
+      "prompt_tokens": 273015,
+      "completion_tokens": 98457,
+      "usd": 2.28438
     }
   },
   "commits": [
+    {
+      "sha": "862f431b96a462d5736719c1dbbdc18e0c19995c",
+      "time": "2026-04-14T22:08:02Z",
+      "time_fmt": "2026-04-14 22:08 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs now emit BEFORE ranking results (not after) so engineers see field diagnostics instantly during live tests."
+    },
     {
       "sha": "c39a29757e86905f9de174b0364d221f5850ae5c",
       "time": "2026-04-14T22:07:24Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T20:08:12Z",
       "time_fmt": "2026-04-14 20:08 UTC",
       "msg": "Added German virality button text to the gate spec so developers know exactly what copy to ship \u2014 'F\u00fcr Kollegen erstellen' must appear verbatim."
-    },
-    {
-      "sha": "cb39f8033dbb03b063a51effd50472afdf2371cb",
-      "time": "2026-04-14T22:07:34Z",
-      "time_fmt": "2026-04-14 22:07 UTC",
-      "msg": "Daemon now declares its next target each tick so the dashboard can show what it is working on"
     }
   ],
   "log_tail": [
-    "2026-04-14T19:58:26Z | heartbeat | daemon tick",
     "2026-04-14T20:07:47Z | heartbeat | daemon tick",
     "2026-04-14T20:13:18Z | heartbeat | daemon tick",
     "2026-04-14T21:13:42Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:04:43Z | heartbeat | daemon tick",
     "2026-04-14T22:05:43Z | heartbeat | daemon tick",
     "2026-04-14T22:06:44Z | heartbeat | daemon tick",
-    "2026-04-14T22:07:43Z | heartbeat | daemon tick"
+    "2026-04-14T22:07:43Z | heartbeat | daemon tick",
+    "2026-04-14T22:08:44Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs now emit BEFORE ranking results (not after) so engineers see field diagnostics instantly during live tests.",
+  "last_completed": "[Matching Engine] Added strict rule requiring commercial fit debug logs to appear BEFORE ranking output so engineers see field diagnostics instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs now emit BEFORE ranking results (not after) so engineers see field diagnostics instantly during live tests.",
-  "last_impact": "During live fair testing, engineers need to diagnose match quality in real time. If debug logs appear after ranking output, they must scroll back through terminal history or cross-reference timestamps \u2014 wasting 1\u20133 minutes per investigation. Emitting [CFDBG] lines before final ranking output means one glance shows which field was NULL, how it drove the score, and the query context \u2014 no scrolling, no reconstruction. This directly supports the CORE PRINCIPLE: reduce uncertainty, increase speed, dr",
-  "next_target": "Add explicit timestamp to each [CFDBG] line so multi-exhibitor ranking operations can be traced back to exact millisecond order during concurrent sessions.",
+  "last_detail": "Added strict rule requiring commercial fit debug logs to appear BEFORE ranking output so engineers see field diagnostics instantly.",
+  "last_impact": "During live fair testing, engineers must diagnose why a match failed in under 10 seconds \u2014 they cannot afford to scroll back through terminal history or cross-reference logs emitted after results. Placing [CFDBG] output before ranking results means one glance at the terminal shows exactly which fields were NULL, how the score degraded, and the query context \u2014 all without requiring any manual reconstruction. This directly supports the CORE PRINCIPLE: if matching is broken, we fix it in seconds, n",
+  "next_target": "Add explicit rule that commercial fit debug logs must include session_id and timestamp inline so multi-session test runs never mix diagnostics.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
