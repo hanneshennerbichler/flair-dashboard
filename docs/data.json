@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:37:19Z",
+  "updated_at": "2026-04-14T23:38:18Z",
   "today": "2026-04-14",
-  "today_usd": 5.20334,
-  "total_usd": 5.20334,
-  "total_prompt": 813450,
-  "total_completion": 184964,
+  "today_usd": 5.24318,
+  "total_usd": 5.24318,
+  "total_prompt": 819699,
+  "total_completion": 186370,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 813450,
-      "completion_tokens": 184964,
-      "usd": 5.20334
+      "prompt_tokens": 819699,
+      "completion_tokens": 186370,
+      "usd": 5.24318
     }
   },
   "commits": [
+    {
+      "sha": "a3479416ccee894a5e4aa8cdb5b29858e8b7331f",
+      "time": "2026-04-14T23:37:21Z",
+      "time_fmt": "2026-04-14 23:37 UTC",
+      "msg": "[Matching Engine] Intent confidence debug logs now show user's query word count and technical term density so engineers see specificity signals instantly."
+    },
     {
       "sha": "c8db0e15cdd418c53e5402f9ac4fb1b56bb4fa0d",
       "time": "2026-04-14T23:36:17Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:48:09Z",
       "time_fmt": "2026-04-14 22:48 UTC",
       "msg": "[Matching Engine] Commercial fit now deduces buyer's employee count from CV/profile text when structured field missing so scale alignment never silently breaks."
-    },
-    {
-      "sha": "ca311886b5f893dcd7c8de802a9c86c60d1d12d7",
-      "time": "2026-04-14T22:47:09Z",
-      "time_fmt": "2026-04-14 22:47 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs now include user's company size (employee count from profile/CV) so engineers see buyer-seller scale alignment instantly."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:57:46Z | heartbeat | daemon tick",
     "2026-04-14T22:58:46Z | heartbeat | daemon tick",
     "2026-04-14T22:59:47Z | heartbeat | daemon tick",
     "2026-04-14T23:00:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:33:47Z | heartbeat | daemon tick",
     "2026-04-14T23:34:46Z | heartbeat | daemon tick",
     "2026-04-14T23:35:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:36:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:36:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:37:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Intent confidence debug logs now show user's query word count and technical term density so engineers see specificity signals instantly.",
+  "last_completed": "[Matching Engine] Goal relevance now logs exhibitor's top 3 solution keywords so engineers see semantic match quality instantly during live fair testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Intent confidence debug logs now show user's query word count and technical term density so engineers see specificity signals instantly.",
-  "last_impact": "When a user says \"robotics\" versus \"I need a collaborative six-axis robot arm with sub-0.05mm repeatability for electronics assembly,\" intent confidence scoring changes dramatically (0.02 vs 0.05). Currently engineers see only the final score \u2014 they can't tell if a low score came from vague language, missing context, or question overload. Adding word count (proxy for detail level) and technical term density (proxy for domain knowledge) to the existing [ICDBG] stderr logs lets engineers verify th",
-  "next_target": "Add solution specificity debug logs showing count of concrete product names versus marketing buzzwords so engineers see vagueness detection quality.",
+  "last_detail": "Goal relevance now logs exhibitor's top 3 solution keywords so engineers see semantic match quality instantly during live fair testing.",
+  "last_impact": "When a robotics buyer gets matched to a generic \"automation solutions\" exhibitor, engineers now see exactly which keywords triggered the match (e.g., \"industrial\", \"efficiency\", \"digital\") vs. the user's stated problem (\"collaborative robot arm\"). This exposes vague marketing text gaming the ranking and lets us tune semantic filters before users waste booth visits. Directly supports CORE PRINCIPLE: every match must feel like \"if I don't visit this, I'm missing something right now\" \u2014 and you can'",
+  "next_target": "Add solution specificity debug logs showing concrete product/feature count so engineers see when exhibitors earn zero for vague claims.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
