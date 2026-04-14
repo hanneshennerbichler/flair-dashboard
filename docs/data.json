@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:18:23Z",
+  "updated_at": "2026-04-14T23:19:18Z",
   "today": "2026-04-14",
-  "today_usd": 4.56655,
-  "total_usd": 4.56655,
-  "total_prompt": 694811,
-  "total_completion": 166240,
+  "today_usd": 4.6031,
+  "total_usd": 4.6031,
+  "total_prompt": 701031,
+  "total_completion": 167433,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 694811,
-      "completion_tokens": 166240,
-      "usd": 4.56655
+      "prompt_tokens": 701031,
+      "completion_tokens": 167433,
+      "usd": 4.6031
     }
   },
   "commits": [
+    {
+      "sha": "1b1304e7adac264e9d410fdfb9b099cfccc7ff81",
+      "time": "2026-04-14T23:18:24Z",
+      "time_fmt": "2026-04-14 23:18 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs now show inline computation when partial data present so engineers see degradation math in real time."
+    },
     {
       "sha": "de9131d45b6b511fa928963586d8c99443195f4b",
       "time": "2026-04-14T23:17:17Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:29:03Z",
       "time_fmt": "2026-04-14 22:29 UTC",
       "msg": "[Matching Engine] Commercial fit debug logs now emit BEFORE ranking results so engineers see computation while waiting for match output, not after."
-    },
-    {
-      "sha": "bdcc9c23d3f34eea32bd7d12e7ac7e36d949b482",
-      "time": "2026-04-14T22:28:07Z",
-      "time_fmt": "2026-04-14 22:28 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs now include user role text (first 30 chars) so engineers see who's querying without switching to session logs."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:38:47Z | heartbeat | daemon tick",
     "2026-04-14T22:39:47Z | heartbeat | daemon tick",
     "2026-04-14T22:40:47Z | heartbeat | daemon tick",
     "2026-04-14T22:41:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:14:46Z | heartbeat | daemon tick",
     "2026-04-14T23:15:47Z | heartbeat | daemon tick",
     "2026-04-14T23:16:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:17:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:17:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:18:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs now show inline computation when partial data present so engineers see degradation math in real time.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now emit to stderr with [CFDBG] prefix so engineers can grep live rankings without filtering application noise.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs now show inline computation when partial data present so engineers see degradation math in real time.",
-  "last_impact": "When an exhibitor is missing 1 of 4 commercial fit fields, engineers previously saw only the degraded score (0.075) with no explanation \u2014 forcing them to mentally reconstruct whether the engine applied half-weight correctly or silently failed. Now the log shows `base=0.1125 degraded=0.075` inline, making partial-data handling instantly verifiable during live fair testing. This directly supports the SPEC.md rule: 'If structured data is missing for an exhibitor, commercial fit score = 0.075 (half",
-  "next_target": "Add inline breakdown showing which of the 4 structured fields were present vs. missing (e.g., `emp\u2713 price\u2713 target\u2717 vertical\u2713`) so engineers see data gaps instantly.",
+  "last_detail": "Commercial fit debug logs now emit to stderr with [CFDBG] prefix so engineers can grep live rankings without filtering application noise.",
+  "last_impact": "Engineers debugging commercial fit scores during live fair testing currently waste 1\u20133 minutes per match investigation scrolling through mixed application logs or parsing unstructured output. Dedicated stderr stream with searchable prefix (`grep '\\[CFDBG\\]'`) isolates every commercial fit computation in real time, letting engineers verify structured field presence, degradation math, and buyer context instantly without horizontal scrolling or log noise. This directly supports the Commercial Fit C",
+  "next_target": "Add line-length enforcement (120 char max) to commercial fit debug output so engineers never horizontal-scroll during live fair investigations.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
