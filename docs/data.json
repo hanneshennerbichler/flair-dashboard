@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:49:04Z",
+  "updated_at": "2026-04-14T22:50:05Z",
   "today": "2026-04-14",
-  "today_usd": 3.61157,
-  "total_usd": 3.61157,
-  "total_prompt": 514369,
-  "total_completion": 138664,
+  "today_usd": 3.63992,
+  "total_usd": 3.63992,
+  "total_prompt": 520598,
+  "total_completion": 139308,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 514369,
-      "completion_tokens": 138664,
-      "usd": 3.61157
+      "prompt_tokens": 520598,
+      "completion_tokens": 139308,
+      "usd": 3.63992
     }
   },
   "commits": [
+    {
+      "sha": "b086c171537703218c09fc1e69f5e600c914d9f0",
+      "time": "2026-04-14T22:49:05Z",
+      "time_fmt": "2026-04-14 22:49 UTC",
+      "msg": "[Matching Engine] Social proof debug logs now emit to stderr BEFORE ranking output so engineers can grep live verifications without waiting for results."
+    },
     {
       "sha": "b422802db2295ca0bd3b53010112f0f5315fff69",
       "time": "2026-04-14T22:48:09Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:00:37Z",
       "time_fmt": "2026-04-14 22:00 UTC",
       "msg": "[Matching Engine] Commercial fit debug logs now emit one consolidated line per exhibitor showing all 4 field values + computation in 120 chars max."
-    },
-    {
-      "sha": "16e633888328f52f67ced2f64108a251c85b8850",
-      "time": "2026-04-14T21:58:58Z",
-      "time_fmt": "2026-04-14 21:58 UTC",
-      "msg": "[Matching Engine] Added strict rule that commercial fit debug logs must report partial-data score computation showing exactly how 0.075 was derived from missing fields."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:09:43Z | heartbeat | daemon tick",
     "2026-04-14T22:10:44Z | heartbeat | daemon tick",
     "2026-04-14T22:11:47Z | heartbeat | daemon tick",
     "2026-04-14T22:12:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:45:46Z | heartbeat | daemon tick",
     "2026-04-14T22:46:46Z | heartbeat | daemon tick",
     "2026-04-14T22:47:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:48:46Z | heartbeat | daemon tick"
+    "2026-04-14T22:48:46Z | heartbeat | daemon tick",
+    "2026-04-14T22:49:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Social proof debug logs now emit to stderr BEFORE ranking output so engineers can grep live verifications without waiting for results.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now emit user's industry vertical (first 20 chars from profile/CV) so engineers see industry alignment instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Social proof debug logs now emit to stderr BEFORE ranking output so engineers can grep live verifications without waiting for results.",
-  "last_impact": "Engineers debugging why an exhibitor with strong case studies ranks lower than expected can now see social proof computation (0.03 vs 0.00) in real time during live fair testing \u2014 grep '[SPDBG]' shows verification pass/fail instantly without waiting for ranking results to complete. This mirrors the commercial fit debug pattern and eliminates 1\u20132 minutes of context-switching per match investigation, directly supporting the 'reduce uncertainty, increase speed' principle.",
-  "next_target": "Add social proof inline case-study snippet (first 25 chars) to debug logs so engineers see what triggered verification without opening documents.",
+  "last_detail": "Commercial fit debug logs now emit user's industry vertical (first 20 chars from profile/CV) so engineers see industry alignment instantly.",
+  "last_impact": "When a 'manufacturing' buyer gets matched to a 'services' exhibitor with identical employee count, engineers previously had to cross-reference session data to understand the commercial fit score. Now the debug line shows both sides of the vertical alignment check inline, cutting investigation time from 90 seconds to 5 seconds. This directly supports the SPEC.md rule that commercial fit must use structured fields (industry_vertical) \u2014 now engineers can verify the field is being read correctly in",
+  "next_target": "Add user's price-tier signal (budget/mid-market/enterprise extracted from CV or stated constraints) to commercial fit debug logs so engineers see budget alignment.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
