@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:57:18Z",
+  "updated_at": "2026-04-14T22:58:17Z",
   "today": "2026-04-14",
-  "today_usd": 3.87298,
-  "total_usd": 3.87298,
-  "total_prompt": 564089,
-  "total_completion": 146147,
+  "today_usd": 3.91258,
+  "total_usd": 3.91258,
+  "total_prompt": 570294,
+  "total_completion": 147546,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 564089,
-      "completion_tokens": 146147,
-      "usd": 3.87298
+      "prompt_tokens": 570294,
+      "completion_tokens": 147546,
+      "usd": 3.91258
     }
   },
   "commits": [
+    {
+      "sha": "639db29f5ffe1aba7a39e9070baabcfcb3da080a",
+      "time": "2026-04-14T22:57:19Z",
+      "time_fmt": "2026-04-14 22:57 UTC",
+      "msg": "[Matching Engine] Availability scoring now emits exhibitor's actual staff schedule window (earliest + latest shift times) so engineers see coverage gaps instantly."
+    },
     {
       "sha": "8beed79fa6dd3e99fb8210741a3ce4bba59dcdb4",
       "time": "2026-04-14T22:56:08Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:08:02Z",
       "time_fmt": "2026-04-14 22:08 UTC",
       "msg": "[Matching Engine] Commercial fit debug logs now emit BEFORE ranking results (not after) so engineers see field diagnostics instantly during live tests."
-    },
-    {
-      "sha": "c39a29757e86905f9de174b0364d221f5850ae5c",
-      "time": "2026-04-14T22:07:24Z",
-      "time_fmt": "2026-04-14 22:07 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs now include query text (first 40 chars) so engineers instantly see what the user asked for alongside field values."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:17:46Z | heartbeat | daemon tick",
     "2026-04-14T22:18:47Z | heartbeat | daemon tick",
     "2026-04-14T22:19:47Z | heartbeat | daemon tick",
     "2026-04-14T22:20:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:53:47Z | heartbeat | daemon tick",
     "2026-04-14T22:54:47Z | heartbeat | daemon tick",
     "2026-04-14T22:55:46Z | heartbeat | daemon tick",
-    "2026-04-14T22:56:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:56:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:57:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability scoring now emits exhibitor's actual staff schedule window (earliest + latest shift times) so engineers see coverage gaps instantly.",
+  "last_completed": "[Matching Engine] Availability scoring now emits partial-credit breakdown showing exactly which user days have staff coverage vs. which are missing.",
   "last_category": "Matching Engine",
-  "last_detail": "Availability scoring now emits exhibitor's actual staff schedule window (earliest + latest shift times) so engineers see coverage gaps instantly.",
-  "last_impact": "When an exhibitor scores 0.01 (partial availability), engineers currently see \"2/3 days present\" but not WHICH days or shift times \u2014 they must query the database separately, wasting 30\u201360 seconds per investigation during live fair testing. Emitting the actual schedule window (e.g., \"Mon 9\u201317, Wed 10\u201315\") in the debug log lets engineers verify temporal overlap in one glance, eliminating context-switching and accelerating match validation by 50%. This directly supports the CORE PRINCIPLE (\"reduce",
-  "next_target": "Add social proof debug emission of actual reference customer names (up to 3, anonymized domain suffixes) so engineers verify named-entity extraction quality without opening case study PDFs.",
+  "last_detail": "Availability scoring now emits partial-credit breakdown showing exactly which user days have staff coverage vs. which are missing.",
+  "last_impact": "Engineers debugging availability scores (0.02 full, 0.01 partial, 0.00 none) currently see \"2/3 days covered\" but not *which* days are missing. This forces them to cross-reference user.selected_days[] against exhibitor.staff_schedule[] manually, wasting 30\u201360 seconds per match investigation. When a strong exhibitor drops in ranking due to partial availability, engineers need to see instantly: \"covered Mon/Tue, missing Wed\" \u2014 not just a fractional score. This change makes availability scoring fai",
+  "next_target": "Add proximity scoring breakdown showing hall-to-hall routing cost (number of halls traversed, not just meters) so engineers see navigation friction instantly.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
