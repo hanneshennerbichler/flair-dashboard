@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:32:06Z",
+  "updated_at": "2026-04-14T23:33:07Z",
   "today": "2026-04-14",
-  "today_usd": 5.02383,
-  "total_usd": 5.02383,
-  "total_prompt": 782189,
-  "total_completion": 179249,
+  "today_usd": 5.05496,
+  "total_usd": 5.05496,
+  "total_prompt": 788435,
+  "total_completion": 180075,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 782189,
-      "completion_tokens": 179249,
-      "usd": 5.02383
+      "prompt_tokens": 788435,
+      "completion_tokens": 180075,
+      "usd": 5.05496
     }
   },
   "commits": [
+    {
+      "sha": "3306393c7d0385cae11ca14d8ba218ec7cf98a4c",
+      "time": "2026-04-14T23:32:08Z",
+      "time_fmt": "2026-04-14 23:32 UTC",
+      "msg": "[Matching Engine] Proximity now awards zero when user hasn't selected fair days so location boost requires temporal context to prevent false confidence."
+    },
     {
       "sha": "42f347d17acbb95d3b12fd29564801d283f681c7",
       "time": "2026-04-14T23:31:07Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:43:00Z",
       "time_fmt": "2026-04-14 22:43 UTC",
       "msg": "[Matching Engine] Proximity scoring now requires both hall coordinates AND user-selected days to be present before awarding any location boost."
-    },
-    {
-      "sha": "4d1db783ac2b96a7eed229d1baa81274186242a7",
-      "time": "2026-04-14T22:42:05Z",
-      "time_fmt": "2026-04-14 22:42 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs now include user query text (first 40 chars) so engineers see what triggered the ranking without context-switching."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:52:46Z | heartbeat | daemon tick",
     "2026-04-14T22:53:47Z | heartbeat | daemon tick",
     "2026-04-14T22:54:47Z | heartbeat | daemon tick",
     "2026-04-14T22:55:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:28:46Z | heartbeat | daemon tick",
     "2026-04-14T23:29:46Z | heartbeat | daemon tick",
     "2026-04-14T23:30:46Z | heartbeat | daemon tick",
-    "2026-04-14T23:31:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:31:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:32:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity now awards zero when user hasn't selected fair days so location boost requires temporal context to prevent false confidence.",
+  "last_completed": "[Matching Engine] Actionability scoring now logs concrete actions offered (first 60 chars each) so engineers see what earned credit instantly during live testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity now awards zero when user hasn't selected fair days so location boost requires temporal context to prevent false confidence.",
-  "last_impact": "Stops users from walking to stands that might be closed on their actual visit days \u2014 proximity without availability window = wasted booth visit = trust destroyed instantly. Aligns with SPEC.md Proximity Scoring Rule: no user days = no proximity credit. Forces temporal alignment before awarding location advantage.",
-  "next_target": "Add proximity debug logging showing user's selected days count and exhibitor hall data presence so engineers see why location score zeroed out.",
+  "last_detail": "Actionability scoring now logs concrete actions offered (first 60 chars each) so engineers see what earned credit instantly during live testing.",
+  "last_impact": "Engineers debugging ranking anomalies currently see only binary actionability scores (0.10 or 0.00) without knowing which exhibitor actions triggered the credit\u2014they must cross-reference exhibitor records manually, wasting 2\u20133 minutes per match investigation during live fair testing. This change emits the exact text of offered actions (demo slot URL, sample pickup instructions, meeting booking link) in the same grep-friendly stderr format already used for commercial fit and social proof, letting",
+  "next_target": "Add proximity scoring stderr debug logs showing user coordinates, exhibitor hall/stand, computed distance, and bonus eligibility in one grep-friendly line per match.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
