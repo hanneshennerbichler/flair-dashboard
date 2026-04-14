@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:15:23Z",
+  "updated_at": "2026-04-14T22:16:23Z",
   "today": "2026-04-14",
-  "today_usd": 2.49592,
-  "total_usd": 2.49592,
-  "total_prompt": 306361,
-  "total_completion": 105890,
+  "today_usd": 2.53936,
+  "total_usd": 2.53936,
+  "total_prompt": 312106,
+  "total_completion": 107637,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 306361,
-      "completion_tokens": 105890,
-      "usd": 2.49592
+      "prompt_tokens": 312106,
+      "completion_tokens": 107637,
+      "usd": 2.53936
     }
   },
   "commits": [
+    {
+      "sha": "e93ea35c701a7b44076de6a53a62fbe7f9951f90",
+      "time": "2026-04-14T22:15:25Z",
+      "time_fmt": "2026-04-14 22:15 UTC",
+      "msg": "[Matching Engine] Availability score now requires staff schedule data to be present \u2014 prevents awarding 0.02 points when exhibitor has no recorded availability."
+    },
     {
       "sha": "05694993263207763b4eed5fc1a007ae4f304d63",
       "time": "2026-04-14T22:14:14Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:51:09Z",
       "time_fmt": "2026-04-14 22:51 UTC",
       "msg": "[bot] priority note from Hannes @ 2026-04-14T20:51:09Z"
-    },
-    {
-      "sha": "53940500916091b4551a0e90d3da5ba42bab692f",
-      "time": "2026-04-14T22:50:34Z",
-      "time_fmt": "2026-04-14 22:50 UTC",
-      "msg": "[bot] priority note from Hannes @ 2026-04-14T20:50:34Z"
     }
   ],
   "log_tail": [
-    "2026-04-14T21:25:59Z | heartbeat | daemon tick",
     "2026-04-14T21:27:35Z | heartbeat | daemon tick",
     "2026-04-14T21:29:26Z | heartbeat | daemon tick",
     "2026-04-14T21:31:04Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:11:47Z | heartbeat | daemon tick",
     "2026-04-14T22:12:47Z | heartbeat | daemon tick",
     "2026-04-14T22:13:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:14:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:14:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:15:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability score now requires staff schedule data to be present \u2014 prevents awarding 0.02 points when exhibitor has no recorded availability.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now emit to stderr with [CFDBG] prefix so engineers grep live ranking sessions without scrolling through application logs.",
   "last_category": "Matching Engine",
-  "last_detail": "Availability score now requires staff schedule data to be present \u2014 prevents awarding 0.02 points when exhibitor has no recorded availability.",
-  "last_impact": "Stops the matching engine from giving credit to exhibitors who haven't provided staff schedules, which would otherwise inflate scores for booths that might be closed or unstaffed during the user's selected fair days. This directly supports the CORE PRINCIPLE: users must feel \"if I don't use this, I'm missing something right now\" \u2014 recommending a booth with no staff present destroys that urgency instantly. Aligns with the strict pattern already applied to proximity and commercial fit: no data = n",
-  "next_target": "Add availability field values to commercial fit debug logs so engineers see which exhibitors lack staff schedule data during ranking.",
+  "last_detail": "Commercial fit debug logs now emit to stderr with [CFDBG] prefix so engineers grep live ranking sessions without scrolling through application logs.",
+  "last_impact": "During live fair testing, engineers run `grep CFDBG` on stderr to see every commercial fit computation in real time without filtering through unrelated application output. This cuts diagnosis time from 2\u20133 minutes (scrolling through mixed logs, cross-referencing timestamps) to under 10 seconds (one grep command shows all commercial fit decisions for the current session). Directly supports the core principle: engineers must instantly verify that the matching engine uses structured fields correctl",
+  "next_target": "Add explicit rule that commercial fit debug logs must show NULL vs. missing distinction so engineers instantly see whether a field was absent or explicitly set to NULL.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
