@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:26:11Z",
+  "updated_at": "2026-04-14T23:27:07Z",
   "today": "2026-04-14",
-  "today_usd": 4.84362,
-  "total_usd": 4.84362,
-  "total_prompt": 744712,
-  "total_completion": 174731,
+  "today_usd": 4.87562,
+  "total_usd": 4.87562,
+  "total_prompt": 750958,
+  "total_completion": 175615,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 744712,
-      "completion_tokens": 174731,
-      "usd": 4.84362
+      "prompt_tokens": 750958,
+      "completion_tokens": 175615,
+      "usd": 4.87562
     }
   },
   "commits": [
+    {
+      "sha": "2cc31e7716b5b3f678e3b740e4fa98e94f5a204c",
+      "time": "2026-04-14T23:26:13Z",
+      "time_fmt": "2026-04-14 23:26 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs buyer's budget tier (extracted from role/query) so engineers see price-point mismatch instantly during live testing."
+    },
     {
       "sha": "5616a69acdf8e1cd99df9f839c3e7fc98da3ef91",
       "time": "2026-04-14T23:25:20Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:37:21Z",
       "time_fmt": "2026-04-14 22:37 UTC",
       "msg": "[Matching Engine] Proximity scoring now verifies user's selected fair days are non-empty before awarding same-hall bonus to prevent false confidence."
-    },
-    {
-      "sha": "86bd3325f352e635e7902e04377f495f5e591853",
-      "time": "2026-04-14T22:36:09Z",
-      "time_fmt": "2026-04-14 22:36 UTC",
-      "msg": "[Matching Engine] Availability scoring now logs partial-credit decision (0.01 vs 0.02) to stderr so engineers see degradation math instantly."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:46:46Z | heartbeat | daemon tick",
     "2026-04-14T22:47:47Z | heartbeat | daemon tick",
     "2026-04-14T22:48:46Z | heartbeat | daemon tick",
     "2026-04-14T22:49:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:22:47Z | heartbeat | daemon tick",
     "2026-04-14T23:23:47Z | heartbeat | daemon tick",
     "2026-04-14T23:24:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:25:46Z | heartbeat | daemon tick"
+    "2026-04-14T23:25:46Z | heartbeat | daemon tick",
+    "2026-04-14T23:26:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs buyer's budget tier (extracted from role/query) so engineers see price-point mismatch instantly during live testing.",
+  "last_completed": "[Matching Engine] Social proof logs now show exhibitor's measurable outcomes (first 80 chars: percentages, time saved, cost reduction) so engineers see proof quality.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs buyer's budget tier (extracted from role/query) so engineers see price-point mismatch instantly during live testing.",
-  "last_impact": "When a startup founder gets matched to enterprise-only exhibitors (or vice versa), engineers now see 'buyer_budget=seed-stage' vs 'exhib_price=enterprise' in debug logs \u2014 no guessing why commercial fit zeroed out. This closes the last visibility gap in the commercial fit computation: we already log employee counts and verticals, but price-tier misalignment is the #1 silent ranking killer (budget-conscious buyers matched to six-figure solutions). Engineers grep [CFDBG] during fair testing and imm",
-  "next_target": "Add social proof debug logging for measurable outcomes so engineers see which exhibitors claimed results vs. which proved them with numbers.",
+  "last_detail": "Social proof logs now show exhibitor's measurable outcomes (first 80 chars: percentages, time saved, cost reduction) so engineers see proof quality.",
+  "last_impact": "Engineers debugging live rankings can instantly see whether an exhibitor earned social proof credit from vague testimonials (\"trusted by leaders\") or hard numbers (\"reduced downtime 34%, saved \u20ac120k annually\"). This stops false positives where marketing fluff games the 0.03 boost without proving real-world results in the user's domain. Aligns directly with the social proof verification rule: measurable outcomes = required evidence.",
+  "next_target": "Add debug logging for social proof case study URLs so engineers can verify documentation links during live fair testing.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
