@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:01:05Z",
+  "updated_at": "2026-04-14T23:02:09Z",
   "today": "2026-04-14",
-  "today_usd": 4.00302,
-  "total_usd": 4.00302,
-  "total_prompt": 588913,
-  "total_completion": 149851,
+  "today_usd": 4.0335,
+  "total_usd": 4.0335,
+  "total_prompt": 595117,
+  "total_completion": 150642,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 588913,
-      "completion_tokens": 149851,
-      "usd": 4.00302
+      "prompt_tokens": 595117,
+      "completion_tokens": 150642,
+      "usd": 4.0335
     }
   },
   "commits": [
+    {
+      "sha": "e31e1366c2d213f8974beaa66518b64bb30c39d0",
+      "time": "2026-04-14T23:01:06Z",
+      "time_fmt": "2026-04-14 23:01 UTC",
+      "msg": "[Matching Engine] Proximity scoring now emits user query text (first 40 chars) in debug logs so engineers see spatial intent instantly."
+    },
     {
       "sha": "d69b5a9390cf797b2c6307dee8f494c878102877",
       "time": "2026-04-14T23:00:08Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:12:24Z",
       "time_fmt": "2026-04-14 22:12 UTC",
       "msg": "[Matching Engine] Commercial fit debug logs now include user role (first 30 chars) so engineers instantly see buyer persona alongside exhibitor scale data."
-    },
-    {
-      "sha": "e41fa57bbeb1aeed7d120fc424b7162ccdf7a7ea",
-      "time": "2026-04-14T22:11:43Z",
-      "time_fmt": "2026-04-14 22:11 UTC",
-      "msg": "[Matching Engine] Proximity boost now requires hall data to be present \u2014 prevents scoring errors when stand coordinates are missing."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:21:47Z | heartbeat | daemon tick",
     "2026-04-14T22:22:47Z | heartbeat | daemon tick",
     "2026-04-14T22:23:47Z | heartbeat | daemon tick",
     "2026-04-14T22:24:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:57:46Z | heartbeat | daemon tick",
     "2026-04-14T22:58:46Z | heartbeat | daemon tick",
     "2026-04-14T22:59:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:00:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:00:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:01:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now emits user query text (first 40 chars) in debug logs so engineers see spatial intent instantly.",
+  "last_completed": "[Matching Engine] Commercial fit now awards half-credit (0.075) when buyer context missing so strong matches don't vanish silently due to incomplete user profiles.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now emits user query text (first 40 chars) in debug logs so engineers see spatial intent instantly.",
-  "last_impact": "When a user asks \"booths near Hall 5\" or \"automation stands close to entrance,\" engineers testing rankings can instantly verify that proximity scoring is using the right spatial context \u2014 no need to cross-reference session logs or guess what \"user location\" means. This cuts debug time from 2\u20133 minutes to 5 seconds per ranking investigation, directly supporting the CORE PRINCIPLE (reduce uncertainty, increase speed) by making spatial intent visible in real time.",
-  "next_target": "Add commercial fit debug output showing exhibitor's target customer size field so engineers see buyer-seller scale alignment without database lookup.",
+  "last_detail": "Commercial fit now awards half-credit (0.075) when buyer context missing so strong matches don't vanish silently due to incomplete user profiles.",
+  "last_impact": "When a user skips CV upload or hasn't shared company size/industry in chat, exhibitors previously got zero commercial fit score even if they were perfect technical matches \u2014 causing them to rank below weaker competitors with complete buyer data. Now missing buyer context triggers neutral scoring (0.075 = half weight) instead of zero, so ranking reflects product relevance + availability + proximity while signaling incomplete personalization. This prevents the catastrophic UX failure where a CTO a",
+  "next_target": "Add commercial fit debug log emission showing buyer context completeness (fields present vs. missing) so engineers see when neutral scoring triggered.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
