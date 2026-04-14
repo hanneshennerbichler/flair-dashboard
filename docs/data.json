@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:26:32Z",
+  "updated_at": "2026-04-14T21:28:23Z",
   "today": "2026-04-14",
-  "today_usd": 0.49033,
-  "total_usd": 0.49033,
-  "total_prompt": 73384,
-  "total_completion": 18779,
+  "today_usd": 0.55275,
+  "total_usd": 0.55275,
+  "total_prompt": 79566,
+  "total_completion": 21704,
   "daily_cap": 50.0,
-  "ticks_today": 38,
+  "ticks_today": 39,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 73384,
-      "completion_tokens": 18779,
-      "usd": 0.49033
+      "prompt_tokens": 79566,
+      "completion_tokens": 21704,
+      "usd": 0.55275
     }
   },
   "commits": [
+    {
+      "sha": "aa11cb3c445ef82aeb53b57e1b1fadfb95521457",
+      "time": "2026-04-14T21:26:34Z",
+      "time_fmt": "2026-04-14 21:26 UTC",
+      "msg": "[Docs & Spec] Added explicit scoring weight preservation rule so future changes maintain sum=1.00 and weight hierarchy integrity."
+    },
     {
       "sha": "ae9208a2091d7c88398751f0a3ae9b16bdeb4609",
       "time": "2026-04-14T21:24:58Z",
@@ -268,13 +274,14 @@
     "2026-04-14T21:21:29Z | heartbeat | daemon tick",
     "2026-04-14T21:22:48Z | heartbeat | daemon tick",
     "2026-04-14T21:24:23Z | heartbeat | daemon tick",
-    "2026-04-14T21:25:59Z | heartbeat | daemon tick"
+    "2026-04-14T21:25:59Z | heartbeat | daemon tick",
+    "2026-04-14T21:27:35Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Docs & Spec] Added explicit scoring weight preservation rule so future changes maintain sum=1.00 and weight hierarchy integrity.",
-  "last_category": "Docs & Spec",
-  "last_detail": "Added explicit scoring weight preservation rule so future changes maintain sum=1.00 and weight hierarchy integrity.",
-  "last_impact": "Prevents accidental drift in the matching engine's scoring formula during iterative improvements. Matches the core principle by ensuring every recommendation stays grounded in the validated weights \u2014 if weights drift, relevance breaks, and users miss the right exhibitors. This is a structural safeguard for the single most critical algorithm in Flair.",
-  "next_target": "Document the LLM formatting layer's exact prompt template so the output format stays consistent across all recommendation types.",
+  "last_completed": "[Chatbot Intelligence] Added hard constraint that zero-availability exhibitors get final score = 0, preventing time-misaligned recommendations in top 3.",
+  "last_category": "Chatbot Intelligence",
+  "last_detail": "Added hard constraint that zero-availability exhibitors get final score = 0, preventing time-misaligned recommendations in top 3.",
+  "last_impact": "Users who set their fair days now only see exhibitors with confirmed staff overlap during those exact days. This eliminates the frustration of arriving at a stand only to find no one available, directly supporting the core principle: \"if I don't use this, I'm missing something right now.\" Before this change, semantically relevant booths could rank high even if completely unavailable during the user's visit window \u2014 wasting time and breaking trust.",
+  "next_target": "Add explicit B2B revenue model section to SPEC.md explaining how Weekly Intelligence Reports monetize exhibitor-side demand signals.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
