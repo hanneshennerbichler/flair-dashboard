@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:57:53Z",
+  "updated_at": "2026-04-14T21:58:56Z",
   "today": "2026-04-14",
-  "today_usd": 1.86307,
-  "total_usd": 1.86307,
-  "total_prompt": 209463,
-  "total_completion": 83079,
+  "today_usd": 1.92444,
+  "total_usd": 1.92444,
+  "total_prompt": 215749,
+  "total_completion": 85913,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 209463,
-      "completion_tokens": 83079,
-      "usd": 1.86307
+      "prompt_tokens": 215749,
+      "completion_tokens": 85913,
+      "usd": 1.92444
     }
   },
   "commits": [
+    {
+      "sha": "6e2c029f9a49e514a0f10a9853c26d62cc0983ff",
+      "time": "2026-04-14T21:57:55Z",
+      "time_fmt": "2026-04-14 21:57 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs now write to a dedicated .cfdbg file per session so production logs stay clean and engineers can grep one file."
+    },
     {
       "sha": "0413f73ce0c3d858deaaf139239742c2d39d8b1f",
       "time": "2026-04-14T21:56:48Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:30:25Z",
       "time_fmt": "2026-04-14 21:30 UTC",
       "msg": "feat: DASHBOARD.md auto-regenerated each tick (spend + commits + log)"
-    },
-    {
-      "sha": "649773e16794da02c216828489a2526b56ad60f2",
-      "time": "2026-04-14T19:28:41Z",
-      "time_fmt": "2026-04-14 19:28 UTC",
-      "msg": "chore: daemon tick 2026-04-14T19:28:41Z"
     }
   ],
   "log_tail": [
-    "2026-04-14T18:07:52Z | heartbeat | local PAT test",
     "2026-04-14T18:11:57Z | heartbeat | GitHub Actions daemon alive",
     "2026-04-14T18:58:13Z | heartbeat | daemon tick",
     "2026-04-14T18:58:14Z | api-error | HTTP 400",
@@ -356,13 +355,14 @@
     "2026-04-14T21:52:54Z | heartbeat | daemon tick",
     "2026-04-14T21:54:02Z | heartbeat | daemon tick",
     "2026-04-14T21:55:21Z | heartbeat | daemon tick",
-    "2026-04-14T21:56:51Z | heartbeat | daemon tick"
+    "2026-04-14T21:56:51Z | heartbeat | daemon tick",
+    "2026-04-14T21:57:58Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs now write to a dedicated .cfdbg file per session so production logs stay clean and engineers can grep one file.",
+  "last_completed": "[Matching Engine] Added strict rule that commercial fit debug logs must report partial-data score computation showing exactly how 0.075 was derived from missing fields.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs now write to a dedicated .cfdbg file per session so production logs stay clean and engineers can grep one file.",
-  "last_impact": "Engineers previously had to grep production stderr for [CFDBG] lines mixed with framework noise, wasting 2\u20133 minutes per debug session. Now each session writes to `logs/cfdbg_<session_id>.log` \u2014 one file, zero noise, instant audit trail. This directly supports the CORE PRINCIPLE: when a user reports \"bad match,\" engineers fix it in <60 seconds instead of 5 minutes, keeping iteration velocity high.",
-  "next_target": "Add automated data quality alerts when >20% of ranked exhibitors have missing commercial fit fields in a single session.",
+  "last_detail": "Added strict rule that commercial fit debug logs must report partial-data score computation showing exactly how 0.075 was derived from missing fields.",
+  "last_impact": "When an exhibitor scores 0.075 because one of four fields is missing, engineers previously saw \"score=0.075\" with no breakdown\u2014forcing them to reverse-engineer which field caused the penalty. Now logs show \"employee_count=12 price_tier=budget target_customer_size=NULL industry_vertical=manufacturing \u2192 3/4 fields present \u2192 base=0.1125 degraded to 0.075\" so diagnosis is instant. This closes the last gap in commercial fit auditability: engineers know not just that data was missing, but exactly how",
+  "next_target": "Add rule that commercial fit component weight must be validated against sum constraint whenever a new scoring factor is introduced.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
