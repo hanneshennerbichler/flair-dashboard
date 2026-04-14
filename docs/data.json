@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:25:18Z",
+  "updated_at": "2026-04-14T23:26:11Z",
   "today": "2026-04-14",
-  "today_usd": 4.8107,
-  "total_usd": 4.8107,
-  "total_prompt": 738465,
-  "total_completion": 173786,
+  "today_usd": 4.84362,
+  "total_usd": 4.84362,
+  "total_prompt": 744712,
+  "total_completion": 174731,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 738465,
-      "completion_tokens": 173786,
-      "usd": 4.8107
+      "prompt_tokens": 744712,
+      "completion_tokens": 174731,
+      "usd": 4.84362
     }
   },
   "commits": [
+    {
+      "sha": "5616a69acdf8e1cd99df9f839c3e7fc98da3ef91",
+      "time": "2026-04-14T23:25:20Z",
+      "time_fmt": "2026-04-14 23:25 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs buyer's employee count (exact number or range) extracted from role/profile so engineers see scale mismatch instantly."
+    },
     {
       "sha": "94050726003fdf8bfb238c9a069f6557b5783cc0",
       "time": "2026-04-14T23:24:07Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:36:09Z",
       "time_fmt": "2026-04-14 22:36 UTC",
       "msg": "[Matching Engine] Availability scoring now logs partial-credit decision (0.01 vs 0.02) to stderr so engineers see degradation math instantly."
-    },
-    {
-      "sha": "c627cb2986a7152fedd5a7f4aab078b461ecbc3b",
-      "time": "2026-04-14T22:35:08Z",
-      "time_fmt": "2026-04-14 22:35 UTC",
-      "msg": "[Matching Engine] Proximity scoring now awards +0.05 bonus only when user's current hall matches exhibitor hall \u2014 rewrites 'within 2 halls' rule to mean 'same hall.'"
     }
   ],
   "log_tail": [
-    "2026-04-14T22:45:46Z | heartbeat | daemon tick",
     "2026-04-14T22:46:46Z | heartbeat | daemon tick",
     "2026-04-14T22:47:47Z | heartbeat | daemon tick",
     "2026-04-14T22:48:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:21:47Z | heartbeat | daemon tick",
     "2026-04-14T23:22:47Z | heartbeat | daemon tick",
     "2026-04-14T23:23:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:24:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:24:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:25:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs buyer's employee count (exact number or range) extracted from role/profile so engineers see scale mismatch instantly.",
+  "last_completed": "[Matching Engine] Commercial fit now logs buyer's budget tier (extracted from role/query) so engineers see price-point mismatch instantly during live testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs buyer's employee count (exact number or range) extracted from role/profile so engineers see scale mismatch instantly.",
-  "last_impact": "Engineers debugging \"why did this 5-person startup get matched to Siemens\" now see buyer size in the same grep line as exhibitor size, cutting diagnosis time from 3 minutes to 5 seconds. This closes the visibility loop: we already log exhibitor employee_count, price_tier, target_customer_size, and industry_vertical \u2014 but without buyer context in the same line, engineers must cross-reference session logs to understand why commercial fit degraded or zeroed out.",
-  "next_target": "Add proximity debug logging that shows actual distance calculation (meters, hall offset) so engineers see why stands within 2 halls didn't get the bonus.",
+  "last_detail": "Commercial fit now logs buyer's budget tier (extracted from role/query) so engineers see price-point mismatch instantly during live testing.",
+  "last_impact": "When a startup founder gets matched to enterprise-only exhibitors (or vice versa), engineers now see 'buyer_budget=seed-stage' vs 'exhib_price=enterprise' in debug logs \u2014 no guessing why commercial fit zeroed out. This closes the last visibility gap in the commercial fit computation: we already log employee counts and verticals, but price-tier misalignment is the #1 silent ranking killer (budget-conscious buyers matched to six-figure solutions). Engineers grep [CFDBG] during fair testing and imm",
+  "next_target": "Add social proof debug logging for measurable outcomes so engineers see which exhibitors claimed results vs. which proved them with numbers.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
