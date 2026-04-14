@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:17:16Z",
+  "updated_at": "2026-04-14T23:18:23Z",
   "today": "2026-04-14",
-  "today_usd": 4.5222,
-  "total_usd": 4.5222,
-  "total_prompt": 688583,
-  "total_completion": 164529,
+  "today_usd": 4.56655,
+  "total_usd": 4.56655,
+  "total_prompt": 694811,
+  "total_completion": 166240,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 688583,
-      "completion_tokens": 164529,
-      "usd": 4.5222
+      "prompt_tokens": 694811,
+      "completion_tokens": 166240,
+      "usd": 4.56655
     }
   },
   "commits": [
+    {
+      "sha": "de9131d45b6b511fa928963586d8c99443195f4b",
+      "time": "2026-04-14T23:17:17Z",
+      "time_fmt": "2026-04-14 23:17 UTC",
+      "msg": "[Matching Engine] Availability now logs exhibitor's actual staff schedule (days/times present) so engineers see temporal coverage gaps instantly during live testing."
+    },
     {
       "sha": "1cd033a76e1777b3f2669f2e27c492c609666f83",
       "time": "2026-04-14T23:16:04Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:28:07Z",
       "time_fmt": "2026-04-14 22:28 UTC",
       "msg": "[Matching Engine] Commercial fit debug logs now include user role text (first 30 chars) so engineers see who's querying without switching to session logs."
-    },
-    {
-      "sha": "e02b20d9071ce41d2de80484605423461876f766",
-      "time": "2026-04-14T22:27:08Z",
-      "time_fmt": "2026-04-14 22:27 UTC",
-      "msg": "[Matching Engine] Proximity scoring now logs missing data to stderr so engineers see when hall coordinates or user days are absent during live ranking."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:37:47Z | heartbeat | daemon tick",
     "2026-04-14T22:38:47Z | heartbeat | daemon tick",
     "2026-04-14T22:39:47Z | heartbeat | daemon tick",
     "2026-04-14T22:40:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:13:46Z | heartbeat | daemon tick",
     "2026-04-14T23:14:46Z | heartbeat | daemon tick",
     "2026-04-14T23:15:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:16:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:16:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:17:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability now logs exhibitor's actual staff schedule (days/times present) so engineers see temporal coverage gaps instantly during live testing.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now show inline computation when partial data present so engineers see degradation math in real time.",
   "last_category": "Matching Engine",
-  "last_detail": "Availability now logs exhibitor's actual staff schedule (days/times present) so engineers see temporal coverage gaps instantly during live testing.",
-  "last_impact": "Engineers debugging zero-availability scores currently see only user days + a boolean flag \u2014 no visibility into which days the exhibitor claims to be present. When a promising match vanishes due to schedule mismatch, investigation requires manual DB queries to see staff_schedule[] contents. This change surfaces the exhibitor's actual schedule window in the same debug line, cutting triage time from 2\u20133 minutes to 5 seconds per match. Directly supports the CORE PRINCIPLE: engineers must see *why*",
-  "next_target": "Availability debug logs now show overlap between user days and exhibitor schedule so engineers see partial-coverage decisions instantly.",
+  "last_detail": "Commercial fit debug logs now show inline computation when partial data present so engineers see degradation math in real time.",
+  "last_impact": "When an exhibitor is missing 1 of 4 commercial fit fields, engineers previously saw only the degraded score (0.075) with no explanation \u2014 forcing them to mentally reconstruct whether the engine applied half-weight correctly or silently failed. Now the log shows `base=0.1125 degraded=0.075` inline, making partial-data handling instantly verifiable during live fair testing. This directly supports the SPEC.md rule: 'If structured data is missing for an exhibitor, commercial fit score = 0.075 (half",
+  "next_target": "Add inline breakdown showing which of the 4 structured fields were present vs. missing (e.g., `emp\u2713 price\u2713 target\u2717 vertical\u2713`) so engineers see data gaps instantly.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
