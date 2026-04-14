@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:47:02Z",
+  "updated_at": "2026-04-14T21:47:59Z",
   "today": "2026-04-14",
-  "today_usd": 1.30609,
-  "total_usd": 1.30609,
-  "total_prompt": 153762,
-  "total_completion": 57087,
+  "today_usd": 1.36317,
+  "total_usd": 1.36317,
+  "total_prompt": 160065,
+  "total_completion": 59632,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 153762,
-      "completion_tokens": 57087,
-      "usd": 1.30609
+      "prompt_tokens": 160065,
+      "completion_tokens": 59632,
+      "usd": 1.36317
     }
   },
   "commits": [
+    {
+      "sha": "e8fc653e2bd6aae2cd8b9f08dbc113aa10c18487",
+      "time": "2026-04-14T21:47:03Z",
+      "time_fmt": "2026-04-14 21:47 UTC",
+      "msg": "[Matching Engine] Added strict rule that commercial fit computation must log which structured fields were present vs. missing for each exhibitor in ranking debug output."
+    },
     {
       "sha": "27d63e084f128ea4e03a44f2ba4900493af1fd62",
       "time": "2026-04-14T21:46:06Z",
@@ -308,12 +314,6 @@
       "time": "2026-04-14T20:11:31Z",
       "time_fmt": "2026-04-14 20:11 UTC",
       "msg": "feat: GitHub Actions daemon (15-min cron, heartbeat + Claude improvements)"
-    },
-    {
-      "sha": "5a35e53bfefd35b9d5af93499ee0edad3b7a266d",
-      "time": "2026-04-14T20:07:52Z",
-      "time_fmt": "2026-04-14 20:07 UTC",
-      "msg": "chore: daemon heartbeat (local PAT test)"
     }
   ],
   "log_tail": [
@@ -347,13 +347,14 @@
     "2026-04-14T21:42:37Z | heartbeat | daemon tick",
     "2026-04-14T21:43:37Z | heartbeat | daemon tick",
     "2026-04-14T21:45:02Z | heartbeat | daemon tick",
-    "2026-04-14T21:46:09Z | heartbeat | daemon tick"
+    "2026-04-14T21:46:09Z | heartbeat | daemon tick",
+    "2026-04-14T21:47:09Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added strict rule that commercial fit computation must log which structured fields were present vs. missing for each exhibitor in ranking debug output.",
+  "last_completed": "[Matching Engine] Added explicit rule that commercial fit debug logs must include user query context so engineers can trace bad matches to missing data.",
   "last_category": "Matching Engine",
-  "last_detail": "Added strict rule that commercial fit computation must log which structured fields were present vs. missing for each exhibitor in ranking debug output.",
-  "last_impact": "When a user reports a bad recommendation (e.g., startup matched to enterprise solution), engineers can now instantly see whether the commercial fit score was computed from real data (employee_count=12, price_tier=budget) or degraded to the 0.075 fallback due to missing fields. This closes the debugging gap between \"scoring works in theory\" and \"data quality broke the match in production.\" Directly supports the CORE PRINCIPLE by making the matching engine auditable \u2014 every ranking decision can be",
-  "next_target": "Add rule requiring the matching engine to surface data quality warnings in the UI when 2+ of top 3 recommendations have degraded commercial fit scores.",
+  "last_detail": "Added explicit rule that commercial fit debug logs must include user query context so engineers can trace bad matches to missing data.",
+  "last_impact": "When a user reports \"I asked for robotics automation but got matched to a tiny consultant,\" engineers can now see in one log line whether the mismatch came from missing employee_count data or bad semantic scoring. Without user context in the debug output, you have to cross-reference chat logs + ranking logs + DB dumps manually \u2014 wasting 20+ minutes per bug report. This ties back to the CORE PRINCIPLE: every tool must make the user feel they're missing something if they don't use it \u2014 but if the",
+  "next_target": "Add explicit rule that social proof scoring must verify case studies are in the same industry vertical as the user, not just keyword-match \"automation.\"",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
