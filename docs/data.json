@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:19:29Z",
+  "updated_at": "2026-04-14T22:20:30Z",
   "today": "2026-04-14",
-  "today_usd": 2.6792,
-  "total_usd": 2.6792,
-  "total_prompt": 329684,
-  "total_completion": 113444,
+  "today_usd": 2.72815,
+  "total_usd": 2.72815,
+  "total_prompt": 335715,
+  "total_completion": 115501,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 329684,
-      "completion_tokens": 113444,
-      "usd": 2.6792
+      "prompt_tokens": 335715,
+      "completion_tokens": 115501,
+      "usd": 2.72815
     }
   },
   "commits": [
+    {
+      "sha": "c3341361976324c8b663c8d0dec81703b99910ba",
+      "time": "2026-04-14T22:19:31Z",
+      "time_fmt": "2026-04-14 22:19 UTC",
+      "msg": "[Matching Engine] Commercial fit now defaults to 0.075 when structured fields are missing instead of failing silently \u2014 prevents zero-score exhibitors from vanishing."
+    },
     {
       "sha": "c23b6548d246b01f99b95fe76bf0bcd43c8eda2e",
       "time": "2026-04-14T22:18:28Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:55:31Z",
       "time_fmt": "2026-04-14 22:55 UTC",
       "msg": "[hannes] cron: every minute, no breaks"
-    },
-    {
-      "sha": "12d50937011e1441f19d0e21b34077bff850a0fa",
-      "time": "2026-04-14T22:54:07Z",
-      "time_fmt": "2026-04-14 22:54 UTC",
-      "msg": "[bot] priority note from Hannes @ 2026-04-14T20:54:07Z"
     }
   ],
   "log_tail": [
-    "2026-04-14T21:32:55Z | heartbeat | daemon tick",
     "2026-04-14T21:34:41Z | heartbeat | daemon tick",
     "2026-04-14T21:36:29Z | heartbeat | daemon tick",
     "2026-04-14T21:38:14Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:15:47Z | heartbeat | daemon tick",
     "2026-04-14T22:16:47Z | heartbeat | daemon tick",
     "2026-04-14T22:17:46Z | heartbeat | daemon tick",
-    "2026-04-14T22:18:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:18:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:19:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now defaults to 0.075 when structured fields are missing instead of failing silently \u2014 prevents zero-score exhibitors from vanishing.",
+  "last_completed": "[Matching Engine] Availability score now defaults to 0.01 when staff schedule data is missing instead of zero \u2014 prevents complete filtering of otherwise strong matches.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now defaults to 0.075 when structured fields are missing instead of failing silently \u2014 prevents zero-score exhibitors from vanishing.",
-  "last_impact": "When exhibitors lack employee_count/price_tier/target_customer_size/industry_vertical data, they were getting 0.00 commercial fit and dropping out of rankings entirely \u2014 even if goal relevance (0.35) and solution specificity (0.20) were perfect. Now they get half-weight neutral signal (0.075 instead of 0.15), staying visible while signaling incomplete data. This stops silent data gaps from destroying otherwise strong matches, directly supporting the core principle: users must see the best exhibi",
-  "next_target": "Add structured field completeness percentage to debug logs so engineers instantly see which exhibitors need data enrichment.",
+  "last_detail": "Availability score now defaults to 0.01 when staff schedule data is missing instead of zero \u2014 prevents complete filtering of otherwise strong matches.",
+  "last_impact": "When exhibitors lack schedule data, they still get half-credit availability scoring (0.01 instead of 0.02) so they remain visible in rankings if other factors are strong. This prevents the catastrophic vanishing-match bug where a perfect goal/solution/commercial fit exhibitor drops to zero rank solely because schedule upload is incomplete. Mirrors the commercial fit partial-score logic (0.075 when missing) and keeps the matching engine robust to incomplete data while preserving the integrity of",
+  "next_target": "Add availability debug logging to stderr with [AVDBG] prefix so engineers can instantly see which exhibitors are getting partial vs. full availability credit during live ranking sessions.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
