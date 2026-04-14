@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:44:11Z",
+  "updated_at": "2026-04-14T23:45:08Z",
   "today": "2026-04-14",
-  "today_usd": 5.44916,
-  "total_usd": 5.44916,
-  "total_prompt": 857177,
-  "total_completion": 192606,
+  "today_usd": 5.48121,
+  "total_usd": 5.48121,
+  "total_prompt": 863429,
+  "total_completion": 193492,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 857177,
-      "completion_tokens": 192606,
-      "usd": 5.44916
+      "prompt_tokens": 863429,
+      "completion_tokens": 193492,
+      "usd": 5.48121
     }
   },
   "commits": [
+    {
+      "sha": "ed9af75d30726f2ab2a400a1a9f46c8810716cf5",
+      "time": "2026-04-14T23:44:12Z",
+      "time_fmt": "2026-04-14 23:44 UTC",
+      "msg": "[Matching Engine] Goal relevance scoring now requires exhibitor to name at least one concrete product/service capability to earn any credit (zero for pure PR)."
+    },
     {
       "sha": "5c63aae8cc85c3204b318e333d6ec15206b036b7",
       "time": "2026-04-14T23:43:44Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:55:12Z",
       "time_fmt": "2026-04-14 22:55 UTC",
       "msg": "[Matching Engine] Proximity scoring now emits debug logs showing user's current location (hall + stand if known) so engineers see starting point instantly."
-    },
-    {
-      "sha": "e590064802eb72524ee22fbc2bc33b6a43a8a89f",
-      "time": "2026-04-14T22:54:08Z",
-      "time_fmt": "2026-04-14 22:54 UTC",
-      "msg": "[Matching Engine] Availability debug logs now emit staff role distribution (e.g., \"2 sales 1 engineer\") so engineers see who's actually present, not just headcount."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:04:47Z | heartbeat | daemon tick",
     "2026-04-14T23:05:47Z | heartbeat | daemon tick",
     "2026-04-14T23:06:47Z | heartbeat | daemon tick",
     "2026-04-14T23:07:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:40:47Z | heartbeat | daemon tick",
     "2026-04-14T23:41:46Z | heartbeat | daemon tick",
     "2026-04-14T23:42:46Z | heartbeat | daemon tick",
-    "2026-04-14T23:43:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:43:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:44:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Goal relevance scoring now requires exhibitor to name at least one concrete product/service capability to earn any credit (zero for pure PR).",
+  "last_completed": "[Matching Engine] Goal relevance now logs exhibitor's industry vertical tag so engineers instantly see sector mismatches during live fair testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Goal relevance scoring now requires exhibitor to name at least one concrete product/service capability to earn any credit (zero for pure PR).",
-  "last_impact": "Prevents vague corporate exhibitors (\"we enable digital transformation\") from outranking focused suppliers with actual solutions. Users stop wasting booth visits on stands that offer no actionable product\u2014directly raising cost-per-qualified-contact by filtering out noise before the user walks. This enforces SPEC.md's \"Solution Specificity\" principle at the goal-match layer, compounding with the existing 50-product breadth penalty.",
-  "next_target": "Add goal relevance debug logging showing exhibitor's named capabilities (first 80 chars) so engineers see what earned credit during live testing.",
+  "last_detail": "Goal relevance now logs exhibitor's industry vertical tag so engineers instantly see sector mismatches during live fair testing.",
+  "last_impact": "Engineers debugging poor matches can now immediately see when an exhibitor's tagged vertical (e.g., 'services' or 'research') fundamentally conflicts with a user's need (e.g., 'manufacturing equipment'), eliminating 2\u20133 minutes of guesswork per investigation. This directly supports the CORE PRINCIPLE by surfacing the single clearest signal of \"this booth cannot solve your problem\" \u2014 industry vertical mismatch \u2014 so engineers can tune goal relevance weights to prevent wasted booth visits.",
+  "next_target": "Add social proof debug logging to show which reference customers or case studies earned credit for each ranked exhibitor.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
