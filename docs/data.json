@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:20:32Z",
+  "updated_at": "2026-04-14T23:21:05Z",
   "today": "2026-04-14",
-  "today_usd": 4.65327,
-  "total_usd": 4.65327,
-  "total_prompt": 707243,
-  "total_completion": 169535,
+  "today_usd": 4.68203,
+  "total_usd": 4.68203,
+  "total_prompt": 713485,
+  "total_completion": 170204,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 707243,
-      "completion_tokens": 169535,
-      "usd": 4.65327
+      "prompt_tokens": 713485,
+      "completion_tokens": 170204,
+      "usd": 4.68203
     }
   },
   "commits": [
+    {
+      "sha": "06fb11e9818d5766e24e4d7ae006400028c534e4",
+      "time": "2026-04-14T23:20:34Z",
+      "time_fmt": "2026-04-14 23:20 UTC",
+      "msg": "[Matching Engine] Commercial fit now falls back to 0.075 (half weight) when structured fields missing instead of zero so strong matches don't vanish from rankings."
+    },
     {
       "sha": "b87ccb1d3f4789d006a9c4781b52c68884e94159",
       "time": "2026-04-14T23:19:19Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:31:13Z",
       "time_fmt": "2026-04-14 22:31 UTC",
       "msg": "[Matching Engine] Social proof debug logging now emits verification decisions to stderr so engineers see why case studies pass or fail scoring rules."
-    },
-    {
-      "sha": "399e8d4ccc375e9038cba986faa081f56e7a9362",
-      "time": "2026-04-14T22:30:07Z",
-      "time_fmt": "2026-04-14 22:30 UTC",
-      "msg": "[Matching Engine] Proximity scoring now logs hall/day verification checks to stderr so engineers see why location boosts succeed or fail per exhibitor."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:40:47Z | heartbeat | daemon tick",
     "2026-04-14T22:41:46Z | heartbeat | daemon tick",
     "2026-04-14T22:42:46Z | heartbeat | daemon tick",
     "2026-04-14T22:43:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:16:47Z | heartbeat | daemon tick",
     "2026-04-14T23:17:47Z | heartbeat | daemon tick",
     "2026-04-14T23:18:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:19:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:19:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:20:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now falls back to 0.075 (half weight) when structured fields missing instead of zero so strong matches don't vanish from rankings.",
+  "last_completed": "[Matching Engine] Social proof now awards half-credit (0.015) when exhibitor has named customers but no measurable outcomes so partial proof beats zero.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now falls back to 0.075 (half weight) when structured fields missing instead of zero so strong matches don't vanish from rankings.",
-  "last_impact": "Prevents catastrophic ranking failures when exhibitor data is incomplete \u2014 a robotics startup with perfect goal/solution fit but missing price_tier no longer drops to position #47 because commercial fit zeroed out. Users see relevant matches even when data quality varies across exhibitors, maintaining trust in recommendations while still penalizing scale mismatches when data IS present.",
-  "next_target": "Add availability debug logging to show which exhibitors lost ranking position due to staff schedule gaps on user's selected days.",
+  "last_detail": "Social proof now awards half-credit (0.015) when exhibitor has named customers but no measurable outcomes so partial proof beats zero.",
+  "last_impact": "Prevents strong matches from vanishing when exhibitors submit verified reference customers (named companies + industries) but haven't yet documented percentage improvements or cost reductions \u2014 user still sees social validation signal without inflated confidence from unverifiable claims. Aligns with Commercial Fit + Availability partial-credit pattern: incomplete data degrades score instead of zeroing it, keeping otherwise excellent matches visible while incentivizing full documentation.",
+  "next_target": "Add social proof debug logging to stderr with [SPDBG] prefix showing which proof type triggered credit so engineers see verification gaps live.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
