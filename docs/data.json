@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:42:04Z",
+  "updated_at": "2026-04-14T22:42:59Z",
   "today": "2026-04-14",
-  "today_usd": 3.40749,
-  "total_usd": 3.40749,
-  "total_prompt": 470855,
-  "total_completion": 133761,
+  "today_usd": 3.4359,
+  "total_usd": 3.4359,
+  "total_prompt": 477065,
+  "total_completion": 134413,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 470855,
-      "completion_tokens": 133761,
-      "usd": 3.40749
+      "prompt_tokens": 477065,
+      "completion_tokens": 134413,
+      "usd": 3.4359
     }
   },
   "commits": [
+    {
+      "sha": "4d1db783ac2b96a7eed229d1baa81274186242a7",
+      "time": "2026-04-14T22:42:05Z",
+      "time_fmt": "2026-04-14 22:42 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs now include user query text (first 40 chars) so engineers see what triggered the ranking without context-switching."
+    },
     {
       "sha": "478f470f0019be353479a52685b694d1ee305a61",
       "time": "2026-04-14T22:41:05Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:51:49Z",
       "time_fmt": "2026-04-14 21:51 UTC",
       "msg": "[Matching Engine] Added explicit rule that commercial fit debug logs must flush to stderr (not stdout) so ranking output stays clean in production pipelines."
-    },
-    {
-      "sha": "bfb0f87a96973cbc0ce5b80c31e355e15162a8f1",
-      "time": "2026-04-14T21:50:48Z",
-      "time_fmt": "2026-04-14 21:50 UTC",
-      "msg": "[Matching Engine] Added explicit rule that commercial fit debug logs must include timestamp + session_id so multi-user test scenarios remain auditable."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:02:43Z | heartbeat | daemon tick",
     "2026-04-14T22:03:43Z | heartbeat | daemon tick",
     "2026-04-14T22:04:43Z | heartbeat | daemon tick",
     "2026-04-14T22:05:43Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:38:47Z | heartbeat | daemon tick",
     "2026-04-14T22:39:47Z | heartbeat | daemon tick",
     "2026-04-14T22:40:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:41:46Z | heartbeat | daemon tick"
+    "2026-04-14T22:41:46Z | heartbeat | daemon tick",
+    "2026-04-14T22:42:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs now include user query text (first 40 chars) so engineers see what triggered the ranking without context-switching.",
+  "last_completed": "[Matching Engine] Proximity scoring now requires both hall coordinates AND user-selected days to be present before awarding any location boost.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs now include user query text (first 40 chars) so engineers see what triggered the ranking without context-switching.",
-  "last_impact": "Engineers investigating mismatches during live fair testing previously had to correlate [CFDBG] lines with separate query logs, wasting 30\u201360 seconds per incident. Now session_id + role + query appear in one grep-able line, cutting investigation time to under 10 seconds. This directly supports the CORE PRINCIPLE: if engineers can't diagnose scale/budget mismatches instantly, users waste booth visits on irrelevant exhibitors, destroying trust immediately.",
-  "next_target": "Add proximity debug logging for missing user location data so engineers see when distance scoring fails due to incomplete session state.",
+  "last_detail": "Proximity scoring now requires both hall coordinates AND user-selected days to be present before awarding any location boost.",
+  "last_impact": "Prevents false confidence scenarios where users walk to a stand that might be closed on their selected days, destroying trust instantly. Enforces the hard rule that location boost without temporal alignment = wasted booth visit. This directly supports the core principle: every output must reduce uncertainty and drive immediate action \u2014 awarding proximity points when availability is unknown violates that contract.",
+  "next_target": "Add stderr debug logging for proximity score verification so engineers see when hall data or user days are missing during live fair testing.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
