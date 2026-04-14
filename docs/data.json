@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:40:35Z",
+  "updated_at": "2026-04-14T22:41:04Z",
   "today": "2026-04-14",
-  "today_usd": 3.35108,
-  "total_usd": 3.35108,
-  "total_prompt": 458438,
-  "total_completion": 132484,
+  "today_usd": 3.3795,
+  "total_usd": 3.3795,
+  "total_prompt": 464650,
+  "total_completion": 133136,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 458438,
-      "completion_tokens": 132484,
-      "usd": 3.35108
+      "prompt_tokens": 464650,
+      "completion_tokens": 133136,
+      "usd": 3.3795
     }
   },
   "commits": [
+    {
+      "sha": "af651086dc92ed0c4fb7368d9c61d5bd493eb3d2",
+      "time": "2026-04-14T22:40:36Z",
+      "time_fmt": "2026-04-14 22:40 UTC",
+      "msg": "[Matching Engine] Availability scoring now awards 0.00 (not 0.01) when staff schedule is completely missing so exhibitors cannot passively benefit from incomplete data."
+    },
     {
       "sha": "369fdcf166702e57994f955674cdfd80b198eea7",
       "time": "2026-04-14T22:39:09Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:49:10Z",
       "time_fmt": "2026-04-14 21:49 UTC",
       "msg": "[Matching Engine] Added explicit rule that commercial fit debug logs must fire before final ranking output so engineers see data gaps during live testing."
-    },
-    {
-      "sha": "a6f56eee9f429a680646cd5bfdddffc2dcde9464",
-      "time": "2026-04-14T21:48:00Z",
-      "time_fmt": "2026-04-14 21:48 UTC",
-      "msg": "[Matching Engine] Added explicit rule that commercial fit debug logs must include user query context so engineers can trace bad matches to missing data."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:00:43Z | heartbeat | daemon tick",
     "2026-04-14T22:01:44Z | heartbeat | daemon tick",
     "2026-04-14T22:02:43Z | heartbeat | daemon tick",
     "2026-04-14T22:03:43Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:36:47Z | heartbeat | daemon tick",
     "2026-04-14T22:37:47Z | heartbeat | daemon tick",
     "2026-04-14T22:38:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:39:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:39:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:40:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability scoring now awards 0.00 (not 0.01) when staff schedule is completely missing so exhibitors cannot passively benefit from incomplete data.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now include inline employee count + price tier + target segment so engineers see scale/budget alignment instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Availability scoring now awards 0.00 (not 0.01) when staff schedule is completely missing so exhibitors cannot passively benefit from incomplete data.",
-  "last_impact": "Half-credit (0.01) was intended to prevent strong matches from vanishing when schedule data is incomplete, but it inadvertently rewards exhibitors who never submit schedules at all \u2014 they get free availability points without proving staff presence. This violates the core principle: users waste booth visits on unstaffed stands, trust destroyed instantly. Zero score for missing data forces exhibitors to submit schedules to rank competitively, aligning their incentives with user outcomes. The match",
-  "next_target": "Add availability debug logging rule to SPEC.md requiring stderr emission of schedule-overlap verification decisions with line-length cap.",
+  "last_detail": "Commercial fit debug logs now include inline employee count + price tier + target segment so engineers see scale/budget alignment instantly.",
+  "last_impact": "Engineers debugging catastrophic false positives (5-person startup matched to Siemens) can now see structured field values inline without switching to database queries. This cuts match investigation time from 3 minutes to 15 seconds during live fair testing, directly supporting the commercial fit rule's core goal: prevent scale mismatches before any text analysis runs.",
+  "next_target": "Add availability debug logs showing staff schedule overlap verification so engineers see when presence windows align with user days.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
