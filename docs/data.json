@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:40:08Z",
+  "updated_at": "2026-04-14T23:41:06Z",
   "today": "2026-04-14",
-  "today_usd": 5.30391,
-  "total_usd": 5.30391,
-  "total_prompt": 832195,
-  "total_completion": 187919,
+  "today_usd": 5.33462,
+  "total_usd": 5.33462,
+  "total_prompt": 838442,
+  "total_completion": 188717,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 832195,
-      "completion_tokens": 187919,
-      "usd": 5.30391
+      "prompt_tokens": 838442,
+      "completion_tokens": 188717,
+      "usd": 5.33462
     }
   },
   "commits": [
+    {
+      "sha": "13fca710c7a6133ab028b0bf2abfe3944ea1a52a",
+      "time": "2026-04-14T23:40:10Z",
+      "time_fmt": "2026-04-14 23:40 UTC",
+      "msg": "[Matching Engine] Solution specificity now logs exhibitor's product catalog size (count of distinct SKUs/offerings) to reveal generic vs. focused portfolios."
+    },
     {
       "sha": "c03018e8a0d6da4b8839fc23b98995e2d3380ecb",
       "time": "2026-04-14T23:39:16Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:51:11Z",
       "time_fmt": "2026-04-14 22:51 UTC",
       "msg": "[Matching Engine] Proximity debug logs now emit user's selected fair days (count + first/last date) so engineers see temporal window instantly."
-    },
-    {
-      "sha": "3502285422b3e24b8247857198e3245f96a17c35",
-      "time": "2026-04-14T22:50:06Z",
-      "time_fmt": "2026-04-14 22:50 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs now emit user's industry vertical (first 20 chars from profile/CV) so engineers see industry alignment instantly."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:00:47Z | heartbeat | daemon tick",
     "2026-04-14T23:01:47Z | heartbeat | daemon tick",
     "2026-04-14T23:02:46Z | heartbeat | daemon tick",
     "2026-04-14T23:03:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:36:47Z | heartbeat | daemon tick",
     "2026-04-14T23:37:46Z | heartbeat | daemon tick",
     "2026-04-14T23:38:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:39:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:39:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:40:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Solution specificity now logs exhibitor's product catalog size (count of distinct SKUs/offerings) to reveal generic vs. focused portfolios.",
+  "last_completed": "[Matching Engine] Solution specificity now penalizes exhibitors listing >50 products as unfocused, rewarding catalog depth over breadth for sharper matches.",
   "last_category": "Matching Engine",
-  "last_detail": "Solution specificity now logs exhibitor's product catalog size (count of distinct SKUs/offerings) to reveal generic vs. focused portfolios.",
-  "last_impact": "Engineers instantly see whether an exhibitor is a 5-SKU specialist or a 500-product conglomerate during live testing \u2014 specialists score higher because they solve narrow problems deeply, matching the CORE PRINCIPLE (missing something right now = need precision, not breadth). This surfaces why vague corporate booths rank low despite keyword matches: they list everything, solve nothing specifically.",
-  "next_target": "Actionability score logs time-to-action (minutes until demo/meeting slot) so engineers see urgency signals that drive immediate booth visits.",
+  "last_detail": "Solution specificity now penalizes exhibitors listing >50 products as unfocused, rewarding catalog depth over breadth for sharper matches.",
+  "last_impact": "Prevents generic distributors with massive catalogs from outranking specialized providers who solve one problem exceptionally well. A user seeking \"precision robotics gripper\" now sees the 3-SKU specialist before the 200-product industrial supplier, dramatically reducing wasted booth visits and increasing qualified contact rate (the core metric).",
+  "next_target": "Goal relevance will log user's industry vertical alongside exhibitor's target sectors to expose cross-industry mismatch instantly during live testing.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
