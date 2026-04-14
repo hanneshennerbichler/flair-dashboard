@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:42:32Z",
+  "updated_at": "2026-04-14T21:43:23Z",
   "today": "2026-04-14",
-  "today_usd": 1.04118,
-  "total_usd": 1.04118,
-  "total_prompt": 128771,
-  "total_completion": 44424,
+  "today_usd": 1.09858,
+  "total_usd": 1.09858,
+  "total_prompt": 134976,
+  "total_completion": 47010,
   "daily_cap": 50.0,
-  "ticks_today": 47,
+  "ticks_today": 48,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 128771,
-      "completion_tokens": 44424,
-      "usd": 1.04118
+      "prompt_tokens": 134976,
+      "completion_tokens": 47010,
+      "usd": 1.09858
     }
   },
   "commits": [
+    {
+      "sha": "1cf161e3aad9e124af83a7c4ade9e01dbae526b2",
+      "time": "2026-04-14T21:42:33Z",
+      "time_fmt": "2026-04-14 21:42 UTC",
+      "msg": "[Matching Engine] Added explicit rule that proximity boost applies only after base scoring completes, preventing distance from overriding zero-availability gate."
+    },
     {
       "sha": "a3debba648663ab1e3596816995f0c461589ae67",
       "time": "2026-04-14T21:41:00Z",
@@ -331,13 +337,14 @@
     "2026-04-14T21:36:29Z | heartbeat | daemon tick",
     "2026-04-14T21:38:14Z | heartbeat | daemon tick",
     "2026-04-14T21:40:14Z | heartbeat | daemon tick",
-    "2026-04-14T21:41:20Z | heartbeat | daemon tick"
+    "2026-04-14T21:41:20Z | heartbeat | daemon tick",
+    "2026-04-14T21:42:37Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added explicit rule that proximity boost applies only after base scoring completes, preventing distance from overriding zero-availability gate.",
+  "last_completed": "[Matching Engine] Added strict rule that commercial fit must be computed from structured company size/budget fields, not vague text descriptions.",
   "last_category": "Matching Engine",
-  "last_detail": "Added explicit rule that proximity boost applies only after base scoring completes, preventing distance from overriding zero-availability gate.",
-  "last_impact": "This closes a critical edge case where a nearby exhibitor with zero staff overlap could still appear in top 3 due to the +0.05 proximity bonus being applied before the availability gate runs. The strict ordering (score \u2192 penalize \u2192 boost \u2192 gate \u2192 rank) ensures that timing misalignment always trumps physical proximity, keeping recommendations actionable. Directly supports the core principle: \"If I don't use this, I'm missing something right now\" \u2014 a booth 50 meters away is worthless if no one is",
-  "next_target": "Add explicit rule that LLM formatter must never invent availability data or override zero-scored exhibitors with hallucinated staff schedules.",
+  "last_detail": "Added strict rule that commercial fit must be computed from structured company size/budget fields, not vague text descriptions.",
+  "last_impact": "Right now, the scoring algorithm says \"Commercial Fit: 0.15 \u2192 budget/scale/industry alignment\" but gives zero guidance on how to extract that signal from exhibitor data. Without this rule, engineers will default to semantic similarity over unstructured company descriptions, which produces false matches (startup recommends enterprise vendor because both mention \"AI\"). This change forces use of parseable fields (employee count, price tier tags, target market segment) so a 5-person robotics startup",
+  "next_target": "Add explicit data schema requirements for the commercial fit fields so engineers know which exhibitor DB columns to query.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
