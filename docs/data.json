@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:16:23Z",
+  "updated_at": "2026-04-14T22:17:27Z",
   "today": "2026-04-14",
-  "today_usd": 2.53936,
-  "total_usd": 2.53936,
-  "total_prompt": 312106,
-  "total_completion": 107637,
+  "today_usd": 2.58382,
+  "total_usd": 2.58382,
+  "total_prompt": 317855,
+  "total_completion": 109451,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 312106,
-      "completion_tokens": 107637,
-      "usd": 2.53936
+      "prompt_tokens": 317855,
+      "completion_tokens": 109451,
+      "usd": 2.58382
     }
   },
   "commits": [
+    {
+      "sha": "b42e431ac1451280e298efdc61fd1a3c01b8bb69",
+      "time": "2026-04-14T22:16:24Z",
+      "time_fmt": "2026-04-14 22:16 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs now emit to stderr with [CFDBG] prefix so engineers grep live ranking sessions without scrolling through application logs."
+    },
     {
       "sha": "e93ea35c701a7b44076de6a53a62fbe7f9951f90",
       "time": "2026-04-14T22:15:25Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:51:43Z",
       "time_fmt": "2026-04-14 22:51 UTC",
       "msg": "[bot] priority note from Hannes @ 2026-04-14T20:51:43Z"
-    },
-    {
-      "sha": "fafdf3e5eefa33e0482903598d9a551491d041fd",
-      "time": "2026-04-14T22:51:09Z",
-      "time_fmt": "2026-04-14 22:51 UTC",
-      "msg": "[bot] priority note from Hannes @ 2026-04-14T20:51:09Z"
     }
   ],
   "log_tail": [
-    "2026-04-14T21:27:35Z | heartbeat | daemon tick",
     "2026-04-14T21:29:26Z | heartbeat | daemon tick",
     "2026-04-14T21:31:04Z | heartbeat | daemon tick",
     "2026-04-14T21:32:55Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:12:47Z | heartbeat | daemon tick",
     "2026-04-14T22:13:47Z | heartbeat | daemon tick",
     "2026-04-14T22:14:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:15:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:15:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:16:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs now emit to stderr with [CFDBG] prefix so engineers grep live ranking sessions without scrolling through application logs.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs must stay under 120 chars per line so engineers grep [CFDBG] output without horizontal scrolling in terminals.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs now emit to stderr with [CFDBG] prefix so engineers grep live ranking sessions without scrolling through application logs.",
-  "last_impact": "During live fair testing, engineers run `grep CFDBG` on stderr to see every commercial fit computation in real time without filtering through unrelated application output. This cuts diagnosis time from 2\u20133 minutes (scrolling through mixed logs, cross-referencing timestamps) to under 10 seconds (one grep command shows all commercial fit decisions for the current session). Directly supports the core principle: engineers must instantly verify that the matching engine uses structured fields correctl",
-  "next_target": "Add explicit rule that commercial fit debug logs must show NULL vs. missing distinction so engineers instantly see whether a field was absent or explicitly set to NULL.",
+  "last_detail": "Commercial fit debug logs must stay under 120 chars per line so engineers grep [CFDBG] output without horizontal scrolling in terminals.",
+  "last_impact": "Long debug lines force engineers to scroll horizontally or pipe through less during live fair testing, slowing diagnosis of commercial fit mismatches by 10\u201330 seconds per exhibitor. 120-char cap ensures every [CFDBG] line fits standard terminal width (80\u2013120 cols), making real-time grep output instantly readable without reformatting. This directly supports the 'commercial fit is never text-based' enforcement rule by making field verification frictionless during high-pressure live testing.",
+  "next_target": "Add explicit rule that commercial fit debug logs must abbreviate field names (emp/price/target/vertical) to keep under 120 chars while preserving all required data.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
