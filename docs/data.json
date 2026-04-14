@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:49:08Z",
+  "updated_at": "2026-04-14T23:50:08Z",
   "today": "2026-04-14",
-  "today_usd": 5.61426,
-  "total_usd": 5.61426,
-  "total_prompt": 888405,
-  "total_completion": 197367,
+  "today_usd": 5.64531,
+  "total_usd": 5.64531,
+  "total_prompt": 894640,
+  "total_completion": 198190,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 888405,
-      "completion_tokens": 197367,
-      "usd": 5.61426
+      "prompt_tokens": 894640,
+      "completion_tokens": 198190,
+      "usd": 5.64531
     }
   },
   "commits": [
+    {
+      "sha": "8b920d099d262fbb88fecea65b8acbe458f5baa8",
+      "time": "2026-04-14T23:49:10Z",
+      "time_fmt": "2026-04-14 23:49 UTC",
+      "msg": "[Matching Engine] Actionability scoring now requires exhibitor to offer at least one concrete next-step mechanism to earn any credit (zero for passive presence)."
+    },
     {
       "sha": "65ec6251bd18c070a259584508fca8bfe79b1cef",
       "time": "2026-04-14T23:48:07Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T23:00:08Z",
       "time_fmt": "2026-04-14 23:00 UTC",
       "msg": "[Matching Engine] Proximity scoring now respects availability \u2014 zero points awarded when exhibitor has no staff coverage on user's selected days."
-    },
-    {
-      "sha": "982d468e79fc9b279b6d0ffc1779db59a3e6bda8",
-      "time": "2026-04-14T22:59:08Z",
-      "time_fmt": "2026-04-14 22:59 UTC",
-      "msg": "[Matching Engine] Proximity scoring now awards half-credit (0.05) when user has no selected days but hall data exists \u2014 prevents location from vanishing entirely."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:09:46Z | heartbeat | daemon tick",
     "2026-04-14T23:10:46Z | heartbeat | daemon tick",
     "2026-04-14T23:11:47Z | heartbeat | daemon tick",
     "2026-04-14T23:12:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:45:47Z | heartbeat | daemon tick",
     "2026-04-14T23:46:47Z | heartbeat | daemon tick",
     "2026-04-14T23:47:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:48:48Z | heartbeat | daemon tick"
+    "2026-04-14T23:48:48Z | heartbeat | daemon tick",
+    "2026-04-14T23:49:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Actionability scoring now requires exhibitor to offer at least one concrete next-step mechanism to earn any credit (zero for passive presence).",
+  "last_completed": "[Matching Engine] Commercial fit now defaults to 0.075 (half weight) when structured data is missing so strong matches stay visible instead of vanishing.",
   "last_category": "Matching Engine",
-  "last_detail": "Actionability scoring now requires exhibitor to offer at least one concrete next-step mechanism to earn any credit (zero for passive presence).",
-  "last_impact": "Prevents exhibitors who only show up with a booth from ranking above those offering demos, samples, or meeting slots \u2014 the core promise is \"probability of useful action NOW,\" and generic presence delivers zero immediate value. This enforces the CORE PRINCIPLE: if an exhibitor can't facilitate an action today, they don't belong in the top 3, no matter how relevant their product.",
-  "next_target": "Add debug log showing which concrete action types (demo/sample/meeting/trial) each exhibitor offers so engineers see why passive booths got zeroed out.",
+  "last_detail": "Commercial fit now defaults to 0.075 (half weight) when structured data is missing so strong matches stay visible instead of vanishing.",
+  "last_impact": "Prevents catastrophic ranking collapse when exhibitors lack complete price_tier/employee_count data \u2014 a robotics startup with perfect goal/solution fit no longer drops to position #47 because commercial fit zeroed out. Users see relevant matches even when data is incomplete, while still rewarding completeness over guessing from text. This directly supports the CORE PRINCIPLE: users must feel they're missing something if they don't act \u2014 silent zero-scoring destroys that by hiding strong matches",
+  "next_target": "Add commercial fit debug logging to show the 0.075 fallback path so engineers see when missing data triggered partial credit during live testing.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
