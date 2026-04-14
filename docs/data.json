@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:28:05Z",
+  "updated_at": "2026-04-14T23:29:10Z",
   "today": "2026-04-14",
-  "today_usd": 4.90574,
-  "total_usd": 4.90574,
-  "total_prompt": 757207,
-  "total_completion": 176373,
+  "today_usd": 4.93792,
+  "total_usd": 4.93792,
+  "total_prompt": 763454,
+  "total_completion": 177269,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 757207,
-      "completion_tokens": 176373,
-      "usd": 4.90574
+      "prompt_tokens": 763454,
+      "completion_tokens": 177269,
+      "usd": 4.93792
     }
   },
   "commits": [
+    {
+      "sha": "a715560e733b77e3ed2379cb95df7eb906e6125e",
+      "time": "2026-04-14T23:28:06Z",
+      "time_fmt": "2026-04-14 23:28 UTC",
+      "msg": "[Matching Engine] Proximity scoring now logs user's selected days count so engineers see temporal filter strength instantly during live testing."
+    },
     {
       "sha": "b76485cc94784a95d263f6e58431f7939f29edd4",
       "time": "2026-04-14T23:27:09Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:39:09Z",
       "time_fmt": "2026-04-14 22:39 UTC",
       "msg": "[Matching Engine] Commercial fit now logs inline computation breakdown when partial data triggers degraded scoring so engineers see the math instantly."
-    },
-    {
-      "sha": "82608bcbbf623bd9b86e28505ff49d1895a32ceb",
-      "time": "2026-04-14T22:38:05Z",
-      "time_fmt": "2026-04-14 22:38 UTC",
-      "msg": "[Matching Engine] Social proof score now logs inline case-study text snippet (first 25 chars) so engineers see what triggered verification pass/fail instantly."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:48:46Z | heartbeat | daemon tick",
     "2026-04-14T22:49:47Z | heartbeat | daemon tick",
     "2026-04-14T22:50:46Z | heartbeat | daemon tick",
     "2026-04-14T22:51:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:24:47Z | heartbeat | daemon tick",
     "2026-04-14T23:25:46Z | heartbeat | daemon tick",
     "2026-04-14T23:26:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:27:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:27:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:28:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now logs user's selected days count so engineers see temporal filter strength instantly during live testing.",
+  "last_completed": "[Matching Engine] Social proof now logs exhibitor's reference customer industries so engineers see domain-match quality instantly during live testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now logs user's selected days count so engineers see temporal filter strength instantly during live testing.",
-  "last_impact": "When engineers grep [PRXDBG] during live fair testing and see zero proximity scores, they previously couldn't distinguish between \"user didn't select days\" versus \"exhibitor hall data missing\" without cross-referencing session logs. Now the log line shows days_count=0 or days_count=3 inline, cutting investigation time from 2\u20133 minutes to 5 seconds per mystery zero score. This directly supports the CORE PRINCIPLE by letting engineers fix data gaps that destroy \"if I don't use this, I'm missing so",
-  "next_target": "Add proximity debug log showing whether exhibitor has ANY hall coordinates so engineers see missing spatial data without querying database.",
+  "last_detail": "Social proof now logs exhibitor's reference customer industries so engineers see domain-match quality instantly during live testing.",
+  "last_impact": "When a robotics startup gets matched to an exhibitor whose only reference customers are in pharma/logistics, engineers immediately see the mismatch without opening case studies. This catches false positives where an exhibitor has strong documented proof but in the wrong vertical \u2014 preventing users from wasting booth visits on suppliers with zero domain expertise in their industry.",
+  "next_target": "Add actionability debug logging showing which exact action type (meeting slot, demo, sample) triggered the 0.10 score boost.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
