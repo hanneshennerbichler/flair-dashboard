@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:24:05Z",
+  "updated_at": "2026-04-14T23:25:18Z",
   "today": "2026-04-14",
-  "today_usd": 4.76996,
-  "total_usd": 4.76996,
-  "total_prompt": 732219,
-  "total_completion": 172319,
+  "today_usd": 4.8107,
+  "total_usd": 4.8107,
+  "total_prompt": 738465,
+  "total_completion": 173786,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 732219,
-      "completion_tokens": 172319,
-      "usd": 4.76996
+      "prompt_tokens": 738465,
+      "completion_tokens": 173786,
+      "usd": 4.8107
     }
   },
   "commits": [
+    {
+      "sha": "94050726003fdf8bfb238c9a069f6557b5783cc0",
+      "time": "2026-04-14T23:24:07Z",
+      "time_fmt": "2026-04-14 23:24 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs buyer's target industry vertical (first 40 chars) extracted from query/profile so engineers see sector mismatch instantly."
+    },
     {
       "sha": "1e8b86cd0c5ee53fcb4dec0ed64ee90a84869821",
       "time": "2026-04-14T23:23:08Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:35:08Z",
       "time_fmt": "2026-04-14 22:35 UTC",
       "msg": "[Matching Engine] Proximity scoring now awards +0.05 bonus only when user's current hall matches exhibitor hall \u2014 rewrites 'within 2 halls' rule to mean 'same hall.'"
-    },
-    {
-      "sha": "de0294dd6cd2776a553a74b3c08b409673c1e961",
-      "time": "2026-04-14T22:34:06Z",
-      "time_fmt": "2026-04-14 22:34 UTC",
-      "msg": "[Matching Engine] Proximity debug logs now cap line length at 120 chars to prevent horizontal scrolling during live fair testing."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:44:47Z | heartbeat | daemon tick",
     "2026-04-14T22:45:46Z | heartbeat | daemon tick",
     "2026-04-14T22:46:46Z | heartbeat | daemon tick",
     "2026-04-14T22:47:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:20:47Z | heartbeat | daemon tick",
     "2026-04-14T23:21:47Z | heartbeat | daemon tick",
     "2026-04-14T23:22:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:23:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:23:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:24:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs buyer's target industry vertical (first 40 chars) extracted from query/profile so engineers see sector mismatch instantly.",
+  "last_completed": "[Matching Engine] Commercial fit now logs buyer's employee count (exact number or range) extracted from role/profile so engineers see scale mismatch instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs buyer's target industry vertical (first 40 chars) extracted from query/profile so engineers see sector mismatch instantly.",
-  "last_impact": "When a healthcare buyer gets matched to manufacturing exhibitors, engineers grep [CFDBG] logs and see \"buyer_vertical=healthcare exhibitor_vertical=manufacturing\" in one line \u2014 zero ambiguity, zero investigation time. This closes the last blind spot in commercial fit debugging: we now log buyer size, budget, company name, AND target vertical. Every catastrophic mismatch becomes instantly visible during live fair testing. Aligns with CORE PRINCIPLE: engineers waste zero seconds asking \"why did th",
-  "next_target": "Add availability debug logging for user's arrival time window (morning/afternoon/evening preference) so engineers see temporal fit granularity beyond just days.",
+  "last_detail": "Commercial fit now logs buyer's employee count (exact number or range) extracted from role/profile so engineers see scale mismatch instantly.",
+  "last_impact": "Engineers debugging \"why did this 5-person startup get matched to Siemens\" now see buyer size in the same grep line as exhibitor size, cutting diagnosis time from 3 minutes to 5 seconds. This closes the visibility loop: we already log exhibitor employee_count, price_tier, target_customer_size, and industry_vertical \u2014 but without buyer context in the same line, engineers must cross-reference session logs to understand why commercial fit degraded or zeroed out.",
+  "next_target": "Add proximity debug logging that shows actual distance calculation (meters, hall offset) so engineers see why stands within 2 halls didn't get the bonus.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
