@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:06:17Z",
+  "updated_at": "2026-04-14T22:07:22Z",
   "today": "2026-04-14",
-  "today_usd": 2.18954,
-  "total_usd": 2.18954,
-  "total_prompt": 256406,
-  "total_completion": 95456,
+  "today_usd": 2.22891,
+  "total_usd": 2.22891,
+  "total_prompt": 261933,
+  "total_completion": 96975,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 256406,
-      "completion_tokens": 95456,
-      "usd": 2.18954
+      "prompt_tokens": 261933,
+      "completion_tokens": 96975,
+      "usd": 2.22891
     }
   },
   "commits": [
+    {
+      "sha": "48f52c1f2333815fe0f4d34b6f4b2ce3eaa4da83",
+      "time": "2026-04-14T22:06:19Z",
+      "time_fmt": "2026-04-14 22:06 UTC",
+      "msg": "[Matching Engine] Social proof score now requires verified case studies or reference customers \u2014 no credit for generic testimonial text."
+    },
     {
       "sha": "5d55402a59b2cd57a3e311fc7d90ed9b094f86dd",
       "time": "2026-04-14T22:05:10Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:05:24Z",
       "time_fmt": "2026-04-14 22:05 UTC",
       "msg": "Synced the latest CLAUDE.md so the daemon works from Hannes's current product thinking (WTA moat, progressive identity, latest modules)."
-    },
-    {
-      "sha": "fd1c8c607ae0c969bc52e95a279ddfe8afd810cb",
-      "time": "2026-04-14T19:59:01Z",
-      "time_fmt": "2026-04-14 19:59 UTC",
-      "msg": "I clarified that every recommendation must always end with the 'Hall + Stand' label, so users instantly know where to go."
     }
   ],
   "log_tail": [
-    "2026-04-14T19:37:11Z | heartbeat | daemon tick",
     "2026-04-14T19:55:50Z | heartbeat | daemon tick",
     "2026-04-14T19:58:26Z | heartbeat | daemon tick",
     "2026-04-14T20:07:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:02:43Z | heartbeat | daemon tick",
     "2026-04-14T22:03:43Z | heartbeat | daemon tick",
     "2026-04-14T22:04:43Z | heartbeat | daemon tick",
-    "2026-04-14T22:05:43Z | heartbeat | daemon tick"
+    "2026-04-14T22:05:43Z | heartbeat | daemon tick",
+    "2026-04-14T22:06:44Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Social proof score now requires verified case studies or reference customers \u2014 no credit for generic testimonial text.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now include query text (first 40 chars) so engineers instantly see what the user asked for alongside field values.",
   "last_category": "Matching Engine",
-  "last_detail": "Social proof score now requires verified case studies or reference customers \u2014 no credit for generic testimonial text.",
-  "last_impact": "Prevents exhibitors from gaming the 0.03 social proof boost with vague \"customer success\" marketing copy. Only documented results (named companies, measurable outcomes, verifiable industry match) count \u2014 which directly ties back to the CORE PRINCIPLE: users must feel \"if I skip this booth, I'm missing a real proven solution\" not \"I'm missing corporate PR.\" This ensures the matching engine ranks exhibitors who can prove they've solved problems like the user's, which increases qualified contact ra",
-  "next_target": "Add explicit rule that proximity bonus applies only when user specifies a target hall or current location \u2014 no blind distance scoring.",
+  "last_detail": "Commercial fit debug logs now include query text (first 40 chars) so engineers instantly see what the user asked for alongside field values.",
+  "last_impact": "When an engineer sees `[CFDBG] ... emp=12 price=budget target=NULL vertical=mfg \u2192 3/4 \u2192 0.075 query=\"enterprise robotics...\"` they immediately understand why the match failed (startup matched to enterprise query) without opening separate query logs or reconstructing context. This eliminates 30\u201360 seconds per match investigation during live fair debugging sessions where every second of engineer time costs exhibitor trust.",
+  "next_target": "Add explicit rule that commercial fit score computation must cap at 0.15 even when all fields present to prevent scoring bugs from inflating total rank.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
