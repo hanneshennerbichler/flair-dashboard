@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:14:12Z",
+  "updated_at": "2026-04-14T22:15:23Z",
   "today": "2026-04-14",
-  "today_usd": 2.45321,
-  "total_usd": 2.45321,
-  "total_prompt": 300770,
-  "total_completion": 104161,
+  "today_usd": 2.49592,
+  "total_usd": 2.49592,
+  "total_prompt": 306361,
+  "total_completion": 105890,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 300770,
-      "completion_tokens": 104161,
-      "usd": 2.45321
+      "prompt_tokens": 306361,
+      "completion_tokens": 105890,
+      "usd": 2.49592
     }
   },
   "commits": [
+    {
+      "sha": "05694993263207763b4eed5fc1a007ae4f304d63",
+      "time": "2026-04-14T22:14:14Z",
+      "time_fmt": "2026-04-14 22:14 UTC",
+      "msg": "[Matching Engine] Social proof score now requires exhibitor to name at least one reference customer or cite a measurable outcome \u2014 no points for vague claims."
+    },
     {
       "sha": "3b889327f61d824a6a9a4401a2b5041f4e4858d3",
       "time": "2026-04-14T22:13:21Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:50:34Z",
       "time_fmt": "2026-04-14 22:50 UTC",
       "msg": "[bot] priority note from Hannes @ 2026-04-14T20:50:34Z"
-    },
-    {
-      "sha": "8b4ad05bdad69048900b6cacf8c6eb17abc114bb",
-      "time": "2026-04-14T22:49:14Z",
-      "time_fmt": "2026-04-14 22:49 UTC",
-      "msg": "[bot] priority note from Hannes @ 2026-04-14T20:49:13Z"
     }
   ],
   "log_tail": [
-    "2026-04-14T21:24:23Z | heartbeat | daemon tick",
     "2026-04-14T21:25:59Z | heartbeat | daemon tick",
     "2026-04-14T21:27:35Z | heartbeat | daemon tick",
     "2026-04-14T21:29:26Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:10:44Z | heartbeat | daemon tick",
     "2026-04-14T22:11:47Z | heartbeat | daemon tick",
     "2026-04-14T22:12:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:13:47Z | heartbeat | daemon tick"
+    "2026-04-14T22:13:47Z | heartbeat | daemon tick",
+    "2026-04-14T22:14:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Social proof score now requires exhibitor to name at least one reference customer or cite a measurable outcome \u2014 no points for vague claims.",
+  "last_completed": "[Matching Engine] Availability score now requires staff schedule data to be present \u2014 prevents awarding 0.02 points when exhibitor has no recorded availability.",
   "last_category": "Matching Engine",
-  "last_detail": "Social proof score now requires exhibitor to name at least one reference customer or cite a measurable outcome \u2014 no points for vague claims.",
-  "last_impact": "Prevents exhibitors from gaming the ranking with generic marketing copy ('trusted by leading companies'). Users now see boosted exhibitors only when they can prove real-world success in a similar domain \u2014 dramatically increases trust in top-3 recommendations and reduces wasted booth visits. Ties directly to CORE PRINCIPLE: if the social proof can't be verified, it doesn't reduce uncertainty.",
-  "next_target": "Add availability score debug logging showing which exhibitors were penalized for staff absence on user's selected fair days.",
+  "last_detail": "Availability score now requires staff schedule data to be present \u2014 prevents awarding 0.02 points when exhibitor has no recorded availability.",
+  "last_impact": "Stops the matching engine from giving credit to exhibitors who haven't provided staff schedules, which would otherwise inflate scores for booths that might be closed or unstaffed during the user's selected fair days. This directly supports the CORE PRINCIPLE: users must feel \"if I don't use this, I'm missing something right now\" \u2014 recommending a booth with no staff present destroys that urgency instantly. Aligns with the strict pattern already applied to proximity and commercial fit: no data = n",
+  "next_target": "Add availability field values to commercial fit debug logs so engineers see which exhibitors lack staff schedule data during ranking.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
