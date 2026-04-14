@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:46:12Z",
+  "updated_at": "2026-04-14T23:47:15Z",
   "today": "2026-04-14",
-  "today_usd": 5.51566,
-  "total_usd": 5.51566,
-  "total_prompt": 869679,
-  "total_completion": 194539,
+  "today_usd": 5.55382,
+  "total_usd": 5.55382,
+  "total_prompt": 875924,
+  "total_completion": 195834,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 869679,
-      "completion_tokens": 194539,
-      "usd": 5.51566
+      "prompt_tokens": 875924,
+      "completion_tokens": 195834,
+      "usd": 5.55382
     }
   },
   "commits": [
+    {
+      "sha": "c19bd26113f2c0404ff3232e369e07f1855cd9ff",
+      "time": "2026-04-14T23:46:14Z",
+      "time_fmt": "2026-04-14 23:46 UTC",
+      "msg": "[Matching Engine] Proximity scoring now logs user's selected day count so engineers instantly see when temporal filter is missing during live fair testing."
+    },
     {
       "sha": "d695cda9b38b9f777b44a24e0ac0df9c42aade40",
       "time": "2026-04-14T23:45:10Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:57:19Z",
       "time_fmt": "2026-04-14 22:57 UTC",
       "msg": "[Matching Engine] Availability scoring now emits exhibitor's actual staff schedule window (earliest + latest shift times) so engineers see coverage gaps instantly."
-    },
-    {
-      "sha": "8beed79fa6dd3e99fb8210741a3ce4bba59dcdb4",
-      "time": "2026-04-14T22:56:08Z",
-      "time_fmt": "2026-04-14 22:56 UTC",
-      "msg": "[Matching Engine] Social proof debug logs now emit reference customer count and outcome type breakdown so engineers see verification quality instantly."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:06:47Z | heartbeat | daemon tick",
     "2026-04-14T23:07:47Z | heartbeat | daemon tick",
     "2026-04-14T23:08:47Z | heartbeat | daemon tick",
     "2026-04-14T23:09:46Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:42:46Z | heartbeat | daemon tick",
     "2026-04-14T23:43:47Z | heartbeat | daemon tick",
     "2026-04-14T23:44:48Z | heartbeat | daemon tick",
-    "2026-04-14T23:45:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:45:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:46:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now logs user's selected day count so engineers instantly see when temporal filter is missing during live fair testing.",
+  "last_completed": "[Matching Engine] Social proof scoring now logs reference customer count and outcome metrics so engineers see what earned trust signals during live testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now logs user's selected day count so engineers instantly see when temporal filter is missing during live fair testing.",
-  "last_impact": "Engineers debugging proximity zero-scores during live fair testing currently have to reconstruct whether the user specified days by checking session logs separately \u2014 wasting 30\u201360 seconds per investigation when matches mysteriously vanish. By emitting the selected day count inline (e.g., `days=0` vs. `days=3`) in the proximity debug line, engineers see the temporal context failure immediately in the same grep output. This directly supports the hard rule that proximity = 0.00 when user days are",
-  "next_target": "Add proximity debug logging that shows hall coordinate presence flag so engineers see data completeness instantly when location scoring fails.",
+  "last_detail": "Social proof scoring now logs reference customer count and outcome metrics so engineers see what earned trust signals during live testing.",
+  "last_impact": "Right now engineers cannot tell why an exhibitor got social proof credit \u2014 was it a named reference customer, a measurable outcome, or a documented case study? This makes debugging false positives (generic testimonials) invisible during live fair sessions. Logging reference customer count + outcome presence (yes/no, first 40 chars if yes) lets engineers spot gaming attempts (\"trusted by thousands\" \u2192 0 references logged \u2192 correctly scored zero) in real time without replaying database queries.",
+  "next_target": "Add actionability logging that shows which concrete next-step options (demo slot, sample request, calendar link) were verified present vs. merely claimed.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
