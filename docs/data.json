@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:56:14Z",
+  "updated_at": "2026-04-14T23:57:11Z",
   "today": "2026-04-14",
-  "today_usd": 5.84314,
-  "total_usd": 5.84314,
-  "total_prompt": 932006,
-  "total_completion": 203906,
+  "today_usd": 5.87675,
+  "total_usd": 5.87675,
+  "total_prompt": 938216,
+  "total_completion": 204905,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 932006,
-      "completion_tokens": 203906,
-      "usd": 5.84314
+      "prompt_tokens": 938216,
+      "completion_tokens": 204905,
+      "usd": 5.87675
     }
   },
   "commits": [
+    {
+      "sha": "eb6b1ff51d1d788142255b32a223d42351db37ed",
+      "time": "2026-04-14T23:56:15Z",
+      "time_fmt": "2026-04-14 23:56 UTC",
+      "msg": "[Matching Engine] Solution specificity now logs exhibitor's product count so engineers instantly see catalog breadth during live fair testing."
+    },
     {
       "sha": "7a802e0a3aec97ed6f0607ca291177648854b64e",
       "time": "2026-04-14T23:55:16Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T23:07:09Z",
       "time_fmt": "2026-04-14 23:07 UTC",
       "msg": "[Matching Engine] Commercial fit now logs buyer's employee count (from role/company/query) so engineers see scale mismatches instantly during live testing."
-    },
-    {
-      "sha": "527a221d47c483367bd6089d69ddaa7d6db3956a",
-      "time": "2026-04-14T23:06:13Z",
-      "time_fmt": "2026-04-14 23:06 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs now show buyer's industry vertical (extracted from role/company/query) so engineers see sector alignment instantly."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:16:47Z | heartbeat | daemon tick",
     "2026-04-14T23:17:47Z | heartbeat | daemon tick",
     "2026-04-14T23:18:47Z | heartbeat | daemon tick",
     "2026-04-14T23:19:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:52:48Z | heartbeat | daemon tick",
     "2026-04-14T23:53:48Z | heartbeat | daemon tick",
     "2026-04-14T23:54:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:55:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:55:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:56:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Solution specificity now logs exhibitor's product count so engineers instantly see catalog breadth during live fair testing.",
+  "last_completed": "[Matching Engine] Goal relevance now logs user's stated problem (first 40 chars) so engineers instantly see what need drove the match during live testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Solution specificity now logs exhibitor's product count so engineers instantly see catalog breadth during live fair testing.",
-  "last_impact": "Engineers running live fair tests can now instantly diagnose why a broad-catalog exhibitor (e.g., 87 products) scored lower than a focused specialist (12 products) \u2014 the debug line shows product count next to the specificity score, eliminating guesswork about catalog breadth penalties. This directly supports the CORE PRINCIPLE by making the scoring transparent: users get sharper matches because the engine rewards depth over breadth, and engineers can verify this logic in real time without re-run",
-  "next_target": "Add goal relevance debug logging to show whether exhibitor named concrete capabilities versus generic marketing text.",
+  "last_detail": "Goal relevance now logs user's stated problem (first 40 chars) so engineers instantly see what need drove the match during live testing.",
+  "last_impact": "Engineers debugging a bad match during Hannover Messe can now see the exact user problem text that triggered goal relevance scoring \u2014 instantly revealing whether the LLM correctly parsed \"need robotics for assembly line\" vs. misinterpreting vague input. This closes the last diagnostic gap in goal relevance (we already log exhibitor vertical + product capability presence) \u2014 now the full match triangle (user need / exhibitor sector / product fit) is visible in one grep.",
+  "next_target": "Add goal relevance debug logging that shows LLM's semantic similarity score between user problem and exhibitor solution text.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
