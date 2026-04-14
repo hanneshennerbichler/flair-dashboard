@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:07:07Z",
+  "updated_at": "2026-04-14T23:08:09Z",
   "today": "2026-04-14",
-  "today_usd": 4.19645,
-  "total_usd": 4.19645,
-  "total_prompt": 626216,
-  "total_completion": 155285,
+  "today_usd": 4.22686,
+  "total_usd": 4.22686,
+  "total_prompt": 632451,
+  "total_completion": 156065,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 626216,
-      "completion_tokens": 155285,
-      "usd": 4.19645
+      "prompt_tokens": 632451,
+      "completion_tokens": 156065,
+      "usd": 4.22686
     }
   },
   "commits": [
+    {
+      "sha": "0690ae52ac997e19409a611e4edf514719ecf670",
+      "time": "2026-04-14T23:07:09Z",
+      "time_fmt": "2026-04-14 23:07 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs buyer's employee count (from role/company/query) so engineers see scale mismatches instantly during live testing."
+    },
     {
       "sha": "527a221d47c483367bd6089d69ddaa7d6db3956a",
       "time": "2026-04-14T23:06:13Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:18:28Z",
       "time_fmt": "2026-04-14 22:18 UTC",
       "msg": "[Matching Engine] Proximity boost now applies only when both hall data AND user selected days are present \u2014 prevents scoring when either constraint is missing."
-    },
-    {
-      "sha": "5f13e0817149dd73e49cf5bd3df0b461d2d438f9",
-      "time": "2026-04-14T22:17:29Z",
-      "time_fmt": "2026-04-14 22:17 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs must stay under 120 chars per line so engineers grep [CFDBG] output without horizontal scrolling in terminals."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:27:47Z | heartbeat | daemon tick",
     "2026-04-14T22:28:46Z | heartbeat | daemon tick",
     "2026-04-14T22:29:46Z | heartbeat | daemon tick",
     "2026-04-14T22:30:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:03:46Z | heartbeat | daemon tick",
     "2026-04-14T23:04:47Z | heartbeat | daemon tick",
     "2026-04-14T23:05:47Z | heartbeat | daemon tick",
-    "2026-04-14T23:06:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:06:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:07:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs buyer's employee count (from role/company/query) so engineers see scale mismatches instantly during live testing.",
+  "last_completed": "[Matching Engine] Commercial fit now extracts buyer's industry vertical from user query when role/company context missing.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs buyer's employee count (from role/company/query) so engineers see scale mismatches instantly during live testing.",
-  "last_impact": "Engineers grep '[CFDBG]' during Hannover Messe and immediately see why a 5-person startup got matched to Siemens (buyer emp=5 vs seller emp=350000) without opening debugger or database. This catches catastrophic scale mismatches in real time before the user wastes a booth visit. Directly implements the Commercial Fit Computation Rule's requirement that scale alignment be transparent and verifiable from logs alone.",
-  "next_target": "Add buyer's price tier preference to commercial fit debug logs so engineers see budget misalignment without guessing from role text.",
+  "last_detail": "Commercial fit now extracts buyer's industry vertical from user query when role/company context missing.",
+  "last_impact": "When a user asks \"looking for robotics automation for automotive assembly\" but hasn't filled profile, commercial fit can now score exhibitors targeting automotive vertical vs. generic robotics \u2014 prevents sector mismatches that waste booth visits. Closes the last gap in commercial fit buyer context extraction (employee count, budget tier, target customer size already covered \u2014 vertical was missing).",
+  "next_target": "Add commercial fit debug logging for buyer vertical extraction fallback chain so engineers see when vertical comes from query vs. role vs. company.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
