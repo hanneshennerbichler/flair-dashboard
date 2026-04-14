@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:12:05Z",
+  "updated_at": "2026-04-14T23:13:15Z",
   "today": "2026-04-14",
-  "today_usd": 4.36067,
-  "total_usd": 4.36067,
-  "total_prompt": 657388,
-  "total_completion": 159999,
+  "today_usd": 4.39842,
+  "total_usd": 4.39842,
+  "total_prompt": 663632,
+  "total_completion": 161267,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 657388,
-      "completion_tokens": 159999,
-      "usd": 4.36067
+      "prompt_tokens": 663632,
+      "completion_tokens": 161267,
+      "usd": 4.39842
     }
   },
   "commits": [
+    {
+      "sha": "f20e652e86d6938b3a23b299729d01a20b9f7bd2",
+      "time": "2026-04-14T23:12:07Z",
+      "time_fmt": "2026-04-14 23:12 UTC",
+      "msg": "[Matching Engine] Social proof debug logs now emit exhibitor's actual reference customers (first 60 chars of names/industries) so engineers see proof instantly."
+    },
     {
       "sha": "d14d4b797b21ffe493fa8be8724fd23416180131",
       "time": "2026-04-14T23:11:10Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T22:23:10Z",
       "time_fmt": "2026-04-14 22:23 UTC",
       "msg": "[Matching Engine] Commercial fit debug logs now include actual field values inline so engineers see missing data without querying the database."
-    },
-    {
-      "sha": "10b3f7b5768767a868f84d37a7183d3918390317",
-      "time": "2026-04-14T22:22:09Z",
-      "time_fmt": "2026-04-14 22:22 UTC",
-      "msg": "[Matching Engine] Added hard rule requiring commercial fit debug logs to include inline computed score breakdown when fields are missing so engineers see degradation math instantly."
     }
   ],
   "log_tail": [
-    "2026-04-14T22:32:47Z | heartbeat | daemon tick",
     "2026-04-14T22:33:47Z | heartbeat | daemon tick",
     "2026-04-14T22:34:46Z | heartbeat | daemon tick",
     "2026-04-14T22:35:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:08:47Z | heartbeat | daemon tick",
     "2026-04-14T23:09:46Z | heartbeat | daemon tick",
     "2026-04-14T23:10:46Z | heartbeat | daemon tick",
-    "2026-04-14T23:11:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:11:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:12:46Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Social proof debug logs now emit exhibitor's actual reference customers (first 60 chars of names/industries) so engineers see proof instantly.",
+  "last_completed": "[Matching Engine] Proximity debug logs now show exhibitor's hall coordinates so engineers see spatial data quality instantly during live testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Social proof debug logs now emit exhibitor's actual reference customers (first 60 chars of names/industries) so engineers see proof instantly.",
-  "last_impact": "Engineers debugging ranking during live fair testing can now verify in one glance whether an exhibitor's +0.03 social proof boost came from real named customers (e.g., \"Siemens Energy (wind), BASF (chemicals)\") or was incorrectly awarded to vague marketing claims. This eliminates 2\u20133 minutes of database lookups per disputed match and surfaces exhibitors gaming the system by submitting testimonials without verifiable outcomes. Directly enforces the Social Proof Verification Rule \u2014 no named custom",
-  "next_target": "Add social proof debug logs showing measurable outcomes text (first 40 chars of percentage/time/cost claims) so engineers verify quantified results.",
+  "last_detail": "Proximity debug logs now show exhibitor's hall coordinates so engineers see spatial data quality instantly during live testing.",
+  "last_impact": "Engineers waste 1\u20133 minutes per failed proximity match trying to determine if the exhibitor has valid hall data or if the user's selected days are the blocker. This change surfaces hall coordinates in the same debug line that already shows user query and availability status, so the root cause (missing geo data vs. missing temporal window vs. both) is visible in one grep. Directly supports the CORE PRINCIPLE: proximity score must reflect real-world walkability, and engineers need instant visibili",
+  "next_target": "Add exhibitor name (first 30 chars) to all five scoring debug logs so engineers can correlate scores to actual companies without joining database tables.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
