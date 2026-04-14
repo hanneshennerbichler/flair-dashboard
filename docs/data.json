@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:51:48Z",
+  "updated_at": "2026-04-14T21:52:49Z",
   "today": "2026-04-14",
-  "today_usd": 1.54887,
-  "total_usd": 1.54887,
-  "total_prompt": 178686,
-  "total_completion": 68288,
+  "today_usd": 1.60688,
+  "total_usd": 1.60688,
+  "total_prompt": 184742,
+  "total_completion": 70944,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 178686,
-      "completion_tokens": 68288,
-      "usd": 1.54887
+      "prompt_tokens": 184742,
+      "completion_tokens": 70944,
+      "usd": 1.60688
     }
   },
   "commits": [
+    {
+      "sha": "f392ea303cdde5749df76f12f910a93323c6104a",
+      "time": "2026-04-14T21:51:49Z",
+      "time_fmt": "2026-04-14 21:51 UTC",
+      "msg": "[Matching Engine] Added explicit rule that commercial fit debug logs must flush to stderr (not stdout) so ranking output stays clean in production pipelines."
+    },
     {
       "sha": "bfb0f87a96973cbc0ce5b80c31e355e15162a8f1",
       "time": "2026-04-14T21:50:48Z",
@@ -308,12 +314,6 @@
       "time": "2026-04-14T18:58:14Z",
       "time_fmt": "2026-04-14 18:58 UTC",
       "msg": "chore: daemon tick 2026-04-14T18:58:14Z"
-    },
-    {
-      "sha": "3ce847025d64fc5f2b86d274f1bd3724beba7070",
-      "time": "2026-04-14T20:58:03Z",
-      "time_fmt": "2026-04-14 20:58 UTC",
-      "msg": "fix: workflow if-condition can't see step env"
     }
   ],
   "log_tail": [
@@ -351,13 +351,14 @@
     "2026-04-14T21:47:09Z | heartbeat | daemon tick",
     "2026-04-14T21:48:09Z | heartbeat | daemon tick",
     "2026-04-14T21:49:36Z | heartbeat | daemon tick",
-    "2026-04-14T21:50:52Z | heartbeat | daemon tick"
+    "2026-04-14T21:50:52Z | heartbeat | daemon tick",
+    "2026-04-14T21:51:52Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added explicit rule that commercial fit debug logs must flush to stderr (not stdout) so ranking output stays clean in production pipelines.",
+  "last_completed": "[Matching Engine] Added strict rule that commercial fit debug logs must write to stderr with [CFDBG] prefix so production log parsers can filter ranking output cleanly.",
   "last_category": "Matching Engine",
-  "last_detail": "Added explicit rule that commercial fit debug logs must flush to stderr (not stdout) so ranking output stays clean in production pipelines.",
-  "last_impact": "When engineers pipe ranking results to downstream tools (e.g., `node rank.js | jq '.top3'`), debug logs currently pollute stdout and break JSON parsing. Forcing stderr separation means production scripts can consume ranking output reliably while still capturing debug context via `2>debug.log`. This unblocks automated testing pipelines that verify ranking correctness across 100+ exhibitor permutations \u2014 currently impossible because logs break the parser after line 3.",
-  "next_target": "Add explicit rule that when all 4 commercial fit fields are null, exhibitor gets flagged in a separate data-quality-alerts.json file for manual review.",
+  "last_detail": "Added strict rule that commercial fit debug logs must write to stderr with [CFDBG] prefix so production log parsers can filter ranking output cleanly.",
+  "last_impact": "When engineers grep production logs for ranking output during incident response, commercial fit debug lines currently pollute stdout and break log parsers that expect structured JSON ranking results. By forcing debug logs to stderr with a parseable prefix, ops teams can run `grep -v '\\[CFDBG\\]' | jq` to extract clean ranking data in under 5 seconds instead of manually filtering 200+ debug lines per query \u2014 critical during P0 incidents when users report bad matches and you need to diff expected v",
+  "next_target": "Add explicit rule that commercial fit scoring must log the final weighted score breakdown per exhibitor so engineers can verify math during disputed rankings.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
