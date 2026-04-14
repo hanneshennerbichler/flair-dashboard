@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:32:11Z",
+  "updated_at": "2026-04-14T22:33:04Z",
   "today": "2026-04-14",
-  "today_usd": 3.09684,
-  "total_usd": 3.09684,
-  "total_prompt": 409282,
-  "total_completion": 125366,
+  "today_usd": 3.12437,
+  "total_usd": 3.12437,
+  "total_prompt": 415429,
+  "total_completion": 125972,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 409282,
-      "completion_tokens": 125366,
-      "usd": 3.09684
+      "prompt_tokens": 415429,
+      "completion_tokens": 125972,
+      "usd": 3.12437
     }
   },
   "commits": [
+    {
+      "sha": "4a00a65dfaab658f8351748ac91a4321e7c1d381",
+      "time": "2026-04-14T22:32:12Z",
+      "time_fmt": "2026-04-14 22:32 UTC",
+      "msg": "[Matching Engine] Availability scoring now logs schedule overlap verification to stderr so engineers see when staff presence aligns with user days."
+    },
     {
       "sha": "1b20518981709eff746d0929077c1e2b8492311a",
       "time": "2026-04-14T22:31:13Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:39:12Z",
       "time_fmt": "2026-04-14 21:39 UTC",
       "msg": "[Matching Engine] Added explicit rule that weight adjustments must document the proportional reduction math so future changes preserve ranking integrity."
-    },
-    {
-      "sha": "25cc98f032d49f5e55bdb3f531e93e11d837a33f",
-      "time": "2026-04-14T21:37:12Z",
-      "time_fmt": "2026-04-14 21:37 UTC",
-      "msg": "[Matching Engine] Added explicit penalty application order so vague-booth penalty (-0.15) runs before availability gate, preventing score inflation bugs."
     }
   ],
   "log_tail": [
-    "2026-04-14T21:50:52Z | heartbeat | daemon tick",
     "2026-04-14T21:51:52Z | heartbeat | daemon tick",
     "2026-04-14T21:52:54Z | heartbeat | daemon tick",
     "2026-04-14T21:54:02Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:28:46Z | heartbeat | daemon tick",
     "2026-04-14T22:29:46Z | heartbeat | daemon tick",
     "2026-04-14T22:30:47Z | heartbeat | daemon tick",
-    "2026-04-14T22:31:46Z | heartbeat | daemon tick"
+    "2026-04-14T22:31:46Z | heartbeat | daemon tick",
+    "2026-04-14T22:32:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability scoring now logs schedule overlap verification to stderr so engineers see when staff presence aligns with user days.",
+  "last_completed": "[Matching Engine] Proximity debug logs now include user's current hall location when available so engineers see distance computation context instantly.",
   "last_category": "Matching Engine",
-  "last_detail": "Availability scoring now logs schedule overlap verification to stderr so engineers see when staff presence aligns with user days.",
-  "last_impact": "Engineers debugging why an exhibitor ranks lower than expected can now instantly see whether staff schedule data overlapped with the user's selected fair days, or whether the 0.01 degraded score was applied due to missing schedule. This eliminates the current blind spot where availability contributes to ranking but verification logic is invisible \u2014 wasting 2\u20133 minutes per investigation as engineers manually cross-reference schedules against user profiles.",
-  "next_target": "Add debug logging for social proof verification decisions showing which case studies passed measurable-outcome checks and which were rejected as generic.",
+  "last_detail": "Proximity debug logs now include user's current hall location when available so engineers see distance computation context instantly.",
+  "last_impact": "When engineers grep for [PROXDBG] during live fair testing, they now see BOTH exhibitor hall AND user's starting point in the same line \u2014 eliminates guessing why distance calculations produce unexpected rankings. Directly supports the matching engine's 0.10 proximity weight + 0.05 bonus rule by making the physical context visible in real time, enabling instant diagnosis of \"why is this far stand ranked high?\" questions.",
+  "next_target": "Add stderr debug logging for actionability score computations so engineers see when meeting slots or demo availability drive ranking boosts.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
