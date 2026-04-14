@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:44:57Z",
+  "updated_at": "2026-04-14T21:46:04Z",
   "today": "2026-04-14",
-  "today_usd": 1.17734,
-  "total_usd": 1.17734,
-  "total_prompt": 141229,
-  "total_completion": 51010,
+  "today_usd": 1.24626,
+  "total_usd": 1.24626,
+  "total_prompt": 147487,
+  "total_completion": 54353,
   "daily_cap": 50.0,
-  "ticks_today": 49,
+  "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 141229,
-      "completion_tokens": 51010,
-      "usd": 1.17734
+      "prompt_tokens": 147487,
+      "completion_tokens": 54353,
+      "usd": 1.24626
     }
   },
   "commits": [
+    {
+      "sha": "a70a846b476ad458713904b45adb5a3716f8332e",
+      "time": "2026-04-14T21:44:59Z",
+      "time_fmt": "2026-04-14 21:44 UTC",
+      "msg": "[Docs & Spec] Added explicit rule that scoring weight changes require commit-message verification of sum=1.00 to prevent silent ranking corruption."
+    },
     {
       "sha": "9675398ddab95b46f9a276b8f03b9d6b342877aa",
       "time": "2026-04-14T21:43:25Z",
@@ -308,12 +314,6 @@
       "time": "2026-04-14T19:25:34Z",
       "time_fmt": "2026-04-14 19:25 UTC",
       "msg": "Add SPEC.md \u2014 product specification for Flair daemon"
-    },
-    {
-      "sha": "413b1a01e76bf0f1a22a7073b796cf2a2a097f06",
-      "time": "2026-04-12T19:03:44Z",
-      "time_fmt": "2026-04-12 19:03 UTC",
-      "msg": "Initial commit: Flair (formerly Messe Chat)"
     }
   ],
   "log_tail": [
@@ -345,13 +345,14 @@
     "2026-04-14T21:40:14Z | heartbeat | daemon tick",
     "2026-04-14T21:41:20Z | heartbeat | daemon tick",
     "2026-04-14T21:42:37Z | heartbeat | daemon tick",
-    "2026-04-14T21:43:37Z | heartbeat | daemon tick"
+    "2026-04-14T21:43:37Z | heartbeat | daemon tick",
+    "2026-04-14T21:45:02Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Docs & Spec] Added explicit rule that scoring weight changes require commit-message verification of sum=1.00 to prevent silent ranking corruption.",
-  "last_category": "Docs & Spec",
-  "last_detail": "Added explicit rule that scoring weight changes require commit-message verification of sum=1.00 to prevent silent ranking corruption.",
-  "last_impact": "Engineers frequently add scoring factors in parallel (e.g., one dev adds \"user feedback\" 0.04, another adds \"booth quality\" 0.05 \u2014 both reducing the same base weights). Without enforced verification, weights silently drift to 1.09, breaking ranking determinism. Users see inconsistent results across sessions, trust collapses. This rule makes weight integrity non-negotiable: if your commit can't show the math proving sum=1.00, CI rejects it.",
-  "next_target": "Add explicit rule that availability gate failure (score\u21920) must preserve raw_score in logs so engineers can debug why semantically perfect matches disappeared.",
+  "last_completed": "[Matching Engine] Added explicit rule that commercial fit score defaults to 0.075 when structured data is missing, preventing false confidence from text guessing.",
+  "last_category": "Matching Engine",
+  "last_detail": "Added explicit rule that commercial fit score defaults to 0.075 when structured data is missing, preventing false confidence from text guessing.",
+  "last_impact": "Prevents catastrophic mismatches when exhibitor data is incomplete. If we can't verify scale/budget alignment from structured fields, we signal neutral uncertainty (half weight) instead of hallucinating fit from vague descriptions. This preserves user trust \u2014 a missing data point never inflates a bad recommendation into the top 3.",
+  "next_target": "Add explicit rule that social proof score requires at least two verification signals to prevent gaming via fake testimonials.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
