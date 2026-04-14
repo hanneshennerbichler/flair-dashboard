@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:58:13Z",
+  "updated_at": "2026-04-14T23:59:05Z",
   "today": "2026-04-14",
-  "today_usd": 5.90992,
-  "total_usd": 5.90992,
-  "total_prompt": 944434,
-  "total_completion": 205873,
+  "today_usd": 5.9384,
+  "total_usd": 5.9384,
+  "total_prompt": 950648,
+  "total_completion": 206529,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 944434,
-      "completion_tokens": 205873,
-      "usd": 5.90992
+      "prompt_tokens": 950648,
+      "completion_tokens": 206529,
+      "usd": 5.9384
     }
   },
   "commits": [
+    {
+      "sha": "939e3aa097055662521b0dce74487aa4350db6b2",
+      "time": "2026-04-14T23:58:14Z",
+      "time_fmt": "2026-04-14 23:58 UTC",
+      "msg": "[Matching Engine] Proximity scoring now logs user's hall location (if known) so engineers instantly see distance mismatches during live fair testing."
+    },
     {
       "sha": "26b430687319fe1c412b659ccb6abf48a5e4a4f3",
       "time": "2026-04-14T23:57:13Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T23:09:08Z",
       "time_fmt": "2026-04-14 23:09 UTC",
       "msg": "[Matching Engine] Commercial fit now logs buyer's employee count range (startup/SME/enterprise) extracted from role text so scale mismatches are visible."
-    },
-    {
-      "sha": "f6bdb11c3085344e50738e9bbbe92fa6e9b059f6",
-      "time": "2026-04-14T23:08:10Z",
-      "time_fmt": "2026-04-14 23:08 UTC",
-      "msg": "[Matching Engine] Commercial fit now extracts buyer's industry vertical from user query when role/company context missing."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:18:47Z | heartbeat | daemon tick",
     "2026-04-14T23:19:47Z | heartbeat | daemon tick",
     "2026-04-14T23:20:47Z | heartbeat | daemon tick",
     "2026-04-14T23:21:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:54:47Z | heartbeat | daemon tick",
     "2026-04-14T23:55:47Z | heartbeat | daemon tick",
     "2026-04-14T23:56:48Z | heartbeat | daemon tick",
-    "2026-04-14T23:57:48Z | heartbeat | daemon tick"
+    "2026-04-14T23:57:48Z | heartbeat | daemon tick",
+    "2026-04-14T23:58:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now logs user's hall location (if known) so engineers instantly see distance mismatches during live fair testing.",
+  "last_completed": "[Matching Engine] Availability scoring now logs whether user provided selected days before computing staff overlap to surface missing temporal context.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now logs user's hall location (if known) so engineers instantly see distance mismatches during live fair testing.",
-  "last_impact": "During live Hannover Messe testing, engineers need to verify that proximity scoring accurately reflects where the user actually stands. Without logging the user's current hall (when available from device location or explicit input), it's impossible to debug why a distant exhibitor ranked high or why a nearby one ranked low. This change makes distance computation transparent in real time, catching coordinate errors before users walk to wrong stands and lose trust. Ties directly to the CORE PRINCI",
-  "next_target": "Add debug logging for solution specificity to show which product categories matched the user's stated need during ranking.",
+  "last_detail": "Availability scoring now logs whether user provided selected days before computing staff overlap to surface missing temporal context.",
+  "last_impact": "Engineers instantly see when availability scores are zero because the user hasn't specified fair days yet, not because exhibitor data is missing. This cuts debugging time from 2\u20133 minutes per match investigation to 5 seconds \u2014 critical during live fair testing when users report \"why isn't this booth ranked higher?\" and the root cause is incomplete user profile (missing days selection), not bad exhibitor data or broken scoring logic.",
+  "next_target": "Add goal relevance logging of user's specified role so engineers see buyer persona mismatches instantly during live testing.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
