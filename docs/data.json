@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T22:04:12Z",
+  "updated_at": "2026-04-14T22:05:08Z",
   "today": "2026-04-14",
-  "today_usd": 2.11597,
-  "total_usd": 2.11597,
-  "total_prompt": 245766,
-  "total_completion": 92679,
+  "today_usd": 2.15105,
+  "total_usd": 2.15105,
+  "total_prompt": 251086,
+  "total_completion": 93954,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 245766,
-      "completion_tokens": 92679,
-      "usd": 2.11597
+      "prompt_tokens": 251086,
+      "completion_tokens": 93954,
+      "usd": 2.15105
     }
   },
   "commits": [
+    {
+      "sha": "89d3c86d47d65eff7e846d5b4d3c76046d9b1221",
+      "time": "2026-04-14T22:04:13Z",
+      "time_fmt": "2026-04-14 22:04 UTC",
+      "msg": "[Matching Engine] Simplified commercial fit debug output to eliminate redundant field-value logging that duplicates what the consolidated line already captures."
+    },
     {
       "sha": "3ea71d14ea14d5a6c20e118e29d86d52b95b9fbe",
       "time": "2026-04-14T22:03:16Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T21:58:16Z",
       "time_fmt": "2026-04-14 21:58 UTC",
       "msg": "Switched the daemon's commit messages from German to plain English so the dashboard reads naturally for everyone."
-    },
-    {
-      "sha": "f0f6edf24bde28fa2ce45d42f5cb19a9277ac8f7",
-      "time": "2026-04-14T19:56:23Z",
-      "time_fmt": "2026-04-14 19:56 UTC",
-      "msg": "Ich habe die Scoring-Formel direkt in SPEC.md eingef\u00fcgt, damit jeder Entwickler sofort sieht wie Flair Aussteller bewertet."
     }
   ],
   "log_tail": [
-    "2026-04-14T19:28:19Z | heartbeat | daemon tick",
     "2026-04-14T19:30:59Z | heartbeat | daemon tick",
     "2026-04-14T19:37:11Z | heartbeat | daemon tick",
     "2026-04-14T19:55:50Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T22:00:43Z | heartbeat | daemon tick",
     "2026-04-14T22:01:44Z | heartbeat | daemon tick",
     "2026-04-14T22:02:43Z | heartbeat | daemon tick",
-    "2026-04-14T22:03:43Z | heartbeat | daemon tick"
+    "2026-04-14T22:03:43Z | heartbeat | daemon tick",
+    "2026-04-14T22:04:43Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Simplified commercial fit debug output to eliminate redundant field-value logging that duplicates what the consolidated line already captures.",
+  "last_completed": "[Matching Engine] Removed duplicate commercial fit logging rule that contradicted the consolidated one-line format already in SPEC.md.",
   "last_category": "Matching Engine",
-  "last_detail": "Simplified commercial fit debug output to eliminate redundant field-value logging that duplicates what the consolidated line already captures.",
-  "last_impact": "The commercial fit debug system currently has 15+ commits layering progressively stricter rules about field logging, computation breakdown, timestamps, session IDs, stderr routing, and inline arithmetic \u2014 all targeting the same goal (diagnose missing structured data during live fair testing). This created a 900+ token rule block in SPEC.md that engineers must parse every time they touch the matching engine. Consolidating to the single most actionable rule (one-line format with inline values + co",
-  "next_target": "Add concrete example row to commercial-fit-debug-inline-values.md showing exactly what the [CFDBG] one-line format looks like for a real Hannover Messe exhibitor.",
+  "last_detail": "Removed duplicate commercial fit logging rule that contradicted the consolidated one-line format already in SPEC.md.",
+  "last_impact": "The spec contained two conflicting rules for commercial fit debug output \u2014 one requiring consolidated single-line format, another describing multi-line field-by-field output. This created ambiguity for engineers implementing the matching engine: which format is canonical? Removing the redundant rule eliminates implementation confusion and ensures all commercial fit logs follow the exact 120-char consolidated format, making live fair debugging instant and consistent.",
+  "next_target": "Add explicit rule that proximity boost (+0.05 for stands within 2 halls) must log which exhibitors received it and why.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
