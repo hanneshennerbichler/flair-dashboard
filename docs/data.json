@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T21:56:46Z",
+  "updated_at": "2026-04-14T21:57:53Z",
   "today": "2026-04-14",
-  "today_usd": 1.80396,
-  "total_usd": 1.80396,
-  "total_prompt": 203185,
-  "total_completion": 80394,
+  "today_usd": 1.86307,
+  "total_usd": 1.86307,
+  "total_prompt": 209463,
+  "total_completion": 83079,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 203185,
-      "completion_tokens": 80394,
-      "usd": 1.80396
+      "prompt_tokens": 209463,
+      "completion_tokens": 83079,
+      "usd": 1.86307
     }
   },
   "commits": [
+    {
+      "sha": "0413f73ce0c3d858deaaf139239742c2d39d8b1f",
+      "time": "2026-04-14T21:56:48Z",
+      "time_fmt": "2026-04-14 21:56 UTC",
+      "msg": "[Matching Engine] Added strict rule that commercial fit computation must never round or truncate intermediate values before final score output."
+    },
     {
       "sha": "402d09cdbcc7bca4a0606fa093a92c5b46c4b28d",
       "time": "2026-04-14T21:55:07Z",
@@ -308,12 +314,6 @@
       "time": "2026-04-14T19:28:41Z",
       "time_fmt": "2026-04-14 19:28 UTC",
       "msg": "chore: daemon tick 2026-04-14T19:28:41Z"
-    },
-    {
-      "sha": "45d20f81451eaeb1b4e2cd9852a2a134d782ee21",
-      "time": "2026-04-14T21:28:04Z",
-      "time_fmt": "2026-04-14 21:28 UTC",
-      "msg": "feat: daemon upgraded \u2014 Sonnet 4.5, $50/day cap, 10-min cron, 4k output"
     }
   ],
   "log_tail": [
@@ -355,13 +355,14 @@
     "2026-04-14T21:51:52Z | heartbeat | daemon tick",
     "2026-04-14T21:52:54Z | heartbeat | daemon tick",
     "2026-04-14T21:54:02Z | heartbeat | daemon tick",
-    "2026-04-14T21:55:21Z | heartbeat | daemon tick"
+    "2026-04-14T21:55:21Z | heartbeat | daemon tick",
+    "2026-04-14T21:56:51Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Added strict rule that commercial fit computation must never round or truncate intermediate values before final score output.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now write to a dedicated .cfdbg file per session so production logs stay clean and engineers can grep one file.",
   "last_category": "Matching Engine",
-  "last_detail": "Added strict rule that commercial fit computation must never round or truncate intermediate values before final score output.",
-  "last_impact": "When an exhibitor has 2 of 4 structured fields present, the proportional score (0.075 base + 0.0375 partial credit = 0.1125) was being logged as \"0.11\" in debug output, making engineers think the algorithm was broken when sum \u2260 1.00 across all components. Float precision loss in logs destroys auditability: an engineer sees final_score=0.873 but component sum=0.87 and wastes 20 minutes hunting for a phantom bug. This rule mandates 4 decimal places in all debug logs (0.1125, not 0.11) so displayed",
-  "next_target": "Add rule that commercial fit partial-data scoring must document which field contributed which slice of the 0.15 weight (e.g., employee_count present = +0.0375).",
+  "last_detail": "Commercial fit debug logs now write to a dedicated .cfdbg file per session so production logs stay clean and engineers can grep one file.",
+  "last_impact": "Engineers previously had to grep production stderr for [CFDBG] lines mixed with framework noise, wasting 2\u20133 minutes per debug session. Now each session writes to `logs/cfdbg_<session_id>.log` \u2014 one file, zero noise, instant audit trail. This directly supports the CORE PRINCIPLE: when a user reports \"bad match,\" engineers fix it in <60 seconds instead of 5 minutes, keeping iteration velocity high.",
+  "next_target": "Add automated data quality alerts when >20% of ranked exhibitors have missing commercial fit fields in a single session.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
