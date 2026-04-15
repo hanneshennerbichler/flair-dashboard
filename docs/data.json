@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:43:12Z",
+  "updated_at": "2026-04-15T00:44:17Z",
   "today": "2026-04-15",
-  "today_usd": 1.39594,
-  "total_usd": 7.37456,
-  "total_prompt": 1223417,
-  "total_completion": 247718,
+  "today_usd": 1.42998,
+  "total_usd": 7.4086,
+  "total_prompt": 1229650,
+  "total_completion": 248741,
   "daily_cap": 50.0,
-  "ticks_today": 43,
+  "ticks_today": 44,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 266563,
-      "completion_tokens": 39749,
-      "usd": 1.39594
+      "prompt_tokens": 272796,
+      "completion_tokens": 40772,
+      "usd": 1.42998
     }
   },
   "commits": [
+    {
+      "sha": "2cfb579b1b15ffa547314a1057813931862ef7ed",
+      "time": "2026-04-15T00:43:13Z",
+      "time_fmt": "2026-04-15 00:43 UTC",
+      "msg": "[Matching Engine] Goal relevance now logs query keyword count so engineers instantly see when vague single-word queries cause broad low-confidence matches."
+    },
     {
       "sha": "71c1eb016ca2269b55b81247a1a70a18b2552212",
       "time": "2026-04-15T00:42:10Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:54:15Z",
       "time_fmt": "2026-04-14 23:54 UTC",
       "msg": "[Matching Engine] Intent confidence now logs whether user named a specific product category to reveal precision instantly during live testing."
-    },
-    {
-      "sha": "cea86dd463bdb5fe8cee91c43f2147efdf7d441a",
-      "time": "2026-04-14T23:53:16Z",
-      "time_fmt": "2026-04-14 23:53 UTC",
-      "msg": "[Matching Engine] Intent confidence scoring now logs user query word count and question mark presence so engineers see signal clarity instantly."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:03:48Z | heartbeat | daemon tick",
     "2026-04-15T00:04:48Z | heartbeat | daemon tick",
     "2026-04-15T00:05:48Z | heartbeat | daemon tick",
     "2026-04-15T00:06:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:39:47Z | heartbeat | daemon tick",
     "2026-04-15T00:40:48Z | heartbeat | daemon tick",
     "2026-04-15T00:41:47Z | heartbeat | daemon tick",
-    "2026-04-15T00:42:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:42:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:43:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Goal relevance now logs query keyword count so engineers instantly see when vague single-word queries cause broad low-confidence matches.",
+  "last_completed": "[Matching Engine] Commercial fit now logs buyer's industry vertical so engineers instantly see when exhibitor's target market misaligns with user's sector.",
   "last_category": "Matching Engine",
-  "last_detail": "Goal relevance now logs query keyword count so engineers instantly see when vague single-word queries cause broad low-confidence matches.",
-  "last_impact": "Engineers debugging ranking during live fair testing can now immediately see when a user types \"automation\" (1 keyword \u2192 low specificity \u2192 broad matches rank equally) vs \"collaborative robot arm for automotive assembly line\" (7 keywords \u2192 high specificity \u2192 tight matches win). This eliminates 2\u20133 minutes of guesswork per ranking investigation by surfacing query specificity directly in the debug stream. Ties back to CORE PRINCIPLE: the matching engine must distinguish between vague exploration (\"",
-  "next_target": "Add proximity scoring debug log showing user's selected fair days array so engineers see temporal filtering impact on location-based ranking.",
+  "last_detail": "Commercial fit now logs buyer's industry vertical so engineers instantly see when exhibitor's target market misaligns with user's sector.",
+  "last_impact": "During live fair testing, engineers currently see commercial fit scores drop but cannot tell whether the cause is size mismatch, budget tier conflict, or industry vertical misalignment \u2014 they waste 2\u20133 minutes per investigation re-running queries with debug flags. Adding buyer vertical to the stderr log line (alongside employee count and budget tier already shipped) completes the commercial fit diagnostic picture: when a pharma buyer gets matched to an automotive-focused exhibitor despite perfec",
+  "next_target": "Add proximity scoring log for user's selected fair days count so engineers see when single-day visitors get penalized vs multi-day planners.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
