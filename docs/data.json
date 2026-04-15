@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:34:05Z",
+  "updated_at": "2026-04-15T01:35:14Z",
   "today": "2026-04-15",
-  "today_usd": 3.10353,
-  "total_usd": 9.08215,
-  "total_prompt": 1542065,
-  "total_completion": 297828,
+  "today_usd": 3.1396,
+  "total_usd": 9.11822,
+  "total_prompt": 1548327,
+  "total_completion": 298980,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 585211,
-      "completion_tokens": 89859,
-      "usd": 3.10353
+      "prompt_tokens": 591473,
+      "completion_tokens": 91011,
+      "usd": 3.1396
     }
   },
   "commits": [
+    {
+      "sha": "fb5f90d87cce431637de24537c22c8827895c3d6",
+      "time": "2026-04-15T01:34:07Z",
+      "time_fmt": "2026-04-15 01:34 UTC",
+      "msg": "[Matching Engine] Solution specificity now logs exhibitor SKU count so engineers see when vague single-product booth scores lower than deep catalog."
+    },
     {
       "sha": "b6efb4be593032be5cdf052724d591bc434195ca",
       "time": "2026-04-15T01:33:08Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:45:17Z",
       "time_fmt": "2026-04-15 00:45 UTC",
       "msg": "[Matching Engine] Proximity scoring now logs when exhibitor hall data is missing so engineers instantly see data gaps during live testing."
-    },
-    {
-      "sha": "d87a2b3f0ddeaaf4306b68421cff01c0a60e0966",
-      "time": "2026-04-15T00:44:18Z",
-      "time_fmt": "2026-04-15 00:44 UTC",
-      "msg": "[Matching Engine] Commercial fit now logs buyer's industry vertical so engineers instantly see when exhibitor's target market misaligns with user's sector."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:54:47Z | heartbeat | daemon tick",
     "2026-04-15T00:55:48Z | heartbeat | daemon tick",
     "2026-04-15T00:56:48Z | heartbeat | daemon tick",
     "2026-04-15T00:57:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:30:48Z | heartbeat | daemon tick",
     "2026-04-15T01:31:47Z | heartbeat | daemon tick",
     "2026-04-15T01:32:47Z | heartbeat | daemon tick",
-    "2026-04-15T01:33:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:33:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:34:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Solution specificity now logs exhibitor SKU count so engineers see when vague single-product booth scores lower than deep catalog.",
+  "last_completed": "[Matching Engine] Social proof score now logs reference customer count and measurable outcome presence so engineers see verification gap live.",
   "last_category": "Matching Engine",
-  "last_detail": "Solution specificity now logs exhibitor SKU count so engineers see when vague single-product booth scores lower than deep catalog.",
-  "last_impact": "Engineers debugging live rankings can now instantly see why a booth with 200 SKUs outranks a booth with 3 generic products \u2014 specificity scoring is no longer a black box. This directly supports the SPEC.md rule 'Solution Specificity (0.20) \u2192 concrete product/service vs. vague corporate PR' by making the catalog-depth signal visible in real time during Hannover Messe floor tests.",
-  "next_target": "Log reference customer count in social proof scoring so engineers see when verified case studies boost exhibitor rank during live tests.",
+  "last_detail": "Social proof score now logs reference customer count and measurable outcome presence so engineers see verification gap live.",
+  "last_impact": "Matching engine currently awards social proof credit (0.03) without logging whether the exhibitor named customers or cited measurable results \u2014 engineers testing live rankings cannot tell if a booth scored 0.03 because of verified case studies or gaming with vague testimonial text. This change emits a debug line showing reference_customer_count (0\u2013N named companies) and has_measurable_outcome (true/false for percentage improvements, time saved, cost reduction with numbers) per exhibitor, so engi",
+  "next_target": "Log social proof verification failure reasons (generic testimonial text, missing company names, unverifiable claims) so engineers see exactly why exhibitors scored zero.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
