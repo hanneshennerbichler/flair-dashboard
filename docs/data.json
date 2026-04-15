@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T00:58:07Z",
+  "updated_at": "2026-04-15T00:59:07Z",
   "today": "2026-04-15",
-  "today_usd": 1.8987,
-  "total_usd": 7.87732,
-  "total_prompt": 1316990,
-  "total_completion": 262521,
+  "today_usd": 1.92827,
+  "total_usd": 7.90689,
+  "total_prompt": 1323225,
+  "total_completion": 263245,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 360136,
-      "completion_tokens": 54552,
-      "usd": 1.8987
+      "prompt_tokens": 366371,
+      "completion_tokens": 55276,
+      "usd": 1.92827
     }
   },
   "commits": [
+    {
+      "sha": "e1667dc19ccc53318652a5de866c59dfdd54f1a8",
+      "time": "2026-04-15T00:58:08Z",
+      "time_fmt": "2026-04-15 00:58 UTC",
+      "msg": "[Matching Engine] Proximity scoring now logs user's current hall location when provided so engineers see real-time distance calculations during booth navigation."
+    },
     {
       "sha": "637aecc9706445b7124218bf0b8454a1439a17ae",
       "time": "2026-04-15T00:57:13Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:09:07Z",
       "time_fmt": "2026-04-15 00:09 UTC",
       "msg": "[Matching Engine] Commercial fit now logs buyer's target customer size tags so engineers instantly see B2B/B2C alignment failures during live fair testing."
-    },
-    {
-      "sha": "7c367a0be4d310ae7003a1c1f2522410db89fc69",
-      "time": "2026-04-15T00:08:03Z",
-      "time_fmt": "2026-04-15 00:08 UTC",
-      "msg": "[Matching Engine] Proximity scoring now logs exhibitor hall/stand coordinates so engineers instantly see which matches have location data during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:18:47Z | heartbeat | daemon tick",
     "2026-04-15T00:19:48Z | heartbeat | daemon tick",
     "2026-04-15T00:20:48Z | heartbeat | daemon tick",
     "2026-04-15T00:21:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:54:47Z | heartbeat | daemon tick",
     "2026-04-15T00:55:48Z | heartbeat | daemon tick",
     "2026-04-15T00:56:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:57:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:57:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:58:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now logs user's current hall location when provided so engineers see real-time distance calculations during booth navigation.",
+  "last_completed": "[Matching Engine] Intent confidence now logs user's declared role text so engineers see when vague roles cause broad low-confidence matches.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now logs user's current hall location when provided so engineers see real-time distance calculations during booth navigation.",
-  "last_impact": "When users navigate the fair, knowing their starting hall lets engineers verify proximity bonuses work correctly for \"nearby right now\" recommendations vs. pure coordinate distance. This directly supports the core principle: users walking the floor need suggestions for stands they can reach in under 3 minutes, and this logging proves the engine respects their physical position.",
-  "next_target": "Add actionability logging for exhibitor's preferred contact method (email/phone/walk-in) so engineers see communication friction per booth.",
+  "last_detail": "Intent confidence now logs user's declared role text so engineers see when vague roles cause broad low-confidence matches.",
+  "last_impact": "When a user describes themselves as \"interested visitor\" vs \"CTO seeking enterprise automation for 500-employee factory,\" intent confidence should differ dramatically \u2014 but currently engineers can't verify if role clarity is factored. This logging shows whether generic role descriptions trigger the low-confidence penalty that prevents weak matches from ranking high. Directly supports the CORE PRINCIPLE: vague intent = system should warn user, not pretend confidence.",
+  "next_target": "Log commercial fit exhibitor target customer size field so engineers see when SME-focused vendors get matched to enterprise buyers.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
