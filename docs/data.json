@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T00:56:08Z",
+  "updated_at": "2026-04-15T00:57:11Z",
   "today": "2026-04-15",
-  "today_usd": 1.83822,
-  "total_usd": 7.81684,
-  "total_prompt": 1304517,
-  "total_completion": 260984,
+  "today_usd": 1.86992,
+  "total_usd": 7.84854,
+  "total_prompt": 1310752,
+  "total_completion": 261850,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 347663,
-      "completion_tokens": 53015,
-      "usd": 1.83822
+      "prompt_tokens": 353898,
+      "completion_tokens": 53881,
+      "usd": 1.86992
     }
   },
   "commits": [
+    {
+      "sha": "a9ee2ac3c5230f5826c904bf39412d737463ad08",
+      "time": "2026-04-15T00:56:09Z",
+      "time_fmt": "2026-04-15 00:56 UTC",
+      "msg": "[Matching Engine] Social proof scoring now logs document type distribution (PDF/video/web) so engineers see which evidence formats dominate per exhibitor."
+    },
     {
       "sha": "cbc874badec9cbbdb60e56e9ca864ba874fd1fbd",
       "time": "2026-04-15T00:55:22Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:07:08Z",
       "time_fmt": "2026-04-15 00:07 UTC",
       "msg": "[Matching Engine] Proximity scoring now logs user's selected days count so engineers instantly see temporal context depth during live fair testing."
-    },
-    {
-      "sha": "cdff9e1c5da33177af95fce26227e15ce39fe439",
-      "time": "2026-04-15T00:06:08Z",
-      "time_fmt": "2026-04-15 00:06 UTC",
-      "msg": "[Matching Engine] Commercial fit now logs buyer's employee count so engineers instantly see startup-vs-enterprise mismatches during live fair testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:16:48Z | heartbeat | daemon tick",
     "2026-04-15T00:17:48Z | heartbeat | daemon tick",
     "2026-04-15T00:18:47Z | heartbeat | daemon tick",
     "2026-04-15T00:19:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:52:47Z | heartbeat | daemon tick",
     "2026-04-15T00:53:48Z | heartbeat | daemon tick",
     "2026-04-15T00:54:47Z | heartbeat | daemon tick",
-    "2026-04-15T00:55:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:55:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:56:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Social proof scoring now logs document type distribution (PDF/video/web) so engineers see which evidence formats dominate per exhibitor.",
+  "last_completed": "[Matching Engine] Commercial fit now logs buyer's declared budget tier so engineers see when free-tier startups get matched to six-figure enterprise platforms.",
   "last_category": "Matching Engine",
-  "last_detail": "Social proof scoring now logs document type distribution (PDF/video/web) so engineers see which evidence formats dominate per exhibitor.",
-  "last_impact": "When engineers run live ranking tests and see `[SPDBG] id=X pdf=0 video=2 web=1`, they instantly diagnose why one exhibitor with 3 case studies outranks another with 3 testimonial PDFs \u2014 video case studies prove real-world success more convincingly than text-only documents, and this visibility lets us weight formats differently if video consistently correlates with stronger user engagement. This directly supports the social proof verification rule: engineers must distinguish verified multi-forma",
-  "next_target": "Add solution specificity debug logging for product category depth (how many leaf categories vs. top-level only) to catch vague generalist catalogs.",
+  "last_detail": "Commercial fit now logs buyer's declared budget tier so engineers see when free-tier startups get matched to six-figure enterprise platforms.",
+  "last_impact": "This closes the last major commercial fit blind spot. Engineers running live tests will instantly see budget misalignment (startup with \u20ac5K budget matched to \u20ac150K/year SaaS) in the [CFDBG] stderr stream without inferring from other fields. Prevents catastrophic waste-of-time booth visits where user learns pricing immediately disqualifies them \u2014 the exact failure mode that destroys 'if I don't use this, I'm missing something right now' trust.",
+  "next_target": "Add actionability logging for whether exhibitor requires NDA/procurement process so engineers see when red-tape friction kills same-day conversions.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
