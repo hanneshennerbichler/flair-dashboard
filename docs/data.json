@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:24:12Z",
+  "updated_at": "2026-04-15T01:25:12Z",
   "today": "2026-04-15",
-  "today_usd": 2.79405,
-  "total_usd": 8.77267,
-  "total_prompt": 1479454,
-  "total_completion": 289718,
+  "today_usd": 2.8295,
+  "total_usd": 8.80812,
+  "total_prompt": 1485715,
+  "total_completion": 290829,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 522600,
-      "completion_tokens": 81749,
-      "usd": 2.79405
+      "prompt_tokens": 528861,
+      "completion_tokens": 82860,
+      "usd": 2.8295
     }
   },
   "commits": [
+    {
+      "sha": "d29d6226b6ff91a0d8505f4389bb657012b4b8fa",
+      "time": "2026-04-15T01:24:14Z",
+      "time_fmt": "2026-04-15 01:24 UTC",
+      "msg": "[Matching Engine] Actionability score now logs concrete action types (demo/meeting/sample) available per exhibitor so engineers see why booth ranks high."
+    },
     {
       "sha": "f63a61323ff0b60a087dbd8793a5a13c96a060ad",
       "time": "2026-04-15T01:23:04Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:35:12Z",
       "time_fmt": "2026-04-15 00:35 UTC",
       "msg": "[Matching Engine] Proximity scoring now logs hall distance in meters so engineers instantly see when physical layout causes unexpected ranking drops."
-    },
-    {
-      "sha": "7a55bacdb23b03a5059aaab8f5c1887a27c8afc3",
-      "time": "2026-04-15T00:34:04Z",
-      "time_fmt": "2026-04-15 00:34 UTC",
-      "msg": "[Matching Engine] Goal relevance now logs user's industry vertical so engineers instantly see cross-industry false positives during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:44:48Z | heartbeat | daemon tick",
     "2026-04-15T00:45:47Z | heartbeat | daemon tick",
     "2026-04-15T00:46:48Z | heartbeat | daemon tick",
     "2026-04-15T00:47:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:20:47Z | heartbeat | daemon tick",
     "2026-04-15T01:21:47Z | heartbeat | daemon tick",
     "2026-04-15T01:22:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:23:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:23:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:24:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Actionability score now logs concrete action types (demo/meeting/sample) available per exhibitor so engineers see why booth ranks high.",
+  "last_completed": "[Matching Engine] Proximity now logs exhibitor hall when user hall unknown so engineers see when distance fallback to zero occurs during live tests.",
   "last_category": "Matching Engine",
-  "last_detail": "Actionability score now logs concrete action types (demo/meeting/sample) available per exhibitor so engineers see why booth ranks high.",
-  "last_impact": "When a user sees \"Hall 9, Stand A12 \u2014 request live demo,\" they need confidence that action is actually available. Right now engineers debugging rankings cannot tell if actionability score came from real staff availability + demo slots vs. generic \"visit us\" text. This logging exposes the difference between exhibitors offering concrete next steps (book 15-min demo, pick up prototype sample, meet hiring manager) versus booths with no structured actions \u2014 directly supporting the CORE PRINCIPLE that",
-  "next_target": "Log availability score's time-window overlap (user days vs staff schedule) so engineers see partial-day coverage causing half-weight penalty.",
+  "last_detail": "Proximity now logs exhibitor hall when user hall unknown so engineers see when distance fallback to zero occurs during live tests.",
+  "last_impact": "During Hannover Messe, engineers running live ranking tests see real-time why certain exhibitors score zero for proximity \u2014 user hasn't shared location yet, so distance can't be computed. This makes the 'no hall data OR no user days = no proximity credit' rule from SPEC.md immediately auditable in stderr logs, preventing confusion when otherwise strong matches appear without location boost before user sets days or shares position.",
+  "next_target": "Add availability debug logging for partial staff schedule coverage so engineers see when half-weight (0.01) fallback triggers.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
