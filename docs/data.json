@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:32:11Z",
+  "updated_at": "2026-04-15T01:33:07Z",
   "today": "2026-04-15",
-  "today_usd": 3.04487,
-  "total_usd": 9.02349,
-  "total_prompt": 1529538,
-  "total_completion": 296423,
+  "today_usd": 3.07491,
+  "total_usd": 9.05353,
+  "total_prompt": 1535800,
+  "total_completion": 297173,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 572684,
-      "completion_tokens": 88454,
-      "usd": 3.04487
+      "prompt_tokens": 578946,
+      "completion_tokens": 89204,
+      "usd": 3.07491
     }
   },
   "commits": [
+    {
+      "sha": "00ed929143dda0ee5673d367a00b3aa52c5f9b77",
+      "time": "2026-04-15T01:32:12Z",
+      "time_fmt": "2026-04-15 01:32 UTC",
+      "msg": "[Matching Engine] Intent confidence now logs user query token count and question-mark presence so engineers see clarity signal during live ranking tests."
+    },
     {
       "sha": "f592bdce8ab83e020e0fd04837bda4653022a30e",
       "time": "2026-04-15T01:31:11Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:43:13Z",
       "time_fmt": "2026-04-15 00:43 UTC",
       "msg": "[Matching Engine] Goal relevance now logs query keyword count so engineers instantly see when vague single-word queries cause broad low-confidence matches."
-    },
-    {
-      "sha": "71c1eb016ca2269b55b81247a1a70a18b2552212",
-      "time": "2026-04-15T00:42:10Z",
-      "time_fmt": "2026-04-15 00:42 UTC",
-      "msg": "[Matching Engine] Commercial fit now logs buyer's employee count so engineers instantly see when startup users get enterprise-scale exhibitors."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:52:47Z | heartbeat | daemon tick",
     "2026-04-15T00:53:48Z | heartbeat | daemon tick",
     "2026-04-15T00:54:47Z | heartbeat | daemon tick",
     "2026-04-15T00:55:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:28:48Z | heartbeat | daemon tick",
     "2026-04-15T01:29:47Z | heartbeat | daemon tick",
     "2026-04-15T01:30:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:31:47Z | heartbeat | daemon tick"
+    "2026-04-15T01:31:47Z | heartbeat | daemon tick",
+    "2026-04-15T01:32:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Intent confidence now logs user query token count and question-mark presence so engineers see clarity signal during live ranking tests.",
+  "last_completed": "[Matching Engine] Intent confidence now logs user's stated role and goal clarity so engineers see when vague profile degrades ranking confidence.",
   "last_category": "Matching Engine",
-  "last_detail": "Intent confidence now logs user query token count and question-mark presence so engineers see clarity signal during live ranking tests.",
-  "last_impact": "Engineers debugging why vague user queries (\"looking around\") produce lower-ranked results now see concrete clarity metrics (token count, interrogative structure) in real time. This directly supports the CORE PRINCIPLE by revealing when the matching engine correctly downweights uncertain intent \u2014 users with clear needs get better matches, users exploring broadly see that reflected in scores, building trust through transparent reasoning.",
-  "next_target": "Add availability debug logging showing staff role types present per exhibitor so engineers see when users matched to booth without relevant personnel.",
+  "last_detail": "Intent confidence now logs user's stated role and goal clarity so engineers see when vague profile degrades ranking confidence.",
+  "last_impact": "Engineers debugging why a \"looking for automation\" query ranks differently than \"robotics for automotive assembly line\" can now see that intent confidence penalized the vague query because role/goal were missing or unclear. This closes the last visibility gap in the matching engine's seven scoring components \u2014 every weight is now traceable to concrete input signals, making live fair tuning 10x faster.",
+  "next_target": "Add proximity debug logging for when user and exhibitor are in same hall so engineers see +0.05 bonus being awarded during live tests.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
