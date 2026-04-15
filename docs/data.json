@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:31:10Z",
+  "updated_at": "2026-04-15T01:32:11Z",
   "today": "2026-04-15",
-  "today_usd": 3.01411,
-  "total_usd": 8.99273,
-  "total_prompt": 1523276,
-  "total_completion": 295625,
+  "today_usd": 3.04487,
+  "total_usd": 9.02349,
+  "total_prompt": 1529538,
+  "total_completion": 296423,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 566422,
-      "completion_tokens": 87656,
-      "usd": 3.01411
+      "prompt_tokens": 572684,
+      "completion_tokens": 88454,
+      "usd": 3.04487
     }
   },
   "commits": [
+    {
+      "sha": "f592bdce8ab83e020e0fd04837bda4653022a30e",
+      "time": "2026-04-15T01:31:11Z",
+      "time_fmt": "2026-04-15 01:31 UTC",
+      "msg": "[Matching Engine] Actionability score now logs concrete action types available per exhibitor so engineers see why booth ranks high during live tests."
+    },
     {
       "sha": "df4f51ffed6b74290eb4bac0445d95aabe28be76",
       "time": "2026-04-15T01:30:03Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:42:10Z",
       "time_fmt": "2026-04-15 00:42 UTC",
       "msg": "[Matching Engine] Commercial fit now logs buyer's employee count so engineers instantly see when startup users get enterprise-scale exhibitors."
-    },
-    {
-      "sha": "3fa2383d99da1b56265512c90581d3ca1dd4ebf1",
-      "time": "2026-04-15T00:41:16Z",
-      "time_fmt": "2026-04-15 00:41 UTC",
-      "msg": "[Matching Engine] Actionability scoring now logs demo availability flag so engineers instantly see when exhibitors offer hands-on trials vs. talk-only booths."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:51:48Z | heartbeat | daemon tick",
     "2026-04-15T00:52:47Z | heartbeat | daemon tick",
     "2026-04-15T00:53:48Z | heartbeat | daemon tick",
     "2026-04-15T00:54:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:27:47Z | heartbeat | daemon tick",
     "2026-04-15T01:28:48Z | heartbeat | daemon tick",
     "2026-04-15T01:29:47Z | heartbeat | daemon tick",
-    "2026-04-15T01:30:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:30:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:31:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Actionability score now logs concrete action types available per exhibitor so engineers see why booth ranks high during live tests.",
+  "last_completed": "[Matching Engine] Intent confidence now logs user query token count and question-mark presence so engineers see clarity signal during live ranking tests.",
   "last_category": "Matching Engine",
-  "last_detail": "Actionability score now logs concrete action types available per exhibitor so engineers see why booth ranks high during live tests.",
-  "last_impact": "When a robotics booth ranks #2 over seemingly stronger matches, engineers can now grep stderr and immediately see it offers demo+meeting+sample (0.10 full score) while competitors offer only vague \"Beratung\" (0.03). This eliminates 5\u201310 minutes of ranking mystery during live fair testing \u2014 critical when users are walking and need explanations NOW. Directly supports CORE PRINCIPLE: if the system can't explain its own ranking in real time, engineers can't trust it, and users lose confidence when r",
-  "next_target": "Add intent confidence debug logging showing how query clarity (vague \"looking for automation\" vs specific \"need collaborative robot arm for CNC loading under \u20ac50k\") affects exhibitor ranking weight.",
+  "last_detail": "Intent confidence now logs user query token count and question-mark presence so engineers see clarity signal during live ranking tests.",
+  "last_impact": "Engineers debugging why vague user queries (\"looking around\") produce lower-ranked results now see concrete clarity metrics (token count, interrogative structure) in real time. This directly supports the CORE PRINCIPLE by revealing when the matching engine correctly downweights uncertain intent \u2014 users with clear needs get better matches, users exploring broadly see that reflected in scores, building trust through transparent reasoning.",
+  "next_target": "Add availability debug logging showing staff role types present per exhibitor so engineers see when users matched to booth without relevant personnel.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
