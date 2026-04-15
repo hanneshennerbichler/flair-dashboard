@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:41:09Z",
+  "updated_at": "2026-04-15T01:42:09Z",
   "today": "2026-04-15",
-  "today_usd": 3.32353,
-  "total_usd": 9.30215,
-  "total_prompt": 1585855,
-  "total_completion": 303736,
+  "today_usd": 3.35486,
+  "total_usd": 9.33348,
+  "total_prompt": 1592112,
+  "total_completion": 304573,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 629001,
-      "completion_tokens": 95767,
-      "usd": 3.32353
+      "prompt_tokens": 635258,
+      "completion_tokens": 96604,
+      "usd": 3.35486
     }
   },
   "commits": [
+    {
+      "sha": "c124315b1ad8f4edb00b12c9c5c0303d8736e39e",
+      "time": "2026-04-15T01:41:10Z",
+      "time_fmt": "2026-04-15 01:41 UTC",
+      "msg": "[Matching Engine] Proximity score now logs exhibitor-stand-missing flag so engineers see when incomplete hall data causes zero distance credit."
+    },
     {
       "sha": "aa3d61ecd6c2ac455f8f372fb20ffd5acc3af089",
       "time": "2026-04-15T01:40:07Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:52:08Z",
       "time_fmt": "2026-04-15 00:52 UTC",
       "msg": "[Matching Engine] Intent confidence now logs query complexity (unique terms + clauses) so engineers see when simplistic phrasing causes broad low-confidence matches."
-    },
-    {
-      "sha": "d71cfcae0c877e2885b4542d543221bf9f181400",
-      "time": "2026-04-15T00:51:19Z",
-      "time_fmt": "2026-04-15 00:51 UTC",
-      "msg": "[Matching Engine] Actionability now logs event registration seat availability so engineers see when workshop/masterclass capacity limits reduce bookability."
     }
   ],
   "log_tail": [
-    "2026-04-15T01:01:48Z | heartbeat | daemon tick",
     "2026-04-15T01:02:48Z | heartbeat | daemon tick",
     "2026-04-15T01:03:47Z | heartbeat | daemon tick",
     "2026-04-15T01:04:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:37:48Z | heartbeat | daemon tick",
     "2026-04-15T01:38:47Z | heartbeat | daemon tick",
     "2026-04-15T01:39:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:40:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:40:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:41:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity score now logs exhibitor-stand-missing flag so engineers see when incomplete hall data causes zero distance credit.",
+  "last_completed": "[Matching Engine] Availability now logs day-by-day overlap fraction so engineers see partial schedule coverage (e.g., 2/3 days matched) during live tests.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity score now logs exhibitor-stand-missing flag so engineers see when incomplete hall data causes zero distance credit.",
-  "last_impact": "Engineers running live ranking tests can now instantly diagnose why strong matches rank lower than expected \u2014 incomplete stand coordinates zero out the proximity component (0.10 of total score), causing otherwise perfect fits to drop 5\u201310 positions. The debug log shows \"stand=MISSING hall=NULL\" in one grep, eliminating 2\u20133 minutes of database cross-checking per investigation. This directly supports the CORE PRINCIPLE: engineers fix data gaps faster \u2192 users get better location-aware recommendatio",
-  "next_target": "Log the computed distance value (meters) in proximity debug output so engineers see numerical threshold effects when stands cluster.",
+  "last_detail": "Availability now logs day-by-day overlap fraction so engineers see partial schedule coverage (e.g., 2/3 days matched) during live tests.",
+  "last_impact": "When an exhibitor has staff present on some but not all of a user's selected fair days, engineers previously saw only the final 0.01 half-weight score without understanding which days were covered. Now the debug log shows \"overlap=2/3 days [Mon,Tue present Wed missing]\" so engineers can immediately diagnose incomplete schedules that cause otherwise strong matches to lose points. This accelerates data quality fixes during Hannover Messe \u2014 exhibitors get concrete feedback (\"your Wednesday schedule",
+  "next_target": "Log proximity score's actual computed distance in meters so engineers see when slight hall offset differences cause unexpected ranking changes.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
