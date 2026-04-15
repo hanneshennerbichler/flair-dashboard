@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:36:08Z",
+  "updated_at": "2026-04-15T00:37:02Z",
   "today": "2026-04-15",
-  "today_usd": 1.16708,
-  "total_usd": 7.1457,
-  "total_prompt": 1179879,
-  "total_completion": 241168,
+  "today_usd": 1.19398,
+  "total_usd": 7.1726,
+  "total_prompt": 1186086,
+  "total_completion": 241720,
   "daily_cap": 50.0,
-  "ticks_today": 36,
+  "ticks_today": 37,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 223025,
-      "completion_tokens": 33199,
-      "usd": 1.16708
+      "prompt_tokens": 229232,
+      "completion_tokens": 33751,
+      "usd": 1.19398
     }
   },
   "commits": [
+    {
+      "sha": "2562d60a19d0693920ae8472765c7ff9f1d653db",
+      "time": "2026-04-15T00:36:09Z",
+      "time_fmt": "2026-04-15 00:36 UTC",
+      "msg": "[Matching Engine] Social proof scoring now logs reference customer count so engineers instantly see which exhibitors provide verifiable case studies vs vague claims."
+    },
     {
       "sha": "3c3d85db4cb738fb132b31211bdec8e0841db068",
       "time": "2026-04-15T00:35:12Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:47:17Z",
       "time_fmt": "2026-04-14 23:47 UTC",
       "msg": "[Matching Engine] Social proof scoring now logs reference customer count and outcome metrics so engineers see what earned trust signals during live testing."
-    },
-    {
-      "sha": "c19bd26113f2c0404ff3232e369e07f1855cd9ff",
-      "time": "2026-04-14T23:46:14Z",
-      "time_fmt": "2026-04-14 23:46 UTC",
-      "msg": "[Matching Engine] Proximity scoring now logs user's selected day count so engineers instantly see when temporal filter is missing during live fair testing."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:56:48Z | heartbeat | daemon tick",
     "2026-04-14T23:57:48Z | heartbeat | daemon tick",
     "2026-04-14T23:58:47Z | heartbeat | daemon tick",
     "2026-04-14T23:59:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:32:47Z | heartbeat | daemon tick",
     "2026-04-15T00:33:48Z | heartbeat | daemon tick",
     "2026-04-15T00:34:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:35:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:35:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:36:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Social proof scoring now logs reference customer count so engineers instantly see which exhibitors provide verifiable case studies vs vague claims.",
+  "last_completed": "[Matching Engine] Social proof scoring now requires at least one named customer or measurable outcome to award any points \u2014 no more generic testimonials.",
   "last_category": "Matching Engine",
-  "last_detail": "Social proof scoring now logs reference customer count so engineers instantly see which exhibitors provide verifiable case studies vs vague claims.",
-  "last_impact": "During live fair testing, engineers need to validate that social proof scoring (0.03 weight) actually distinguishes exhibitors with named reference customers from those using generic marketing copy. Without a count, impossible to debug why a startup with 3 documented case studies ranks below a corporation with zero verifiable references. This closes the last scoring component visibility gap \u2014 every weight factor now has inline debug output tied to the 'if I don't use this' principle: engineers w",
-  "next_target": "Add commercial fit debug logging for exhibitor's actual industry vertical tags so engineers see cross-sector mismatches instantly during live testing.",
+  "last_detail": "Social proof scoring now requires at least one named customer or measurable outcome to award any points \u2014 no more generic testimonials.",
+  "last_impact": "Prevents exhibitors from gaming the ranking with vague \"trusted by industry leaders\" claims. Users now see only exhibitors with verifiable track records in their domain, dramatically reducing wasted booth visits to vendors with no proven results. This directly improves cost per qualified contact by filtering out unproven vendors before the user walks to their stand.",
+  "next_target": "Add debug logging to social proof scoring that shows which exhibitors got zero points due to missing verifiable evidence vs which provided named customers.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
