@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:32:16Z",
+  "updated_at": "2026-04-15T00:33:06Z",
   "today": "2026-04-15",
-  "today_usd": 1.05005,
-  "total_usd": 7.02867,
-  "total_prompt": 1155054,
-  "total_completion": 238331,
+  "today_usd": 1.07908,
+  "total_usd": 7.0577,
+  "total_prompt": 1161256,
+  "total_completion": 239026,
   "daily_cap": 50.0,
-  "ticks_today": 32,
+  "ticks_today": 33,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 198200,
-      "completion_tokens": 30362,
-      "usd": 1.05005
+      "prompt_tokens": 204402,
+      "completion_tokens": 31057,
+      "usd": 1.07908
     }
   },
   "commits": [
+    {
+      "sha": "b90f4090f3e17c999f450f78b431af1e6f24c5ba",
+      "time": "2026-04-15T00:32:18Z",
+      "time_fmt": "2026-04-15 00:32 UTC",
+      "msg": "[Matching Engine] Actionability scoring now logs meeting slot availability count so engineers instantly see booking capacity during live testing."
+    },
     {
       "sha": "f3a6b9d84bf0dfb45386ea395f4560154b28f1cf",
       "time": "2026-04-15T00:31:08Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:43:44Z",
       "time_fmt": "2026-04-14 23:43 UTC",
       "msg": "[Matching Engine] Availability scoring now awards 0.01 (half credit) when staff schedule is partial so incomplete data doesn't zero out strong matches."
-    },
-    {
-      "sha": "e0cdf6893e840339d3c0c3f70e1c8a7f668e5987",
-      "time": "2026-04-14T23:42:11Z",
-      "time_fmt": "2026-04-14 23:42 UTC",
-      "msg": "[Matching Engine] Proximity scoring now logs hall distance in meters so engineers see physical separation instantly during live fair testing."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:52:48Z | heartbeat | daemon tick",
     "2026-04-14T23:53:48Z | heartbeat | daemon tick",
     "2026-04-14T23:54:47Z | heartbeat | daemon tick",
     "2026-04-14T23:55:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:28:48Z | heartbeat | daemon tick",
     "2026-04-15T00:29:47Z | heartbeat | daemon tick",
     "2026-04-15T00:30:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:31:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:31:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:32:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Actionability scoring now logs meeting slot availability count so engineers instantly see booking capacity during live testing.",
+  "last_completed": "[Matching Engine] Intent confidence scoring now logs the actual user query text length so engineers instantly see whether truncated queries cause low confidence scores.",
   "last_category": "Matching Engine",
-  "last_detail": "Actionability scoring now logs meeting slot availability count so engineers instantly see booking capacity during live testing.",
-  "last_impact": "Engineers debugging \"why did this high-scoring exhibitor drop to position #8?\" can now grep stderr for [ACTDBG] and see exactly how many meeting slots the exhibitor offered versus competitors \u2014 if a perfect-match booth scores 0.10 on actionability but has zero slots available while a weaker match has 12 slots, the ranking shift is immediately visible without digging through database dumps. This prevents the catastrophic trust failure where users walk to a \"top recommendation\" only to find \"fully",
-  "next_target": "Add proximity debug logging for exhibitor hall coordinates presence so engineers instantly see when location data is missing during ranking.",
+  "last_detail": "Intent confidence scoring now logs the actual user query text length so engineers instantly see whether truncated queries cause low confidence scores.",
+  "last_impact": "When engineers grep [ICDBG] during live fair testing, they can immediately see if a low intent-confidence score (e.g., 0.02 instead of 0.05) came from a user typing only 8 words vs 40 \u2014 critical for diagnosing whether the matching engine is correctly penalizing vague requests or incorrectly underscoring detailed ones. This closes the final observability gap in the 0.05 intent-confidence weight, which directly affects whether strong matches rise to top 3 or get buried.",
+  "next_target": "Add goal relevance debug logging for exhibitor solution text length so engineers see when zero keyword matches result from missing product descriptions.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
