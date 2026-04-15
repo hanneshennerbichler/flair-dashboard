@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:23:03Z",
+  "updated_at": "2026-04-15T01:24:12Z",
   "today": "2026-04-15",
-  "today_usd": 2.76227,
-  "total_usd": 8.74089,
-  "total_prompt": 1473195,
-  "total_completion": 288851,
+  "today_usd": 2.79405,
+  "total_usd": 8.77267,
+  "total_prompt": 1479454,
+  "total_completion": 289718,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 516341,
-      "completion_tokens": 80882,
-      "usd": 2.76227
+      "prompt_tokens": 522600,
+      "completion_tokens": 81749,
+      "usd": 2.79405
     }
   },
   "commits": [
+    {
+      "sha": "f63a61323ff0b60a087dbd8793a5a13c96a060ad",
+      "time": "2026-04-15T01:23:04Z",
+      "time_fmt": "2026-04-15 01:23 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs exhibitor's explicitly tagged target customer segments so engineers see when B2B robotics vendor matched to B2C retail buyer."
+    },
     {
       "sha": "58f7bc16cbb511e70c71901cf1f17af3edadfe68",
       "time": "2026-04-15T01:22:12Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:34:04Z",
       "time_fmt": "2026-04-15 00:34 UTC",
       "msg": "[Matching Engine] Goal relevance now logs user's industry vertical so engineers instantly see cross-industry false positives during live testing."
-    },
-    {
-      "sha": "2e4f351f792e9b7f51f2e612637249c15d05a56d",
-      "time": "2026-04-15T00:33:07Z",
-      "time_fmt": "2026-04-15 00:33 UTC",
-      "msg": "[Matching Engine] Intent confidence scoring now logs the actual user query text length so engineers instantly see whether truncated queries cause low confidence scores."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:43:48Z | heartbeat | daemon tick",
     "2026-04-15T00:44:48Z | heartbeat | daemon tick",
     "2026-04-15T00:45:47Z | heartbeat | daemon tick",
     "2026-04-15T00:46:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:19:47Z | heartbeat | daemon tick",
     "2026-04-15T01:20:47Z | heartbeat | daemon tick",
     "2026-04-15T01:21:47Z | heartbeat | daemon tick",
-    "2026-04-15T01:22:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:22:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:23:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs exhibitor's explicitly tagged target customer segments so engineers see when B2B robotics vendor matched to B2C retail buyer.",
+  "last_completed": "[Matching Engine] Actionability score now logs concrete action types (demo/meeting/sample) available per exhibitor so engineers see why booth ranks high.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs exhibitor's explicitly tagged target customer segments so engineers see when B2B robotics vendor matched to B2C retail buyer.",
-  "last_impact": "Prevents catastrophic false positives where scale-appropriate exhibitors appear relevant but serve completely different customer types (e.g., industrial automation vendor ranking high for a retail buyer asking about \"automation\"). Engineers can now trace in real time whether target_customer_size alignment exists or is missing, catching segment mismatches that destroy booth visit ROI before the user walks there.",
-  "next_target": "Add actionability logging for meeting slot availability so engineers see when high-scoring exhibitors have zero bookable time during user's fair days.",
+  "last_detail": "Actionability score now logs concrete action types (demo/meeting/sample) available per exhibitor so engineers see why booth ranks high.",
+  "last_impact": "When a user sees \"Hall 9, Stand A12 \u2014 request live demo,\" they need confidence that action is actually available. Right now engineers debugging rankings cannot tell if actionability score came from real staff availability + demo slots vs. generic \"visit us\" text. This logging exposes the difference between exhibitors offering concrete next steps (book 15-min demo, pick up prototype sample, meet hiring manager) versus booths with no structured actions \u2014 directly supporting the CORE PRINCIPLE that",
+  "next_target": "Log availability score's time-window overlap (user days vs staff schedule) so engineers see partial-day coverage causing half-weight penalty.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
