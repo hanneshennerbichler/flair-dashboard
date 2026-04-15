@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:16:17Z",
+  "updated_at": "2026-04-15T01:17:12Z",
   "today": "2026-04-15",
-  "today_usd": 2.54935,
-  "total_usd": 8.52797,
-  "total_prompt": 1429393,
-  "total_completion": 283417,
+  "today_usd": 2.58332,
+  "total_usd": 8.56194,
+  "total_prompt": 1435651,
+  "total_completion": 284430,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 472539,
-      "completion_tokens": 75448,
-      "usd": 2.54935
+      "prompt_tokens": 478797,
+      "completion_tokens": 76461,
+      "usd": 2.58332
     }
   },
   "commits": [
+    {
+      "sha": "a645a7bb5ed65add89a2fe7e1953f6e7912bb4fe",
+      "time": "2026-04-15T01:16:18Z",
+      "time_fmt": "2026-04-15 01:16 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs buyer's declared employee count inline so engineers see startup vs enterprise mismatch during live ranking tests."
+    },
     {
       "sha": "0c288fd2d57849802b56066fdf55c5ce109d0dfd",
       "time": "2026-04-15T01:15:16Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:27:25Z",
       "time_fmt": "2026-04-15 00:27 UTC",
       "msg": "[Matching Engine] Commercial fit now logs buyer's budget tier so engineers instantly see price-point mismatches during live testing."
-    },
-    {
-      "sha": "f4932e80f30e5214fb48f71b230a984f8833c2f9",
-      "time": "2026-04-15T00:26:08Z",
-      "time_fmt": "2026-04-15 00:26 UTC",
-      "msg": "[Matching Engine] Commercial fit now logs buyer's employee count so engineers instantly see startup-vs-enterprise mismatches during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:36:47Z | heartbeat | daemon tick",
     "2026-04-15T00:37:48Z | heartbeat | daemon tick",
     "2026-04-15T00:38:48Z | heartbeat | daemon tick",
     "2026-04-15T00:39:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:12:47Z | heartbeat | daemon tick",
     "2026-04-15T01:13:48Z | heartbeat | daemon tick",
     "2026-04-15T01:14:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:15:47Z | heartbeat | daemon tick"
+    "2026-04-15T01:15:47Z | heartbeat | daemon tick",
+    "2026-04-15T01:16:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs buyer's declared employee count inline so engineers see startup vs enterprise mismatch during live ranking tests.",
+  "last_completed": "[Matching Engine] Goal relevance now logs keyword match count so engineers see how many user query terms each exhibitor matched during ranking.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs buyer's declared employee count inline so engineers see startup vs enterprise mismatch during live ranking tests.",
-  "last_impact": "When a 5-person robotics startup gets matched to Siemens (50k employees), engineers now see `buyer_emp=5 exhibitor_emp=50000` in the debug line and immediately understand why commercial fit dropped to 0.00 \u2014 no guessing, no multi-step investigation. This prevents catastrophic false positives (user wastes booth visit on totally wrong scale) by making scale mismatch visible in real time during Hannover Messe testing, directly supporting the core principle: if the match is wrong, the user feels the",
-  "next_target": "Add availability debug logging for staff role types present per exhibitor so engineers see when only sales staff available but user needs technical demo.",
+  "last_detail": "Goal relevance now logs keyword match count so engineers see how many user query terms each exhibitor matched during ranking.",
+  "last_impact": "When a user searches \"robotics automation AI vision\" and gets unexpected results, engineers can now see in real time which exhibitors matched 1 vs 4 keywords. This exposes why generalists with broad catalogs sometimes outrank specialists \u2014 the generalist matches more query terms even if none deeply. Directly supports the SPEC.md goal relevance principle: we rank by probability of useful action NOW, not by keyword coverage. Logging keyword match count lets engineers tune the weight between depth",
+  "next_target": "Add actionability debug logging for meeting slot availability so engineers see when high-ranked exhibitors have zero open calendar slots.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
