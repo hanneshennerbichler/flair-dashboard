@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:22:10Z",
+  "updated_at": "2026-04-15T01:23:03Z",
   "today": "2026-04-15",
-  "today_usd": 2.73514,
-  "total_usd": 8.71376,
-  "total_prompt": 1466938,
-  "total_completion": 288294,
+  "today_usd": 2.76227,
+  "total_usd": 8.74089,
+  "total_prompt": 1473195,
+  "total_completion": 288851,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 510084,
-      "completion_tokens": 80325,
-      "usd": 2.73514
+      "prompt_tokens": 516341,
+      "completion_tokens": 80882,
+      "usd": 2.76227
     }
   },
   "commits": [
+    {
+      "sha": "58f7bc16cbb511e70c71901cf1f17af3edadfe68",
+      "time": "2026-04-15T01:22:12Z",
+      "time_fmt": "2026-04-15 01:22 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs exhibitor's explicitly tagged target customer segments so engineers see when B2B robotics vendor matched to B2C retail buyer."
+    },
     {
       "sha": "e01a4cf1979139d5dd184d3727f3a1c7b675f4cc",
       "time": "2026-04-15T01:21:08Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:33:07Z",
       "time_fmt": "2026-04-15 00:33 UTC",
       "msg": "[Matching Engine] Intent confidence scoring now logs the actual user query text length so engineers instantly see whether truncated queries cause low confidence scores."
-    },
-    {
-      "sha": "b90f4090f3e17c999f450f78b431af1e6f24c5ba",
-      "time": "2026-04-15T00:32:18Z",
-      "time_fmt": "2026-04-15 00:32 UTC",
-      "msg": "[Matching Engine] Actionability scoring now logs meeting slot availability count so engineers instantly see booking capacity during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:42:48Z | heartbeat | daemon tick",
     "2026-04-15T00:43:48Z | heartbeat | daemon tick",
     "2026-04-15T00:44:48Z | heartbeat | daemon tick",
     "2026-04-15T00:45:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:18:47Z | heartbeat | daemon tick",
     "2026-04-15T01:19:47Z | heartbeat | daemon tick",
     "2026-04-15T01:20:47Z | heartbeat | daemon tick",
-    "2026-04-15T01:21:47Z | heartbeat | daemon tick"
+    "2026-04-15T01:21:47Z | heartbeat | daemon tick",
+    "2026-04-15T01:22:48Z | heartbeat | daemon tick"
   ],
   "last_completed": "[Matching Engine] Commercial fit now logs exhibitor's explicitly tagged target customer segments so engineers see when B2B robotics vendor matched to B2C retail buyer.",
   "last_category": "Matching Engine",
   "last_detail": "Commercial fit now logs exhibitor's explicitly tagged target customer segments so engineers see when B2B robotics vendor matched to B2C retail buyer.",
-  "last_impact": "Engineers waste 1\u20133 minutes per mismatch investigation when commercial fit degrades silently due to target audience mismatch. Logging target_customer_size tags (startup/SME/enterprise/government/academic) inline in [CFDBG] lines lets them instantly see \"exhibitor serves enterprise but buyer is 8-person startup\" without opening DB or re-running queries. This closes the last structured field gap in commercial fit debugging \u2014 all four required fields (employee_count, price_tier, target_customer_siz",
-  "next_target": "Add proximity scoring log for multi-building fairs so engineers see when 'within 2 halls' bonus fails because halls span disconnected pavilions.",
+  "last_impact": "Prevents catastrophic false positives where scale-appropriate exhibitors appear relevant but serve completely different customer types (e.g., industrial automation vendor ranking high for a retail buyer asking about \"automation\"). Engineers can now trace in real time whether target_customer_size alignment exists or is missing, catching segment mismatches that destroy booth visit ROI before the user walks there.",
+  "next_target": "Add actionability logging for meeting slot availability so engineers see when high-scoring exhibitors have zero bookable time during user's fair days.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
