@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T00:51:17Z",
+  "updated_at": "2026-04-15T00:52:07Z",
   "today": "2026-04-15",
-  "today_usd": 1.67429,
-  "total_usd": 7.65291,
-  "total_prompt": 1273311,
-  "total_completion": 256296,
+  "today_usd": 1.70345,
+  "total_usd": 7.68207,
+  "total_prompt": 1279551,
+  "total_completion": 256992,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 316457,
-      "completion_tokens": 48327,
-      "usd": 1.67429
+      "prompt_tokens": 322697,
+      "completion_tokens": 49023,
+      "usd": 1.70345
     }
   },
   "commits": [
+    {
+      "sha": "d71cfcae0c877e2885b4542d543221bf9f181400",
+      "time": "2026-04-15T00:51:19Z",
+      "time_fmt": "2026-04-15 00:51 UTC",
+      "msg": "[Matching Engine] Actionability now logs event registration seat availability so engineers see when workshop/masterclass capacity limits reduce bookability."
+    },
     {
       "sha": "77abaf7a24c9e90a93fc98218c02fd26d629635f",
       "time": "2026-04-15T00:50:20Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:02:19Z",
       "time_fmt": "2026-04-15 00:02 UTC",
       "msg": "[Matching Engine] Goal relevance scoring now logs exhibitor's product category tags so engineers instantly see catalog alignment during live fair testing."
-    },
-    {
-      "sha": "99a6451decc7276a39c171fb7032be80a666bc1d",
-      "time": "2026-04-15T00:01:07Z",
-      "time_fmt": "2026-04-15 00:01 UTC",
-      "msg": "[Matching Engine] Commercial fit now logs buyer's industry vertical so engineers instantly see sector mismatches during live fair testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:11:47Z | heartbeat | daemon tick",
     "2026-04-15T00:12:48Z | heartbeat | daemon tick",
     "2026-04-15T00:13:48Z | heartbeat | daemon tick",
     "2026-04-15T00:14:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:47:47Z | heartbeat | daemon tick",
     "2026-04-15T00:48:48Z | heartbeat | daemon tick",
     "2026-04-15T00:49:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:50:47Z | heartbeat | daemon tick"
+    "2026-04-15T00:50:47Z | heartbeat | daemon tick",
+    "2026-04-15T00:51:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Actionability now logs event registration seat availability so engineers see when workshop/masterclass capacity limits reduce bookability.",
+  "last_completed": "[Matching Engine] Intent confidence now logs query complexity (unique terms + clauses) so engineers see when simplistic phrasing causes broad low-confidence matches.",
   "last_category": "Matching Engine",
-  "last_detail": "Actionability now logs event registration seat availability so engineers see when workshop/masterclass capacity limits reduce bookability.",
-  "last_impact": "When users query \"best AI workshops\" and get matched to sold-out masterclasses, engineers currently see actionability score but not why it's low. This change exposes seat_count vs seats_booked in debug output, making it instantly visible when registration capacity blocks actionability. Directly supports the core principle: users must feel \"if I don't use this NOW, I'm missing something\" \u2014 but that only works if actionability scoring catches capacity limits before surfacing the event. Prevents re",
-  "next_target": "Log commercial fit buyer budget tier (startup/SME/enterprise) so engineers see when free-tier users get premium-only exhibitor matches.",
+  "last_detail": "Intent confidence now logs query complexity (unique terms + clauses) so engineers see when simplistic phrasing causes broad low-confidence matches.",
+  "last_impact": "Visitors who type \"automation\" get weaker rankings than those typing \"robotic welding automation for automotive assembly lines\" \u2014 but engineers couldn't see why intent confidence scored differently. Logging query complexity (unique terms + clause count) exposes the gap between vague and specific input during live fair testing, letting engineers verify the engine penalizes simplistic queries as designed. Directly supports CORE PRINCIPLE: precise intent \u2192 higher confidence \u2192 stronger matches \u2192 \"I'",
+  "next_target": "Add actionability debug logging for product trial availability (sample kits, test licenses) so engineers see when exhibitors offer take-home proof vs. booth-only demos.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
