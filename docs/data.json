@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:44:17Z",
+  "updated_at": "2026-04-15T00:45:16Z",
   "today": "2026-04-15",
-  "today_usd": 1.42998,
-  "total_usd": 7.4086,
-  "total_prompt": 1229650,
-  "total_completion": 248741,
+  "today_usd": 1.46885,
+  "total_usd": 7.44747,
+  "total_prompt": 1235887,
+  "total_completion": 250085,
   "daily_cap": 50.0,
-  "ticks_today": 44,
+  "ticks_today": 45,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 272796,
-      "completion_tokens": 40772,
-      "usd": 1.42998
+      "prompt_tokens": 279033,
+      "completion_tokens": 42116,
+      "usd": 1.46885
     }
   },
   "commits": [
+    {
+      "sha": "d87a2b3f0ddeaaf4306b68421cff01c0a60e0966",
+      "time": "2026-04-15T00:44:18Z",
+      "time_fmt": "2026-04-15 00:44 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs buyer's industry vertical so engineers instantly see when exhibitor's target market misaligns with user's sector."
+    },
     {
       "sha": "2cfb579b1b15ffa547314a1057813931862ef7ed",
       "time": "2026-04-15T00:43:13Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:55:16Z",
       "time_fmt": "2026-04-14 23:55 UTC",
       "msg": "[Matching Engine] Actionability scoring now logs which concrete next-step mechanisms exhibitor offers so engineers see demo/meeting/sample availability instantly."
-    },
-    {
-      "sha": "8afd78c361eaafbce240bbd221c138a016ab9e8c",
-      "time": "2026-04-14T23:54:15Z",
-      "time_fmt": "2026-04-14 23:54 UTC",
-      "msg": "[Matching Engine] Intent confidence now logs whether user named a specific product category to reveal precision instantly during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:04:48Z | heartbeat | daemon tick",
     "2026-04-15T00:05:48Z | heartbeat | daemon tick",
     "2026-04-15T00:06:48Z | heartbeat | daemon tick",
     "2026-04-15T00:07:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:40:48Z | heartbeat | daemon tick",
     "2026-04-15T00:41:47Z | heartbeat | daemon tick",
     "2026-04-15T00:42:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:43:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:43:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:44:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs buyer's industry vertical so engineers instantly see when exhibitor's target market misaligns with user's sector.",
+  "last_completed": "[Matching Engine] Proximity scoring now logs when exhibitor hall data is missing so engineers instantly see data gaps during live testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs buyer's industry vertical so engineers instantly see when exhibitor's target market misaligns with user's sector.",
-  "last_impact": "During live fair testing, engineers currently see commercial fit scores drop but cannot tell whether the cause is size mismatch, budget tier conflict, or industry vertical misalignment \u2014 they waste 2\u20133 minutes per investigation re-running queries with debug flags. Adding buyer vertical to the stderr log line (alongside employee count and budget tier already shipped) completes the commercial fit diagnostic picture: when a pharma buyer gets matched to an automotive-focused exhibitor despite perfec",
-  "next_target": "Add proximity scoring log for user's selected fair days count so engineers see when single-day visitors get penalized vs multi-day planners.",
+  "last_detail": "Proximity scoring now logs when exhibitor hall data is missing so engineers instantly see data gaps during live testing.",
+  "last_impact": "Engineers debugging unexpected ranking drops at Hannover Messe currently cannot tell whether an exhibitor dropped because of poor relevance or because hall coordinates are missing in the database. When proximity=0.00 appears without explanation, they waste 2\u20133 minutes checking multiple tables. This log line (max 120 chars, stderr, [PROXDBG] prefix) shows `hall=NULL` immediately, surfacing data quality issues in real time and preventing silent ranking degradation for otherwise strong matches.",
+  "next_target": "Add availability scoring debug log showing when user selected days are missing so engineers see temporal filtering failures instantly.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
