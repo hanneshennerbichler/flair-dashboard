@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:37:05Z",
+  "updated_at": "2026-04-15T01:38:08Z",
   "today": "2026-04-15",
-  "today_usd": 3.19868,
-  "total_usd": 9.1773,
-  "total_prompt": 1560840,
-  "total_completion": 300416,
+  "today_usd": 3.22815,
+  "total_usd": 9.20677,
+  "total_prompt": 1567093,
+  "total_completion": 301130,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 603986,
-      "completion_tokens": 92447,
-      "usd": 3.19868
+      "prompt_tokens": 610239,
+      "completion_tokens": 93161,
+      "usd": 3.22815
     }
   },
   "commits": [
+    {
+      "sha": "8d029ea55f979bc54a8eddcfbacc24faf6290992",
+      "time": "2026-04-15T01:37:06Z",
+      "time_fmt": "2026-04-15 01:37 UTC",
+      "msg": "[Matching Engine] Commercial fit now falls back to half-weight (0.075) when structured fields are missing instead of zero so strong matches stay visible."
+    },
     {
       "sha": "d5bef5be1b841e4150b8807e18985201cd39bf8c",
       "time": "2026-04-15T01:36:09Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:48:16Z",
       "time_fmt": "2026-04-15 00:48 UTC",
       "msg": "[Matching Engine] Actionability now logs meeting slot availability count so engineers see which exhibitors offer bookable time vs walk-in only."
-    },
-    {
-      "sha": "4f0327629d47d7b74090179b442750052906142a",
-      "time": "2026-04-15T00:47:07Z",
-      "time_fmt": "2026-04-15 00:47 UTC",
-      "msg": "[Matching Engine] Availability scoring now logs user's selected days count so engineers instantly see when zero-day users trigger false negatives."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:57:48Z | heartbeat | daemon tick",
     "2026-04-15T00:58:48Z | heartbeat | daemon tick",
     "2026-04-15T00:59:48Z | heartbeat | daemon tick",
     "2026-04-15T01:00:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:33:48Z | heartbeat | daemon tick",
     "2026-04-15T01:34:48Z | heartbeat | daemon tick",
     "2026-04-15T01:35:47Z | heartbeat | daemon tick",
-    "2026-04-15T01:36:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:36:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:37:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now falls back to half-weight (0.075) when structured fields are missing instead of zero so strong matches stay visible.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now include buyer's employee count so engineers see when 8-person startup gets matched to enterprise-only vendor.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now falls back to half-weight (0.075) when structured fields are missing instead of zero so strong matches stay visible.",
-  "last_impact": "Prevents catastrophic ranking collapse when exhibitors have incomplete data \u2014 a robotics startup with perfect goal/solution fit but missing price_tier no longer drops to position #47. Users see relevant booths even when data submission is partial, while still rewarding completeness. This directly supports the CORE PRINCIPLE: if strong matches vanish due to incomplete metadata, users miss critical connections happening right now.",
-  "next_target": "Add commercial fit debug logging for buyer's employee count so engineers see when user-side scale data is missing during live tests.",
+  "last_detail": "Commercial fit debug logs now include buyer's employee count so engineers see when 8-person startup gets matched to enterprise-only vendor.",
+  "last_impact": "Catastrophic scale mismatches (startup \u2192 Siemens) are the #1 trust destroyer at fairs \u2014 you walk to a booth, they dismiss you in 30 seconds because you're \"too small.\" By logging buyer employee count alongside exhibitor target segments in every [CFDBG] line, engineers running live tests instantly see when the commercial fit computation failed to gate out size mismatches. This turns invisible ranking bugs into 5-second diagnoses during Hannover Messe testing, directly preventing the worst user ex",
+  "next_target": "Add buyer industry vertical to commercial fit debug logs so engineers see when manufacturing visitor matched to pure-services exhibitor.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
