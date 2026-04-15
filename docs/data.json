@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:25:12Z",
+  "updated_at": "2026-04-15T01:26:10Z",
   "today": "2026-04-15",
-  "today_usd": 2.8295,
-  "total_usd": 8.80812,
-  "total_prompt": 1485715,
-  "total_completion": 290829,
+  "today_usd": 2.86164,
+  "total_usd": 8.84026,
+  "total_prompt": 1491975,
+  "total_completion": 291720,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 528861,
-      "completion_tokens": 82860,
-      "usd": 2.8295
+      "prompt_tokens": 535121,
+      "completion_tokens": 83751,
+      "usd": 2.86164
     }
   },
   "commits": [
+    {
+      "sha": "1b704cc37919c0a731277b6cce5f1490dbaaf4bd",
+      "time": "2026-04-15T01:25:14Z",
+      "time_fmt": "2026-04-15 01:25 UTC",
+      "msg": "[Matching Engine] Proximity now logs exhibitor hall when user hall unknown so engineers see when distance fallback to zero occurs during live tests."
+    },
     {
       "sha": "d29d6226b6ff91a0d8505f4389bb657012b4b8fa",
       "time": "2026-04-15T01:24:14Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:36:09Z",
       "time_fmt": "2026-04-15 00:36 UTC",
       "msg": "[Matching Engine] Social proof scoring now logs reference customer count so engineers instantly see which exhibitors provide verifiable case studies vs vague claims."
-    },
-    {
-      "sha": "3c3d85db4cb738fb132b31211bdec8e0841db068",
-      "time": "2026-04-15T00:35:12Z",
-      "time_fmt": "2026-04-15 00:35 UTC",
-      "msg": "[Matching Engine] Proximity scoring now logs hall distance in meters so engineers instantly see when physical layout causes unexpected ranking drops."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:45:47Z | heartbeat | daemon tick",
     "2026-04-15T00:46:48Z | heartbeat | daemon tick",
     "2026-04-15T00:47:47Z | heartbeat | daemon tick",
     "2026-04-15T00:48:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:21:47Z | heartbeat | daemon tick",
     "2026-04-15T01:22:48Z | heartbeat | daemon tick",
     "2026-04-15T01:23:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:24:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:24:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:25:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity now logs exhibitor hall when user hall unknown so engineers see when distance fallback to zero occurs during live tests.",
+  "last_completed": "[Matching Engine] Availability score now logs day overlap fraction so engineers see partial vs full coverage during live ranking tests.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity now logs exhibitor hall when user hall unknown so engineers see when distance fallback to zero occurs during live tests.",
-  "last_impact": "During Hannover Messe, engineers running live ranking tests see real-time why certain exhibitors score zero for proximity \u2014 user hasn't shared location yet, so distance can't be computed. This makes the 'no hall data OR no user days = no proximity credit' rule from SPEC.md immediately auditable in stderr logs, preventing confusion when otherwise strong matches appear without location boost before user sets days or shares position.",
-  "next_target": "Add availability debug logging for partial staff schedule coverage so engineers see when half-weight (0.01) fallback triggers.",
+  "last_detail": "Availability score now logs day overlap fraction so engineers see partial vs full coverage during live ranking tests.",
+  "last_impact": "When an exhibitor has staff present Tuesday/Wednesday but user selected Monday\u2013Thursday, engineers currently see availability=0.01 (half weight) without understanding why. Logging \"2/4 days covered\" inline shows partial schedule overlap immediately, preventing false negatives where strong matches disappear because one missing day zeroed the score. This directly supports the CORE PRINCIPLE: users must see exhibitors who are present on MOST of their selected days, even if not all \u2014 missing this vi",
+  "next_target": "Log proximity scoring's hall offset distance in meters so engineers see when 'within 2 halls' bonus triggers during live tests.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
