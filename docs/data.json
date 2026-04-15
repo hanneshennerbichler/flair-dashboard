@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:04:15Z",
+  "updated_at": "2026-04-15T01:05:14Z",
   "today": "2026-04-15",
-  "today_usd": 2.11559,
-  "total_usd": 8.09421,
-  "total_prompt": 1354373,
-  "total_completion": 269504,
+  "today_usd": 2.15015,
+  "total_usd": 8.12877,
+  "total_prompt": 1360613,
+  "total_completion": 270560,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 397519,
-      "completion_tokens": 61535,
-      "usd": 2.11559
+      "prompt_tokens": 403759,
+      "completion_tokens": 62591,
+      "usd": 2.15015
     }
   },
   "commits": [
+    {
+      "sha": "cb02bb2dbe2fd4a892ae320c060eb06722a28fb6",
+      "time": "2026-04-15T01:04:16Z",
+      "time_fmt": "2026-04-15 01:04 UTC",
+      "msg": "[Matching Engine] Proximity now logs which user-selected fair days overlap exhibitor staff schedules so engineers see temporal vs spatial match."
+    },
     {
       "sha": "18af0fa598608652b579c10907b89dd7802991b9",
       "time": "2026-04-15T01:03:40Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:15:17Z",
       "time_fmt": "2026-04-15 00:15 UTC",
       "msg": "[Matching Engine] Actionability scoring now logs exhibitor demo availability window so engineers instantly see booking time conflicts during live testing."
-    },
-    {
-      "sha": "ba2c4010eca9f27c46faddae3e50ae2ffb81e34c",
-      "time": "2026-04-15T00:14:06Z",
-      "time_fmt": "2026-04-15 00:14 UTC",
-      "msg": "[Matching Engine] Solution specificity now logs product SKU count so engineers instantly see catalog depth during live fair testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:24:48Z | heartbeat | daemon tick",
     "2026-04-15T00:25:48Z | heartbeat | daemon tick",
     "2026-04-15T00:26:48Z | heartbeat | daemon tick",
     "2026-04-15T00:27:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:00:47Z | heartbeat | daemon tick",
     "2026-04-15T01:01:48Z | heartbeat | daemon tick",
     "2026-04-15T01:02:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:03:47Z | heartbeat | daemon tick"
+    "2026-04-15T01:03:47Z | heartbeat | daemon tick",
+    "2026-04-15T01:04:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity now logs which user-selected fair days overlap exhibitor staff schedules so engineers see temporal vs spatial match.",
+  "last_completed": "[Matching Engine] Actionability now logs meeting request response rate per exhibitor so engineers see which booths confirm vs ghost during live tests.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity now logs which user-selected fair days overlap exhibitor staff schedules so engineers see temporal vs spatial match.",
-  "last_impact": "Engineers debugging why a nearby booth ranks low will instantly see \"user wants Thu+Fri, exhibitor staffed Mon\u2013Wed only\" \u2014 revealing that temporal mismatch killed the match despite perfect location. This eliminates the single most confusing proximity failure mode: booth is 50m away but scores 0.00 because user's days don't overlap staff presence. Directly supports the SPEC rule \"no hall data OR no user days = no proximity credit\" by making the temporal gate visible in real time.",
-  "next_target": "Log when commercial fit uses fallback score (0.075) for missing structured data so engineers see which exhibitors lack budget/scale tags.",
+  "last_detail": "Actionability now logs meeting request response rate per exhibitor so engineers see which booths confirm vs ghost during live tests.",
+  "last_impact": "Engineers running live fair tests currently see actionability scores but cannot distinguish exhibitors with 90% booking confirmation rates from those who never reply. This debug output exposes silent conversion killers \u2014 if an exhibitor scores high on actionability (open calendar slots, walk-ins accepted) but has 0% response rate over 20+ meeting requests, engineers immediately flag them for demotion or removal. Ties directly to CORE PRINCIPLE: a high-ranked booth that ghosts meeting requests de",
+  "next_target": "Add proximity debug logging for multi-hall routing so engineers see calculated walking time when user plans cross-campus visits.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
