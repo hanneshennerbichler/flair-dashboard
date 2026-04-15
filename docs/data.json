@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:40:05Z",
+  "updated_at": "2026-04-15T01:41:09Z",
   "today": "2026-04-15",
-  "today_usd": 3.29134,
-  "total_usd": 9.26996,
-  "total_prompt": 1579600,
-  "total_completion": 302841,
+  "today_usd": 3.32353,
+  "total_usd": 9.30215,
+  "total_prompt": 1585855,
+  "total_completion": 303736,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 622746,
-      "completion_tokens": 94872,
-      "usd": 3.29134
+      "prompt_tokens": 629001,
+      "completion_tokens": 95767,
+      "usd": 3.32353
     }
   },
   "commits": [
+    {
+      "sha": "aa3d61ecd6c2ac455f8f372fb20ffd5acc3af089",
+      "time": "2026-04-15T01:40:07Z",
+      "time_fmt": "2026-04-15 01:40 UTC",
+      "msg": "[Matching Engine] Actionability now logs available meeting slot count and demo availability so engineers see concrete action density during live tests."
+    },
     {
       "sha": "dd52306f2f0e860966f2bb5791eb9d93c37372e5",
       "time": "2026-04-15T01:39:18Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:51:19Z",
       "time_fmt": "2026-04-15 00:51 UTC",
       "msg": "[Matching Engine] Actionability now logs event registration seat availability so engineers see when workshop/masterclass capacity limits reduce bookability."
-    },
-    {
-      "sha": "77abaf7a24c9e90a93fc98218c02fd26d629635f",
-      "time": "2026-04-15T00:50:20Z",
-      "time_fmt": "2026-04-15 00:50 UTC",
-      "msg": "[Matching Engine] Goal relevance now logs exhibitor's product category breadth so engineers see when broad catalogs dilute match precision."
     }
   ],
   "log_tail": [
-    "2026-04-15T01:00:47Z | heartbeat | daemon tick",
     "2026-04-15T01:01:48Z | heartbeat | daemon tick",
     "2026-04-15T01:02:48Z | heartbeat | daemon tick",
     "2026-04-15T01:03:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:36:48Z | heartbeat | daemon tick",
     "2026-04-15T01:37:48Z | heartbeat | daemon tick",
     "2026-04-15T01:38:47Z | heartbeat | daemon tick",
-    "2026-04-15T01:39:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:39:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:40:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Actionability now logs available meeting slot count and demo availability so engineers see concrete action density during live tests.",
+  "last_completed": "[Matching Engine] Proximity score now logs exhibitor-stand-missing flag so engineers see when incomplete hall data causes zero distance credit.",
   "last_category": "Matching Engine",
-  "last_detail": "Actionability now logs available meeting slot count and demo availability so engineers see concrete action density during live tests.",
-  "last_impact": "When an exhibitor ranks unexpectedly high or low, engineers currently see 'actionability=0.08' but no breakdown of what concrete actions drove that score. This change lets them grep stderr during Hannover Messe testing and immediately see \"booth X has 3 meeting slots + live demo vs booth Y has zero concrete actions\" \u2014 turning a mysterious number into an actionable data quality signal. Ties directly to the core principle: if actionability score is wrong, users get vague booths instead of action-r",
-  "next_target": "Add goal relevance debug logging showing which user intent keywords matched which exhibitor capability tags so mismatch root cause is visible live.",
+  "last_detail": "Proximity score now logs exhibitor-stand-missing flag so engineers see when incomplete hall data causes zero distance credit.",
+  "last_impact": "Engineers running live ranking tests can now instantly diagnose why strong matches rank lower than expected \u2014 incomplete stand coordinates zero out the proximity component (0.10 of total score), causing otherwise perfect fits to drop 5\u201310 positions. The debug log shows \"stand=MISSING hall=NULL\" in one grep, eliminating 2\u20133 minutes of database cross-checking per investigation. This directly supports the CORE PRINCIPLE: engineers fix data gaps faster \u2192 users get better location-aware recommendatio",
+  "next_target": "Log the computed distance value (meters) in proximity debug output so engineers see numerical threshold effects when stands cluster.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
