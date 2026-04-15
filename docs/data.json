@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T00:52:07Z",
+  "updated_at": "2026-04-15T00:53:08Z",
   "today": "2026-04-15",
-  "today_usd": 1.70345,
-  "total_usd": 7.68207,
-  "total_prompt": 1279551,
-  "total_completion": 256992,
+  "today_usd": 1.73377,
+  "total_usd": 7.71239,
+  "total_prompt": 1285794,
+  "total_completion": 257765,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 322697,
-      "completion_tokens": 49023,
-      "usd": 1.70345
+      "prompt_tokens": 328940,
+      "completion_tokens": 49796,
+      "usd": 1.73377
     }
   },
   "commits": [
+    {
+      "sha": "b853147bc8402927d024464d4941140ea8b55170",
+      "time": "2026-04-15T00:52:08Z",
+      "time_fmt": "2026-04-15 00:52 UTC",
+      "msg": "[Matching Engine] Intent confidence now logs query complexity (unique terms + clauses) so engineers see when simplistic phrasing causes broad low-confidence matches."
+    },
     {
       "sha": "d71cfcae0c877e2885b4542d543221bf9f181400",
       "time": "2026-04-15T00:51:19Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:03:06Z",
       "time_fmt": "2026-04-15 00:03 UTC",
       "msg": "[Matching Engine] Social proof scoring now logs reference customer count so engineers instantly see proof depth during live fair testing."
-    },
-    {
-      "sha": "d5f493f342d9f9889489fa98a1481b5bf9b482fb",
-      "time": "2026-04-15T00:02:19Z",
-      "time_fmt": "2026-04-15 00:02 UTC",
-      "msg": "[Matching Engine] Goal relevance scoring now logs exhibitor's product category tags so engineers instantly see catalog alignment during live fair testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:12:48Z | heartbeat | daemon tick",
     "2026-04-15T00:13:48Z | heartbeat | daemon tick",
     "2026-04-15T00:14:48Z | heartbeat | daemon tick",
     "2026-04-15T00:15:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:48:48Z | heartbeat | daemon tick",
     "2026-04-15T00:49:48Z | heartbeat | daemon tick",
     "2026-04-15T00:50:47Z | heartbeat | daemon tick",
-    "2026-04-15T00:51:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:51:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:52:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Intent confidence now logs query complexity (unique terms + clauses) so engineers see when simplistic phrasing causes broad low-confidence matches.",
+  "last_completed": "[Matching Engine] Actionability now logs whether exhibitor accepts walk-ins vs. appointment-only so engineers see booking friction in real time.",
   "last_category": "Matching Engine",
-  "last_detail": "Intent confidence now logs query complexity (unique terms + clauses) so engineers see when simplistic phrasing causes broad low-confidence matches.",
-  "last_impact": "Visitors who type \"automation\" get weaker rankings than those typing \"robotic welding automation for automotive assembly lines\" \u2014 but engineers couldn't see why intent confidence scored differently. Logging query complexity (unique terms + clause count) exposes the gap between vague and specific input during live fair testing, letting engineers verify the engine penalizes simplistic queries as designed. Directly supports CORE PRINCIPLE: precise intent \u2192 higher confidence \u2192 stronger matches \u2192 \"I'",
-  "next_target": "Add actionability debug logging for product trial availability (sample kits, test licenses) so engineers see when exhibitors offer take-home proof vs. booth-only demos.",
+  "last_detail": "Actionability now logs whether exhibitor accepts walk-ins vs. appointment-only so engineers see booking friction in real time.",
+  "last_impact": "During live fair testing, engineers discover why highly relevant exhibitors rank lower than expected \u2014 many booths require pre-scheduled meetings but don't advertise it, causing users to waste time walking to closed stands. This one log line exposes the hidden friction (appointment-required flag) that kills actionability scores, letting us either penalize those exhibitors or surface the booking requirement in the UI before the user walks. Ties directly to CORE PRINCIPLE: if the user can't act on",
+  "next_target": "Log exhibitor's preferred contact method (email/phone/form) so engineers see when meeting request delivery fails due to channel mismatch.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
