@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:01:06Z",
+  "updated_at": "2026-04-15T00:02:18Z",
   "today": "2026-04-15",
-  "today_usd": 0.02836,
-  "total_usd": 6.00698,
-  "total_prompt": 963058,
-  "total_completion": 208619,
+  "today_usd": 0.0637,
+  "total_usd": 6.04232,
+  "total_prompt": 969259,
+  "total_completion": 209735,
   "daily_cap": 50.0,
-  "ticks_today": 1,
+  "ticks_today": 2,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 6204,
-      "completion_tokens": 650,
-      "usd": 0.02836
+      "prompt_tokens": 12405,
+      "completion_tokens": 1766,
+      "usd": 0.0637
     }
   },
   "commits": [
+    {
+      "sha": "99a6451decc7276a39c171fb7032be80a666bc1d",
+      "time": "2026-04-15T00:01:07Z",
+      "time_fmt": "2026-04-15 00:01 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs buyer's industry vertical so engineers instantly see sector mismatches during live fair testing."
+    },
     {
       "sha": "eba77f982eaf8b7e8a16decfe13f3086c243f5d3",
       "time": "2026-04-15T00:00:18Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:12:07Z",
       "time_fmt": "2026-04-14 23:12 UTC",
       "msg": "[Matching Engine] Social proof debug logs now emit exhibitor's actual reference customers (first 60 chars of names/industries) so engineers see proof instantly."
-    },
-    {
-      "sha": "d14d4b797b21ffe493fa8be8724fd23416180131",
-      "time": "2026-04-14T23:11:10Z",
-      "time_fmt": "2026-04-14 23:11 UTC",
-      "msg": "[Matching Engine] Commercial fit now extracts buyer's company name from role/query text when missing from profile so exhibitors see who they're being matched to."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:21:47Z | heartbeat | daemon tick",
     "2026-04-14T23:22:47Z | heartbeat | daemon tick",
     "2026-04-14T23:23:47Z | heartbeat | daemon tick",
     "2026-04-14T23:24:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-14T23:57:48Z | heartbeat | daemon tick",
     "2026-04-14T23:58:47Z | heartbeat | daemon tick",
     "2026-04-14T23:59:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:00:47Z | heartbeat | daemon tick"
+    "2026-04-15T00:00:47Z | heartbeat | daemon tick",
+    "2026-04-15T00:01:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs buyer's industry vertical so engineers instantly see sector mismatches during live fair testing.",
+  "last_completed": "[Matching Engine] Goal relevance scoring now logs exhibitor's product category tags so engineers instantly see catalog alignment during live fair testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs buyer's industry vertical so engineers instantly see sector mismatches during live fair testing.",
-  "last_impact": "When a manufacturing buyer gets matched to a services-only exhibitor (or vice versa), engineers grep [CFDBG] logs and immediately see \"buyer_vertical=mfg exhibitor_vertical=services\" without opening database or replaying session. This cuts mismatch diagnosis time from 3\u20135 minutes to 10 seconds during live Hannover Messe testing, directly protecting the CORE PRINCIPLE: every false positive (wrong vertical match) makes user feel \"this tool doesn't understand my world\" and destroys trust instantly.",
-  "next_target": "Add goal relevance debug logging showing top 3 keyword matches between user problem and exhibitor solution text.",
+  "last_detail": "Goal relevance scoring now logs exhibitor's product category tags so engineers instantly see catalog alignment during live fair testing.",
+  "last_impact": "When a user searching for \"robotics automation\" gets matched to a generic industrial supplier, engineers can now see in real time that the exhibitor's product_categories[] array contained [\"machinery\", \"tools\"] instead of [\"robotics\", \"automation\"] \u2014 exposing why goal relevance scored high despite weak catalog fit. This closes the last visibility gap in the goal relevance subsystem: we already log the user's stated problem, now we see what the exhibitor actually offers in structured terms, makin",
+  "next_target": "Add availability scoring debug log showing which specific staff schedule time windows overlapped with user's selected days so engineers see coverage gaps instantly.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
