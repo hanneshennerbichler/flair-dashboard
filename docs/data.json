@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:38:08Z",
+  "updated_at": "2026-04-15T01:39:17Z",
   "today": "2026-04-15",
-  "today_usd": 3.22815,
-  "total_usd": 9.20677,
-  "total_prompt": 1567093,
-  "total_completion": 301130,
+  "today_usd": 3.26364,
+  "total_usd": 9.24226,
+  "total_prompt": 1573343,
+  "total_completion": 302246,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 610239,
-      "completion_tokens": 93161,
-      "usd": 3.22815
+      "prompt_tokens": 616489,
+      "completion_tokens": 94277,
+      "usd": 3.26364
     }
   },
   "commits": [
+    {
+      "sha": "99f410207aabd9cdc5d4c212e4482f78c06afd37",
+      "time": "2026-04-15T01:38:10Z",
+      "time_fmt": "2026-04-15 01:38 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs now include buyer's employee count so engineers see when 8-person startup gets matched to enterprise-only vendor."
+    },
     {
       "sha": "8d029ea55f979bc54a8eddcfbacc24faf6290992",
       "time": "2026-04-15T01:37:06Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:49:14Z",
       "time_fmt": "2026-04-15 00:49 UTC",
       "msg": "[Matching Engine] Intent confidence now logs query length in chars so engineers instantly see when ultra-short queries cause low-confidence broad matches."
-    },
-    {
-      "sha": "a6367132d5689276c3434d090f9cc1c523b8ca3a",
-      "time": "2026-04-15T00:48:16Z",
-      "time_fmt": "2026-04-15 00:48 UTC",
-      "msg": "[Matching Engine] Actionability now logs meeting slot availability count so engineers see which exhibitors offer bookable time vs walk-in only."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:58:48Z | heartbeat | daemon tick",
     "2026-04-15T00:59:48Z | heartbeat | daemon tick",
     "2026-04-15T01:00:47Z | heartbeat | daemon tick",
     "2026-04-15T01:01:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:34:48Z | heartbeat | daemon tick",
     "2026-04-15T01:35:47Z | heartbeat | daemon tick",
     "2026-04-15T01:36:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:37:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:37:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:38:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs now include buyer's employee count so engineers see when 8-person startup gets matched to enterprise-only vendor.",
+  "last_completed": "[Matching Engine] Commercial fit now logs buyer's budget tier and vendor's price tier side-by-side so engineers see misalignment (e.g., budget buyer vs. enterprise vendor).",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs now include buyer's employee count so engineers see when 8-person startup gets matched to enterprise-only vendor.",
-  "last_impact": "Catastrophic scale mismatches (startup \u2192 Siemens) are the #1 trust destroyer at fairs \u2014 you walk to a booth, they dismiss you in 30 seconds because you're \"too small.\" By logging buyer employee count alongside exhibitor target segments in every [CFDBG] line, engineers running live tests instantly see when the commercial fit computation failed to gate out size mismatches. This turns invisible ranking bugs into 5-second diagnoses during Hannover Messe testing, directly preventing the worst user ex",
-  "next_target": "Add buyer industry vertical to commercial fit debug logs so engineers see when manufacturing visitor matched to pure-services exhibitor.",
+  "last_detail": "Commercial fit now logs buyer's budget tier and vendor's price tier side-by-side so engineers see misalignment (e.g., budget buyer vs. enterprise vendor).",
+  "last_impact": "When a robotics startup gets matched to a \u20ac500k+ solution vendor, engineers will instantly see 'buyer_budget=5k vendor_price=enterprise' in debug logs and understand why commercial fit failed. This closes the last blind spot in commercial fit debugging \u2014 we can now trace every scale/budget mismatch in real time during live fair tests, preventing catastrophic false positives before users waste booth visits.",
+  "next_target": "Add social proof verification examples doc showing what counts as 'verifiable evidence' vs. generic marketing copy for exhibitor data teams.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
