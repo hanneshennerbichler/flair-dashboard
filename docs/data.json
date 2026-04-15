@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:28:09Z",
+  "updated_at": "2026-04-15T01:29:11Z",
   "today": "2026-04-15",
-  "today_usd": 2.92271,
-  "total_usd": 8.90133,
-  "total_prompt": 1504488,
-  "total_completion": 293289,
+  "today_usd": 2.95348,
+  "total_usd": 8.9321,
+  "total_prompt": 1510751,
+  "total_completion": 294088,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 547634,
-      "completion_tokens": 85320,
-      "usd": 2.92271
+      "prompt_tokens": 553897,
+      "completion_tokens": 86119,
+      "usd": 2.95348
     }
   },
   "commits": [
+    {
+      "sha": "058e018af1c13c9aa1194b16dfa0f5dc72be6b36",
+      "time": "2026-04-15T01:28:10Z",
+      "time_fmt": "2026-04-15 01:28 UTC",
+      "msg": "[Matching Engine] Goal relevance now logs matched exhibitor category breadth so engineers see when vague booth dilutes relevance score during live tests."
+    },
     {
       "sha": "8305b761100587cc82809dc8c148b549b6ecc5a6",
       "time": "2026-04-15T01:27:10Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:39:08Z",
       "time_fmt": "2026-04-15 00:39 UTC",
       "msg": "[Matching Engine] Availability scoring now logs exhibitor's staff schedule coverage percentage so engineers instantly see partial vs complete day alignment."
-    },
-    {
-      "sha": "1c3f510bc3b7951c8d8f2e982a441f8fba4c8f2d",
-      "time": "2026-04-15T00:38:26Z",
-      "time_fmt": "2026-04-15 00:38 UTC",
-      "msg": "[Matching Engine] Proximity scoring now logs user's hall preference (if provided) so engineers instantly see when location filtering contradicts user intent."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:48:48Z | heartbeat | daemon tick",
     "2026-04-15T00:49:48Z | heartbeat | daemon tick",
     "2026-04-15T00:50:47Z | heartbeat | daemon tick",
     "2026-04-15T00:51:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:24:48Z | heartbeat | daemon tick",
     "2026-04-15T01:25:48Z | heartbeat | daemon tick",
     "2026-04-15T01:26:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:27:47Z | heartbeat | daemon tick"
+    "2026-04-15T01:27:47Z | heartbeat | daemon tick",
+    "2026-04-15T01:28:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Goal relevance now logs matched exhibitor category breadth so engineers see when vague booth dilutes relevance score during live tests.",
+  "last_completed": "[Matching Engine] Commercial fit now emits consolidated single-line debug logs showing all structured fields plus partial-data degradation inline.",
   "last_category": "Matching Engine",
-  "last_detail": "Goal relevance now logs matched exhibitor category breadth so engineers see when vague booth dilutes relevance score during live tests.",
-  "last_impact": "Engineers testing the matching engine during live fair sessions can now instantly see when an exhibitor's broad category spread (e.g., \"automation, IoT, energy, logistics\") causes goal relevance to degrade\u2014this surfaces the core failure mode where generic booths rank above focused specialists, directly supporting the SPEC.md mandate to \"penalize vague/PR booths\" and helping tune the 0.35 goal relevance weight. This logging reveals why a startup looking for \"robotic arm suppliers\" sees a diversif",
-  "next_target": "Add intent confidence logging for query complexity (single-domain vs multi-domain goals) so engineers see when user asks for two unrelated solutions.",
+  "last_detail": "Commercial fit now emits consolidated single-line debug logs showing all structured fields plus partial-data degradation inline.",
+  "last_impact": "Engineers running live ranking tests can now grep one stderr line per exhibitor and instantly see why commercial fit scored 0.075 instead of 0.15 \u2014 e.g. \"3/4 fields present, missing price_tier\" \u2014 without reconstructing state from scattered logs. This eliminates 1\u20133 minutes of investigation per mismatch during fair testing, directly supporting the core principle: if the matching engine silently degrades a score, engineers miss what's broken right now.",
+  "next_target": "Add actionability debug logging showing which concrete action types each exhibitor offers so engineers see why demo-heavy booths rank above meeting-only stands.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
