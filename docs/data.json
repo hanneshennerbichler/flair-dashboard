@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T00:53:08Z",
+  "updated_at": "2026-04-15T00:54:12Z",
   "today": "2026-04-15",
-  "today_usd": 1.73377,
-  "total_usd": 7.71239,
-  "total_prompt": 1285794,
-  "total_completion": 257765,
+  "today_usd": 1.76865,
+  "total_usd": 7.74727,
+  "total_prompt": 1292037,
+  "total_completion": 258842,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 328940,
-      "completion_tokens": 49796,
-      "usd": 1.73377
+      "prompt_tokens": 335183,
+      "completion_tokens": 50873,
+      "usd": 1.76865
     }
   },
   "commits": [
+    {
+      "sha": "f85bd6679217fbe652686586438390c7647291ac",
+      "time": "2026-04-15T00:53:10Z",
+      "time_fmt": "2026-04-15 00:53 UTC",
+      "msg": "[Matching Engine] Actionability now logs whether exhibitor accepts walk-ins vs. appointment-only so engineers see booking friction in real time."
+    },
     {
       "sha": "b853147bc8402927d024464d4941140ea8b55170",
       "time": "2026-04-15T00:52:08Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:04:11Z",
       "time_fmt": "2026-04-15 00:04 UTC",
       "msg": "[Matching Engine] Availability scoring now logs total staff count across selected days so engineers see booth coverage depth instantly during live testing."
-    },
-    {
-      "sha": "4270cf8c61c74e471a4b30ea8d38d23506dbb8be",
-      "time": "2026-04-15T00:03:06Z",
-      "time_fmt": "2026-04-15 00:03 UTC",
-      "msg": "[Matching Engine] Social proof scoring now logs reference customer count so engineers instantly see proof depth during live fair testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:13:48Z | heartbeat | daemon tick",
     "2026-04-15T00:14:48Z | heartbeat | daemon tick",
     "2026-04-15T00:15:47Z | heartbeat | daemon tick",
     "2026-04-15T00:16:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:49:48Z | heartbeat | daemon tick",
     "2026-04-15T00:50:47Z | heartbeat | daemon tick",
     "2026-04-15T00:51:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:52:47Z | heartbeat | daemon tick"
+    "2026-04-15T00:52:47Z | heartbeat | daemon tick",
+    "2026-04-15T00:53:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Actionability now logs whether exhibitor accepts walk-ins vs. appointment-only so engineers see booking friction in real time.",
+  "last_completed": "[Matching Engine] Social proof scoring now logs case study document count so engineers instantly see verified evidence vs marketing fluff during live tests.",
   "last_category": "Matching Engine",
-  "last_detail": "Actionability now logs whether exhibitor accepts walk-ins vs. appointment-only so engineers see booking friction in real time.",
-  "last_impact": "During live fair testing, engineers discover why highly relevant exhibitors rank lower than expected \u2014 many booths require pre-scheduled meetings but don't advertise it, causing users to waste time walking to closed stands. This one log line exposes the hidden friction (appointment-required flag) that kills actionability scores, letting us either penalize those exhibitors or surface the booking requirement in the UI before the user walks. Ties directly to CORE PRINCIPLE: if the user can't act on",
-  "next_target": "Log exhibitor's preferred contact method (email/phone/form) so engineers see when meeting request delivery fails due to channel mismatch.",
+  "last_detail": "Social proof scoring now logs case study document count so engineers instantly see verified evidence vs marketing fluff during live tests.",
+  "last_impact": "When an exhibitor claims \"trusted by leading companies\" but presents zero named customers or measurable outcomes, engineers now see \"cases=0/verified=0\" in the debug stream during live fair testing \u2014 exposing silent ranking inflation before users waste booth visits. This directly enforces the SPEC.md social proof verification rule (0.03 score ONLY for verifiable evidence) by making invisible data gaps visible in real time, protecting the core principle that every recommendation must feel urgent",
+  "next_target": "Add actionability debug logging for product sample availability so engineers see when hands-on trials drive bookability vs brochure-only booths.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
