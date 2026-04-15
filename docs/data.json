@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:08:08Z",
+  "updated_at": "2026-04-15T01:09:18Z",
   "today": "2026-04-15",
-  "today_usd": 2.26306,
-  "total_usd": 8.24168,
-  "total_prompt": 1379350,
-  "total_completion": 274340,
+  "today_usd": 2.30224,
+  "total_usd": 8.28086,
+  "total_prompt": 1385601,
+  "total_completion": 275702,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 422496,
-      "completion_tokens": 66371,
-      "usd": 2.26306
+      "prompt_tokens": 428747,
+      "completion_tokens": 67733,
+      "usd": 2.30224
     }
   },
   "commits": [
+    {
+      "sha": "cbce0c924170fc13e76d6c6d59caedd6778a399d",
+      "time": "2026-04-15T01:08:09Z",
+      "time_fmt": "2026-04-15 01:08 UTC",
+      "msg": "[Matching Engine] Actionability now logs contact method availability (email/phone/booth-only) so engineers see when no remote booking path exists."
+    },
     {
       "sha": "fde8ab795e4e495d256e6b24d734d56159df7b90",
       "time": "2026-04-15T01:07:14Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:19:13Z",
       "time_fmt": "2026-04-15 00:19 UTC",
       "msg": "[Matching Engine] Goal relevance now logs number of user problem keywords matched against exhibitor solution text so engineers see semantic overlap depth."
-    },
-    {
-      "sha": "5e160d729f9ab42c29e0995e7c6cb2cb8edc19ec",
-      "time": "2026-04-15T00:18:13Z",
-      "time_fmt": "2026-04-15 00:18 UTC",
-      "msg": "[Matching Engine] Commercial fit now logs buyer's industry vertical so engineers instantly see sector alignment failures during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:28:48Z | heartbeat | daemon tick",
     "2026-04-15T00:29:47Z | heartbeat | daemon tick",
     "2026-04-15T00:30:48Z | heartbeat | daemon tick",
     "2026-04-15T00:31:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:04:48Z | heartbeat | daemon tick",
     "2026-04-15T01:05:48Z | heartbeat | daemon tick",
     "2026-04-15T01:06:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:07:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:07:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:08:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Actionability now logs contact method availability (email/phone/booth-only) so engineers see when no remote booking path exists.",
+  "last_completed": "[Matching Engine] Proximity now logs hall adjacency map so engineers see when 2-hall bonus applies vs when halls are physically disconnected.",
   "last_category": "Matching Engine",
-  "last_detail": "Actionability now logs contact method availability (email/phone/booth-only) so engineers see when no remote booking path exists.",
-  "last_impact": "During live fair testing, engineers immediately spot exhibitors ranked high on actionability but offering zero remote contact \u2014 user cannot book ahead, must walk to booth cold, wasting time if staff unavailable. This surfaces data gaps (missing contact fields) and prevents false-positive \"actionable\" scores when only walk-in is possible. Ties directly to CORE PRINCIPLE: actionability means \"do something NOW\" \u2014 if the only action is \"show up and hope,\" that's not actionable, and the log now prove",
-  "next_target": "Add Goal Relevance debug line showing semantic similarity score threshold so engineers see when broad category matches beat specific niche fits.",
+  "last_detail": "Proximity now logs hall adjacency map so engineers see when 2-hall bonus applies vs when halls are physically disconnected.",
+  "last_impact": "During live fair testing, engineers frequently see the +0.05 two-hall bonus awarded to exhibitors that are technically within 2 halls numerically (e.g., Hall 5 \u2192 Hall 7) but physically separated by outdoor plazas or convention center wings requiring 8+ minute detours. Without an adjacency map, the matching engine treats Hall 5 and Hall 7 as \"close\" when they may be farther apart than Hall 5 and Hall 12 (which share a connecting corridor). This ships verifiable adjacency logic so proximity scorin",
+  "next_target": "Log goal relevance category overlap count so engineers see when exhibitor spans too many verticals to match user's specific need.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
