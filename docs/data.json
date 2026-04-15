@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:27:09Z",
+  "updated_at": "2026-04-15T01:28:09Z",
   "today": "2026-04-15",
-  "today_usd": 2.89197,
-  "total_usd": 8.87059,
-  "total_prompt": 1498230,
-  "total_completion": 292491,
+  "today_usd": 2.92271,
+  "total_usd": 8.90133,
+  "total_prompt": 1504488,
+  "total_completion": 293289,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 541376,
-      "completion_tokens": 84522,
-      "usd": 2.89197
+      "prompt_tokens": 547634,
+      "completion_tokens": 85320,
+      "usd": 2.92271
     }
   },
   "commits": [
+    {
+      "sha": "8305b761100587cc82809dc8c148b549b6ecc5a6",
+      "time": "2026-04-15T01:27:10Z",
+      "time_fmt": "2026-04-15 01:27 UTC",
+      "msg": "[Matching Engine] Commercial fit debug logs now emit to stderr with [CFDBG] prefix so engineers can grep live ranking tests without filtering application noise."
+    },
     {
       "sha": "5b0b70b2295b079a11dd66aa593bc33b68e297eb",
       "time": "2026-04-15T01:26:12Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:38:26Z",
       "time_fmt": "2026-04-15 00:38 UTC",
       "msg": "[Matching Engine] Proximity scoring now logs user's hall preference (if provided) so engineers instantly see when location filtering contradicts user intent."
-    },
-    {
-      "sha": "4f6938ffb3b174b30a5a8c8c8d553573177b929b",
-      "time": "2026-04-15T00:37:04Z",
-      "time_fmt": "2026-04-15 00:37 UTC",
-      "msg": "[Matching Engine] Social proof scoring now requires at least one named customer or measurable outcome to award any points \u2014 no more generic testimonials."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:47:47Z | heartbeat | daemon tick",
     "2026-04-15T00:48:48Z | heartbeat | daemon tick",
     "2026-04-15T00:49:48Z | heartbeat | daemon tick",
     "2026-04-15T00:50:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:23:48Z | heartbeat | daemon tick",
     "2026-04-15T01:24:48Z | heartbeat | daemon tick",
     "2026-04-15T01:25:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:26:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:26:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:27:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit debug logs now emit to stderr with [CFDBG] prefix so engineers can grep live ranking tests without filtering application noise.",
+  "last_completed": "[Matching Engine] Goal relevance now logs matched exhibitor category breadth so engineers see when vague booth dilutes relevance score during live tests.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit debug logs now emit to stderr with [CFDBG] prefix so engineers can grep live ranking tests without filtering application noise.",
-  "last_impact": "Engineers investigating scale mismatches (startup matched to Siemens) during live fair testing can now run `grep '\\[CFDBG\\]'` and see every commercial fit computation instantly \u2014 no horizontal scrolling, no parsing JSON blobs, no hunting through mixed logs. This cuts match investigation time from 3 minutes to 10 seconds, making it practical to debug rankings in real time while users are walking the floor.",
-  "next_target": "Add inline computation breakdown to [CFDBG] output when partial data present so engineers see degraded score calculation without opening source code.",
+  "last_detail": "Goal relevance now logs matched exhibitor category breadth so engineers see when vague booth dilutes relevance score during live tests.",
+  "last_impact": "Engineers testing the matching engine during live fair sessions can now instantly see when an exhibitor's broad category spread (e.g., \"automation, IoT, energy, logistics\") causes goal relevance to degrade\u2014this surfaces the core failure mode where generic booths rank above focused specialists, directly supporting the SPEC.md mandate to \"penalize vague/PR booths\" and helping tune the 0.35 goal relevance weight. This logging reveals why a startup looking for \"robotic arm suppliers\" sees a diversif",
+  "next_target": "Add intent confidence logging for query complexity (single-domain vs multi-domain goals) so engineers see when user asks for two unrelated solutions.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
