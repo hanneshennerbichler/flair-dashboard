@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T00:59:07Z",
+  "updated_at": "2026-04-15T01:00:07Z",
   "today": "2026-04-15",
-  "today_usd": 1.92827,
-  "total_usd": 7.90689,
-  "total_prompt": 1323225,
-  "total_completion": 263245,
+  "today_usd": 1.95882,
+  "total_usd": 7.93744,
+  "total_prompt": 1329454,
+  "total_completion": 264036,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 366371,
-      "completion_tokens": 55276,
-      "usd": 1.92827
+      "prompt_tokens": 372600,
+      "completion_tokens": 56067,
+      "usd": 1.95882
     }
   },
   "commits": [
+    {
+      "sha": "3db114a64fc823353f863cff8d814a3ccac08237",
+      "time": "2026-04-15T00:59:09Z",
+      "time_fmt": "2026-04-15 00:59 UTC",
+      "msg": "[Matching Engine] Intent confidence now logs user's declared role text so engineers see when vague roles cause broad low-confidence matches."
+    },
     {
       "sha": "e1667dc19ccc53318652a5de866c59dfdd54f1a8",
       "time": "2026-04-15T00:58:08Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:10:27Z",
       "time_fmt": "2026-04-15 00:10 UTC",
       "msg": "[Matching Engine] Intent confidence scoring now logs user query length and question-word presence so engineers instantly see clarity signals during live testing."
-    },
-    {
-      "sha": "49fdf38303939cbc9f1933a869fb3d20d81eaf81",
-      "time": "2026-04-15T00:09:07Z",
-      "time_fmt": "2026-04-15 00:09 UTC",
-      "msg": "[Matching Engine] Commercial fit now logs buyer's target customer size tags so engineers instantly see B2B/B2C alignment failures during live fair testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:19:48Z | heartbeat | daemon tick",
     "2026-04-15T00:20:48Z | heartbeat | daemon tick",
     "2026-04-15T00:21:48Z | heartbeat | daemon tick",
     "2026-04-15T00:22:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:55:48Z | heartbeat | daemon tick",
     "2026-04-15T00:56:48Z | heartbeat | daemon tick",
     "2026-04-15T00:57:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:58:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:58:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:59:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Intent confidence now logs user's declared role text so engineers see when vague roles cause broad low-confidence matches.",
+  "last_completed": "[Matching Engine] Commercial fit now logs buyer's employee count when provided so engineers see startup vs enterprise user scale during live tests.",
   "last_category": "Matching Engine",
-  "last_detail": "Intent confidence now logs user's declared role text so engineers see when vague roles cause broad low-confidence matches.",
-  "last_impact": "When a user describes themselves as \"interested visitor\" vs \"CTO seeking enterprise automation for 500-employee factory,\" intent confidence should differ dramatically \u2014 but currently engineers can't verify if role clarity is factored. This logging shows whether generic role descriptions trigger the low-confidence penalty that prevents weak matches from ranking high. Directly supports the CORE PRINCIPLE: vague intent = system should warn user, not pretend confidence.",
-  "next_target": "Log commercial fit exhibitor target customer size field so engineers see when SME-focused vendors get matched to enterprise buyers.",
+  "last_detail": "Commercial fit now logs buyer's employee count when provided so engineers see startup vs enterprise user scale during live tests.",
+  "last_impact": "When a 12-person robotics startup gets matched to Siemens enterprise solutions, engineers now see `buyer_emp=12` in debug logs and immediately spot the scale mismatch that destroys trust. This closes the last gap in commercial fit debugging \u2014 we already log exhibitor fields and budget tier, but without buyer size we couldn't diagnose why small companies keep getting enterprise-tier recommendations that waste booth visits.",
+  "next_target": "Add proximity scoring penalty multiplier when user is in a different building (not just hall offset) to prevent cross-campus routing failures.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
