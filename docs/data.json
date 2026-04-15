@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:10:25Z",
+  "updated_at": "2026-04-15T01:11:16Z",
   "today": "2026-04-15",
-  "today_usd": 2.34481,
-  "total_usd": 8.32343,
-  "total_prompt": 1391855,
-  "total_completion": 277289,
+  "today_usd": 2.38082,
+  "total_usd": 8.35944,
+  "total_prompt": 1398114,
+  "total_completion": 278438,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 435001,
-      "completion_tokens": 69320,
-      "usd": 2.34481
+      "prompt_tokens": 441260,
+      "completion_tokens": 70469,
+      "usd": 2.38082
     }
   },
   "commits": [
+    {
+      "sha": "9e529d1eb668ab59a074a231b9bc132361ed22f0",
+      "time": "2026-04-15T01:10:26Z",
+      "time_fmt": "2026-04-15 01:10 UTC",
+      "msg": "[Matching Engine] Goal relevance now logs category breadth (number of distinct product categories per exhibitor) so engineers see generalist vs specialist signal."
+    },
     {
       "sha": "d284a0823532312b55d059b7c39651a826a25398",
       "time": "2026-04-15T01:09:20Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:21:23Z",
       "time_fmt": "2026-04-15 00:21 UTC",
       "msg": "[Matching Engine] Availability scoring now logs staff role types present so engineers instantly see recruiter-vs-PM mismatches during live testing."
-    },
-    {
-      "sha": "a21da0d9914a02930b7935cc91ab67776057f1d7",
-      "time": "2026-04-15T00:20:05Z",
-      "time_fmt": "2026-04-15 00:20 UTC",
-      "msg": "[Matching Engine] Social proof scoring now logs count of verified reference customers so engineers instantly see proof strength during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:30:48Z | heartbeat | daemon tick",
     "2026-04-15T00:31:48Z | heartbeat | daemon tick",
     "2026-04-15T00:32:47Z | heartbeat | daemon tick",
     "2026-04-15T00:33:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:06:48Z | heartbeat | daemon tick",
     "2026-04-15T01:07:48Z | heartbeat | daemon tick",
     "2026-04-15T01:08:47Z | heartbeat | daemon tick",
-    "2026-04-15T01:09:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:09:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:10:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Goal relevance now logs category breadth (number of distinct product categories per exhibitor) so engineers see generalist vs specialist signal.",
+  "last_completed": "[Matching Engine] Commercial fit now logs buyer's declared budget tier inline so engineers see when null budget causes half-weight fallback during live tests.",
   "last_category": "Matching Engine",
-  "last_detail": "Goal relevance now logs category breadth (number of distinct product categories per exhibitor) so engineers see generalist vs specialist signal.",
-  "last_impact": "When a user asks for \"industrial robotics,\" exhibitors with 200 product categories across unrelated verticals (pumps, lighting, HVAC) currently score identically to pure-play robotics specialists with 8 focused SKUs. Engineers testing live queries have no visibility into this \u2014 a robotics startup loses to Siemens even when Siemens' robotics division is 2% of their catalog. Logging category breadth (e.g., `cat_breadth=187` vs `cat_breadth=3`) surfaces this immediately in stderr, letting engineers",
-  "next_target": "Add proximity logging for hall entrance coordinates so engineers see when shortest walking path crosses multiple halls vs. stays on one floor.",
+  "last_detail": "Commercial fit now logs buyer's declared budget tier inline so engineers see when null budget causes half-weight fallback during live tests.",
+  "last_impact": "When a user provides no budget signal (common in early sessions), commercial fit silently degrades to 0.075 (half weight). Engineers testing live matches couldn't see this happening \u2014 they'd debug \"why did this startup rank below this enterprise vendor?\" for minutes before realizing budget was null. Now the [CFDBG] line shows `budget=NULL \u2192 base=0.1125 degraded=0.075` inline, making the half-weight fallback instantly visible. This directly supports the Commercial Fit Computation Rule's requireme",
+  "next_target": "Add availability debug logging to show which user-selected days have zero staff coverage vs partial vs full so engineers see temporal gaps instantly.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
