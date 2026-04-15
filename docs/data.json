@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:33:06Z",
+  "updated_at": "2026-04-15T00:34:03Z",
   "today": "2026-04-15",
-  "today_usd": 1.07908,
-  "total_usd": 7.0577,
-  "total_prompt": 1161256,
-  "total_completion": 239026,
+  "today_usd": 1.10624,
+  "total_usd": 7.08486,
+  "total_prompt": 1167463,
+  "total_completion": 239595,
   "daily_cap": 50.0,
-  "ticks_today": 33,
+  "ticks_today": 34,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 204402,
-      "completion_tokens": 31057,
-      "usd": 1.07908
+      "prompt_tokens": 210609,
+      "completion_tokens": 31626,
+      "usd": 1.10624
     }
   },
   "commits": [
+    {
+      "sha": "2e4f351f792e9b7f51f2e612637249c15d05a56d",
+      "time": "2026-04-15T00:33:07Z",
+      "time_fmt": "2026-04-15 00:33 UTC",
+      "msg": "[Matching Engine] Intent confidence scoring now logs the actual user query text length so engineers instantly see whether truncated queries cause low confidence scores."
+    },
     {
       "sha": "b90f4090f3e17c999f450f78b431af1e6f24c5ba",
       "time": "2026-04-15T00:32:18Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:44:12Z",
       "time_fmt": "2026-04-14 23:44 UTC",
       "msg": "[Matching Engine] Goal relevance scoring now requires exhibitor to name at least one concrete product/service capability to earn any credit (zero for pure PR)."
-    },
-    {
-      "sha": "5c63aae8cc85c3204b318e333d6ec15206b036b7",
-      "time": "2026-04-14T23:43:44Z",
-      "time_fmt": "2026-04-14 23:43 UTC",
-      "msg": "[Matching Engine] Availability scoring now awards 0.01 (half credit) when staff schedule is partial so incomplete data doesn't zero out strong matches."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:53:48Z | heartbeat | daemon tick",
     "2026-04-14T23:54:47Z | heartbeat | daemon tick",
     "2026-04-14T23:55:47Z | heartbeat | daemon tick",
     "2026-04-14T23:56:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:29:47Z | heartbeat | daemon tick",
     "2026-04-15T00:30:48Z | heartbeat | daemon tick",
     "2026-04-15T00:31:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:32:47Z | heartbeat | daemon tick"
+    "2026-04-15T00:32:47Z | heartbeat | daemon tick",
+    "2026-04-15T00:33:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Intent confidence scoring now logs the actual user query text length so engineers instantly see whether truncated queries cause low confidence scores.",
+  "last_completed": "[Matching Engine] Goal relevance now logs user's industry vertical so engineers instantly see cross-industry false positives during live testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Intent confidence scoring now logs the actual user query text length so engineers instantly see whether truncated queries cause low confidence scores.",
-  "last_impact": "When engineers grep [ICDBG] during live fair testing, they can immediately see if a low intent-confidence score (e.g., 0.02 instead of 0.05) came from a user typing only 8 words vs 40 \u2014 critical for diagnosing whether the matching engine is correctly penalizing vague requests or incorrectly underscoring detailed ones. This closes the final observability gap in the 0.05 intent-confidence weight, which directly affects whether strong matches rise to top 3 or get buried.",
-  "next_target": "Add goal relevance debug logging for exhibitor solution text length so engineers see when zero keyword matches result from missing product descriptions.",
+  "last_detail": "Goal relevance now logs user's industry vertical so engineers instantly see cross-industry false positives during live testing.",
+  "last_impact": "When a manufacturing buyer gets matched to a software consulting booth because both mention 'automation,' engineers previously had to guess whether the cross-industry mismatch was intentional or a semantic collision. Now they see 'user_vertical=manufacturing' in the same line as the exhibitor match, making the false positive obvious in real time. This directly supports the Commercial Fit Computation Rule's principle: never match on text similarity alone when structured fields (like industry vert",
+  "next_target": "Log exhibitor's primary industry vertical alongside goal relevance score so engineers see both sides of the cross-industry match in one grep.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
