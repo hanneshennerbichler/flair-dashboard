@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:09:18Z",
+  "updated_at": "2026-04-15T01:10:25Z",
   "today": "2026-04-15",
-  "today_usd": 2.30224,
-  "total_usd": 8.28086,
-  "total_prompt": 1385601,
-  "total_completion": 275702,
+  "today_usd": 2.34481,
+  "total_usd": 8.32343,
+  "total_prompt": 1391855,
+  "total_completion": 277289,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 428747,
-      "completion_tokens": 67733,
-      "usd": 2.30224
+      "prompt_tokens": 435001,
+      "completion_tokens": 69320,
+      "usd": 2.34481
     }
   },
   "commits": [
+    {
+      "sha": "d284a0823532312b55d059b7c39651a826a25398",
+      "time": "2026-04-15T01:09:20Z",
+      "time_fmt": "2026-04-15 01:09 UTC",
+      "msg": "[Matching Engine] Proximity now logs hall adjacency map so engineers see when 2-hall bonus applies vs when halls are physically disconnected."
+    },
     {
       "sha": "cbce0c924170fc13e76d6c6d59caedd6778a399d",
       "time": "2026-04-15T01:08:09Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:20:05Z",
       "time_fmt": "2026-04-15 00:20 UTC",
       "msg": "[Matching Engine] Social proof scoring now logs count of verified reference customers so engineers instantly see proof strength during live testing."
-    },
-    {
-      "sha": "ca1cc664f4c333abb7397de5b3b7bb282368da57",
-      "time": "2026-04-15T00:19:13Z",
-      "time_fmt": "2026-04-15 00:19 UTC",
-      "msg": "[Matching Engine] Goal relevance now logs number of user problem keywords matched against exhibitor solution text so engineers see semantic overlap depth."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:29:47Z | heartbeat | daemon tick",
     "2026-04-15T00:30:48Z | heartbeat | daemon tick",
     "2026-04-15T00:31:48Z | heartbeat | daemon tick",
     "2026-04-15T00:32:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:05:48Z | heartbeat | daemon tick",
     "2026-04-15T01:06:48Z | heartbeat | daemon tick",
     "2026-04-15T01:07:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:08:47Z | heartbeat | daemon tick"
+    "2026-04-15T01:08:47Z | heartbeat | daemon tick",
+    "2026-04-15T01:09:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity now logs hall adjacency map so engineers see when 2-hall bonus applies vs when halls are physically disconnected.",
+  "last_completed": "[Matching Engine] Goal relevance now logs category breadth (number of distinct product categories per exhibitor) so engineers see generalist vs specialist signal.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity now logs hall adjacency map so engineers see when 2-hall bonus applies vs when halls are physically disconnected.",
-  "last_impact": "During live fair testing, engineers frequently see the +0.05 two-hall bonus awarded to exhibitors that are technically within 2 halls numerically (e.g., Hall 5 \u2192 Hall 7) but physically separated by outdoor plazas or convention center wings requiring 8+ minute detours. Without an adjacency map, the matching engine treats Hall 5 and Hall 7 as \"close\" when they may be farther apart than Hall 5 and Hall 12 (which share a connecting corridor). This ships verifiable adjacency logic so proximity scorin",
-  "next_target": "Log goal relevance category overlap count so engineers see when exhibitor spans too many verticals to match user's specific need.",
+  "last_detail": "Goal relevance now logs category breadth (number of distinct product categories per exhibitor) so engineers see generalist vs specialist signal.",
+  "last_impact": "When a user asks for \"industrial robotics,\" exhibitors with 200 product categories across unrelated verticals (pumps, lighting, HVAC) currently score identically to pure-play robotics specialists with 8 focused SKUs. Engineers testing live queries have no visibility into this \u2014 a robotics startup loses to Siemens even when Siemens' robotics division is 2% of their catalog. Logging category breadth (e.g., `cat_breadth=187` vs `cat_breadth=3`) surfaces this immediately in stderr, letting engineers",
+  "next_target": "Add proximity logging for hall entrance coordinates so engineers see when shortest walking path crosses multiple halls vs. stays on one floor.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
