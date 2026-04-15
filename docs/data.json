@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:30:02Z",
+  "updated_at": "2026-04-15T01:31:10Z",
   "today": "2026-04-15",
-  "today_usd": 2.98296,
-  "total_usd": 8.96158,
-  "total_prompt": 1517013,
-  "total_completion": 294801,
+  "today_usd": 3.01411,
+  "total_usd": 8.99273,
+  "total_prompt": 1523276,
+  "total_completion": 295625,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 560159,
-      "completion_tokens": 86832,
-      "usd": 2.98296
+      "prompt_tokens": 566422,
+      "completion_tokens": 87656,
+      "usd": 3.01411
     }
   },
   "commits": [
+    {
+      "sha": "df4f51ffed6b74290eb4bac0445d95aabe28be76",
+      "time": "2026-04-15T01:30:03Z",
+      "time_fmt": "2026-04-15 01:30 UTC",
+      "msg": "[Matching Engine] Proximity scoring now requires both hall data AND user-selected days before awarding any location boost points."
+    },
     {
       "sha": "0c02808b64d681da02508ac791245695b9bd8c39",
       "time": "2026-04-15T01:29:13Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:41:16Z",
       "time_fmt": "2026-04-15 00:41 UTC",
       "msg": "[Matching Engine] Actionability scoring now logs demo availability flag so engineers instantly see when exhibitors offer hands-on trials vs. talk-only booths."
-    },
-    {
-      "sha": "e700dd37508f30f8f5838db0499d61eeb2084e68",
-      "time": "2026-04-15T00:40:13Z",
-      "time_fmt": "2026-04-15 00:40 UTC",
-      "msg": "[Matching Engine] Commercial fit scoring now emits consolidated one-line stderr debug logs showing all structured fields, partial data handling, and user context per exhibitor."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:50:47Z | heartbeat | daemon tick",
     "2026-04-15T00:51:48Z | heartbeat | daemon tick",
     "2026-04-15T00:52:47Z | heartbeat | daemon tick",
     "2026-04-15T00:53:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:26:48Z | heartbeat | daemon tick",
     "2026-04-15T01:27:47Z | heartbeat | daemon tick",
     "2026-04-15T01:28:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:29:47Z | heartbeat | daemon tick"
+    "2026-04-15T01:29:47Z | heartbeat | daemon tick",
+    "2026-04-15T01:30:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now requires both hall data AND user-selected days before awarding any location boost points.",
+  "last_completed": "[Matching Engine] Actionability score now logs concrete action types available per exhibitor so engineers see why booth ranks high during live tests.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now requires both hall data AND user-selected days before awarding any location boost points.",
-  "last_impact": "Prevents false confidence from location-only rankings when temporal availability is unknown \u2014 users no longer walk to stands that may be closed on their selected days, eliminating wasted time and preserving trust in recommendations. Aligns proximity with the core principle: if we don't know when the user is visiting, distance alone creates misleading urgency.",
-  "next_target": "Log proximity scoring decisions showing hall data presence, user days presence, and final score so engineers see when zero-proximity fallback triggers.",
+  "last_detail": "Actionability score now logs concrete action types available per exhibitor so engineers see why booth ranks high during live tests.",
+  "last_impact": "When a robotics booth ranks #2 over seemingly stronger matches, engineers can now grep stderr and immediately see it offers demo+meeting+sample (0.10 full score) while competitors offer only vague \"Beratung\" (0.03). This eliminates 5\u201310 minutes of ranking mystery during live fair testing \u2014 critical when users are walking and need explanations NOW. Directly supports CORE PRINCIPLE: if the system can't explain its own ranking in real time, engineers can't trust it, and users lose confidence when r",
+  "next_target": "Add intent confidence debug logging showing how query clarity (vague \"looking for automation\" vs specific \"need collaborative robot arm for CNC loading under \u20ac50k\") affects exhibitor ranking weight.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
