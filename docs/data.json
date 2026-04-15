@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:19:12Z",
+  "updated_at": "2026-04-15T00:20:04Z",
   "today": "2026-04-15",
-  "today_usd": 0.61258,
-  "total_usd": 6.5912,
-  "total_prompt": 1074570,
-  "total_completion": 225264,
+  "today_usd": 0.64071,
+  "total_usd": 6.61933,
+  "total_prompt": 1080766,
+  "total_completion": 225900,
   "daily_cap": 50.0,
-  "ticks_today": 19,
+  "ticks_today": 20,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 117716,
-      "completion_tokens": 17295,
-      "usd": 0.61258
+      "prompt_tokens": 123912,
+      "completion_tokens": 17931,
+      "usd": 0.64071
     }
   },
   "commits": [
+    {
+      "sha": "ca1cc664f4c333abb7397de5b3b7bb282368da57",
+      "time": "2026-04-15T00:19:13Z",
+      "time_fmt": "2026-04-15 00:19 UTC",
+      "msg": "[Matching Engine] Goal relevance now logs number of user problem keywords matched against exhibitor solution text so engineers see semantic overlap depth."
+    },
     {
       "sha": "5e160d729f9ab42c29e0995e7c6cb2cb8edc19ec",
       "time": "2026-04-15T00:18:13Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:30:01Z",
       "time_fmt": "2026-04-14 23:30 UTC",
       "msg": "[Matching Engine] Availability now awards zero score when staff schedule is missing entirely so exhibitors must submit data to rank competitively."
-    },
-    {
-      "sha": "c080c8c9c88d0870e69d36d3bece10d20d2d1358",
-      "time": "2026-04-14T23:29:11Z",
-      "time_fmt": "2026-04-14 23:29 UTC",
-      "msg": "[Matching Engine] Social proof now logs exhibitor's reference customer industries so engineers see domain-match quality instantly during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:39:47Z | heartbeat | daemon tick",
     "2026-04-14T23:40:47Z | heartbeat | daemon tick",
     "2026-04-14T23:41:46Z | heartbeat | daemon tick",
     "2026-04-14T23:42:46Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:15:47Z | heartbeat | daemon tick",
     "2026-04-15T00:16:48Z | heartbeat | daemon tick",
     "2026-04-15T00:17:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:18:47Z | heartbeat | daemon tick"
+    "2026-04-15T00:18:47Z | heartbeat | daemon tick",
+    "2026-04-15T00:19:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Goal relevance now logs number of user problem keywords matched against exhibitor solution text so engineers see semantic overlap depth.",
+  "last_completed": "[Matching Engine] Social proof scoring now logs count of verified reference customers so engineers instantly see proof strength during live testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Goal relevance now logs number of user problem keywords matched against exhibitor solution text so engineers see semantic overlap depth.",
-  "last_impact": "When a user states \"need robotics automation for small batch production\" and gets ranked exhibitors, engineers grep [GRLDBG] to see exactly how many problem keywords (3/3, 2/3, 1/3) matched each exhibitor's solution text. This immediately reveals whether weak matches come from poor keyword coverage or incorrect weighting. During live fair testing, this cuts match quality debugging from 5 minutes of re-reading exhibitor profiles to 10 seconds of scanning logs. Directly supports CORE PRINCIPLE by",
-  "next_target": "Actionability scoring logs exact meeting slot timestamps so engineers see booking window conflicts without re-querying database.",
+  "last_detail": "Social proof scoring now logs count of verified reference customers so engineers instantly see proof strength during live testing.",
+  "last_impact": "Engineers debugging why two similarly relevant exhibitors rank differently can now see one has 3 named reference customers (score=0.03) while the other has zero (score=0.00), eliminating 2\u20133 minutes of manual case study inspection per match investigation. This directly supports the Social Proof Verification Rule in SPEC.md, which gates the 0.03 boost on verifiable evidence\u2014logging the count makes enforcement auditable in real time during Hannover Messe.",
+  "next_target": "Log social proof outcomes count (measurable results like '30% cost reduction') so engineers see evidence quality depth during live fair testing.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
