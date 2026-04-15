@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T00:55:21Z",
+  "updated_at": "2026-04-15T00:56:08Z",
   "today": "2026-04-15",
-  "today_usd": 1.80856,
-  "total_usd": 7.78718,
-  "total_prompt": 1298280,
-  "total_completion": 260254,
+  "today_usd": 1.83822,
+  "total_usd": 7.81684,
+  "total_prompt": 1304517,
+  "total_completion": 260984,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 341426,
-      "completion_tokens": 52285,
-      "usd": 1.80856
+      "prompt_tokens": 347663,
+      "completion_tokens": 53015,
+      "usd": 1.83822
     }
   },
   "commits": [
+    {
+      "sha": "cbc874badec9cbbdb60e56e9ca864ba874fd1fbd",
+      "time": "2026-04-15T00:55:22Z",
+      "time_fmt": "2026-04-15 00:55 UTC",
+      "msg": "[Matching Engine] Availability scoring now logs staff role distribution so engineers see when booths have only sales reps vs. technical experts."
+    },
     {
       "sha": "6495ca9fd65160198eba75bf8c1866b2ec3f98fb",
       "time": "2026-04-15T00:54:13Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:06:08Z",
       "time_fmt": "2026-04-15 00:06 UTC",
       "msg": "[Matching Engine] Commercial fit now logs buyer's employee count so engineers instantly see startup-vs-enterprise mismatches during live fair testing."
-    },
-    {
-      "sha": "9c7e17ca163c1f94418e9bff1f1bdb206193242d",
-      "time": "2026-04-15T00:05:07Z",
-      "time_fmt": "2026-04-15 00:05 UTC",
-      "msg": "[Matching Engine] Availability scoring now logs whether exhibitor has ANY staff schedule data at all before attempting overlap computation."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:15:47Z | heartbeat | daemon tick",
     "2026-04-15T00:16:48Z | heartbeat | daemon tick",
     "2026-04-15T00:17:48Z | heartbeat | daemon tick",
     "2026-04-15T00:18:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:51:48Z | heartbeat | daemon tick",
     "2026-04-15T00:52:47Z | heartbeat | daemon tick",
     "2026-04-15T00:53:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:54:47Z | heartbeat | daemon tick"
+    "2026-04-15T00:54:47Z | heartbeat | daemon tick",
+    "2026-04-15T00:55:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability scoring now logs staff role distribution so engineers see when booths have only sales reps vs. technical experts.",
+  "last_completed": "[Matching Engine] Social proof scoring now logs document type distribution (PDF/video/web) so engineers see which evidence formats dominate per exhibitor.",
   "last_category": "Matching Engine",
-  "last_detail": "Availability scoring now logs staff role distribution so engineers see when booths have only sales reps vs. technical experts.",
-  "last_impact": "When a PhD researcher matches a robotics exhibitor but booth staff that day are purely sales-focused, the meeting wastes both sides' time \u2014 researcher can't get technical depth, sales rep can't close without engineering backup. Logging staff roles per day (e.g., `roles=2_sales,0_eng`) lets engineers instantly see when high goal-relevance matches fail due to wrong personnel availability, revealing data gaps that kill B2B lead quality. This directly ties to CORE PRINCIPLE: users must feel \"if I do",
-  "next_target": "Log proximity scoring's hall-to-hall distance calculation method so engineers see when linear distance fails to account for building layout.",
+  "last_detail": "Social proof scoring now logs document type distribution (PDF/video/web) so engineers see which evidence formats dominate per exhibitor.",
+  "last_impact": "When engineers run live ranking tests and see `[SPDBG] id=X pdf=0 video=2 web=1`, they instantly diagnose why one exhibitor with 3 case studies outranks another with 3 testimonial PDFs \u2014 video case studies prove real-world success more convincingly than text-only documents, and this visibility lets us weight formats differently if video consistently correlates with stronger user engagement. This directly supports the social proof verification rule: engineers must distinguish verified multi-forma",
+  "next_target": "Add solution specificity debug logging for product category depth (how many leaf categories vs. top-level only) to catch vague generalist catalogs.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
