@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:33:07Z",
+  "updated_at": "2026-04-15T01:34:05Z",
   "today": "2026-04-15",
-  "today_usd": 3.07491,
-  "total_usd": 9.05353,
-  "total_prompt": 1535800,
-  "total_completion": 297173,
+  "today_usd": 3.10353,
+  "total_usd": 9.08215,
+  "total_prompt": 1542065,
+  "total_completion": 297828,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 578946,
-      "completion_tokens": 89204,
-      "usd": 3.07491
+      "prompt_tokens": 585211,
+      "completion_tokens": 89859,
+      "usd": 3.10353
     }
   },
   "commits": [
+    {
+      "sha": "b6efb4be593032be5cdf052724d591bc434195ca",
+      "time": "2026-04-15T01:33:08Z",
+      "time_fmt": "2026-04-15 01:33 UTC",
+      "msg": "[Matching Engine] Intent confidence now logs user's stated role and goal clarity so engineers see when vague profile degrades ranking confidence."
+    },
     {
       "sha": "00ed929143dda0ee5673d367a00b3aa52c5f9b77",
       "time": "2026-04-15T01:32:12Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:44:18Z",
       "time_fmt": "2026-04-15 00:44 UTC",
       "msg": "[Matching Engine] Commercial fit now logs buyer's industry vertical so engineers instantly see when exhibitor's target market misaligns with user's sector."
-    },
-    {
-      "sha": "2cfb579b1b15ffa547314a1057813931862ef7ed",
-      "time": "2026-04-15T00:43:13Z",
-      "time_fmt": "2026-04-15 00:43 UTC",
-      "msg": "[Matching Engine] Goal relevance now logs query keyword count so engineers instantly see when vague single-word queries cause broad low-confidence matches."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:53:48Z | heartbeat | daemon tick",
     "2026-04-15T00:54:47Z | heartbeat | daemon tick",
     "2026-04-15T00:55:48Z | heartbeat | daemon tick",
     "2026-04-15T00:56:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:29:47Z | heartbeat | daemon tick",
     "2026-04-15T01:30:48Z | heartbeat | daemon tick",
     "2026-04-15T01:31:47Z | heartbeat | daemon tick",
-    "2026-04-15T01:32:47Z | heartbeat | daemon tick"
+    "2026-04-15T01:32:47Z | heartbeat | daemon tick",
+    "2026-04-15T01:33:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Intent confidence now logs user's stated role and goal clarity so engineers see when vague profile degrades ranking confidence.",
+  "last_completed": "[Matching Engine] Solution specificity now logs exhibitor SKU count so engineers see when vague single-product booth scores lower than deep catalog.",
   "last_category": "Matching Engine",
-  "last_detail": "Intent confidence now logs user's stated role and goal clarity so engineers see when vague profile degrades ranking confidence.",
-  "last_impact": "Engineers debugging why a \"looking for automation\" query ranks differently than \"robotics for automotive assembly line\" can now see that intent confidence penalized the vague query because role/goal were missing or unclear. This closes the last visibility gap in the matching engine's seven scoring components \u2014 every weight is now traceable to concrete input signals, making live fair tuning 10x faster.",
-  "next_target": "Add proximity debug logging for when user and exhibitor are in same hall so engineers see +0.05 bonus being awarded during live tests.",
+  "last_detail": "Solution specificity now logs exhibitor SKU count so engineers see when vague single-product booth scores lower than deep catalog.",
+  "last_impact": "Engineers debugging live rankings can now instantly see why a booth with 200 SKUs outranks a booth with 3 generic products \u2014 specificity scoring is no longer a black box. This directly supports the SPEC.md rule 'Solution Specificity (0.20) \u2192 concrete product/service vs. vague corporate PR' by making the catalog-depth signal visible in real time during Hannover Messe floor tests.",
+  "next_target": "Log reference customer count in social proof scoring so engineers see when verified case studies boost exhibitor rank during live tests.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
