@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:12:13Z",
+  "updated_at": "2026-04-15T01:13:09Z",
   "today": "2026-04-15",
-  "today_usd": 2.41452,
-  "total_usd": 8.39314,
-  "total_prompt": 1404372,
-  "total_completion": 279433,
+  "today_usd": 2.44646,
+  "total_usd": 8.42508,
+  "total_prompt": 1410628,
+  "total_completion": 280311,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 447518,
-      "completion_tokens": 71464,
-      "usd": 2.41452
+      "prompt_tokens": 453774,
+      "completion_tokens": 72342,
+      "usd": 2.44646
     }
   },
   "commits": [
+    {
+      "sha": "19fde4af9905487b2dc78bb90bed202789ffc209",
+      "time": "2026-04-15T01:12:15Z",
+      "time_fmt": "2026-04-15 01:12 UTC",
+      "msg": "[Matching Engine] Social proof now logs reference customer count and outcome metrics inline so engineers see verified vs unverified claims during live tests."
+    },
     {
       "sha": "95aabe2f35d7b92ce4c72eb51fc3368aa703b916",
       "time": "2026-04-15T01:11:17Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:23:18Z",
       "time_fmt": "2026-04-15 00:23 UTC",
       "msg": "[Matching Engine] Availability scoring now logs count of missing staff schedule days so engineers instantly see data completeness gaps during live testing."
-    },
-    {
-      "sha": "34ec4156a60fdaf95e0d1880001d6e1d6901cac8",
-      "time": "2026-04-15T00:22:07Z",
-      "time_fmt": "2026-04-15 00:22 UTC",
-      "msg": "[Matching Engine] Availability scoring now logs total hours of staff coverage per selected day so engineers see coverage gaps instantly."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:32:47Z | heartbeat | daemon tick",
     "2026-04-15T00:33:48Z | heartbeat | daemon tick",
     "2026-04-15T00:34:48Z | heartbeat | daemon tick",
     "2026-04-15T00:35:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:08:47Z | heartbeat | daemon tick",
     "2026-04-15T01:09:48Z | heartbeat | daemon tick",
     "2026-04-15T01:10:47Z | heartbeat | daemon tick",
-    "2026-04-15T01:11:47Z | heartbeat | daemon tick"
+    "2026-04-15T01:11:47Z | heartbeat | daemon tick",
+    "2026-04-15T01:12:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Social proof now logs reference customer count and outcome metrics inline so engineers see verified vs unverified claims during live tests.",
+  "last_completed": "[Matching Engine] Availability scoring now logs staff role coverage so engineers see when only sales staff present but user needs technical demo.",
   "last_category": "Matching Engine",
-  "last_detail": "Social proof now logs reference customer count and outcome metrics inline so engineers see verified vs unverified claims during live tests.",
-  "last_impact": "Engineers can now instantly diagnose why an exhibitor with \"thousands of satisfied customers\" marketing copy scores 0.00 on social proof while a competitor with 2 named reference customers and measurable outcomes scores 0.03. This eliminates the #1 source of \"why didn't this match rank higher?\" questions during live fair testing \u2014 vague testimonials that sound impressive but provide zero verifiable evidence. Directly supports the Social Proof Verification Rule's requirement that only named custo",
-  "next_target": "Add availability logging that shows exact staff role coverage per user-selected day so engineers see when \"booth open\" doesn't mean \"right person present.\"",
+  "last_detail": "Availability scoring now logs staff role coverage so engineers see when only sales staff present but user needs technical demo.",
+  "last_impact": "Prevents confidence-destroying mismatches where user walks to a booth expecting product demo but only meets sales/marketing staff with no technical depth. Engineers can now see in real-time when role mismatch causes actionability failure despite full temporal availability. Directly ties to the CORE PRINCIPLE \u2014 if booth staff can't answer technical questions, the user IS missing something by going there.",
+  "next_target": "Add solution specificity logging for product documentation completeness so engineers see when vague marketing text tanks relevance.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
