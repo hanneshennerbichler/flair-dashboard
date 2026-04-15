@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:20:07Z",
+  "updated_at": "2026-04-15T01:21:07Z",
   "today": "2026-04-15",
-  "today_usd": 2.67404,
-  "total_usd": 8.65266,
-  "total_prompt": 1454421,
-  "total_completion": 286724,
+  "today_usd": 2.70294,
+  "total_usd": 8.68156,
+  "total_prompt": 1460683,
+  "total_completion": 287398,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 497567,
-      "completion_tokens": 78755,
-      "usd": 2.67404
+      "prompt_tokens": 503829,
+      "completion_tokens": 79429,
+      "usd": 2.70294
     }
   },
   "commits": [
+    {
+      "sha": "0bc11b6abec4949d035d3ede1acaf8ae1d227bab",
+      "time": "2026-04-15T01:20:09Z",
+      "time_fmt": "2026-04-15 01:20 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs buyer's declared industry vertical inline so engineers see when cross-sector mismatch degrades fit score."
+    },
     {
       "sha": "ca5bfba9506d923dee7ea24990583b951b81d646",
       "time": "2026-04-15T01:19:17Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:31:08Z",
       "time_fmt": "2026-04-15 00:31 UTC",
       "msg": "[Matching Engine] Commercial fit debug now logs when buyer's budget tier is missing so engineers instantly see silent scoring degradation."
-    },
-    {
-      "sha": "b24dc2ea0ee8af073f3df8169d29df393a392f03",
-      "time": "2026-04-15T00:30:15Z",
-      "time_fmt": "2026-04-15 00:30 UTC",
-      "msg": "[Matching Engine] Solution specificity now logs SKU count so engineers instantly see whether exhibitor has concrete products vs. vague marketing claims."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:40:48Z | heartbeat | daemon tick",
     "2026-04-15T00:41:47Z | heartbeat | daemon tick",
     "2026-04-15T00:42:48Z | heartbeat | daemon tick",
     "2026-04-15T00:43:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:16:48Z | heartbeat | daemon tick",
     "2026-04-15T01:17:48Z | heartbeat | daemon tick",
     "2026-04-15T01:18:47Z | heartbeat | daemon tick",
-    "2026-04-15T01:19:47Z | heartbeat | daemon tick"
+    "2026-04-15T01:19:47Z | heartbeat | daemon tick",
+    "2026-04-15T01:20:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs buyer's declared industry vertical inline so engineers see when cross-sector mismatch degrades fit score.",
+  "last_completed": "[Matching Engine] Commercial fit now logs buyer's declared target customer size so engineers see when exhibitor serves different scale than buyer needs.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs buyer's declared industry vertical inline so engineers see when cross-sector mismatch degrades fit score.",
-  "last_impact": "When a healthcare buyer gets matched to industrial automation exhibitors, engineers now see 'buyer_vertical=healthcare exhibitor_vertical=industrial' in the [CFDBG] stderr line during live tests. This lets them diagnose why an otherwise strong product match scores low on commercial fit \u2014 the vertical mismatch is explicitly surfaced, not hidden in aggregate scoring. Directly serves the CORE PRINCIPLE: engineers reduce uncertainty about false positives in seconds instead of guessing why certain ma",
-  "next_target": "Log exhibitor's declared target customer size (startup/SME/enterprise tags) inline in commercial fit debug output so engineers see intended audience mismatch.",
+  "last_detail": "Commercial fit now logs buyer's declared target customer size so engineers see when exhibitor serves different scale than buyer needs.",
+  "last_impact": "When a 5-person robotics startup gets matched to an exhibitor targeting Fortune 500 clients, engineers now see 'buyer_target=startup exhibitor_target=enterprise' inline in debug logs during live fair testing. This reveals silent mismatch that causes booth visits where sales team immediately disqualifies the visitor, wasting 15\u201320 minutes and destroying trust. Surfacing target customer size mismatch lets engineers tune commercial fit weighting before fair day, directly reducing cost-per-qualified",
+  "next_target": "Add commercial fit logging for buyer's declared purchase timeline (research/pilot/production) so engineers see urgency mismatch when exhibitor needs immediate buyers.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
