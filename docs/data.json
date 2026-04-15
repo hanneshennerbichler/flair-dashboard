@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:05:06Z",
+  "updated_at": "2026-04-15T00:06:06Z",
   "today": "2026-04-15",
-  "today_usd": 0.15369,
-  "total_usd": 6.13231,
-  "total_prompt": 987857,
-  "total_completion": 212015,
+  "today_usd": 0.18261,
+  "total_usd": 6.16123,
+  "total_prompt": 994043,
+  "total_completion": 212706,
   "daily_cap": 50.0,
-  "ticks_today": 5,
+  "ticks_today": 6,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 31003,
-      "completion_tokens": 4046,
-      "usd": 0.15369
+      "prompt_tokens": 37189,
+      "completion_tokens": 4737,
+      "usd": 0.18261
     }
   },
   "commits": [
+    {
+      "sha": "9c7e17ca163c1f94418e9bff1f1bdb206193242d",
+      "time": "2026-04-15T00:05:07Z",
+      "time_fmt": "2026-04-15 00:05 UTC",
+      "msg": "[Matching Engine] Availability scoring now logs whether exhibitor has ANY staff schedule data at all before attempting overlap computation."
+    },
     {
       "sha": "39e9b5bebecf287bbe9e2b7dc8db71afae426286",
       "time": "2026-04-15T00:04:11Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:16:04Z",
       "time_fmt": "2026-04-14 23:16 UTC",
       "msg": "[Matching Engine] Proximity scoring now verifies user has selected fair days before awarding location bonus so walk-time estimates stay meaningful."
-    },
-    {
-      "sha": "a8418354900ec6c2c5e921feb2562eb9496d01bb",
-      "time": "2026-04-14T23:15:07Z",
-      "time_fmt": "2026-04-14 23:15 UTC",
-      "msg": "[Matching Engine] Proximity debug logs now emit user's selected fair days so engineers see temporal scope when investigating zero-distance matches."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:25:46Z | heartbeat | daemon tick",
     "2026-04-14T23:26:47Z | heartbeat | daemon tick",
     "2026-04-14T23:27:47Z | heartbeat | daemon tick",
     "2026-04-14T23:28:46Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:01:48Z | heartbeat | daemon tick",
     "2026-04-15T00:02:48Z | heartbeat | daemon tick",
     "2026-04-15T00:03:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:04:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:04:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:05:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability scoring now logs whether exhibitor has ANY staff schedule data at all before attempting overlap computation.",
+  "last_completed": "[Matching Engine] Commercial fit now logs buyer's employee count so engineers instantly see startup-vs-enterprise mismatches during live fair testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Availability scoring now logs whether exhibitor has ANY staff schedule data at all before attempting overlap computation.",
-  "last_impact": "Engineers debugging live matches will instantly see when exhibitors appear low-ranked not because of poor fit but because they never submitted schedule data \u2014 distinguishing \"booth closed on your days\" from \"booth never told us when they're open.\" This surfaces data-submission gaps that otherwise masquerade as poor matches, allowing fair organizers to chase missing exhibitor schedules before the event opens.",
-  "next_target": "Add proximity scoring log showing exhibitor's exact hall number so engineers see cross-hall penalty application instantly.",
+  "last_detail": "Commercial fit now logs buyer's employee count so engineers instantly see startup-vs-enterprise mismatches during live fair testing.",
+  "last_impact": "When a 5-person robotics startup gets matched to Siemens (45,000 employees), engineers see `buyer_emp=5 exhib_emp=45000` in the debug log within 2 seconds \u2014 catching catastrophic scale mismatches that destroy user trust the moment they walk into an enterprise booth with no budget fit. This directly supports the Commercial Fit Computation Rule's core mission: prevent text-based false positives by surfacing structured field mismatches in real time.",
+  "next_target": "Add proximity debug logging for exhibitor's hall coordinates so engineers see which stands lack location data during ranking.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
