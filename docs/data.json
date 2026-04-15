@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:18:05Z",
+  "updated_at": "2026-04-15T01:19:16Z",
   "today": "2026-04-15",
-  "today_usd": 2.61053,
-  "total_usd": 8.58915,
-  "total_prompt": 1441906,
-  "total_completion": 284993,
+  "today_usd": 2.64395,
+  "total_usd": 8.62257,
+  "total_prompt": 1448161,
+  "total_completion": 285970,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 485052,
-      "completion_tokens": 77024,
-      "usd": 2.61053
+      "prompt_tokens": 491307,
+      "completion_tokens": 78001,
+      "usd": 2.64395
     }
   },
   "commits": [
+    {
+      "sha": "7060743be5c09f2d85dd1b43661c18f2093081ba",
+      "time": "2026-04-15T01:18:06Z",
+      "time_fmt": "2026-04-15 01:18 UTC",
+      "msg": "[Matching Engine] Solution specificity now logs SKU count per exhibitor so engineers see product portfolio depth during live ranking tests."
+    },
     {
       "sha": "00776391645202538f99a497880ced3c1396f8aa",
       "time": "2026-04-15T01:17:13Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:29:14Z",
       "time_fmt": "2026-04-15 00:29 UTC",
       "msg": "[Matching Engine] Actionability scoring now logs whether exhibitor accepts walk-ins vs appointment-only so engineers see booking friction instantly."
-    },
-    {
-      "sha": "867fad7801fd9c1fa5c1e71b6067e9c8e2109cc0",
-      "time": "2026-04-15T00:28:13Z",
-      "time_fmt": "2026-04-15 00:28 UTC",
-      "msg": "[Matching Engine] Commercial fit now logs exhibitor's actual target customer size tags so engineers instantly see buyer-segment misalignment."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:38:48Z | heartbeat | daemon tick",
     "2026-04-15T00:39:47Z | heartbeat | daemon tick",
     "2026-04-15T00:40:48Z | heartbeat | daemon tick",
     "2026-04-15T00:41:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:14:48Z | heartbeat | daemon tick",
     "2026-04-15T01:15:47Z | heartbeat | daemon tick",
     "2026-04-15T01:16:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:17:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:17:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:18:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Solution specificity now logs SKU count per exhibitor so engineers see product portfolio depth during live ranking tests.",
+  "last_completed": "[Matching Engine] Commercial fit now logs inline buyer size tier (startup/SME/enterprise) so engineers see scale mismatch signal during live ranking tests.",
   "last_category": "Matching Engine",
-  "last_detail": "Solution specificity now logs SKU count per exhibitor so engineers see product portfolio depth during live ranking tests.",
-  "last_impact": "Engineers running live fair tests can now instantly see whether an exhibitor ranks high because of deep product catalog (23 SKUs = specialist) or vague corporate presence (1 SKU = PR booth). This directly ties to the solution specificity weight (0.20) and prevents the \"Siemens ranks #1 for niche query because brand name matches\" failure mode described in SPEC.md. Observability = faster iteration on the penalty curve for generalist booths.",
-  "next_target": "Log user's declared budget tier (startup/SME/enterprise) inline in commercial fit debug output so misalignment is visible in real time.",
+  "last_detail": "Commercial fit now logs inline buyer size tier (startup/SME/enterprise) so engineers see scale mismatch signal during live ranking tests.",
+  "last_impact": "Engineers running live fair tests can now see at a glance when a 5-person startup is being evaluated against enterprise exhibitors, or when an enterprise buyer is matched to startups \u2014 the single most common cause of ranking failures ('why is Siemens #1 for this robotics founder?'). This directly ties back to the CORE PRINCIPLE: the user must feel 'if I don't use this, I'm missing something right now' \u2014 and scale mismatches destroy that feeling instantly because the user walks to a booth that ca",
+  "next_target": "Add commercial fit logging for exhibitor's declared target customer size so engineers see both sides of the scale match equation in one line.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
