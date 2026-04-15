@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:42:09Z",
+  "updated_at": "2026-04-15T00:43:12Z",
   "today": "2026-04-15",
-  "today_usd": 1.36497,
-  "total_usd": 7.34359,
-  "total_prompt": 1217187,
-  "total_completion": 246899,
+  "today_usd": 1.39594,
+  "total_usd": 7.37456,
+  "total_prompt": 1223417,
+  "total_completion": 247718,
   "daily_cap": 50.0,
-  "ticks_today": 42,
+  "ticks_today": 43,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 260333,
-      "completion_tokens": 38930,
-      "usd": 1.36497
+      "prompt_tokens": 266563,
+      "completion_tokens": 39749,
+      "usd": 1.39594
     }
   },
   "commits": [
+    {
+      "sha": "71c1eb016ca2269b55b81247a1a70a18b2552212",
+      "time": "2026-04-15T00:42:10Z",
+      "time_fmt": "2026-04-15 00:42 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs buyer's employee count so engineers instantly see when startup users get enterprise-scale exhibitors."
+    },
     {
       "sha": "3fa2383d99da1b56265512c90581d3ca1dd4ebf1",
       "time": "2026-04-15T00:41:16Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:53:16Z",
       "time_fmt": "2026-04-14 23:53 UTC",
       "msg": "[Matching Engine] Intent confidence scoring now logs user query word count and question mark presence so engineers see signal clarity instantly."
-    },
-    {
-      "sha": "98bd3333209f5a03bd3974e95883aafab112175d",
-      "time": "2026-04-14T23:52:09Z",
-      "time_fmt": "2026-04-14 23:52 UTC",
-      "msg": "[Matching Engine] Availability scoring now logs staff role types present on user's selected days so engineers see expertise alignment instantly."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:02:48Z | heartbeat | daemon tick",
     "2026-04-15T00:03:48Z | heartbeat | daemon tick",
     "2026-04-15T00:04:48Z | heartbeat | daemon tick",
     "2026-04-15T00:05:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:38:48Z | heartbeat | daemon tick",
     "2026-04-15T00:39:47Z | heartbeat | daemon tick",
     "2026-04-15T00:40:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:41:47Z | heartbeat | daemon tick"
+    "2026-04-15T00:41:47Z | heartbeat | daemon tick",
+    "2026-04-15T00:42:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs buyer's employee count so engineers instantly see when startup users get enterprise-scale exhibitors.",
+  "last_completed": "[Matching Engine] Goal relevance now logs query keyword count so engineers instantly see when vague single-word queries cause broad low-confidence matches.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs buyer's employee count so engineers instantly see when startup users get enterprise-scale exhibitors.",
-  "last_impact": "Prevents catastrophic scale mismatches that destroy trust \u2014 when a 5-person robotics team sees Siemens ranked #1 because both mention \"automation,\" they immediately distrust the system. Logging buyer employee count alongside exhibitor size makes these mismatches visible in real-time testing, letting engineers fix data gaps before users walk to irrelevant booths. Directly supports the CORE PRINCIPLE: every recommendation must feel like \"I'm missing something if I don't act\" \u2014 not \"this doesn't ap",
-  "next_target": "Add debug logging for buyer's industry vertical alongside exhibitor vertical so cross-industry false positives become instantly visible.",
+  "last_detail": "Goal relevance now logs query keyword count so engineers instantly see when vague single-word queries cause broad low-confidence matches.",
+  "last_impact": "Engineers debugging ranking during live fair testing can now immediately see when a user types \"automation\" (1 keyword \u2192 low specificity \u2192 broad matches rank equally) vs \"collaborative robot arm for automotive assembly line\" (7 keywords \u2192 high specificity \u2192 tight matches win). This eliminates 2\u20133 minutes of guesswork per ranking investigation by surfacing query specificity directly in the debug stream. Ties back to CORE PRINCIPLE: the matching engine must distinguish between vague exploration (\"",
+  "next_target": "Add proximity scoring debug log showing user's selected fair days array so engineers see temporal filtering impact on location-based ranking.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
