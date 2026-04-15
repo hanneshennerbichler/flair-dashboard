@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:07:13Z",
+  "updated_at": "2026-04-15T01:08:08Z",
   "today": "2026-04-15",
-  "today_usd": 2.23356,
-  "total_usd": 8.21218,
-  "total_prompt": 1373101,
-  "total_completion": 273623,
+  "today_usd": 2.26306,
+  "total_usd": 8.24168,
+  "total_prompt": 1379350,
+  "total_completion": 274340,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 416247,
-      "completion_tokens": 65654,
-      "usd": 2.23356
+      "prompt_tokens": 422496,
+      "completion_tokens": 66371,
+      "usd": 2.26306
     }
   },
   "commits": [
+    {
+      "sha": "fde8ab795e4e495d256e6b24d734d56159df7b90",
+      "time": "2026-04-15T01:07:14Z",
+      "time_fmt": "2026-04-15 01:07 UTC",
+      "msg": "[Matching Engine] Actionability now logs demo availability window (start/end times) so engineers see when interactive product trials conflict with user's visit schedule."
+    },
     {
       "sha": "6a0b688d24ef360debcdb6828fb0bb58046e1f5b",
       "time": "2026-04-15T01:06:30Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:18:13Z",
       "time_fmt": "2026-04-15 00:18 UTC",
       "msg": "[Matching Engine] Commercial fit now logs buyer's industry vertical so engineers instantly see sector alignment failures during live testing."
-    },
-    {
-      "sha": "8544a18a004c3bc3fa02bf0dd04f7bdac5ab84d7",
-      "time": "2026-04-15T00:17:19Z",
-      "time_fmt": "2026-04-15 00:17 UTC",
-      "msg": "[Matching Engine] Intent confidence scoring now logs user's industry vertical so engineers instantly see domain alignment during live fair testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:27:47Z | heartbeat | daemon tick",
     "2026-04-15T00:28:48Z | heartbeat | daemon tick",
     "2026-04-15T00:29:47Z | heartbeat | daemon tick",
     "2026-04-15T00:30:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:03:47Z | heartbeat | daemon tick",
     "2026-04-15T01:04:48Z | heartbeat | daemon tick",
     "2026-04-15T01:05:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:06:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:06:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:07:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Actionability now logs demo availability window (start/end times) so engineers see when interactive product trials conflict with user's visit schedule.",
+  "last_completed": "[Matching Engine] Actionability now logs contact method availability (email/phone/booth-only) so engineers see when no remote booking path exists.",
   "last_category": "Matching Engine",
-  "last_detail": "Actionability now logs demo availability window (start/end times) so engineers see when interactive product trials conflict with user's visit schedule.",
-  "last_impact": "During live fair testing, engineers instantly see when a high-scoring exhibitor offers hands-on demos only during lunch hours or after the user's departure time \u2014 a match that looks perfect on paper but fails in practice because the user can't physically access the actionable experience. This prevents wasted booth visits where the user arrives to find the demo station closed or overbooked, directly supporting the CORE PRINCIPLE by surfacing temporal friction before the recommendation ships.",
-  "next_target": "Add goal relevance logging for exhibitor category breadth variance so engineers see when overly broad product portfolios dilute match precision.",
+  "last_detail": "Actionability now logs contact method availability (email/phone/booth-only) so engineers see when no remote booking path exists.",
+  "last_impact": "During live fair testing, engineers immediately spot exhibitors ranked high on actionability but offering zero remote contact \u2014 user cannot book ahead, must walk to booth cold, wasting time if staff unavailable. This surfaces data gaps (missing contact fields) and prevents false-positive \"actionable\" scores when only walk-in is possible. Ties directly to CORE PRINCIPLE: actionability means \"do something NOW\" \u2014 if the only action is \"show up and hope,\" that's not actionable, and the log now prove",
+  "next_target": "Add Goal Relevance debug line showing semantic similarity score threshold so engineers see when broad category matches beat specific niche fits.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
