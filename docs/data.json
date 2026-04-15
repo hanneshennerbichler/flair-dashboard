@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:00:07Z",
+  "updated_at": "2026-04-15T01:01:14Z",
   "today": "2026-04-15",
-  "today_usd": 1.95882,
-  "total_usd": 7.93744,
-  "total_prompt": 1329454,
-  "total_completion": 264036,
+  "today_usd": 1.99173,
+  "total_usd": 7.97035,
+  "total_prompt": 1335684,
+  "total_completion": 264984,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 372600,
-      "completion_tokens": 56067,
-      "usd": 1.95882
+      "prompt_tokens": 378830,
+      "completion_tokens": 57015,
+      "usd": 1.99173
     }
   },
   "commits": [
+    {
+      "sha": "c228637de3740af4a6841935a18a4ae30a336c32",
+      "time": "2026-04-15T01:00:09Z",
+      "time_fmt": "2026-04-15 01:00 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs buyer's employee count when provided so engineers see startup vs enterprise user scale during live tests."
+    },
     {
       "sha": "3db114a64fc823353f863cff8d814a3ccac08237",
       "time": "2026-04-15T00:59:09Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:11:11Z",
       "time_fmt": "2026-04-15 00:11 UTC",
       "msg": "[Matching Engine] Actionability scoring now logs exhibitor's available meeting slots and demo times so engineers instantly see booking opportunities during live testing."
-    },
-    {
-      "sha": "bd0f61ea46755f8b5317aeed6139db284963a374",
-      "time": "2026-04-15T00:10:27Z",
-      "time_fmt": "2026-04-15 00:10 UTC",
-      "msg": "[Matching Engine] Intent confidence scoring now logs user query length and question-word presence so engineers instantly see clarity signals during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:20:48Z | heartbeat | daemon tick",
     "2026-04-15T00:21:48Z | heartbeat | daemon tick",
     "2026-04-15T00:22:48Z | heartbeat | daemon tick",
     "2026-04-15T00:23:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:56:48Z | heartbeat | daemon tick",
     "2026-04-15T00:57:48Z | heartbeat | daemon tick",
     "2026-04-15T00:58:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:59:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:59:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:00:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs buyer's employee count when provided so engineers see startup vs enterprise user scale during live tests.",
+  "last_completed": "[Matching Engine] Goal relevance now logs keyword match count so engineers instantly see when zero keyword overlap causes low relevance scores.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs buyer's employee count when provided so engineers see startup vs enterprise user scale during live tests.",
-  "last_impact": "When a 12-person robotics startup gets matched to Siemens enterprise solutions, engineers now see `buyer_emp=12` in debug logs and immediately spot the scale mismatch that destroys trust. This closes the last gap in commercial fit debugging \u2014 we already log exhibitor fields and budget tier, but without buyer size we couldn't diagnose why small companies keep getting enterprise-tier recommendations that waste booth visits.",
-  "next_target": "Add proximity scoring penalty multiplier when user is in a different building (not just hall offset) to prevent cross-campus routing failures.",
+  "last_detail": "Goal relevance now logs keyword match count so engineers instantly see when zero keyword overlap causes low relevance scores.",
+  "last_impact": "When a user searches \"hydrogen fuel cells\" but top results mention neither term, engineers currently see goal_relevance=0.12 with no explanation \u2014 they waste 2-3 minutes reading exhibitor descriptions trying to understand why the match scored low. Logging keyword_matches=0/2 in the debug line makes invisible semantic failures visible in real time, cutting investigation time to under 10 seconds. This directly supports the CORE PRINCIPLE: if the matching engine can't explain its own decisions duri",
+  "next_target": "Add solution specificity logging for product description length so engineers see when thin 2-sentence listings drag down specificity scores.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
