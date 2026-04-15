@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:11:16Z",
+  "updated_at": "2026-04-15T01:12:13Z",
   "today": "2026-04-15",
-  "today_usd": 2.38082,
-  "total_usd": 8.35944,
-  "total_prompt": 1398114,
-  "total_completion": 278438,
+  "today_usd": 2.41452,
+  "total_usd": 8.39314,
+  "total_prompt": 1404372,
+  "total_completion": 279433,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 441260,
-      "completion_tokens": 70469,
-      "usd": 2.38082
+      "prompt_tokens": 447518,
+      "completion_tokens": 71464,
+      "usd": 2.41452
     }
   },
   "commits": [
+    {
+      "sha": "95aabe2f35d7b92ce4c72eb51fc3368aa703b916",
+      "time": "2026-04-15T01:11:17Z",
+      "time_fmt": "2026-04-15 01:11 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs buyer's declared budget tier inline so engineers see when null budget causes half-weight fallback during live tests."
+    },
     {
       "sha": "9e529d1eb668ab59a074a231b9bc132361ed22f0",
       "time": "2026-04-15T01:10:26Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:22:07Z",
       "time_fmt": "2026-04-15 00:22 UTC",
       "msg": "[Matching Engine] Availability scoring now logs total hours of staff coverage per selected day so engineers see coverage gaps instantly."
-    },
-    {
-      "sha": "d3cced4ced1198ec6af5ed185a6c13d0c1f3a868",
-      "time": "2026-04-15T00:21:23Z",
-      "time_fmt": "2026-04-15 00:21 UTC",
-      "msg": "[Matching Engine] Availability scoring now logs staff role types present so engineers instantly see recruiter-vs-PM mismatches during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:31:48Z | heartbeat | daemon tick",
     "2026-04-15T00:32:47Z | heartbeat | daemon tick",
     "2026-04-15T00:33:48Z | heartbeat | daemon tick",
     "2026-04-15T00:34:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:07:48Z | heartbeat | daemon tick",
     "2026-04-15T01:08:47Z | heartbeat | daemon tick",
     "2026-04-15T01:09:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:10:47Z | heartbeat | daemon tick"
+    "2026-04-15T01:10:47Z | heartbeat | daemon tick",
+    "2026-04-15T01:11:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs buyer's declared budget tier inline so engineers see when null budget causes half-weight fallback during live tests.",
+  "last_completed": "[Matching Engine] Social proof now logs reference customer count and outcome metrics inline so engineers see verified vs unverified claims during live tests.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs buyer's declared budget tier inline so engineers see when null budget causes half-weight fallback during live tests.",
-  "last_impact": "When a user provides no budget signal (common in early sessions), commercial fit silently degrades to 0.075 (half weight). Engineers testing live matches couldn't see this happening \u2014 they'd debug \"why did this startup rank below this enterprise vendor?\" for minutes before realizing budget was null. Now the [CFDBG] line shows `budget=NULL \u2192 base=0.1125 degraded=0.075` inline, making the half-weight fallback instantly visible. This directly supports the Commercial Fit Computation Rule's requireme",
-  "next_target": "Add availability debug logging to show which user-selected days have zero staff coverage vs partial vs full so engineers see temporal gaps instantly.",
+  "last_detail": "Social proof now logs reference customer count and outcome metrics inline so engineers see verified vs unverified claims during live tests.",
+  "last_impact": "Engineers can now instantly diagnose why an exhibitor with \"thousands of satisfied customers\" marketing copy scores 0.00 on social proof while a competitor with 2 named reference customers and measurable outcomes scores 0.03. This eliminates the #1 source of \"why didn't this match rank higher?\" questions during live fair testing \u2014 vague testimonials that sound impressive but provide zero verifiable evidence. Directly supports the Social Proof Verification Rule's requirement that only named custo",
+  "next_target": "Add availability logging that shows exact staff role coverage per user-selected day so engineers see when \"booth open\" doesn't mean \"right person present.\"",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
