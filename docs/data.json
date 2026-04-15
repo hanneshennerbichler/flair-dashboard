@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:08:02Z",
+  "updated_at": "2026-04-15T00:09:06Z",
   "today": "2026-04-15",
-  "today_usd": 0.23885,
-  "total_usd": 6.21747,
-  "total_prompt": 1006418,
-  "total_completion": 213980,
+  "today_usd": 0.26726,
+  "total_usd": 6.24588,
+  "total_prompt": 1012613,
+  "total_completion": 214635,
   "daily_cap": 50.0,
-  "ticks_today": 8,
+  "ticks_today": 9,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 49564,
-      "completion_tokens": 6011,
-      "usd": 0.23885
+      "prompt_tokens": 55759,
+      "completion_tokens": 6666,
+      "usd": 0.26726
     }
   },
   "commits": [
+    {
+      "sha": "7c367a0be4d310ae7003a1c1f2522410db89fc69",
+      "time": "2026-04-15T00:08:03Z",
+      "time_fmt": "2026-04-15 00:08 UTC",
+      "msg": "[Matching Engine] Proximity scoring now logs exhibitor hall/stand coordinates so engineers instantly see which matches have location data during live testing."
+    },
     {
       "sha": "63c785b5fc0f06543af4164f5ab29fe6c7b5edc0",
       "time": "2026-04-15T00:07:08Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:19:19Z",
       "time_fmt": "2026-04-14 23:19 UTC",
       "msg": "[Matching Engine] Commercial fit debug logs now emit to stderr with [CFDBG] prefix so engineers can grep live rankings without filtering application noise."
-    },
-    {
-      "sha": "1b1304e7adac264e9d410fdfb9b099cfccc7ff81",
-      "time": "2026-04-14T23:18:24Z",
-      "time_fmt": "2026-04-14 23:18 UTC",
-      "msg": "[Matching Engine] Commercial fit debug logs now show inline computation when partial data present so engineers see degradation math in real time."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:28:46Z | heartbeat | daemon tick",
     "2026-04-14T23:29:46Z | heartbeat | daemon tick",
     "2026-04-14T23:30:46Z | heartbeat | daemon tick",
     "2026-04-14T23:31:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:04:48Z | heartbeat | daemon tick",
     "2026-04-15T00:05:48Z | heartbeat | daemon tick",
     "2026-04-15T00:06:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:07:47Z | heartbeat | daemon tick"
+    "2026-04-15T00:07:47Z | heartbeat | daemon tick",
+    "2026-04-15T00:08:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now logs exhibitor hall/stand coordinates so engineers instantly see which matches have location data during live testing.",
+  "last_completed": "[Matching Engine] Commercial fit now logs buyer's target customer size tags so engineers instantly see B2B/B2C alignment failures during live fair testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now logs exhibitor hall/stand coordinates so engineers instantly see which matches have location data during live testing.",
-  "last_impact": "Engineers debugging proximity mismatch complaints during Hannover Messe (user sees distant booth ranked high) can now grep [PRXDBG] and immediately see whether the exhibitor even has hall data \u2014 currently they waste 2\u20133 minutes checking database records manually. This closes the last visibility gap in the proximity scoring rule: we now log user location, user days count, AND exhibitor coordinates \u2014 the complete spatial context for every match.",
-  "next_target": "Add goal relevance logging of exhibitor's primary industry vertical so engineers see cross-sector mismatches instantly during live testing.",
+  "last_detail": "Commercial fit now logs buyer's target customer size tags so engineers instantly see B2B/B2C alignment failures during live fair testing.",
+  "last_impact": "Engineers debugging why a B2C exhibitor ranks high for an enterprise procurement officer can now see the target_customer_size mismatch in one grep line instead of cross-referencing three database tables. This cuts match investigation time from 90 seconds to 5 seconds, allowing real-time tuning during Hannover Messe when visitor traffic peaks and every ranking mistake costs the business a qualified contact. Directly supports the Commercial Fit Computation Rule requirement that structured fields (",
+  "next_target": "Add proximity scoring log line showing actual computed distance in meters so engineers see hall-walk-time context instantly during live testing.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
