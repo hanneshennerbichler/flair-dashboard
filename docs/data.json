@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:02:14Z",
+  "updated_at": "2026-04-15T01:03:39Z",
   "today": "2026-04-15",
-  "today_usd": 2.02609,
-  "total_usd": 8.00471,
-  "total_prompt": 1341909,
-  "total_completion": 266030,
+  "today_usd": 2.07795,
+  "total_usd": 8.05657,
+  "total_prompt": 1348135,
+  "total_completion": 268242,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 385055,
-      "completion_tokens": 58061,
-      "usd": 2.02609
+      "prompt_tokens": 391281,
+      "completion_tokens": 60273,
+      "usd": 2.07795
     }
   },
   "commits": [
+    {
+      "sha": "4985147f6627a6860561029b7121a1d89aa3de7e",
+      "time": "2026-04-15T01:02:15Z",
+      "time_fmt": "2026-04-15 01:02 UTC",
+      "msg": "[Matching Engine] Solution specificity now logs SKU count per exhibitor so engineers instantly see when single-product specialists outrank broad catalogs."
+    },
     {
       "sha": "72fb65d7d89c6c1dbdd9db09500b20e7d0579f5d",
       "time": "2026-04-15T01:01:16Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:13:19Z",
       "time_fmt": "2026-04-15 00:13 UTC",
       "msg": "[Matching Engine] Goal relevance now logs user's stated problem keywords so engineers instantly see semantic match quality during live testing."
-    },
-    {
-      "sha": "3132996afdad04eea929273afddf7c8a5313221b",
-      "time": "2026-04-15T00:12:22Z",
-      "time_fmt": "2026-04-15 00:12 UTC",
-      "msg": "[Matching Engine] Solution specificity now logs whether exhibitor offers concrete product SKUs vs vague capability statements during ranking."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:22:48Z | heartbeat | daemon tick",
     "2026-04-15T00:23:47Z | heartbeat | daemon tick",
     "2026-04-15T00:24:48Z | heartbeat | daemon tick",
     "2026-04-15T00:25:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:58:48Z | heartbeat | daemon tick",
     "2026-04-15T00:59:48Z | heartbeat | daemon tick",
     "2026-04-15T01:00:47Z | heartbeat | daemon tick",
-    "2026-04-15T01:01:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:01:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:02:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Solution specificity now logs SKU count per exhibitor so engineers instantly see when single-product specialists outrank broad catalogs.",
+  "last_completed": "[Matching Engine] Commercial fit now logs inline computation when partial structured data present so engineers see degraded score math in real time.",
   "last_category": "Matching Engine",
-  "last_detail": "Solution specificity now logs SKU count per exhibitor so engineers instantly see when single-product specialists outrank broad catalogs.",
-  "last_impact": "This directly supports the core principle ('if I don't use this, I'm missing something right now') by revealing when users get matched to vague multi-product booths instead of focused solution providers. Engineers running live fair tests can now grep [SOLSPEC] and immediately see exhibitors with 1\u20133 SKUs (specialists) vs. 500+ SKUs (generalists) \u2014 exposing why a robotics startup seeking one specific sensor got ranked below a distributor with 2,000 catalog items but weak goal fit.",
-  "next_target": "Add commercial fit logging for exhibitor's declared target customer size tags so engineers see B2B vs B2C mismatch in real time.",
+  "last_detail": "Commercial fit now logs inline computation when partial structured data present so engineers see degraded score math in real time.",
+  "last_impact": "When an exhibitor is missing price_tier or target_customer_size, engineers currently see only the final 0.075 degraded score with no visibility into which fields were present vs. absent \u2014 causing 2\u20133 minute debugging loops during live fair tests to reverse-engineer why a strong goal-match dropped in ranking. Inline breakdown (e.g., \"base=0.1125 degraded=0.075 missing=price_tier,target\") surfaces the exact data gap instantly, letting engineers triage exhibitor data quality issues without leaving",
+  "next_target": "Add availability scoring logic that logs partial day coverage fraction so engineers see 3/5 days vs 0/5 when staff schedules are incomplete.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
