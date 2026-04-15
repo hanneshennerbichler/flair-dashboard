@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:34:03Z",
+  "updated_at": "2026-04-15T00:35:10Z",
   "today": "2026-04-15",
-  "today_usd": 1.10624,
-  "total_usd": 7.08486,
-  "total_prompt": 1167463,
-  "total_completion": 239595,
+  "today_usd": 1.13677,
+  "total_usd": 7.11539,
+  "total_prompt": 1173670,
+  "total_completion": 240389,
   "daily_cap": 50.0,
-  "ticks_today": 34,
+  "ticks_today": 35,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 210609,
-      "completion_tokens": 31626,
-      "usd": 1.10624
+      "prompt_tokens": 216816,
+      "completion_tokens": 32420,
+      "usd": 1.13677
     }
   },
   "commits": [
+    {
+      "sha": "7a55bacdb23b03a5059aaab8f5c1887a27c8afc3",
+      "time": "2026-04-15T00:34:04Z",
+      "time_fmt": "2026-04-15 00:34 UTC",
+      "msg": "[Matching Engine] Goal relevance now logs user's industry vertical so engineers instantly see cross-industry false positives during live testing."
+    },
     {
       "sha": "2e4f351f792e9b7f51f2e612637249c15d05a56d",
       "time": "2026-04-15T00:33:07Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:45:10Z",
       "time_fmt": "2026-04-14 23:45 UTC",
       "msg": "[Matching Engine] Goal relevance now logs exhibitor's industry vertical tag so engineers instantly see sector mismatches during live fair testing."
-    },
-    {
-      "sha": "ed9af75d30726f2ab2a400a1a9f46c8810716cf5",
-      "time": "2026-04-14T23:44:12Z",
-      "time_fmt": "2026-04-14 23:44 UTC",
-      "msg": "[Matching Engine] Goal relevance scoring now requires exhibitor to name at least one concrete product/service capability to earn any credit (zero for pure PR)."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:54:47Z | heartbeat | daemon tick",
     "2026-04-14T23:55:47Z | heartbeat | daemon tick",
     "2026-04-14T23:56:48Z | heartbeat | daemon tick",
     "2026-04-14T23:57:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:30:48Z | heartbeat | daemon tick",
     "2026-04-15T00:31:48Z | heartbeat | daemon tick",
     "2026-04-15T00:32:47Z | heartbeat | daemon tick",
-    "2026-04-15T00:33:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:33:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:34:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Goal relevance now logs user's industry vertical so engineers instantly see cross-industry false positives during live testing.",
+  "last_completed": "[Matching Engine] Proximity scoring now logs hall distance in meters so engineers instantly see when physical layout causes unexpected ranking drops.",
   "last_category": "Matching Engine",
-  "last_detail": "Goal relevance now logs user's industry vertical so engineers instantly see cross-industry false positives during live testing.",
-  "last_impact": "When a manufacturing buyer gets matched to a software consulting booth because both mention 'automation,' engineers previously had to guess whether the cross-industry mismatch was intentional or a semantic collision. Now they see 'user_vertical=manufacturing' in the same line as the exhibitor match, making the false positive obvious in real time. This directly supports the Commercial Fit Computation Rule's principle: never match on text similarity alone when structured fields (like industry vert",
-  "next_target": "Log exhibitor's primary industry vertical alongside goal relevance score so engineers see both sides of the cross-industry match in one grep.",
+  "last_detail": "Proximity scoring now logs hall distance in meters so engineers instantly see when physical layout causes unexpected ranking drops.",
+  "last_impact": "During live fair testing, engineers often see strong exhibitors ranked lower than expected. Without concrete distance values in debug output, they waste 2\u20133 minutes per match manually calculating hall positions from coordinates. Logging actual meter distance makes proximity penalties immediately visible \u2014 engineers see \"hall_dist=450m\" and understand why a perfect-fit exhibitor at Hall 12 dropped below a weaker match at Hall 3 when user is at Hall 2. Ties directly to CORE PRINCIPLE: if an engine",
+  "next_target": "Log social proof score degradation reason (missing reference vs. unverifiable claim vs. generic text) so engineers see why proof was rejected.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
