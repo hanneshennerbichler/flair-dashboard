@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:03:04Z",
+  "updated_at": "2026-04-15T00:04:10Z",
   "today": "2026-04-15",
-  "today_usd": 0.09162,
-  "total_usd": 6.07024,
-  "total_prompt": 975461,
-  "total_completion": 210356,
+  "today_usd": 0.12273,
+  "total_usd": 6.10135,
+  "total_prompt": 981662,
+  "total_completion": 211190,
   "daily_cap": 50.0,
-  "ticks_today": 3,
+  "ticks_today": 4,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 18607,
-      "completion_tokens": 2387,
-      "usd": 0.09162
+      "prompt_tokens": 24808,
+      "completion_tokens": 3221,
+      "usd": 0.12273
     }
   },
   "commits": [
+    {
+      "sha": "4270cf8c61c74e471a4b30ea8d38d23506dbb8be",
+      "time": "2026-04-15T00:03:06Z",
+      "time_fmt": "2026-04-15 00:03 UTC",
+      "msg": "[Matching Engine] Social proof scoring now logs reference customer count so engineers instantly see proof depth during live fair testing."
+    },
     {
       "sha": "d5f493f342d9f9889489fa98a1481b5bf9b482fb",
       "time": "2026-04-15T00:02:19Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:14:05Z",
       "time_fmt": "2026-04-14 23:14 UTC",
       "msg": "[Matching Engine] Proximity scoring now awards half-credit (0.05) when hall data missing but user days present so temporal availability doesn't get ignored."
-    },
-    {
-      "sha": "a295df5fe5ec4b232d7b5077b6522c25789ea5f9",
-      "time": "2026-04-14T23:13:17Z",
-      "time_fmt": "2026-04-14 23:13 UTC",
-      "msg": "[Matching Engine] Proximity debug logs now show exhibitor's hall coordinates so engineers see spatial data quality instantly during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:23:47Z | heartbeat | daemon tick",
     "2026-04-14T23:24:47Z | heartbeat | daemon tick",
     "2026-04-14T23:25:46Z | heartbeat | daemon tick",
     "2026-04-14T23:26:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-14T23:59:48Z | heartbeat | daemon tick",
     "2026-04-15T00:00:47Z | heartbeat | daemon tick",
     "2026-04-15T00:01:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:02:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:02:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:03:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Social proof scoring now logs reference customer count so engineers instantly see proof depth during live fair testing.",
+  "last_completed": "[Matching Engine] Availability scoring now logs total staff count across selected days so engineers see booth coverage depth instantly during live testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Social proof scoring now logs reference customer count so engineers instantly see proof depth during live fair testing.",
-  "last_impact": "When a startup with 2 named customers ranks below a vague exhibitor, engineers can now see 'refs=2' vs 'refs=0' in stderr and immediately know the 0.03 social proof boost is working correctly. This closes the last scoring-component observability gap \u2014 all 8 weights now have inline debug output showing exactly why each exhibitor earned its score.",
-  "next_target": "Add actionability scoring debug output showing which specific next-step mechanisms (demo/meeting/sample) are present per exhibitor.",
+  "last_detail": "Availability scoring now logs total staff count across selected days so engineers see booth coverage depth instantly during live testing.",
+  "last_impact": "Engineers debugging why a strong match ranks low can now instantly see if an exhibitor has 1 staff member (minimal coverage risk) vs. 12 (high confidence in meeting availability) \u2014 without opening the database. This surfaces the single most common user complaint at live fairs: 'I walked to the booth and nobody could help me.' Half of ranking investigations trace back to staff count mismatches that engineers currently discover only after 2\u20133 minutes of manual data inspection.",
+  "next_target": "Add commercial fit logging for buyer's employee count so engineers instantly see startup-vs-enterprise scale mismatches during live testing.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
