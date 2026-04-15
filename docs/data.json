@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:45:16Z",
+  "updated_at": "2026-04-15T00:46:10Z",
   "today": "2026-04-15",
-  "today_usd": 1.46885,
-  "total_usd": 7.44747,
-  "total_prompt": 1235887,
-  "total_completion": 250085,
+  "today_usd": 1.50118,
+  "total_usd": 7.4798,
+  "total_prompt": 1242119,
+  "total_completion": 250994,
   "daily_cap": 50.0,
-  "ticks_today": 45,
+  "ticks_today": 46,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 279033,
-      "completion_tokens": 42116,
-      "usd": 1.46885
+      "prompt_tokens": 285265,
+      "completion_tokens": 43025,
+      "usd": 1.50118
     }
   },
   "commits": [
+    {
+      "sha": "217916cdaba47d561abf2905d6a67858dc3fb7b2",
+      "time": "2026-04-15T00:45:17Z",
+      "time_fmt": "2026-04-15 00:45 UTC",
+      "msg": "[Matching Engine] Proximity scoring now logs when exhibitor hall data is missing so engineers instantly see data gaps during live testing."
+    },
     {
       "sha": "d87a2b3f0ddeaaf4306b68421cff01c0a60e0966",
       "time": "2026-04-15T00:44:18Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:56:15Z",
       "time_fmt": "2026-04-14 23:56 UTC",
       "msg": "[Matching Engine] Solution specificity now logs exhibitor's product count so engineers instantly see catalog breadth during live fair testing."
-    },
-    {
-      "sha": "7a802e0a3aec97ed6f0607ca291177648854b64e",
-      "time": "2026-04-14T23:55:16Z",
-      "time_fmt": "2026-04-14 23:55 UTC",
-      "msg": "[Matching Engine] Actionability scoring now logs which concrete next-step mechanisms exhibitor offers so engineers see demo/meeting/sample availability instantly."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:05:48Z | heartbeat | daemon tick",
     "2026-04-15T00:06:48Z | heartbeat | daemon tick",
     "2026-04-15T00:07:47Z | heartbeat | daemon tick",
     "2026-04-15T00:08:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:41:47Z | heartbeat | daemon tick",
     "2026-04-15T00:42:48Z | heartbeat | daemon tick",
     "2026-04-15T00:43:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:44:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:44:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:45:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now logs when exhibitor hall data is missing so engineers instantly see data gaps during live testing.",
+  "last_completed": "[Matching Engine] Solution specificity now logs exhibitor's product/SKU count so engineers instantly see catalog breadth during live ranking tests.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now logs when exhibitor hall data is missing so engineers instantly see data gaps during live testing.",
-  "last_impact": "Engineers debugging unexpected ranking drops at Hannover Messe currently cannot tell whether an exhibitor dropped because of poor relevance or because hall coordinates are missing in the database. When proximity=0.00 appears without explanation, they waste 2\u20133 minutes checking multiple tables. This log line (max 120 chars, stderr, [PROXDBG] prefix) shows `hall=NULL` immediately, surfacing data quality issues in real time and preventing silent ranking degradation for otherwise strong matches.",
-  "next_target": "Add availability scoring debug log showing when user selected days are missing so engineers see temporal filtering failures instantly.",
+  "last_detail": "Solution specificity now logs exhibitor's product/SKU count so engineers instantly see catalog breadth during live ranking tests.",
+  "last_impact": "When an engineer investigates why a vague corporate exhibitor outranks a specialist, they now see \"sku_count=2 vs sku_count=340\" in stderr \u2014 immediately revealing whether solution specificity scoring correctly penalized thin catalogs. This prevents the silent failure mode where generic \"we do everything\" booths score high because the algorithm couldn't measure catalog depth. Ties directly to CORE PRINCIPLE: specificity drives actionability, and you can't debug what you can't see.",
+  "next_target": "Add proximity debug logging for user's selected fair days count so engineers see when missing day selection causes all proximity scores to zero out.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
