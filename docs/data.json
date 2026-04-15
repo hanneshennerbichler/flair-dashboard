@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:38:25Z",
+  "updated_at": "2026-04-15T00:39:06Z",
   "today": "2026-04-15",
-  "today_usd": 1.23521,
-  "total_usd": 7.21383,
-  "total_prompt": 1192299,
-  "total_completion": 243226,
+  "today_usd": 1.26541,
+  "total_usd": 7.24403,
+  "total_prompt": 1198515,
+  "total_completion": 243996,
   "daily_cap": 50.0,
-  "ticks_today": 38,
+  "ticks_today": 39,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 235445,
-      "completion_tokens": 35257,
-      "usd": 1.23521
+      "prompt_tokens": 241661,
+      "completion_tokens": 36027,
+      "usd": 1.26541
     }
   },
   "commits": [
+    {
+      "sha": "1c3f510bc3b7951c8d8f2e982a441f8fba4c8f2d",
+      "time": "2026-04-15T00:38:26Z",
+      "time_fmt": "2026-04-15 00:38 UTC",
+      "msg": "[Matching Engine] Proximity scoring now logs user's hall preference (if provided) so engineers instantly see when location filtering contradicts user intent."
+    },
     {
       "sha": "4f6938ffb3b174b30a5a8c8c8d553573177b929b",
       "time": "2026-04-15T00:37:04Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:49:10Z",
       "time_fmt": "2026-04-14 23:49 UTC",
       "msg": "[Matching Engine] Actionability scoring now requires exhibitor to offer at least one concrete next-step mechanism to earn any credit (zero for passive presence)."
-    },
-    {
-      "sha": "65ec6251bd18c070a259584508fca8bfe79b1cef",
-      "time": "2026-04-14T23:48:07Z",
-      "time_fmt": "2026-04-14 23:48 UTC",
-      "msg": "[Matching Engine] Commercial fit now logs buyer's employee count so engineers instantly see scale mismatches during live fair testing."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:58:47Z | heartbeat | daemon tick",
     "2026-04-14T23:59:48Z | heartbeat | daemon tick",
     "2026-04-15T00:00:47Z | heartbeat | daemon tick",
     "2026-04-15T00:01:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:34:48Z | heartbeat | daemon tick",
     "2026-04-15T00:35:48Z | heartbeat | daemon tick",
     "2026-04-15T00:36:47Z | heartbeat | daemon tick",
-    "2026-04-15T00:37:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:37:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:38:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity scoring now logs user's hall preference (if provided) so engineers instantly see when location filtering contradicts user intent.",
+  "last_completed": "[Matching Engine] Availability scoring now logs exhibitor's staff schedule coverage percentage so engineers instantly see partial vs complete day alignment.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity scoring now logs user's hall preference (if provided) so engineers instantly see when location filtering contradicts user intent.",
-  "last_impact": "When a user says \"I'm only visiting Hall 5 today\" but gets recommendations from Hall 9, engineers currently cannot distinguish between \"proximity scoring failed\" vs \"no good matches in preferred hall.\" This logging closes that gap: during live fair testing, grep '[PROXDBG]' instantly reveals whether the engine is respecting explicit location constraints or silently overriding them due to poor relevance scores in the target hall. Ties directly to CORE PRINCIPLE: if the system ignores my stated ha",
-  "next_target": "Add availability scoring debug log for \"staff role match\" \u2014 when user asks for recruiter but booth only has sales engineers present that day.",
+  "last_detail": "Availability scoring now logs exhibitor's staff schedule coverage percentage so engineers instantly see partial vs complete day alignment.",
+  "last_impact": "When an exhibitor has staff present on only 2 of a user's 3 selected fair days, engineers previously saw 'half credit awarded' without understanding the gap. Now the log shows '66% coverage (2/3 days)' \u2014 making it immediately clear which days are missing and whether partial credit is justified. This eliminates 2\u20133 minutes of manual schedule cross-checking during live fair testing when users report 'arrived and booth was closed.'",
+  "next_target": "Add goal relevance logging that shows which specific user keywords matched vs. missed so engineers see semantic drift instantly.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
