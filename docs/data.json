@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:05:14Z",
+  "updated_at": "2026-04-15T01:06:28Z",
   "today": "2026-04-15",
-  "today_usd": 2.15015,
-  "total_usd": 8.12877,
-  "total_prompt": 1360613,
-  "total_completion": 270560,
+  "today_usd": 2.19853,
+  "total_usd": 8.17715,
+  "total_prompt": 1366853,
+  "total_completion": 272537,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 403759,
-      "completion_tokens": 62591,
-      "usd": 2.15015
+      "prompt_tokens": 409999,
+      "completion_tokens": 64568,
+      "usd": 2.19853
     }
   },
   "commits": [
+    {
+      "sha": "817ce044a39d0f698d01edc95b7f08e5ca37290b",
+      "time": "2026-04-15T01:05:15Z",
+      "time_fmt": "2026-04-15 01:05 UTC",
+      "msg": "[Matching Engine] Actionability now logs meeting request response rate per exhibitor so engineers see which booths confirm vs ghost during live tests."
+    },
     {
       "sha": "cb02bb2dbe2fd4a892ae320c060eb06722a28fb6",
       "time": "2026-04-15T01:04:16Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:16:14Z",
       "time_fmt": "2026-04-15 00:16 UTC",
       "msg": "[Matching Engine] Proximity scoring now logs whether user has location services enabled so engineers instantly see why distance computations fail."
-    },
-    {
-      "sha": "c34d42592d538927b24ffd9bcb4f5b4418317f55",
-      "time": "2026-04-15T00:15:17Z",
-      "time_fmt": "2026-04-15 00:15 UTC",
-      "msg": "[Matching Engine] Actionability scoring now logs exhibitor demo availability window so engineers instantly see booking time conflicts during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:25:48Z | heartbeat | daemon tick",
     "2026-04-15T00:26:48Z | heartbeat | daemon tick",
     "2026-04-15T00:27:47Z | heartbeat | daemon tick",
     "2026-04-15T00:28:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:01:48Z | heartbeat | daemon tick",
     "2026-04-15T01:02:48Z | heartbeat | daemon tick",
     "2026-04-15T01:03:47Z | heartbeat | daemon tick",
-    "2026-04-15T01:04:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:04:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:05:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Actionability now logs meeting request response rate per exhibitor so engineers see which booths confirm vs ghost during live tests.",
+  "last_completed": "[Matching Engine] Proximity now logs exhibitor operating hours per day so engineers see when distance is irrelevant because booth is closed during user's visit window.",
   "last_category": "Matching Engine",
-  "last_detail": "Actionability now logs meeting request response rate per exhibitor so engineers see which booths confirm vs ghost during live tests.",
-  "last_impact": "Engineers running live fair tests currently see actionability scores but cannot distinguish exhibitors with 90% booking confirmation rates from those who never reply. This debug output exposes silent conversion killers \u2014 if an exhibitor scores high on actionability (open calendar slots, walk-ins accepted) but has 0% response rate over 20+ meeting requests, engineers immediately flag them for demotion or removal. Ties directly to CORE PRINCIPLE: a high-ranked booth that ghosts meeting requests de",
-  "next_target": "Add proximity debug logging for multi-hall routing so engineers see calculated walking time when user plans cross-campus visits.",
+  "last_detail": "Proximity now logs exhibitor operating hours per day so engineers see when distance is irrelevant because booth is closed during user's visit window.",
+  "last_impact": "Prevents the silent failure mode where a user walks 800 meters to a \"nearby\" stand that turns out to be closed on their selected day \u2014 the most trust-destroying outcome in the entire matching flow. Engineers running live tests can now grep [PRXDBG] and instantly see \"Hall 5 Stand A12: open 09:00\u201313:00 on 2026-04-16, user visits 14:00\u201317:00 \u2192 temporal mismatch\" without manually cross-referencing schedules. This surfaces the exact moment proximity scoring awarded points to an unavailable stand, le",
+  "next_target": "Add availability degradation factor to proximity score \u2014 if booth hours don't overlap user window, cut proximity weight by 50% to prevent closed stands from ranking high.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
