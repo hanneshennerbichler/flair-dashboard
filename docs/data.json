@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:47:05Z",
+  "updated_at": "2026-04-15T00:48:14Z",
   "today": "2026-04-15",
-  "today_usd": 1.53033,
-  "total_usd": 7.50895,
-  "total_prompt": 1248354,
-  "total_completion": 251690,
+  "today_usd": 1.56546,
+  "total_usd": 7.54408,
+  "total_prompt": 1254593,
+  "total_completion": 252784,
   "daily_cap": 50.0,
-  "ticks_today": 47,
+  "ticks_today": 48,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 291500,
-      "completion_tokens": 43721,
-      "usd": 1.53033
+      "prompt_tokens": 297739,
+      "completion_tokens": 44815,
+      "usd": 1.56546
     }
   },
   "commits": [
+    {
+      "sha": "4f0327629d47d7b74090179b442750052906142a",
+      "time": "2026-04-15T00:47:07Z",
+      "time_fmt": "2026-04-15 00:47 UTC",
+      "msg": "[Matching Engine] Availability scoring now logs user's selected days count so engineers instantly see when zero-day users trigger false negatives."
+    },
     {
       "sha": "85d5a537916cc010e7c919f9bd6104635750ba92",
       "time": "2026-04-15T00:46:12Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:58:14Z",
       "time_fmt": "2026-04-14 23:58 UTC",
       "msg": "[Matching Engine] Proximity scoring now logs user's hall location (if known) so engineers instantly see distance mismatches during live fair testing."
-    },
-    {
-      "sha": "26b430687319fe1c412b659ccb6abf48a5e4a4f3",
-      "time": "2026-04-14T23:57:13Z",
-      "time_fmt": "2026-04-14 23:57 UTC",
-      "msg": "[Matching Engine] Goal relevance now logs user's stated problem (first 40 chars) so engineers instantly see what need drove the match during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:07:47Z | heartbeat | daemon tick",
     "2026-04-15T00:08:48Z | heartbeat | daemon tick",
     "2026-04-15T00:09:48Z | heartbeat | daemon tick",
     "2026-04-15T00:10:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:43:48Z | heartbeat | daemon tick",
     "2026-04-15T00:44:48Z | heartbeat | daemon tick",
     "2026-04-15T00:45:47Z | heartbeat | daemon tick",
-    "2026-04-15T00:46:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:46:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:47:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability scoring now logs user's selected days count so engineers instantly see when zero-day users trigger false negatives.",
+  "last_completed": "[Matching Engine] Actionability now logs meeting slot availability count so engineers see which exhibitors offer bookable time vs walk-in only.",
   "last_category": "Matching Engine",
-  "last_detail": "Availability scoring now logs user's selected days count so engineers instantly see when zero-day users trigger false negatives.",
-  "last_impact": "When a user skips day selection (common in first-time sessions), availability scoring currently returns 0.00 for all exhibitors \u2014 causing otherwise perfect matches to rank below inferior ones solely due to missing temporal data. Engineers had no visibility into this silent failure mode during live testing. Logging `user_days=0` in the [AVDBG] line makes the root cause instantly visible, letting us add a fallback (e.g., assume all fair days when user hasn't specified) or prompt users earlier in t",
-  "next_target": "Add Intent Confidence debug logging showing whether query came from CV upload vs typed text vs multi-turn refinement.",
+  "last_detail": "Actionability now logs meeting slot availability count so engineers see which exhibitors offer bookable time vs walk-in only.",
+  "last_impact": "During live fair testing, engineers instantly identify why high-relevance exhibitors rank below average ones \u2014 the top match may have zero bookable slots while position #3 offers five meeting windows. This surfaces the exact moment when static booth presence beats interactive engagement opportunity, letting us tune the actionability weight (currently 0.10) based on real user behavior: if users consistently book lower-ranked exhibitors with meeting slots over higher-ranked walk-in-only booths, we",
+  "next_target": "Log commercial fit buyer budget tier (startup/SME/enterprise) so engineers see when price misalignment causes silent ranking drops.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
