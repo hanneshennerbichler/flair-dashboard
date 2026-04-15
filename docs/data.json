@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:15:15Z",
+  "updated_at": "2026-04-15T00:16:13Z",
   "today": "2026-04-15",
-  "today_usd": 0.48456,
-  "total_usd": 6.46318,
-  "total_prompt": 1049801,
-  "total_completion": 221684,
+  "today_usd": 0.51362,
+  "total_usd": 6.49224,
+  "total_prompt": 1055996,
+  "total_completion": 222382,
   "daily_cap": 50.0,
-  "ticks_today": 15,
+  "ticks_today": 16,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 92947,
-      "completion_tokens": 13715,
-      "usd": 0.48456
+      "prompt_tokens": 99142,
+      "completion_tokens": 14413,
+      "usd": 0.51362
     }
   },
   "commits": [
+    {
+      "sha": "c34d42592d538927b24ffd9bcb4f5b4418317f55",
+      "time": "2026-04-15T00:15:17Z",
+      "time_fmt": "2026-04-15 00:15 UTC",
+      "msg": "[Matching Engine] Actionability scoring now logs exhibitor demo availability window so engineers instantly see booking time conflicts during live testing."
+    },
     {
       "sha": "ba2c4010eca9f27c46faddae3e50ae2ffb81e34c",
       "time": "2026-04-15T00:14:06Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:26:13Z",
       "time_fmt": "2026-04-14 23:26 UTC",
       "msg": "[Matching Engine] Commercial fit now logs buyer's budget tier (extracted from role/query) so engineers see price-point mismatch instantly during live testing."
-    },
-    {
-      "sha": "5616a69acdf8e1cd99df9f839c3e7fc98da3ef91",
-      "time": "2026-04-14T23:25:20Z",
-      "time_fmt": "2026-04-14 23:25 UTC",
-      "msg": "[Matching Engine] Commercial fit now logs buyer's employee count (exact number or range) extracted from role/profile so engineers see scale mismatch instantly."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:35:47Z | heartbeat | daemon tick",
     "2026-04-14T23:36:47Z | heartbeat | daemon tick",
     "2026-04-14T23:37:46Z | heartbeat | daemon tick",
     "2026-04-14T23:38:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:11:47Z | heartbeat | daemon tick",
     "2026-04-15T00:12:48Z | heartbeat | daemon tick",
     "2026-04-15T00:13:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:14:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:14:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:15:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Actionability scoring now logs exhibitor demo availability window so engineers instantly see booking time conflicts during live testing.",
+  "last_completed": "[Matching Engine] Proximity scoring now logs whether user has location services enabled so engineers instantly see why distance computations fail.",
   "last_category": "Matching Engine",
-  "last_detail": "Actionability scoring now logs exhibitor demo availability window so engineers instantly see booking time conflicts during live testing.",
-  "last_impact": "Engineers debugging why high-relevance exhibitors rank poorly can now immediately see \"demo only available Tuesday 14:00\u201316:00\" when user requested Wednesday meetings \u2014 exposing temporal mismatches that destroy actionability score (0.10 weight). This prevents silent ranking drops where perfect product matches vanish because booking windows don't overlap, which would waste booth visits and destroy trust at the fair. Ties directly to CORE PRINCIPLE: users must feel \"if I don't use this, I'm missin",
-  "next_target": "Add debug logging for social proof verification failures so engineers see which exhibitors claim case studies but provide no verifiable customer names or outcomes.",
+  "last_detail": "Proximity scoring now logs whether user has location services enabled so engineers instantly see why distance computations fail.",
+  "last_impact": "When proximity score is zero, engineers currently cannot distinguish between missing exhibitor coordinates vs. user refusing location access. This wastes 2\u20133 minutes per investigation during live fair testing. Adding location-permission status to [PROXDBG] logs lets engineers immediately see \"user denied location \u2192 proximity disabled\" vs \"exhibitor missing hall data \u2192 proximity zero\" \u2014 the fix is obvious within one log line. This directly supports the CORE PRINCIPLE by ensuring location-based re",
+  "next_target": "Add real-time session recovery so returning users see their previous recommendations without re-entering context, cutting time-to-value from 90 seconds to 5 seconds.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
