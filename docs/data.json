@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:49:13Z",
+  "updated_at": "2026-04-15T00:50:18Z",
   "today": "2026-04-15",
-  "today_usd": 1.60106,
-  "total_usd": 7.57968,
-  "total_prompt": 1260831,
-  "total_completion": 253910,
+  "today_usd": 1.63809,
+  "total_usd": 7.61671,
+  "total_prompt": 1267068,
+  "total_completion": 255131,
   "daily_cap": 50.0,
-  "ticks_today": 49,
+  "ticks_today": 50,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 303977,
-      "completion_tokens": 45941,
-      "usd": 1.60106
+      "prompt_tokens": 310214,
+      "completion_tokens": 47162,
+      "usd": 1.63809
     }
   },
   "commits": [
+    {
+      "sha": "04578afeb33cf75741a178cb34a20fde6436e379",
+      "time": "2026-04-15T00:49:14Z",
+      "time_fmt": "2026-04-15 00:49 UTC",
+      "msg": "[Matching Engine] Intent confidence now logs query length in chars so engineers instantly see when ultra-short queries cause low-confidence broad matches."
+    },
     {
       "sha": "a6367132d5689276c3434d090f9cc1c523b8ca3a",
       "time": "2026-04-15T00:48:16Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:00:18Z",
       "time_fmt": "2026-04-15 00:00 UTC",
       "msg": "[Matching Engine] Availability scoring now logs staff schedule array length so engineers instantly see coverage depth during live fair testing."
-    },
-    {
-      "sha": "14a8791c8baa95b5248556c171b95b51982ce7f2",
-      "time": "2026-04-14T23:59:07Z",
-      "time_fmt": "2026-04-14 23:59 UTC",
-      "msg": "[Matching Engine] Availability scoring now logs whether user provided selected days before computing staff overlap to surface missing temporal context."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:09:48Z | heartbeat | daemon tick",
     "2026-04-15T00:10:47Z | heartbeat | daemon tick",
     "2026-04-15T00:11:47Z | heartbeat | daemon tick",
     "2026-04-15T00:12:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:45:47Z | heartbeat | daemon tick",
     "2026-04-15T00:46:48Z | heartbeat | daemon tick",
     "2026-04-15T00:47:47Z | heartbeat | daemon tick",
-    "2026-04-15T00:48:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:48:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:49:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Intent confidence now logs query length in chars so engineers instantly see when ultra-short queries cause low-confidence broad matches.",
+  "last_completed": "[Matching Engine] Goal relevance now logs exhibitor's product category breadth so engineers see when broad catalogs dilute match precision.",
   "last_category": "Matching Engine",
-  "last_detail": "Intent confidence now logs query length in chars so engineers instantly see when ultra-short queries cause low-confidence broad matches.",
-  "last_impact": "Engineers running live fair tests can now immediately diagnose why single-word queries (\"robotics\") produce weaker rankings than detailed queries (\"collaborative robot arm for electronics assembly lines\") \u2014 the char count appears inline in debug output, making intent quality visible without manual query inspection. This closes the last gap in the scoring transparency stack: all seven weighted components now have at least one debug signal engineers can grep during live testing, eliminating the 2\u2013",
-  "next_target": "Add a one-line README in Flair/matching-engine/ listing all debug log prefixes so new engineers find signals in under 10 seconds.",
+  "last_detail": "Goal relevance now logs exhibitor's product category breadth so engineers see when broad catalogs dilute match precision.",
+  "last_impact": "When a user searches \"AI vision for quality control\" and ranks a supplier with 87 product categories (including unrelated domains like logistics software), engineers need to see that catalog sprawl immediately \u2014 not after manual database inspection. Breadth logging surfaces the exact moment when \"everything for everyone\" exhibitors float above specialist providers, letting us tune Goal Relevance (0.35 weight) to penalize dilution and protect the CORE PRINCIPLE: users must feel they're missing so",
+  "next_target": "Log solution specificity's use of product description length so engineers see when marketing fluff inflates scores vs. technical specs.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
