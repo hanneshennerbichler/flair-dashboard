@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:29:13Z",
+  "updated_at": "2026-04-15T00:30:14Z",
   "today": "2026-04-15",
-  "today_usd": 0.94855,
-  "total_usd": 6.92717,
-  "total_prompt": 1136467,
-  "total_completion": 235282,
+  "today_usd": 0.98494,
+  "total_usd": 6.96356,
+  "total_prompt": 1142658,
+  "total_completion": 236470,
   "daily_cap": 50.0,
-  "ticks_today": 29,
+  "ticks_today": 30,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 179613,
-      "completion_tokens": 27313,
-      "usd": 0.94855
+      "prompt_tokens": 185804,
+      "completion_tokens": 28501,
+      "usd": 0.98494
     }
   },
   "commits": [
+    {
+      "sha": "2bcf5ea7080c7f33b07c80e3e5976af9e31c438b",
+      "time": "2026-04-15T00:29:14Z",
+      "time_fmt": "2026-04-15 00:29 UTC",
+      "msg": "[Matching Engine] Actionability scoring now logs whether exhibitor accepts walk-ins vs appointment-only so engineers see booking friction instantly."
+    },
     {
       "sha": "867fad7801fd9c1fa5c1e71b6067e9c8e2109cc0",
       "time": "2026-04-15T00:28:13Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:40:10Z",
       "time_fmt": "2026-04-14 23:40 UTC",
       "msg": "[Matching Engine] Solution specificity now logs exhibitor's product catalog size (count of distinct SKUs/offerings) to reveal generic vs. focused portfolios."
-    },
-    {
-      "sha": "c03018e8a0d6da4b8839fc23b98995e2d3380ecb",
-      "time": "2026-04-14T23:39:16Z",
-      "time_fmt": "2026-04-14 23:39 UTC",
-      "msg": "[Matching Engine] Actionability debug logs now show which concrete actions (demo/sample/meeting) earned credit so engineers see scoring logic instantly."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:49:47Z | heartbeat | daemon tick",
     "2026-04-14T23:50:48Z | heartbeat | daemon tick",
     "2026-04-14T23:51:48Z | heartbeat | daemon tick",
     "2026-04-14T23:52:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:25:48Z | heartbeat | daemon tick",
     "2026-04-15T00:26:48Z | heartbeat | daemon tick",
     "2026-04-15T00:27:47Z | heartbeat | daemon tick",
-    "2026-04-15T00:28:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:28:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:29:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Actionability scoring now logs whether exhibitor accepts walk-ins vs appointment-only so engineers see booking friction instantly.",
+  "last_completed": "[Matching Engine] Solution specificity now logs SKU count so engineers instantly see whether exhibitor has concrete products vs. vague marketing claims.",
   "last_category": "Matching Engine",
-  "last_detail": "Actionability scoring now logs whether exhibitor accepts walk-ins vs appointment-only so engineers see booking friction instantly.",
-  "last_impact": "When a user gets a top-ranked match but the exhibitor requires pre-booked appointments, arriving without one wastes the visit and destroys trust. Engineers testing live rankings now see '[ACTDBG] walk_in=false appt_required=true' in stderr the moment actionability is computed, instantly diagnosing why a seemingly perfect match has low actionability score. This ties directly to the CORE PRINCIPLE: if we tell a user to visit a booth that won't see them without an appointment, we've created frictio",
-  "next_target": "Add debug logging to goal relevance scoring showing count of user pain-point phrases matched against exhibitor's problem-solved text.",
+  "last_detail": "Solution specificity now logs SKU count so engineers instantly see whether exhibitor has concrete products vs. vague marketing claims.",
+  "last_impact": "Solution specificity (0.20 weight) is the second-largest scoring factor after goal relevance, but when an exhibitor scores low, engineers currently see only the final number \u2014 no insight into *why*. Did the exhibitor submit zero product SKUs? One generic service description? Twenty concrete models? This logging exposes the root cause immediately during live fair testing, eliminating the \"why did this booth rank so low?\" investigation loop. Ties directly to CORE PRINCIPLE: users must feel \"if I d",
+  "next_target": "Add social proof logging for case study document count so engineers see proof depth gaps instantly during live testing.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
