@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:03:39Z",
+  "updated_at": "2026-04-15T01:04:15Z",
   "today": "2026-04-15",
-  "today_usd": 2.07795,
-  "total_usd": 8.05657,
-  "total_prompt": 1348135,
-  "total_completion": 268242,
+  "today_usd": 2.11559,
+  "total_usd": 8.09421,
+  "total_prompt": 1354373,
+  "total_completion": 269504,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 391281,
-      "completion_tokens": 60273,
-      "usd": 2.07795
+      "prompt_tokens": 397519,
+      "completion_tokens": 61535,
+      "usd": 2.11559
     }
   },
   "commits": [
+    {
+      "sha": "18af0fa598608652b579c10907b89dd7802991b9",
+      "time": "2026-04-15T01:03:40Z",
+      "time_fmt": "2026-04-15 01:03 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs inline computation when partial structured data present so engineers see degraded score math in real time."
+    },
     {
       "sha": "4985147f6627a6860561029b7121a1d89aa3de7e",
       "time": "2026-04-15T01:02:15Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:14:06Z",
       "time_fmt": "2026-04-15 00:14 UTC",
       "msg": "[Matching Engine] Solution specificity now logs product SKU count so engineers instantly see catalog depth during live fair testing."
-    },
-    {
-      "sha": "8bcd15af57bd622d6537354cbbbfb9c0d7a9a792",
-      "time": "2026-04-15T00:13:19Z",
-      "time_fmt": "2026-04-15 00:13 UTC",
-      "msg": "[Matching Engine] Goal relevance now logs user's stated problem keywords so engineers instantly see semantic match quality during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:23:47Z | heartbeat | daemon tick",
     "2026-04-15T00:24:48Z | heartbeat | daemon tick",
     "2026-04-15T00:25:48Z | heartbeat | daemon tick",
     "2026-04-15T00:26:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:59:48Z | heartbeat | daemon tick",
     "2026-04-15T01:00:47Z | heartbeat | daemon tick",
     "2026-04-15T01:01:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:02:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:02:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:03:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs inline computation when partial structured data present so engineers see degraded score math in real time.",
+  "last_completed": "[Matching Engine] Proximity now logs which user-selected fair days overlap exhibitor staff schedules so engineers see temporal vs spatial match.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs inline computation when partial structured data present so engineers see degraded score math in real time.",
-  "last_impact": "When an exhibitor is missing price_tier or target_customer_size, engineers currently see only the final 0.075 degraded score with no visibility into which fields were present vs. absent \u2014 causing 2\u20133 minute debugging loops during live fair tests to reverse-engineer why a strong goal-match dropped in ranking. Inline breakdown (e.g., \"base=0.1125 degraded=0.075 missing=price_tier,target\") surfaces the exact data gap instantly, letting engineers triage exhibitor data quality issues without leaving",
-  "next_target": "Add availability scoring logic that logs partial day coverage fraction so engineers see 3/5 days vs 0/5 when staff schedules are incomplete.",
+  "last_detail": "Proximity now logs which user-selected fair days overlap exhibitor staff schedules so engineers see temporal vs spatial match.",
+  "last_impact": "Engineers debugging why a nearby booth ranks low will instantly see \"user wants Thu+Fri, exhibitor staffed Mon\u2013Wed only\" \u2014 revealing that temporal mismatch killed the match despite perfect location. This eliminates the single most confusing proximity failure mode: booth is 50m away but scores 0.00 because user's days don't overlap staff presence. Directly supports the SPEC rule \"no hall data OR no user days = no proximity credit\" by making the temporal gate visible in real time.",
+  "next_target": "Log when commercial fit uses fallback score (0.075) for missing structured data so engineers see which exhibitors lack budget/scale tags.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
