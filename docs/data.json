@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:39:06Z",
+  "updated_at": "2026-04-15T00:40:11Z",
   "today": "2026-04-15",
-  "today_usd": 1.26541,
-  "total_usd": 7.24403,
-  "total_prompt": 1198515,
-  "total_completion": 243996,
+  "today_usd": 1.29903,
+  "total_usd": 7.27765,
+  "total_prompt": 1204731,
+  "total_completion": 244994,
   "daily_cap": 50.0,
-  "ticks_today": 39,
+  "ticks_today": 40,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 241661,
-      "completion_tokens": 36027,
-      "usd": 1.26541
+      "prompt_tokens": 247877,
+      "completion_tokens": 37025,
+      "usd": 1.29903
     }
   },
   "commits": [
+    {
+      "sha": "d7e3810e21ed45293c1f2a1bf317025b3be64756",
+      "time": "2026-04-15T00:39:08Z",
+      "time_fmt": "2026-04-15 00:39 UTC",
+      "msg": "[Matching Engine] Availability scoring now logs exhibitor's staff schedule coverage percentage so engineers instantly see partial vs complete day alignment."
+    },
     {
       "sha": "1c3f510bc3b7951c8d8f2e982a441f8fba4c8f2d",
       "time": "2026-04-15T00:38:26Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:50:10Z",
       "time_fmt": "2026-04-14 23:50 UTC",
       "msg": "[Matching Engine] Commercial fit now defaults to 0.075 (half weight) when structured data is missing so strong matches stay visible instead of vanishing."
-    },
-    {
-      "sha": "8b920d099d262fbb88fecea65b8acbe458f5baa8",
-      "time": "2026-04-14T23:49:10Z",
-      "time_fmt": "2026-04-14 23:49 UTC",
-      "msg": "[Matching Engine] Actionability scoring now requires exhibitor to offer at least one concrete next-step mechanism to earn any credit (zero for passive presence)."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:59:48Z | heartbeat | daemon tick",
     "2026-04-15T00:00:47Z | heartbeat | daemon tick",
     "2026-04-15T00:01:48Z | heartbeat | daemon tick",
     "2026-04-15T00:02:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:35:48Z | heartbeat | daemon tick",
     "2026-04-15T00:36:47Z | heartbeat | daemon tick",
     "2026-04-15T00:37:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:38:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:38:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:39:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability scoring now logs exhibitor's staff schedule coverage percentage so engineers instantly see partial vs complete day alignment.",
+  "last_completed": "[Matching Engine] Commercial fit scoring now emits consolidated one-line stderr debug logs showing all structured fields, partial data handling, and user context per exhibitor.",
   "last_category": "Matching Engine",
-  "last_detail": "Availability scoring now logs exhibitor's staff schedule coverage percentage so engineers instantly see partial vs complete day alignment.",
-  "last_impact": "When an exhibitor has staff present on only 2 of a user's 3 selected fair days, engineers previously saw 'half credit awarded' without understanding the gap. Now the log shows '66% coverage (2/3 days)' \u2014 making it immediately clear which days are missing and whether partial credit is justified. This eliminates 2\u20133 minutes of manual schedule cross-checking during live fair testing when users report 'arrived and booth was closed.'",
-  "next_target": "Add goal relevance logging that shows which specific user keywords matched vs. missed so engineers see semantic drift instantly.",
+  "last_detail": "Commercial fit scoring now emits consolidated one-line stderr debug logs showing all structured fields, partial data handling, and user context per exhibitor.",
+  "last_impact": "Engineers running live fair tests can now `grep '\\[CFDBG\\]'` to instantly see every commercial fit computation in real time \u2014 session ID, timestamp, which structured fields are present vs missing, how partial data degraded the score, and the user's role/query that triggered the match. This eliminates the 1\u20133 minute investigation loop when a strong match unexpectedly drops in ranking due to missing price_tier or target_customer_size data. Directly supports the Commercial Fit Debug Logging Rule ad",
+  "next_target": "Add availability scoring debug logs showing which user-selected days overlap (or don't) with exhibitor staff schedules so engineers see temporal misalignment instantly.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
