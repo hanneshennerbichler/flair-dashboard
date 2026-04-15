@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:01:14Z",
+  "updated_at": "2026-04-15T01:02:14Z",
   "today": "2026-04-15",
-  "today_usd": 1.99173,
-  "total_usd": 7.97035,
-  "total_prompt": 1335684,
-  "total_completion": 264984,
+  "today_usd": 2.02609,
+  "total_usd": 8.00471,
+  "total_prompt": 1341909,
+  "total_completion": 266030,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 378830,
-      "completion_tokens": 57015,
-      "usd": 1.99173
+      "prompt_tokens": 385055,
+      "completion_tokens": 58061,
+      "usd": 2.02609
     }
   },
   "commits": [
+    {
+      "sha": "72fb65d7d89c6c1dbdd9db09500b20e7d0579f5d",
+      "time": "2026-04-15T01:01:16Z",
+      "time_fmt": "2026-04-15 01:01 UTC",
+      "msg": "[Matching Engine] Goal relevance now logs keyword match count so engineers instantly see when zero keyword overlap causes low relevance scores."
+    },
     {
       "sha": "c228637de3740af4a6841935a18a4ae30a336c32",
       "time": "2026-04-15T01:00:09Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:12:22Z",
       "time_fmt": "2026-04-15 00:12 UTC",
       "msg": "[Matching Engine] Solution specificity now logs whether exhibitor offers concrete product SKUs vs vague capability statements during ranking."
-    },
-    {
-      "sha": "c9ced97c45ac82dfe9c9bc16cbaf13f98e9501ee",
-      "time": "2026-04-15T00:11:11Z",
-      "time_fmt": "2026-04-15 00:11 UTC",
-      "msg": "[Matching Engine] Actionability scoring now logs exhibitor's available meeting slots and demo times so engineers instantly see booking opportunities during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:21:48Z | heartbeat | daemon tick",
     "2026-04-15T00:22:48Z | heartbeat | daemon tick",
     "2026-04-15T00:23:47Z | heartbeat | daemon tick",
     "2026-04-15T00:24:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:57:48Z | heartbeat | daemon tick",
     "2026-04-15T00:58:48Z | heartbeat | daemon tick",
     "2026-04-15T00:59:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:00:47Z | heartbeat | daemon tick"
+    "2026-04-15T01:00:47Z | heartbeat | daemon tick",
+    "2026-04-15T01:01:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Goal relevance now logs keyword match count so engineers instantly see when zero keyword overlap causes low relevance scores.",
+  "last_completed": "[Matching Engine] Solution specificity now logs SKU count per exhibitor so engineers instantly see when single-product specialists outrank broad catalogs.",
   "last_category": "Matching Engine",
-  "last_detail": "Goal relevance now logs keyword match count so engineers instantly see when zero keyword overlap causes low relevance scores.",
-  "last_impact": "When a user searches \"hydrogen fuel cells\" but top results mention neither term, engineers currently see goal_relevance=0.12 with no explanation \u2014 they waste 2-3 minutes reading exhibitor descriptions trying to understand why the match scored low. Logging keyword_matches=0/2 in the debug line makes invisible semantic failures visible in real time, cutting investigation time to under 10 seconds. This directly supports the CORE PRINCIPLE: if the matching engine can't explain its own decisions duri",
-  "next_target": "Add solution specificity logging for product description length so engineers see when thin 2-sentence listings drag down specificity scores.",
+  "last_detail": "Solution specificity now logs SKU count per exhibitor so engineers instantly see when single-product specialists outrank broad catalogs.",
+  "last_impact": "This directly supports the core principle ('if I don't use this, I'm missing something right now') by revealing when users get matched to vague multi-product booths instead of focused solution providers. Engineers running live fair tests can now grep [SOLSPEC] and immediately see exhibitors with 1\u20133 SKUs (specialists) vs. 500+ SKUs (generalists) \u2014 exposing why a robotics startup seeking one specific sensor got ranked below a distributor with 2,000 catalog items but weak goal fit.",
+  "next_target": "Add commercial fit logging for exhibitor's declared target customer size tags so engineers see B2B vs B2C mismatch in real time.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
