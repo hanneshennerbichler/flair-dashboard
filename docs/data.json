@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:19:16Z",
+  "updated_at": "2026-04-15T01:20:07Z",
   "today": "2026-04-15",
-  "today_usd": 2.64395,
-  "total_usd": 8.62257,
-  "total_prompt": 1448161,
-  "total_completion": 285970,
+  "today_usd": 2.67404,
+  "total_usd": 8.65266,
+  "total_prompt": 1454421,
+  "total_completion": 286724,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 491307,
-      "completion_tokens": 78001,
-      "usd": 2.64395
+      "prompt_tokens": 497567,
+      "completion_tokens": 78755,
+      "usd": 2.67404
     }
   },
   "commits": [
+    {
+      "sha": "ca5bfba9506d923dee7ea24990583b951b81d646",
+      "time": "2026-04-15T01:19:17Z",
+      "time_fmt": "2026-04-15 01:19 UTC",
+      "msg": "[Matching Engine] Commercial fit now logs inline buyer size tier (startup/SME/enterprise) so engineers see scale mismatch signal during live ranking tests."
+    },
     {
       "sha": "7060743be5c09f2d85dd1b43661c18f2093081ba",
       "time": "2026-04-15T01:18:06Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:30:15Z",
       "time_fmt": "2026-04-15 00:30 UTC",
       "msg": "[Matching Engine] Solution specificity now logs SKU count so engineers instantly see whether exhibitor has concrete products vs. vague marketing claims."
-    },
-    {
-      "sha": "2bcf5ea7080c7f33b07c80e3e5976af9e31c438b",
-      "time": "2026-04-15T00:29:14Z",
-      "time_fmt": "2026-04-15 00:29 UTC",
-      "msg": "[Matching Engine] Actionability scoring now logs whether exhibitor accepts walk-ins vs appointment-only so engineers see booking friction instantly."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:39:47Z | heartbeat | daemon tick",
     "2026-04-15T00:40:48Z | heartbeat | daemon tick",
     "2026-04-15T00:41:47Z | heartbeat | daemon tick",
     "2026-04-15T00:42:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:15:47Z | heartbeat | daemon tick",
     "2026-04-15T01:16:48Z | heartbeat | daemon tick",
     "2026-04-15T01:17:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:18:47Z | heartbeat | daemon tick"
+    "2026-04-15T01:18:47Z | heartbeat | daemon tick",
+    "2026-04-15T01:19:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now logs inline buyer size tier (startup/SME/enterprise) so engineers see scale mismatch signal during live ranking tests.",
+  "last_completed": "[Matching Engine] Commercial fit now logs buyer's declared industry vertical inline so engineers see when cross-sector mismatch degrades fit score.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now logs inline buyer size tier (startup/SME/enterprise) so engineers see scale mismatch signal during live ranking tests.",
-  "last_impact": "Engineers running live fair tests can now see at a glance when a 5-person startup is being evaluated against enterprise exhibitors, or when an enterprise buyer is matched to startups \u2014 the single most common cause of ranking failures ('why is Siemens #1 for this robotics founder?'). This directly ties back to the CORE PRINCIPLE: the user must feel 'if I don't use this, I'm missing something right now' \u2014 and scale mismatches destroy that feeling instantly because the user walks to a booth that ca",
-  "next_target": "Add commercial fit logging for exhibitor's declared target customer size so engineers see both sides of the scale match equation in one line.",
+  "last_detail": "Commercial fit now logs buyer's declared industry vertical inline so engineers see when cross-sector mismatch degrades fit score.",
+  "last_impact": "When a healthcare buyer gets matched to industrial automation exhibitors, engineers now see 'buyer_vertical=healthcare exhibitor_vertical=industrial' in the [CFDBG] stderr line during live tests. This lets them diagnose why an otherwise strong product match scores low on commercial fit \u2014 the vertical mismatch is explicitly surfaced, not hidden in aggregate scoring. Directly serves the CORE PRINCIPLE: engineers reduce uncertainty about false positives in seconds instead of guessing why certain ma",
+  "next_target": "Log exhibitor's declared target customer size (startup/SME/enterprise tags) inline in commercial fit debug output so engineers see intended audience mismatch.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
