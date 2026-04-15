@@ -1,20 +1,26 @@
 {
-  "updated_at": "2026-04-14T23:59:05Z",
-  "today": "2026-04-14",
-  "today_usd": 5.9384,
-  "total_usd": 5.9384,
-  "total_prompt": 950648,
-  "total_completion": 206529,
+  "updated_at": "2026-04-15T00:00:16Z",
+  "today": "2026-04-15",
+  "today_usd": 0,
+  "total_usd": 5.97862,
+  "total_prompt": 956854,
+  "total_completion": 207969,
   "daily_cap": 50.0,
-  "ticks_today": 50,
+  "ticks_today": 0,
   "per_day": {
     "2026-04-14": {
-      "prompt_tokens": 950648,
-      "completion_tokens": 206529,
-      "usd": 5.9384
+      "prompt_tokens": 956854,
+      "completion_tokens": 207969,
+      "usd": 5.97862
     }
   },
   "commits": [
+    {
+      "sha": "14a8791c8baa95b5248556c171b95b51982ce7f2",
+      "time": "2026-04-14T23:59:07Z",
+      "time_fmt": "2026-04-14 23:59 UTC",
+      "msg": "[Matching Engine] Availability scoring now logs whether user provided selected days before computing staff overlap to surface missing temporal context."
+    },
     {
       "sha": "939e3aa097055662521b0dce74487aa4350db6b2",
       "time": "2026-04-14T23:58:14Z",
@@ -308,16 +314,9 @@
       "time": "2026-04-14T23:10:27Z",
       "time_fmt": "2026-04-14 23:10 UTC",
       "msg": "[Matching Engine] Commercial fit now logs buyer's actual budget constraint (exact currency amount or \"unspecified\") so engineers see price-gate failures instantly."
-    },
-    {
-      "sha": "d2a009e0050e6b5e84545f6dc6179942fc6edc5b",
-      "time": "2026-04-14T23:09:08Z",
-      "time_fmt": "2026-04-14 23:09 UTC",
-      "msg": "[Matching Engine] Commercial fit now logs buyer's employee count range (startup/SME/enterprise) extracted from role text so scale mismatches are visible."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:19:47Z | heartbeat | daemon tick",
     "2026-04-14T23:20:47Z | heartbeat | daemon tick",
     "2026-04-14T23:21:47Z | heartbeat | daemon tick",
     "2026-04-14T23:22:47Z | heartbeat | daemon tick",
@@ -356,13 +355,14 @@
     "2026-04-14T23:55:47Z | heartbeat | daemon tick",
     "2026-04-14T23:56:48Z | heartbeat | daemon tick",
     "2026-04-14T23:57:48Z | heartbeat | daemon tick",
-    "2026-04-14T23:58:47Z | heartbeat | daemon tick"
+    "2026-04-14T23:58:47Z | heartbeat | daemon tick",
+    "2026-04-14T23:59:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability scoring now logs whether user provided selected days before computing staff overlap to surface missing temporal context.",
+  "last_completed": "[Matching Engine] Availability scoring now logs staff schedule array length so engineers instantly see coverage depth during live fair testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Availability scoring now logs whether user provided selected days before computing staff overlap to surface missing temporal context.",
-  "last_impact": "Engineers instantly see when availability scores are zero because the user hasn't specified fair days yet, not because exhibitor data is missing. This cuts debugging time from 2\u20133 minutes per match investigation to 5 seconds \u2014 critical during live fair testing when users report \"why isn't this booth ranked higher?\" and the root cause is incomplete user profile (missing days selection), not bad exhibitor data or broken scoring logic.",
-  "next_target": "Add goal relevance logging of user's specified role so engineers see buyer persona mismatches instantly during live testing.",
+  "last_detail": "Availability scoring now logs staff schedule array length so engineers instantly see coverage depth during live fair testing.",
+  "last_impact": "When an exhibitor scores 0.01 (partial coverage) instead of 0.02 (full coverage), engineers currently cannot tell if the exhibitor provided schedules for 1 day vs. 4 days out of 5 user-selected days \u2014 all partial coverage looks identical. Logging schedule array length (e.g., `sched_days=4/5`) reveals whether missing data is a minor gap or a systemic absence, letting engineers prioritize exhibitor outreach to complete schedules that are 80% done vs. 20% done. This directly supports the CORE PRINC",
+  "next_target": "Log proximity hall distance in meters so engineers instantly see when 'nearby' recommendations are actually across the venue.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
