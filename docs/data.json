@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:14:10Z",
+  "updated_at": "2026-04-15T01:15:14Z",
   "today": "2026-04-15",
-  "today_usd": 2.47823,
-  "total_usd": 8.45685,
-  "total_prompt": 1416882,
-  "total_completion": 281178,
+  "today_usd": 2.51203,
+  "total_usd": 8.49065,
+  "total_prompt": 1423138,
+  "total_completion": 282180,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 460028,
-      "completion_tokens": 73209,
-      "usd": 2.47823
+      "prompt_tokens": 466284,
+      "completion_tokens": 74211,
+      "usd": 2.51203
     }
   },
   "commits": [
+    {
+      "sha": "2aba0606cb85fc6f0dfa687c6f542f850c39f64d",
+      "time": "2026-04-15T01:14:12Z",
+      "time_fmt": "2026-04-15 01:14 UTC",
+      "msg": "[Matching Engine] Proximity now logs user's current hall position when known so engineers see actual walking distance vs straight-line hall offset."
+    },
     {
       "sha": "77be02d3a483f4d7b6f458feccb0fb84ff98a289",
       "time": "2026-04-15T01:13:10Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:25:12Z",
       "time_fmt": "2026-04-15 00:25 UTC",
       "msg": "[Matching Engine] Commercial fit now logs buyer company size so engineers instantly see scale mismatch failures during live testing."
-    },
-    {
-      "sha": "5f7d7ad230927988d30c7e8a843e8819490a0f4c",
-      "time": "2026-04-15T00:24:19Z",
-      "time_fmt": "2026-04-15 00:24 UTC",
-      "msg": "[Matching Engine] Proximity scoring now logs user's selected fair days count so engineers instantly see temporal filtering scope during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:34:48Z | heartbeat | daemon tick",
     "2026-04-15T00:35:48Z | heartbeat | daemon tick",
     "2026-04-15T00:36:47Z | heartbeat | daemon tick",
     "2026-04-15T00:37:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:10:47Z | heartbeat | daemon tick",
     "2026-04-15T01:11:47Z | heartbeat | daemon tick",
     "2026-04-15T01:12:47Z | heartbeat | daemon tick",
-    "2026-04-15T01:13:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:13:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:14:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Proximity now logs user's current hall position when known so engineers see actual walking distance vs straight-line hall offset.",
+  "last_completed": "[Matching Engine] Intent confidence now logs user's stated industry vertical so engineers see when domain mismatch lowers confidence.",
   "last_category": "Matching Engine",
-  "last_detail": "Proximity now logs user's current hall position when known so engineers see actual walking distance vs straight-line hall offset.",
-  "last_impact": "During live fair testing, engineers currently see hall-to-hall offsets (e.g., \"user in Hall 5, exhibitor in Hall 7 \u2192 2 halls away\") but cannot tell if that's a 2-minute walk across a corridor or a 12-minute trek around the venue perimeter. Logging the user's declared current position (from check-in, GPS, or manual selection) alongside the computed distance lets engineers verify that proximity scoring reflects real-world movement cost, not just abstract hall numbers. This directly improves the CO",
-  "next_target": "Availability will log which staff roles are present on user-selected days so engineers see when technical staff absent but sales present.",
+  "last_detail": "Intent confidence now logs user's stated industry vertical so engineers see when domain mismatch lowers confidence.",
+  "last_impact": "When a robotics engineer searches for \"medical devices\" the matching engine currently cannot explain why intent confidence drops from 0.05 to 0.02 \u2014 engineers waste minutes debugging unclear needs during live fair testing. Logging the user's declared vertical (extracted from CV, LinkedIn profile, or chat context) alongside the query text makes cross-domain searches instantly visible in the debug stream. This directly improves the \"probability of useful action NOW\" scoring by surfacing when the u",
+  "next_target": "Log solution specificity's product datasheet presence so engineers see when exhibitors claim technical capability without documentation.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
