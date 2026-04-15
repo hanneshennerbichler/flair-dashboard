@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T00:54:12Z",
+  "updated_at": "2026-04-15T00:55:21Z",
   "today": "2026-04-15",
-  "today_usd": 1.76865,
-  "total_usd": 7.74727,
-  "total_prompt": 1292037,
-  "total_completion": 258842,
+  "today_usd": 1.80856,
+  "total_usd": 7.78718,
+  "total_prompt": 1298280,
+  "total_completion": 260254,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 335183,
-      "completion_tokens": 50873,
-      "usd": 1.76865
+      "prompt_tokens": 341426,
+      "completion_tokens": 52285,
+      "usd": 1.80856
     }
   },
   "commits": [
+    {
+      "sha": "6495ca9fd65160198eba75bf8c1866b2ec3f98fb",
+      "time": "2026-04-15T00:54:13Z",
+      "time_fmt": "2026-04-15 00:54 UTC",
+      "msg": "[Matching Engine] Social proof scoring now logs case study document count so engineers instantly see verified evidence vs marketing fluff during live tests."
+    },
     {
       "sha": "f85bd6679217fbe652686586438390c7647291ac",
       "time": "2026-04-15T00:53:10Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:05:07Z",
       "time_fmt": "2026-04-15 00:05 UTC",
       "msg": "[Matching Engine] Availability scoring now logs whether exhibitor has ANY staff schedule data at all before attempting overlap computation."
-    },
-    {
-      "sha": "39e9b5bebecf287bbe9e2b7dc8db71afae426286",
-      "time": "2026-04-15T00:04:11Z",
-      "time_fmt": "2026-04-15 00:04 UTC",
-      "msg": "[Matching Engine] Availability scoring now logs total staff count across selected days so engineers see booth coverage depth instantly during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:14:48Z | heartbeat | daemon tick",
     "2026-04-15T00:15:47Z | heartbeat | daemon tick",
     "2026-04-15T00:16:48Z | heartbeat | daemon tick",
     "2026-04-15T00:17:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:50:47Z | heartbeat | daemon tick",
     "2026-04-15T00:51:48Z | heartbeat | daemon tick",
     "2026-04-15T00:52:47Z | heartbeat | daemon tick",
-    "2026-04-15T00:53:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:53:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:54:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Social proof scoring now logs case study document count so engineers instantly see verified evidence vs marketing fluff during live tests.",
+  "last_completed": "[Matching Engine] Availability scoring now logs staff role distribution so engineers see when booths have only sales reps vs. technical experts.",
   "last_category": "Matching Engine",
-  "last_detail": "Social proof scoring now logs case study document count so engineers instantly see verified evidence vs marketing fluff during live tests.",
-  "last_impact": "When an exhibitor claims \"trusted by leading companies\" but presents zero named customers or measurable outcomes, engineers now see \"cases=0/verified=0\" in the debug stream during live fair testing \u2014 exposing silent ranking inflation before users waste booth visits. This directly enforces the SPEC.md social proof verification rule (0.03 score ONLY for verifiable evidence) by making invisible data gaps visible in real time, protecting the core principle that every recommendation must feel urgent",
-  "next_target": "Add actionability debug logging for product sample availability so engineers see when hands-on trials drive bookability vs brochure-only booths.",
+  "last_detail": "Availability scoring now logs staff role distribution so engineers see when booths have only sales reps vs. technical experts.",
+  "last_impact": "When a PhD researcher matches a robotics exhibitor but booth staff that day are purely sales-focused, the meeting wastes both sides' time \u2014 researcher can't get technical depth, sales rep can't close without engineering backup. Logging staff roles per day (e.g., `roles=2_sales,0_eng`) lets engineers instantly see when high goal-relevance matches fail due to wrong personnel availability, revealing data gaps that kill B2B lead quality. This directly ties to CORE PRINCIPLE: users must feel \"if I do",
+  "next_target": "Log proximity scoring's hall-to-hall distance calculation method so engineers see when linear distance fails to account for building layout.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
