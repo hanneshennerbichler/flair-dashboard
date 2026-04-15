@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T00:50:18Z",
+  "updated_at": "2026-04-15T00:51:17Z",
   "today": "2026-04-15",
-  "today_usd": 1.63809,
-  "total_usd": 7.61671,
-  "total_prompt": 1267068,
-  "total_completion": 255131,
+  "today_usd": 1.67429,
+  "total_usd": 7.65291,
+  "total_prompt": 1273311,
+  "total_completion": 256296,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 310214,
-      "completion_tokens": 47162,
-      "usd": 1.63809
+      "prompt_tokens": 316457,
+      "completion_tokens": 48327,
+      "usd": 1.67429
     }
   },
   "commits": [
+    {
+      "sha": "77abaf7a24c9e90a93fc98218c02fd26d629635f",
+      "time": "2026-04-15T00:50:20Z",
+      "time_fmt": "2026-04-15 00:50 UTC",
+      "msg": "[Matching Engine] Goal relevance now logs exhibitor's product category breadth so engineers see when broad catalogs dilute match precision."
+    },
     {
       "sha": "04578afeb33cf75741a178cb34a20fde6436e379",
       "time": "2026-04-15T00:49:14Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:01:07Z",
       "time_fmt": "2026-04-15 00:01 UTC",
       "msg": "[Matching Engine] Commercial fit now logs buyer's industry vertical so engineers instantly see sector mismatches during live fair testing."
-    },
-    {
-      "sha": "eba77f982eaf8b7e8a16decfe13f3086c243f5d3",
-      "time": "2026-04-15T00:00:18Z",
-      "time_fmt": "2026-04-15 00:00 UTC",
-      "msg": "[Matching Engine] Availability scoring now logs staff schedule array length so engineers instantly see coverage depth during live fair testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:10:47Z | heartbeat | daemon tick",
     "2026-04-15T00:11:47Z | heartbeat | daemon tick",
     "2026-04-15T00:12:48Z | heartbeat | daemon tick",
     "2026-04-15T00:13:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:46:48Z | heartbeat | daemon tick",
     "2026-04-15T00:47:47Z | heartbeat | daemon tick",
     "2026-04-15T00:48:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:49:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:49:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:50:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Goal relevance now logs exhibitor's product category breadth so engineers see when broad catalogs dilute match precision.",
+  "last_completed": "[Matching Engine] Actionability now logs event registration seat availability so engineers see when workshop/masterclass capacity limits reduce bookability.",
   "last_category": "Matching Engine",
-  "last_detail": "Goal relevance now logs exhibitor's product category breadth so engineers see when broad catalogs dilute match precision.",
-  "last_impact": "When a user searches \"AI vision for quality control\" and ranks a supplier with 87 product categories (including unrelated domains like logistics software), engineers need to see that catalog sprawl immediately \u2014 not after manual database inspection. Breadth logging surfaces the exact moment when \"everything for everyone\" exhibitors float above specialist providers, letting us tune Goal Relevance (0.35 weight) to penalize dilution and protect the CORE PRINCIPLE: users must feel they're missing so",
-  "next_target": "Log solution specificity's use of product description length so engineers see when marketing fluff inflates scores vs. technical specs.",
+  "last_detail": "Actionability now logs event registration seat availability so engineers see when workshop/masterclass capacity limits reduce bookability.",
+  "last_impact": "When users query \"best AI workshops\" and get matched to sold-out masterclasses, engineers currently see actionability score but not why it's low. This change exposes seat_count vs seats_booked in debug output, making it instantly visible when registration capacity blocks actionability. Directly supports the core principle: users must feel \"if I don't use this NOW, I'm missing something\" \u2014 but that only works if actionability scoring catches capacity limits before surfacing the event. Prevents re",
+  "next_target": "Log commercial fit buyer budget tier (startup/SME/enterprise) so engineers see when free-tier users get premium-only exhibitor matches.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
