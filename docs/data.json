@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:29:11Z",
+  "updated_at": "2026-04-15T01:30:02Z",
   "today": "2026-04-15",
-  "today_usd": 2.95348,
-  "total_usd": 8.9321,
-  "total_prompt": 1510751,
-  "total_completion": 294088,
+  "today_usd": 2.98296,
+  "total_usd": 8.96158,
+  "total_prompt": 1517013,
+  "total_completion": 294801,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 553897,
-      "completion_tokens": 86119,
-      "usd": 2.95348
+      "prompt_tokens": 560159,
+      "completion_tokens": 86832,
+      "usd": 2.98296
     }
   },
   "commits": [
+    {
+      "sha": "0c02808b64d681da02508ac791245695b9bd8c39",
+      "time": "2026-04-15T01:29:13Z",
+      "time_fmt": "2026-04-15 01:29 UTC",
+      "msg": "[Matching Engine] Commercial fit now emits consolidated single-line debug logs showing all structured fields plus partial-data degradation inline."
+    },
     {
       "sha": "058e018af1c13c9aa1194b16dfa0f5dc72be6b36",
       "time": "2026-04-15T01:28:10Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:40:13Z",
       "time_fmt": "2026-04-15 00:40 UTC",
       "msg": "[Matching Engine] Commercial fit scoring now emits consolidated one-line stderr debug logs showing all structured fields, partial data handling, and user context per exhibitor."
-    },
-    {
-      "sha": "d7e3810e21ed45293c1f2a1bf317025b3be64756",
-      "time": "2026-04-15T00:39:08Z",
-      "time_fmt": "2026-04-15 00:39 UTC",
-      "msg": "[Matching Engine] Availability scoring now logs exhibitor's staff schedule coverage percentage so engineers instantly see partial vs complete day alignment."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:49:48Z | heartbeat | daemon tick",
     "2026-04-15T00:50:47Z | heartbeat | daemon tick",
     "2026-04-15T00:51:48Z | heartbeat | daemon tick",
     "2026-04-15T00:52:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:25:48Z | heartbeat | daemon tick",
     "2026-04-15T01:26:48Z | heartbeat | daemon tick",
     "2026-04-15T01:27:47Z | heartbeat | daemon tick",
-    "2026-04-15T01:28:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:28:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:29:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Commercial fit now emits consolidated single-line debug logs showing all structured fields plus partial-data degradation inline.",
+  "last_completed": "[Matching Engine] Proximity scoring now requires both hall data AND user-selected days before awarding any location boost points.",
   "last_category": "Matching Engine",
-  "last_detail": "Commercial fit now emits consolidated single-line debug logs showing all structured fields plus partial-data degradation inline.",
-  "last_impact": "Engineers running live ranking tests can now grep one stderr line per exhibitor and instantly see why commercial fit scored 0.075 instead of 0.15 \u2014 e.g. \"3/4 fields present, missing price_tier\" \u2014 without reconstructing state from scattered logs. This eliminates 1\u20133 minutes of investigation per mismatch during fair testing, directly supporting the core principle: if the matching engine silently degrades a score, engineers miss what's broken right now.",
-  "next_target": "Add actionability debug logging showing which concrete action types each exhibitor offers so engineers see why demo-heavy booths rank above meeting-only stands.",
+  "last_detail": "Proximity scoring now requires both hall data AND user-selected days before awarding any location boost points.",
+  "last_impact": "Prevents false confidence from location-only rankings when temporal availability is unknown \u2014 users no longer walk to stands that may be closed on their selected days, eliminating wasted time and preserving trust in recommendations. Aligns proximity with the core principle: if we don't know when the user is visiting, distance alone creates misleading urgency.",
+  "next_target": "Log proximity scoring decisions showing hall data presence, user days presence, and final score so engineers see when zero-proximity fallback triggers.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
