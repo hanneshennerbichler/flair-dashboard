@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:20:04Z",
+  "updated_at": "2026-04-15T00:21:21Z",
   "today": "2026-04-15",
-  "today_usd": 0.64071,
-  "total_usd": 6.61933,
-  "total_prompt": 1080766,
-  "total_completion": 225900,
+  "today_usd": 0.6808,
+  "total_usd": 6.65942,
+  "total_prompt": 1086961,
+  "total_completion": 227334,
   "daily_cap": 50.0,
-  "ticks_today": 20,
+  "ticks_today": 21,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 123912,
-      "completion_tokens": 17931,
-      "usd": 0.64071
+      "prompt_tokens": 130107,
+      "completion_tokens": 19365,
+      "usd": 0.6808
     }
   },
   "commits": [
+    {
+      "sha": "a21da0d9914a02930b7935cc91ab67776057f1d7",
+      "time": "2026-04-15T00:20:05Z",
+      "time_fmt": "2026-04-15 00:20 UTC",
+      "msg": "[Matching Engine] Social proof scoring now logs count of verified reference customers so engineers instantly see proof strength during live testing."
+    },
     {
       "sha": "ca1cc664f4c333abb7397de5b3b7bb282368da57",
       "time": "2026-04-15T00:19:13Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:31:07Z",
       "time_fmt": "2026-04-14 23:31 UTC",
       "msg": "[Matching Engine] Actionability score now requires exhibitor to list at least one concrete action (demo slot, sample pickup, meeting link) to earn any credit."
-    },
-    {
-      "sha": "0b8ac41ef6b76450a072f95945100159e1ca19dd",
-      "time": "2026-04-14T23:30:01Z",
-      "time_fmt": "2026-04-14 23:30 UTC",
-      "msg": "[Matching Engine] Availability now awards zero score when staff schedule is missing entirely so exhibitors must submit data to rank competitively."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:40:47Z | heartbeat | daemon tick",
     "2026-04-14T23:41:46Z | heartbeat | daemon tick",
     "2026-04-14T23:42:46Z | heartbeat | daemon tick",
     "2026-04-14T23:43:47Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:16:48Z | heartbeat | daemon tick",
     "2026-04-15T00:17:48Z | heartbeat | daemon tick",
     "2026-04-15T00:18:47Z | heartbeat | daemon tick",
-    "2026-04-15T00:19:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:19:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:20:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Social proof scoring now logs count of verified reference customers so engineers instantly see proof strength during live testing.",
+  "last_completed": "[Matching Engine] Availability scoring now logs staff role types present so engineers instantly see recruiter-vs-PM mismatches during live testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Social proof scoring now logs count of verified reference customers so engineers instantly see proof strength during live testing.",
-  "last_impact": "Engineers debugging why two similarly relevant exhibitors rank differently can now see one has 3 named reference customers (score=0.03) while the other has zero (score=0.00), eliminating 2\u20133 minutes of manual case study inspection per match investigation. This directly supports the Social Proof Verification Rule in SPEC.md, which gates the 0.03 boost on verifiable evidence\u2014logging the count makes enforcement auditable in real time during Hannover Messe.",
-  "next_target": "Log social proof outcomes count (measurable results like '30% cost reduction') so engineers see evidence quality depth during live fair testing.",
+  "last_detail": "Availability scoring now logs staff role types present so engineers instantly see recruiter-vs-PM mismatches during live testing.",
+  "last_impact": "When a user seeking technical demos gets matched to a booth staffed only by recruiters on their selected days, engineers currently see availability=0.02 without understanding why the meeting would fail. Logging staff role types (recruiter/product_manager/sales/technical) in the availability debug output lets engineers diagnose role-availability mismatches in real time during Hannover Messe, preventing wasted booth visits where the right person simply isn't present. This directly supports the COR",
+  "next_target": "Add commercial fit logging for exhibitor's documented minimum deal size so engineers see budget-floor mismatches during startup rankings.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
