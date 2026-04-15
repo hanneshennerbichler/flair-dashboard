@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-04-15T00:14:04Z",
+  "updated_at": "2026-04-15T00:15:15Z",
   "today": "2026-04-15",
-  "today_usd": 0.44928,
-  "total_usd": 6.4279,
-  "total_prompt": 1043607,
-  "total_completion": 220571,
+  "today_usd": 0.48456,
+  "total_usd": 6.46318,
+  "total_prompt": 1049801,
+  "total_completion": 221684,
   "daily_cap": 50.0,
-  "ticks_today": 14,
+  "ticks_today": 15,
   "per_day": {
     "2026-04-14": {
       "prompt_tokens": 956854,
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 86753,
-      "completion_tokens": 12602,
-      "usd": 0.44928
+      "prompt_tokens": 92947,
+      "completion_tokens": 13715,
+      "usd": 0.48456
     }
   },
   "commits": [
+    {
+      "sha": "ba2c4010eca9f27c46faddae3e50ae2ffb81e34c",
+      "time": "2026-04-15T00:14:06Z",
+      "time_fmt": "2026-04-15 00:14 UTC",
+      "msg": "[Matching Engine] Solution specificity now logs product SKU count so engineers instantly see catalog depth during live fair testing."
+    },
     {
       "sha": "8bcd15af57bd622d6537354cbbbfb9c0d7a9a792",
       "time": "2026-04-15T00:13:19Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-14T23:25:20Z",
       "time_fmt": "2026-04-14 23:25 UTC",
       "msg": "[Matching Engine] Commercial fit now logs buyer's employee count (exact number or range) extracted from role/profile so engineers see scale mismatch instantly."
-    },
-    {
-      "sha": "94050726003fdf8bfb238c9a069f6557b5783cc0",
-      "time": "2026-04-14T23:24:07Z",
-      "time_fmt": "2026-04-14 23:24 UTC",
-      "msg": "[Matching Engine] Commercial fit now logs buyer's target industry vertical (first 40 chars) extracted from query/profile so engineers see sector mismatch instantly."
     }
   ],
   "log_tail": [
-    "2026-04-14T23:34:46Z | heartbeat | daemon tick",
     "2026-04-14T23:35:47Z | heartbeat | daemon tick",
     "2026-04-14T23:36:47Z | heartbeat | daemon tick",
     "2026-04-14T23:37:46Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T00:10:47Z | heartbeat | daemon tick",
     "2026-04-15T00:11:47Z | heartbeat | daemon tick",
     "2026-04-15T00:12:48Z | heartbeat | daemon tick",
-    "2026-04-15T00:13:48Z | heartbeat | daemon tick"
+    "2026-04-15T00:13:48Z | heartbeat | daemon tick",
+    "2026-04-15T00:14:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Solution specificity now logs product SKU count so engineers instantly see catalog depth during live fair testing.",
+  "last_completed": "[Matching Engine] Actionability scoring now logs exhibitor demo availability window so engineers instantly see booking time conflicts during live testing.",
   "last_category": "Matching Engine",
-  "last_detail": "Solution specificity now logs product SKU count so engineers instantly see catalog depth during live fair testing.",
-  "last_impact": "Engineers debugging why a robotics vendor ranks above a precision tool manufacturer will now see '12 SKUs vs 0 SKUs' in one grep \u2014 surfacing that the toolmaker submitted only marketing copy. This closes the last gap in solution specificity observability: we already log concrete-vs-vague signals, but SKU count is the quantitative proof of catalog depth. Matches the CORE PRINCIPLE by making catalog richness verifiable in real time, so engineers trust the ranking without guessing.",
-  "next_target": "Add proximity scoring debug log for user's current hall location when available, so engineers see whether distance computation uses live GPS or session profile default.",
+  "last_detail": "Actionability scoring now logs exhibitor demo availability window so engineers instantly see booking time conflicts during live testing.",
+  "last_impact": "Engineers debugging why high-relevance exhibitors rank poorly can now immediately see \"demo only available Tuesday 14:00\u201316:00\" when user requested Wednesday meetings \u2014 exposing temporal mismatches that destroy actionability score (0.10 weight). This prevents silent ranking drops where perfect product matches vanish because booking windows don't overlap, which would waste booth visits and destroy trust at the fair. Ties directly to CORE PRINCIPLE: users must feel \"if I don't use this, I'm missin",
+  "next_target": "Add debug logging for social proof verification failures so engineers see which exhibitors claim case studies but provide no verifiable customer names or outcomes.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
