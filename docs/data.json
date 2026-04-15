@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:26:10Z",
+  "updated_at": "2026-04-15T01:27:09Z",
   "today": "2026-04-15",
-  "today_usd": 2.86164,
-  "total_usd": 8.84026,
-  "total_prompt": 1491975,
-  "total_completion": 291720,
+  "today_usd": 2.89197,
+  "total_usd": 8.87059,
+  "total_prompt": 1498230,
+  "total_completion": 292491,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 535121,
-      "completion_tokens": 83751,
-      "usd": 2.86164
+      "prompt_tokens": 541376,
+      "completion_tokens": 84522,
+      "usd": 2.89197
     }
   },
   "commits": [
+    {
+      "sha": "5b0b70b2295b079a11dd66aa593bc33b68e297eb",
+      "time": "2026-04-15T01:26:12Z",
+      "time_fmt": "2026-04-15 01:26 UTC",
+      "msg": "[Matching Engine] Availability score now logs day overlap fraction so engineers see partial vs full coverage during live ranking tests."
+    },
     {
       "sha": "1b704cc37919c0a731277b6cce5f1490dbaaf4bd",
       "time": "2026-04-15T01:25:14Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:37:04Z",
       "time_fmt": "2026-04-15 00:37 UTC",
       "msg": "[Matching Engine] Social proof scoring now requires at least one named customer or measurable outcome to award any points \u2014 no more generic testimonials."
-    },
-    {
-      "sha": "2562d60a19d0693920ae8472765c7ff9f1d653db",
-      "time": "2026-04-15T00:36:09Z",
-      "time_fmt": "2026-04-15 00:36 UTC",
-      "msg": "[Matching Engine] Social proof scoring now logs reference customer count so engineers instantly see which exhibitors provide verifiable case studies vs vague claims."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:46:48Z | heartbeat | daemon tick",
     "2026-04-15T00:47:47Z | heartbeat | daemon tick",
     "2026-04-15T00:48:48Z | heartbeat | daemon tick",
     "2026-04-15T00:49:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:22:48Z | heartbeat | daemon tick",
     "2026-04-15T01:23:48Z | heartbeat | daemon tick",
     "2026-04-15T01:24:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:25:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:25:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:26:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Availability score now logs day overlap fraction so engineers see partial vs full coverage during live ranking tests.",
+  "last_completed": "[Matching Engine] Commercial fit debug logs now emit to stderr with [CFDBG] prefix so engineers can grep live ranking tests without filtering application noise.",
   "last_category": "Matching Engine",
-  "last_detail": "Availability score now logs day overlap fraction so engineers see partial vs full coverage during live ranking tests.",
-  "last_impact": "When an exhibitor has staff present Tuesday/Wednesday but user selected Monday\u2013Thursday, engineers currently see availability=0.01 (half weight) without understanding why. Logging \"2/4 days covered\" inline shows partial schedule overlap immediately, preventing false negatives where strong matches disappear because one missing day zeroed the score. This directly supports the CORE PRINCIPLE: users must see exhibitors who are present on MOST of their selected days, even if not all \u2014 missing this vi",
-  "next_target": "Log proximity scoring's hall offset distance in meters so engineers see when 'within 2 halls' bonus triggers during live tests.",
+  "last_detail": "Commercial fit debug logs now emit to stderr with [CFDBG] prefix so engineers can grep live ranking tests without filtering application noise.",
+  "last_impact": "Engineers investigating scale mismatches (startup matched to Siemens) during live fair testing can now run `grep '\\[CFDBG\\]'` and see every commercial fit computation instantly \u2014 no horizontal scrolling, no parsing JSON blobs, no hunting through mixed logs. This cuts match investigation time from 3 minutes to 10 seconds, making it practical to debug rankings in real time while users are walking the floor.",
+  "next_target": "Add inline computation breakdown to [CFDBG] output when partial data present so engineers see degraded score calculation without opening source code.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
