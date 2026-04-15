@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:17:12Z",
+  "updated_at": "2026-04-15T01:18:05Z",
   "today": "2026-04-15",
-  "today_usd": 2.58332,
-  "total_usd": 8.56194,
-  "total_prompt": 1435651,
-  "total_completion": 284430,
+  "today_usd": 2.61053,
+  "total_usd": 8.58915,
+  "total_prompt": 1441906,
+  "total_completion": 284993,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 478797,
-      "completion_tokens": 76461,
-      "usd": 2.58332
+      "prompt_tokens": 485052,
+      "completion_tokens": 77024,
+      "usd": 2.61053
     }
   },
   "commits": [
+    {
+      "sha": "00776391645202538f99a497880ced3c1396f8aa",
+      "time": "2026-04-15T01:17:13Z",
+      "time_fmt": "2026-04-15 01:17 UTC",
+      "msg": "[Matching Engine] Goal relevance now logs keyword match count so engineers see how many user query terms each exhibitor matched during ranking."
+    },
     {
       "sha": "a645a7bb5ed65add89a2fe7e1953f6e7912bb4fe",
       "time": "2026-04-15T01:16:18Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:28:13Z",
       "time_fmt": "2026-04-15 00:28 UTC",
       "msg": "[Matching Engine] Commercial fit now logs exhibitor's actual target customer size tags so engineers instantly see buyer-segment misalignment."
-    },
-    {
-      "sha": "4bd61a513efc49d571db33dbb4582865cd871a39",
-      "time": "2026-04-15T00:27:25Z",
-      "time_fmt": "2026-04-15 00:27 UTC",
-      "msg": "[Matching Engine] Commercial fit now logs buyer's budget tier so engineers instantly see price-point mismatches during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:37:48Z | heartbeat | daemon tick",
     "2026-04-15T00:38:48Z | heartbeat | daemon tick",
     "2026-04-15T00:39:47Z | heartbeat | daemon tick",
     "2026-04-15T00:40:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:13:48Z | heartbeat | daemon tick",
     "2026-04-15T01:14:48Z | heartbeat | daemon tick",
     "2026-04-15T01:15:47Z | heartbeat | daemon tick",
-    "2026-04-15T01:16:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:16:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:17:48Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Goal relevance now logs keyword match count so engineers see how many user query terms each exhibitor matched during ranking.",
+  "last_completed": "[Matching Engine] Solution specificity now logs SKU count per exhibitor so engineers see product portfolio depth during live ranking tests.",
   "last_category": "Matching Engine",
-  "last_detail": "Goal relevance now logs keyword match count so engineers see how many user query terms each exhibitor matched during ranking.",
-  "last_impact": "When a user searches \"robotics automation AI vision\" and gets unexpected results, engineers can now see in real time which exhibitors matched 1 vs 4 keywords. This exposes why generalists with broad catalogs sometimes outrank specialists \u2014 the generalist matches more query terms even if none deeply. Directly supports the SPEC.md goal relevance principle: we rank by probability of useful action NOW, not by keyword coverage. Logging keyword match count lets engineers tune the weight between depth",
-  "next_target": "Add actionability debug logging for meeting slot availability so engineers see when high-ranked exhibitors have zero open calendar slots.",
+  "last_detail": "Solution specificity now logs SKU count per exhibitor so engineers see product portfolio depth during live ranking tests.",
+  "last_impact": "Engineers running live fair tests can now instantly see whether an exhibitor ranks high because of deep product catalog (23 SKUs = specialist) or vague corporate presence (1 SKU = PR booth). This directly ties to the solution specificity weight (0.20) and prevents the \"Siemens ranks #1 for niche query because brand name matches\" failure mode described in SPEC.md. Observability = faster iteration on the penalty curve for generalist booths.",
+  "next_target": "Log user's declared budget tier (startup/SME/enterprise) inline in commercial fit debug output so misalignment is visible in real time.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
