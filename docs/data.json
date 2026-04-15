@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-15T01:15:14Z",
+  "updated_at": "2026-04-15T01:16:17Z",
   "today": "2026-04-15",
-  "today_usd": 2.51203,
-  "total_usd": 8.49065,
-  "total_prompt": 1423138,
-  "total_completion": 282180,
+  "today_usd": 2.54935,
+  "total_usd": 8.52797,
+  "total_prompt": 1429393,
+  "total_completion": 283417,
   "daily_cap": 50.0,
   "ticks_today": 50,
   "per_day": {
@@ -14,12 +14,18 @@
       "usd": 5.97862
     },
     "2026-04-15": {
-      "prompt_tokens": 466284,
-      "completion_tokens": 74211,
-      "usd": 2.51203
+      "prompt_tokens": 472539,
+      "completion_tokens": 75448,
+      "usd": 2.54935
     }
   },
   "commits": [
+    {
+      "sha": "0c288fd2d57849802b56066fdf55c5ce109d0dfd",
+      "time": "2026-04-15T01:15:16Z",
+      "time_fmt": "2026-04-15 01:15 UTC",
+      "msg": "[Matching Engine] Intent confidence now logs user's stated industry vertical so engineers see when domain mismatch lowers confidence."
+    },
     {
       "sha": "2aba0606cb85fc6f0dfa687c6f542f850c39f64d",
       "time": "2026-04-15T01:14:12Z",
@@ -313,16 +319,9 @@
       "time": "2026-04-15T00:26:08Z",
       "time_fmt": "2026-04-15 00:26 UTC",
       "msg": "[Matching Engine] Commercial fit now logs buyer's employee count so engineers instantly see startup-vs-enterprise mismatches during live testing."
-    },
-    {
-      "sha": "370b651a449f3232b4868aba89f92e2b4d1a219e",
-      "time": "2026-04-15T00:25:12Z",
-      "time_fmt": "2026-04-15 00:25 UTC",
-      "msg": "[Matching Engine] Commercial fit now logs buyer company size so engineers instantly see scale mismatch failures during live testing."
     }
   ],
   "log_tail": [
-    "2026-04-15T00:35:48Z | heartbeat | daemon tick",
     "2026-04-15T00:36:47Z | heartbeat | daemon tick",
     "2026-04-15T00:37:48Z | heartbeat | daemon tick",
     "2026-04-15T00:38:48Z | heartbeat | daemon tick",
@@ -361,13 +360,14 @@
     "2026-04-15T01:11:47Z | heartbeat | daemon tick",
     "2026-04-15T01:12:47Z | heartbeat | daemon tick",
     "2026-04-15T01:13:48Z | heartbeat | daemon tick",
-    "2026-04-15T01:14:48Z | heartbeat | daemon tick"
+    "2026-04-15T01:14:48Z | heartbeat | daemon tick",
+    "2026-04-15T01:15:47Z | heartbeat | daemon tick"
   ],
-  "last_completed": "[Matching Engine] Intent confidence now logs user's stated industry vertical so engineers see when domain mismatch lowers confidence.",
+  "last_completed": "[Matching Engine] Commercial fit now logs buyer's declared employee count inline so engineers see startup vs enterprise mismatch during live ranking tests.",
   "last_category": "Matching Engine",
-  "last_detail": "Intent confidence now logs user's stated industry vertical so engineers see when domain mismatch lowers confidence.",
-  "last_impact": "When a robotics engineer searches for \"medical devices\" the matching engine currently cannot explain why intent confidence drops from 0.05 to 0.02 \u2014 engineers waste minutes debugging unclear needs during live fair testing. Logging the user's declared vertical (extracted from CV, LinkedIn profile, or chat context) alongside the query text makes cross-domain searches instantly visible in the debug stream. This directly improves the \"probability of useful action NOW\" scoring by surfacing when the u",
-  "next_target": "Log solution specificity's product datasheet presence so engineers see when exhibitors claim technical capability without documentation.",
+  "last_detail": "Commercial fit now logs buyer's declared employee count inline so engineers see startup vs enterprise mismatch during live ranking tests.",
+  "last_impact": "When a 5-person robotics startup gets matched to Siemens (50k employees), engineers now see `buyer_emp=5 exhibitor_emp=50000` in the debug line and immediately understand why commercial fit dropped to 0.00 \u2014 no guessing, no multi-step investigation. This prevents catastrophic false positives (user wastes booth visit on totally wrong scale) by making scale mismatch visible in real time during Hannover Messe testing, directly supporting the core principle: if the match is wrong, the user feels the",
+  "next_target": "Add availability debug logging for staff role types present per exhibitor so engineers see when only sales staff available but user needs technical demo.",
   "model": "anthropic/claude-sonnet-4.5",
   "cron": "fly-loop-60s",
   "runtime": "fly.io"
